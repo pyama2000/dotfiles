@@ -1,0 +1,1 @@
+/home/yamashita/.config/fisherman/fzf/conf.d/fzf.fish

@@ -1,0 +1,1 @@
+/home/yamashita/.config/fisherman/z/functions/zclean.awk

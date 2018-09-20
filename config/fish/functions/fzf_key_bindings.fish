@@ -1,0 +1,1 @@
+/home/yamashita/.fzf/shell/key-bindings.fish

@@ -5,11 +5,17 @@ set fish_greeting ''
 set -gx LANG ja_JP.UTF-8 $LANG
 set -gx LC_ALL ja_JP.UTF-8 $LC_ALL
 
+# Setting for anyenv
+set -gx ANYENV_ROOT $HOME/.anyenv
+set -x PATH $ANYENV_ROOT/bin $PATH
+
 # Setting for pyenv
 ## Set enviroment valeue `PYENV_ROOT`
-set -gx PYENV_ROOT $HOME/.anyenv/envs/pyenv
+set -gx PYENV_ROOT $ANYENV_ROOT/envs/pyenv
+set -x PATH $PYENV_ROOT/bin $PATH
 
 ## Set (pyenv init - fish)
+set -x PATH $PYENV_ROOT/shims $PATH
 set -gx PYENV_SHELL fish
 source '/Users/pyama/.anyenv/envs/pyenv/libexec/../completions/pyenv.fish'
 command pyenv rehash 2>/dev/null
@@ -27,10 +33,13 @@ end
 
 # Setting for goenv
 set -gx GOENV_ROOT $HOME/.anyenv/envs/goenv
+set -x PATH $GOENV_ROOT/bin $PATH
+set -x PATH $GOENV_ROOT/shims $PATH
 command goenv rehash 2 > /dev/null
 
 # Setting for golang
 set -gx GOPATH $HOME/go
+set -x PATH $GOPATH/bin $PATH
 
 # Alias
 # Git

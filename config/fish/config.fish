@@ -17,7 +17,7 @@ set -x PATH $PYENV_ROOT/bin $PATH
 ## Set (pyenv init - fish)
 set -x PATH $PYENV_ROOT/shims $PATH
 set -gx PYENV_SHELL fish
-source '/Users/pyama/.anyenv/envs/pyenv/libexec/../completions/pyenv.fish'
+source '$PYENV_ROOT/libexec/../completions/pyenv.fish'
 command pyenv rehash 2>/dev/null
 function pyenv
   set command $argv[1]

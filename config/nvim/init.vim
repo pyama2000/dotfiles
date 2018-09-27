@@ -1,41 +1,18 @@
 " Required
 filetype off
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
-" dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+" Read dein scripts
+runtime! config/dein.vim
 
-" Required:
-set runtimepath+=/Users/pyama/.cache/dein/repos/github.com/Shougo/dein.vim
+" Read keymaps
+runtime! config/keymap.vim
 
-" Required:
-if dein#load_state('/Users/pyama/.cache/dein')
-  call dein#begin('/Users/pyama/.cache/dein')
-
-"  " Let dein manage dein
-"  " Required:
-"  call dein#add('/Users/pyama/.cache/dein/repos/github.com/Shougo/dein.vim')
-"
-"  " Add or remove your plugins here:
-"  call dein#add('Shougo/neosnippet.vim')
-"  call dein#add('Shougo/neosnippet-snippets')
-"
-"  " You can specify revision/branch/tag.
-"  call dein#add('Shougo/deol.nvim', { 'rev': '01203d4c9' })
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Required
-filetype plugin indent on
-syntax enable
-
-" End dein Scripts-------------------------
 
 " My setting-------------------------------
+" Set theme
+colorscheme dracula
+
 " Show number of lines
 set number
 

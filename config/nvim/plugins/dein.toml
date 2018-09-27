@@ -1,0 +1,8 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'dracula/vim'
+
+[[plugins]]
+repo = 'joshdick/onedark.vim'

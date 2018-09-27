@@ -1,10 +1,6 @@
 # Setting for greeting message
 set fish_greeting ''
 
-# Fixing Perl Warning (For MacOS)
-set -gx LANG ja_JP.UTF-8 $LANG
-set -gx LC_ALL ja_JP.UTF-8 $LC_ALL
-
 # Setting for anyenv
 set -gx ANYENV_ROOT $HOME/.anyenv
 set -x PATH $ANYENV_ROOT/bin $PATH
@@ -17,7 +13,7 @@ set -x PATH $PYENV_ROOT/bin $PATH
 ## Set (pyenv init - fish)
 set -x PATH $PYENV_ROOT/shims $PATH
 set -gx PYENV_SHELL fish
-source '$PYENV_ROOT/libexec/../completions/pyenv.fish'
+source $PYENV_ROOT/libexec/../completions/pyenv.fish
 command pyenv rehash 2>/dev/null
 function pyenv
   set command $argv[1]

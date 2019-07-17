@@ -10,15 +10,8 @@ let g:defx_icons_column_length = 2
 
 autocmd FileType defx call s:defx_my_settings()
     function! s:defx_my_settings() abort
-     " Define mappings
       nnoremap <silent><buffer><expr> <CR>
      \ defx#do_action('open')
-      nnoremap <silent><buffer><expr> c
-     \ defx#do_action('copy')
-      nnoremap <silent><buffer><expr> m
-     \ defx#do_action('move')
-      nnoremap <silent><buffer><expr> p
-     \ defx#do_action('paste')
       nnoremap <silent><buffer><expr> o
      \ defx#do_action('open')
       nnoremap <silent><buffer><expr> s
@@ -27,6 +20,12 @@ autocmd FileType defx call s:defx_my_settings()
      \ defx#do_action('open', 'vsplit')
      nnoremap <silent><buffer><expr> P
      \ defx#do_action('open', 'pedit')
+      nnoremap <silent><buffer><expr> c
+     \ defx#do_action('copy')
+      nnoremap <silent><buffer><expr> m
+     \ defx#do_action('move')
+      nnoremap <silent><buffer><expr> p
+     \ defx#do_action('paste')
       nnoremap <silent><buffer><expr> K
      \ defx#do_action('new_directory')
       nnoremap <silent><buffer><expr> N
@@ -35,6 +34,8 @@ autocmd FileType defx call s:defx_my_settings()
      \ defx#do_action('remove')
       nnoremap <silent><buffer><expr> r
      \ defx#do_action('rename')
+      nnoremap <silent><buffer><expr> t
+     \ defx#do_action('open_or_close_tree')
       nnoremap <silent><buffer><expr> x
      \ defx#do_action('execute_system')
       nnoremap <silent><buffer><expr> yy

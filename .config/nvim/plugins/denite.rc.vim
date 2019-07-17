@@ -1,7 +1,7 @@
-nnoremap <silent><C-d>a :<C-u>Denite file buffer -direction=topleft file:new<CR>
-nnoremap <silent><C-d>b :<C-u>Denite buffer -direction=topleft file:new<CR>
-nnoremap <silent><C-d>f :<C-u>Denite file -direction=topleft file:new<CR>
-nnoremap <silent><C-d>r :<C-u>Denite file/rec -direction=topleft file:new<CR>
+nnoremap <silent><C-d>a :<C-u>Denite file buffer -split=floating file:new<CR>
+nnoremap <silent><C-d>b :<C-u>Denite buffer -split=floating file:new<CR>
+nnoremap <silent><C-d>f :<C-u>Denite file -split=floating file:new<CR>
+nnoremap <silent><C-d>r :<C-u>Denite file/rec -split=floating file:new<CR>
 
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort

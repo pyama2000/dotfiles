@@ -1,4 +1,9 @@
 [[plugins]]
+repo = 'neoclide/coc.nvim'
+merge = 0
+rev = 'release'
+
+[[plugins]]
 repo = 'Shougo/defx.nvim'
 depends = ['defx-git']
 hook_add = '''

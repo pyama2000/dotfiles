@@ -1,2 +1,2 @@
-nnoremap <silent><C-o> :<C-u>Deol -split=horizontal<CR>
+nnoremap <silent><C-o> :<C-u>Deol fish -split=horizontal<CR>
 tnoremap <ESC>   <C-\><C-n>

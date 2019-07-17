@@ -1,0 +1,12 @@
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+depends = ['defx-git']
+hook_add = '''
+source ~/.config/nvim/plugins/defx.rc.vim
+'''
+
+[[plugins]]
+repo ='kristijanhusak/defx-git'
+hook_add = '''
+source ~/.config/nvim/plugins/defx-git.rc.vim
+'''

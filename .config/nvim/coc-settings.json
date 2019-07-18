@@ -74,7 +74,7 @@
     },
     "efm": {
       "command": "efm-langserver",
-      "args": ["-c", "~/.config/efm-langserver/config.yaml"],
+      "args": [],
       "filetypes": ["vim", "markdown"]
     }
   }

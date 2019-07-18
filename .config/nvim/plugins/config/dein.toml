@@ -31,3 +31,15 @@ repo = 'shougo/deol.nvim'
 hook_add = '''
 source ~/.config/nvim/plugins/deol.rc.vim
 '''
+
+##############################
+# Theme ######################
+##############################
+[[plugins]]
+repo = 'ayu-theme/ayu-vim'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
+
+[[plugins]]
+repo = 'joshdick/onedark.vim'

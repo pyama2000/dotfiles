@@ -3,6 +3,7 @@ let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
 runtime! plugins/config/dein.rc.vim
 runtime! keymap.vim
+runtime! colorscheme.vim
 
 syntax enable
 set number

@@ -1,0 +1,12 @@
+[user]
+	name = T.YAMASHITA
+	email = 8256tako@gmail.com
+[core]
+	editor = nvim
+[alias]
+  icommit = commit -m \":tada: initial commit\"
+  lograph = log --graph --decorate --oneline --branches
+  logns = log --graph --decorate --oneline --branches --name-status
+  prebase = pull --rebase
+[commit]
+  template = ~/.commit_template

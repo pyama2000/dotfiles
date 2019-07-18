@@ -1,4 +1,10 @@
 [[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+source ~/.config/nvim/plugins/lightline.rc.vim
+'''
+
+[[plugins]]
 repo = 'neoclide/coc.nvim'
 merge = 0
 rev = 'release'
@@ -39,7 +45,7 @@ source ~/.config/nvim/plugins/deol.rc.vim
 repo = 'ayu-theme/ayu-vim'
 
 [[plugins]]
-repo = 'morhetz/gruvbox'
+repo = 'joshdick/onedark.vim'
 
 [[plugins]]
-repo = 'joshdick/onedark.vim'
+repo = 'morhetz/gruvbox'

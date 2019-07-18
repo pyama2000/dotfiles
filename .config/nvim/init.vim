@@ -14,4 +14,6 @@ set tabstop=2
 set shiftwidth=2
 set smartindent
 set softtabstop=2
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
+set nobackup
+set nowritebackup

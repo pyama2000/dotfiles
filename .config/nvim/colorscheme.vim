@@ -7,4 +7,4 @@ let ayucolor="dark"
 "" Setting for gruvbox
 set t_Co=256
 
-colorscheme ayu
+colorscheme gruvbox

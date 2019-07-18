@@ -1,0 +1,51 @@
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+source ~/.config/nvim/plugins/lightline.rc.vim
+'''
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+merge = 0
+rev = 'release'
+hook_add = '''
+source ~/.config/nvim/plugins/coc.rc.vim
+'''
+
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+depends = ['defx-git']
+hook_add = '''
+source ~/.config/nvim/plugins/defx.rc.vim
+'''
+
+[[plugins]]
+repo ='kristijanhusak/defx-git'
+hook_add = '''
+source ~/.config/nvim/plugins/defx-git.rc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = '''
+source ~/.config/nvim/plugins/denite.rc.vim
+'''
+
+[[plugins]]
+repo = 'shougo/deol.nvim'
+hook_add = '''
+source ~/.config/nvim/plugins/deol.rc.vim
+'''
+
+##############################
+# Theme ######################
+##############################
+[[plugins]]
+repo = 'ayu-theme/ayu-vim'
+
+[[plugins]]
+repo = 'joshdick/onedark.vim'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'

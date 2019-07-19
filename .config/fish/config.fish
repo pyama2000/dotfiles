@@ -5,7 +5,8 @@ set fish_greeting ''
 ##############################
 set -gx ANYENV_ROOT $HOME/.anyenv
 set PATH $ANYENV_ROOT/bin $PATH
-anyenv init - fish | source
+anyenv init - | source
+
 
 ##############################
 # Python #####################
@@ -60,3 +61,5 @@ alias ddc 'docker run -v $PWD:/work -it (docker images --format "{{.Repository}}
 ## fzf + bat
 alias fpre 'fzf --preview "bat --color=always {}"'
 alias fvim 'nvim (fpre)'
+## pipenv
+alias piid 'pipenv install --dev flake8 pylint isort mypy pysnooper pydocstyle bandit && pipenv install --dev --pre black'

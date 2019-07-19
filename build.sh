@@ -169,7 +169,7 @@ npm install -g markdownlint-cli
 ##############################
 ln -snfv ~/dotfiles/.gitconfig ~/
 ln -snfv ~/dotfiles/.commit_template ~/
-ln -snfv ~/dotfilses/.hyper.js ~/
+ln -snfv ~/dotfiles/.hyper.js ~/
 ln -snfv ~/dotfiles/.config/nvim ~/.config/
 ln -snfv ~/dotfiles/.config/coc ~/.config/
 ln -snfv ~/dotfiles/.config/fish/config.fish ~/.config/fish/

@@ -88,7 +88,6 @@ fi
 # Rust #######################
 ##############################
 curl https://sh.rustup.rs -sSf | sh
-echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.profile
 source ~/.profile
 rustup install nightly
 ## Install Rust packages
@@ -169,9 +168,6 @@ npm install -g markdownlint-cli
 # Link dotfiles ##############
 ##############################
 bash ~/dotfiles/link.sh
-# if [ $OS == "Linux" ]; then
-#   ln -snfv ~/dotfiles/.profile ~/
-# fi
 
 ##############################
 # SSH key ####################
@@ -183,7 +179,6 @@ FORMAT="\033[0m"
 F_BOLD="\033[1m"
 C_WHITE="\033[38;5;15m"
 C_GREEN4="\033[48;5;28m"
-# echo -e "${F_BOLD}${C_WHITE}${C_GREEN4}Copy your ~/.ssh/id_rsa.pub, and add to Github.com${NO_FORMAT}"
 echo -e "${F_BOLD}${C_WHITE}${C_GREEN4}Copy your ~/.ssh/id_rsa.pub, and add to Github.com${FORMAT}"
 
 if [ $OS == "Linux" ]; then

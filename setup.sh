@@ -1,4 +1,8 @@
 #!bin/bash
+PYTHON_VERSION=3.7.4
+GO_VERSION=1.12.7
+NODE_VERSION=12.6.0
+
 set -eu -o pipefail
 trap 'echo "ERROR: line no = $LINENO, exit status = $?" >&2; exit 1' ERR
 
@@ -29,7 +33,7 @@ fi
 if [ $OS == "Mac" ]; then
   brew install fish
 elif [ $OS == "Linux" ]; then
-  sudo apt-add-repository ppa:fish-shell/release-3
+  sudo apt-add-repository -y ppa:fish-shell/release-3
   sudo apt update -y
   sudo apt install -y fish
 fi
@@ -52,9 +56,9 @@ if [ $OS == "Mac" ]; then
 elif [ $OS == "Linux" ]; then
   git clone https://github.com/anyenv/anyenv ~/.anyenv
   echo 'export PATH="$HOME/.anyenv/bin:$PATH"' >> ~/.profile
+  echo 'eval "$(anyenv init -)"' >> ~/.profile
   source ~/.profile
-  anyenv init
-  # anyenv install --init
+  anyenv install --init
 fi
 ## Install plugins
 mkdir -p $(anyenv root)/plugins
@@ -65,24 +69,20 @@ git clone https://github.com/znz/anyenv-update.git $(anyenv root)/plugins/anyenv
 ##############################
 ## Install pyenv
 anyenv install pyenv
-# echo 'export PATH="$HOME/.anyenv/envs/pyenv/bin:$PATH"' >> ~/.profile
-# echo 'export PATH="$HOME/.anyenv/envs/pyenv/shims:$PATH"' >> ~/.profile
-# echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.profile
-# source ~/.profile
-# sudo ~/.anyenv/envs/pyenv/plugins/python-build/install.sh
+source ~/.profile
 pyenv rehash
+## Install Python
+#### Install 2.7.16
+pyenv install 2.7.16
+#### Install latest version
+pyenv install $PYTHON_VERSION
+pyenv global $PYTHON_VERSION
 ## Install pipenv
 if [ $OS == "Mac" ]; then
   brew install pipenv
 elif [ $OS == "Linux" ]; then
   pip3 install --user pipenv
 fi
-## Install Python
-#### Install 2.7.16
-pyenv install 2.7.16
-#### Install latest version
-PYTHON_VERSION="$(pyenv install --list | fzf | xargs)"
-pyenv install $PYTHON_VERSION
 
 ##############################
 # Rust #######################
@@ -90,6 +90,7 @@ pyenv install $PYTHON_VERSION
 curl https://sh.rustup.rs -sSf | sh
 echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.profile
 source ~/.profile
+rustup install nightly
 ## Install Rust packages
 cargo install bat exa ripgrep tokei
 
@@ -100,11 +101,10 @@ cargo install bat exa ripgrep tokei
 anyenv install goenv
 echo 'export GOPATH="$HOME/go"' >> ~/.profile
 echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
-echo 'export GOENV_DISABLE_GOPATH=1"' >> ~/.profile
+echo 'export GOENV_DISABLE_GOPATH=1' >> ~/.profile
 source ~/.profile
 goenv rehash
 ## Install Go
-GO_VERSION="$(goenv install --list | fzf | xargs)"
 goenv install $GO_VERSION
 goenv global $GO_VERSION
 ## Install Go packages
@@ -117,9 +117,9 @@ go get github.com/jesseduffield/lazydocker
 ##############################
 ## Install nodenv
 anyenv install nodenv
+source ~/.profile
 nodenv rehash
 ## Install Node
-NODE_VERSION="$(nodenv install --list | fzf | xargs)"
 nodenv install $NODE_VERSION
 nodenv global $NODE_VERSION
 ## Install yarn
@@ -129,11 +129,11 @@ curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 # Neovim #####################
 ##############################
 if [ $OS == "Mac" ]; then
-  brew install neovim
-  # brew install --HEAD neovim
+  # brew install neovim
+  brew install --HEAD neovim
 elif [ $OS == "Linux" ]; then
-  sudo add-apt-repository ppa:neovim-ppa/stable
-  # sudo add-apt-repository ppa:neovim-ppa/unstable
+  # sudo add-apt-repository -y ppa:neovim-ppa/stable
+  sudo add-apt-repository -y ppa:neovim-ppa/unstable
   sudo apt update -y
   sudo apt install -y neovim 
 fi
@@ -146,7 +146,7 @@ pyenv global $PYTHON_VERSION
 pip install --upgrade pip
 pip install pynvim
 ## Node provider
-yarn global add neovim
+~/.yarn/bin/yarn global add neovim
 ## Install dein.nvim
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
 sh ./installer.sh ~/.cache/dein
@@ -169,9 +169,9 @@ npm install -g markdownlint-cli
 # Link dotfiles ##############
 ##############################
 bash ~/dotfiles/link.sh
-if [ $OS == "Linux" ]; then
-  ln -snfv ~/dotfiles/.profile ~/
-fi
+# if [ $OS == "Linux" ]; then
+#   ln -snfv ~/dotfiles/.profile ~/
+# fi
 
 ##############################
 # SSH key ####################
@@ -183,7 +183,8 @@ FORMAT="\033[0m"
 F_BOLD="\033[1m"
 C_WHITE="\033[38;5;15m"
 C_GREEN4="\033[48;5;28m"
-echo -e "${F_BOLD}${C_WHITE}${C_GREEN4}Copy your ~/.ssh/id_rsa.pub, and add to Github.com${NO_FORMAT}"
+# echo -e "${F_BOLD}${C_WHITE}${C_GREEN4}Copy your ~/.ssh/id_rsa.pub, and add to Github.com${NO_FORMAT}"
+echo -e "${F_BOLD}${C_WHITE}${C_GREEN4}Copy your ~/.ssh/id_rsa.pub, and add to Github.com${FORMAT}"
 
 if [ $OS == "Linux" ]; then
   sudo apt autoremove

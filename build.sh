@@ -1,4 +1,8 @@
 #!bin/bash
+PYTHON_VERSION=3.7.4
+GO_VERSION=1.12.7
+NODE_VERSION=12.6.0
+
 set -eu -o pipefail
 trap 'echo "ERROR: line no = $LINENO, exit status = $?" >&2; exit 1' ERR
 
@@ -71,7 +75,6 @@ pyenv rehash
 #### Install 2.7.16
 pyenv install 2.7.16
 #### Install latest version
-PYTHON_VERSION="$(pyenv install --list | grep -E " \d+?.\d+?.\d+" | fzf --tac)"
 pyenv install $PYTHON_VERSION
 pyenv global $PYTHON_VERSION
 ## Install pipenv
@@ -101,7 +104,6 @@ echo 'export GOENV_DISABLE_GOPATH=1' >> ~/.profile
 source ~/.profile
 goenv rehash
 ## Install Go
-GO_VERSION="$(goenv install --list | grep -E " \d+?.\d+?.\d+" | fzf --tac)"
 goenv install $GO_VERSION
 goenv global $GO_VERSION
 ## Install Go packages
@@ -117,7 +119,6 @@ anyenv install nodenv
 source ~/.profile
 nodenv rehash
 ## Install Node
-NODE_VERSION="$(nodenv install --list | grep -E " \d+?.\d+?.\d+" | fzf --tac)"
 nodenv install $NODE_VERSION
 nodenv global $NODE_VERSION
 ## Install yarn

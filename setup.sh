@@ -11,7 +11,7 @@ if [ $OS == "Mac" ]; then
   xcode-select --install
 
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  brew install git
+  brew install git readline xz
 elif [ $OS == "Linux" ]; then
   apt update -y
   apt install -y curl vim git net-tools build-essential software-properties-common

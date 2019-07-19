@@ -5,7 +5,7 @@ set fish_greeting ''
 ##############################
 set -gx ANYENV_ROOT $HOME/.anyenv
 set PATH $ANYENV_ROOT/bin $PATH
-anyenv init - | source
+anyenv init - fish | source
 
 
 ##############################

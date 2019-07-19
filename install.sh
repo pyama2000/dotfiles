@@ -8,4 +8,4 @@ mv ~/dotfiles-master ~/dotfiles
 bash ~/dotfiles/setup.sh
 cd dotfiles
 git init
-git remote add git@github.com:pyama2000/dotfiles.git
+git remote add origin git@github.com:pyama2000/dotfiles.git

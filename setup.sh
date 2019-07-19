@@ -1,4 +1,7 @@
 #!bin/bash
+set -eu -o pipefail
+trap 'echo "ERROR: line no = $LINENO, exit status = $?" >&2; exit 1' ERR
+
 if [ $(uname) == "Darwin" ]; then
   OS="Mac"
 elif [ $(expr substr $(uname -s) 1 5) == "Linux" ]; then OS="Linux"
@@ -32,7 +35,7 @@ elif [ $OS == "Linux" ]; then
 fi
 ## fisher
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-fisher add jethrokuan/z
+fish -c "fisher add jethrokuan/z"
 
 ##############################
 # fzf ########################

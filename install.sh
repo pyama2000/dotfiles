@@ -10,4 +10,5 @@ bash ~/dotfiles/build.sh
 cd dotfiles
 git init
 git remote add origin git@github.com:pyama2000/dotfiles.git
-rm ~/.install.sh
+rm ~/.installer.sh
+rm ~/install.sh

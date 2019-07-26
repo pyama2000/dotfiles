@@ -44,7 +44,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
-nmap <leader><F2> <Plug>(coc-rename)
+nmap <silent><F2> <Plug>(coc-rename)
 
 " Using CocList
 " Show all diagnostics

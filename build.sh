@@ -92,6 +92,10 @@ source ~/.profile
 rustup install nightly
 ## Install Rust packages
 cargo install bat exa ripgrep tokei
+## Install Clippy
+rustup add component clippy
+## Install RustFmt
+rustup add component rustfmt
 
 ##############################
 # Go #########################

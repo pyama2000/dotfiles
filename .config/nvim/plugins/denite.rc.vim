@@ -2,6 +2,7 @@ nnoremap <silent><C-d>a :<C-u>Denite file buffer -split=floating file:new<CR>
 nnoremap <silent><C-d>b :<C-u>Denite buffer -split=floating file:new<CR>
 nnoremap <silent><C-d>f :<C-u>Denite file -split=floating file:new<CR>
 nnoremap <silent><C-d>r :<C-u>Denite file/rec -split=floating file:new<CR>
+nnoremap <silent><C-d>g :<C-u>Denite grep<CR>
 
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
@@ -31,3 +32,17 @@ autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
   imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
 endfunction
+
+" Change file/rec command for `ripgrep`
+call denite#custom#var('file/rec', 'command',
+    \ ['rg', '--files', '--hidden', '--glob', '!.git'])
+
+" Change grep source command for `ripgrep`
+call denite#custom#var('grep', 'command',
+    \ ['rg', '--hidden'])
+call denite#custom#var('grep', 'default_opts',
+		\ ['-i', '--vimgrep', '--no-heading'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])

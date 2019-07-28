@@ -44,8 +44,8 @@ alias gco 'git checkout'
 ## ghq
 alias ghg 'ghq get'
 alias ghl 'ghq list'
-alias ghrm 'rm -rf (ghq root)/(ghq list | fzf)'
-alias ghcd 'cd (ghq root)/(ghq list | fzf)'
+alias ghrm 'rm -rf (ghq list --full-path | fzf)'
+alias ghcd 'cd (ghq list --full-path | fzf)'
 ## lazygit (Simple terminal UI for git commands)
 alias lg 'lazygit'
 ## exa (Replacement for `ls` command)

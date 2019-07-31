@@ -59,8 +59,6 @@ alias exaf 'exa --long --all --group-directories-first --bytes --header --links 
 ## Docker 
 alias ddc 'docker run -v $PWD:/work -it (docker images --format "{{.Repository}}:{{.Tag}}" | fzf)'
 alias ddcr 'docker run --rm -v $PWD:/work -it (docker images --format "{{.Repository}}:{{.Tag}}" | fzf)'
-alias atkk 'docker run -v $PWD:/work -it atkk_dev:latest /usr/bin/fish'
-alias atkkr 'docker run --rm -v $PWD:/work -it atkk_dev:latest /usr/bin/fish'
 ## fzf + bat
 alias fpre 'fzf --preview "bat --color=always {}"'
 alias fvim 'nvim (fpre)'

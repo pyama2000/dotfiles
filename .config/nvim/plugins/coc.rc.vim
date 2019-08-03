@@ -1,5 +1,5 @@
 set hidden
-set cmdheight=2
+" set cmdheight=2
 set updatetime=200
 set shortmess+=c
 set signcolumn=yes

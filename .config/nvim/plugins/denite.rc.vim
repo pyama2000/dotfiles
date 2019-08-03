@@ -8,11 +8,11 @@ nnoremap <silent><C-d>f :<C-u>Denite file -split=floating file:new<CR>
 " directory
 nnoremap <silent><C-d>r :<C-u>Denite file/rec -split=floating file:new<CR>
 " Normal grep
-nnoremap <silent><C-d>g :<C-u>Denite grep -buffer-name=search<CR>
+nnoremap <silent><C-d>gr :<C-u>Denite grep -buffer-name=search<CR>
 " Grep under the cursor word
 nnoremap <silent><C-d>, :<C-u>DeniteCursorWord grep -buffer-name=search line<CR>
 " Resume the grep search buffer
-nnoremap <silent><C-d><C-g> :<C-u>Denite -resume -buffer-name=search<CR>
+nnoremap <silent><C-d>gs :<C-u>Denite -resume -buffer-name=search<CR>
 " Gather command histories and run it
 nnoremap <silent><C-d>c :<C-u>Denite command_history -split=floating<CR>
 

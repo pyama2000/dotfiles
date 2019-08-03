@@ -1,9 +1,22 @@
+# syntax for TOML
+[[plugins]]
+repo = 'cespare/vim-toml'
+
+# Status Line
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
 source ~/.config/nvim/plugins/lightline.rc.vim
 '''
 
+# Git interfaces
+[[plugins]]
+repo = "tpope/vim-fugitive"
+hook_add = '''
+source ~/.config/nvim/plugins/vim-fugitive.rc.vim
+'''
+
+# LSP(Language Server Protocol)
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 merge = 0
@@ -12,7 +25,10 @@ hook_add = '''
 source ~/.config/nvim/plugins/coc.rc.vim
 '''
 
-
+##############################
+# Dark Power plugins #########
+##############################
+# File explorer
 [[plugins]]
 repo = 'Shougo/defx.nvim'
 depends = ['defx-git']
@@ -26,12 +42,14 @@ hook_add = '''
 source ~/.config/nvim/plugins/defx-git.rc.vim
 '''
 
+# Asynchronous unite all interfaces
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
 source ~/.config/nvim/plugins/denite.rc.vim
 '''
 
+# Shell interfaces
 [[plugins]]
 repo = 'shougo/deol.nvim'
 hook_add = '''

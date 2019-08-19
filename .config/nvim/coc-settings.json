@@ -71,11 +71,6 @@
       "command": "rls",
       "filetypes": ["rust"],
       "rootPatterns": ["Cargo.toml"]
-    },
-    "efm": {
-      "command": "efm-langserver",
-      "args": [],
-      "filetypes": ["vim", "markdown"]
     }
   }
 }

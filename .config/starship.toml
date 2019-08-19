@@ -12,5 +12,14 @@ disabled = true
 [line_break]
 disabled = true
 
+[ruby]
+disabled = true
+
 [nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[rust]
 disabled = true

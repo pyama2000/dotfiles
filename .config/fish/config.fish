@@ -62,8 +62,25 @@ alias clippy 'cargo +nightly clippy'
 ## exa
 alias exaf 'exa --long --all --group-directories-first --bytes --header --links --git'
 ## Docker 
-alias ddc 'docker run -v $PWD:/work -it (docker images --format "{{.Repository}}:{{.Tag}}" | fzf)'
-alias ddcr 'docker run --rm -v $PWD:/work -it (docker images --format "{{.Repository}}:{{.Tag}}" | fzf)'
+function ddc
+    if [ -z $argv ]
+        set name (basename $PWD)
+    else
+        set name $argv[1]
+    end
+
+    docker run -v $PWD:/work --name $name -it (docker images --format "{{.Repository}}:{{.Tag}}" | fzf)
+end
+
+function ddcr
+    if [ -z $argv ]
+        set name (basename $PWD)
+    else
+        set name $argv[1]
+    end
+
+    docker run --rm -v $PWD:/work --name $name -it (docker images --format "{{.Repository}}:{{.Tag}}" | fzf)
+end
 ## fzf + bat
 alias fpre 'fzf --preview "bat --color=always {}"'
 alias fvim 'nvim (fpre)'

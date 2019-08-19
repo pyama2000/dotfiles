@@ -1,0 +1,13 @@
+add_newline = false
+
+[character]
+symbol = "$"
+
+[package]
+disabled = true
+
+[cmd_duration]
+disabled = true
+
+[nodejs]
+disabled = true

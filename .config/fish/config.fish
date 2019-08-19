@@ -54,13 +54,12 @@ alias ghcd 'cd (ghq list --full-path | fzf)'
 ## lazygit (Simple terminal UI for git commands)
 alias lg 'lazygit'
 ## exa (Replacement for `ls` command)
-alias exaf 'exa --long --all --group-directories-first --bytes --header --links --git'
+alias exaf 'exa --long --all --group-directories-first --bytes --header --git'
+alias exat 'exa --long --all --group-directories-first --bytes --header --git --tree --ignore-glob .git'
 ## cargo
 alias rfmt 'cargo +nightly fmt'
 alias cch 'cargo check --color=always'
 alias clippy 'cargo +nightly clippy'
-## exa
-alias exaf 'exa --long --all --group-directories-first --bytes --header --links --git'
 ## Docker 
 function ddc
     if [ -z $argv ]

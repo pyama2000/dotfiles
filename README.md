@@ -2,13 +2,11 @@
 
 ## Build
 
-### Using `install.sh`
-
-Download `install.sh` and run `$bash ~/install.sh`
-
-### Using `setup.sh`
-
-Download this repository and run `$bash ~/dotfiles/setup.sh`
+```bash
+$ cd ~
+$ git clone https://github.com/pyama2000/dotfiles.git
+$ bash dotfiles/install.sh
+```
 
 ## Installed list
 
@@ -41,6 +39,7 @@ Tools:
 - ripgrep(Installed from `cargo`)
 - tokei(Installed from `cargo`)
 - yarn
+- starship
 
 For neovim:
 

@@ -1,6 +1,10 @@
 " Clear highlight
 map <C-n> :noh<CR>
 
+" Split window
+nmap <C-w>s :split<CR>
+nmap <C-w>v :vsplit<CR>
+
 " Move window
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k

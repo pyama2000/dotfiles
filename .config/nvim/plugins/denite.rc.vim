@@ -51,7 +51,7 @@ call denite#custom#var('file/rec', 'command',
 
 " Change grep source command for `ripgrep`
 call denite#custom#var('grep', 'command',
-    \ ['rg', '--hidden'])
+    \ ['rg', '--hidden', '--glob', '!.git'])
 call denite#custom#var('grep', 'default_opts',
 		\ ['-i', '--vimgrep', '--no-heading'])
 call denite#custom#var('grep', 'recursive_opts', [])

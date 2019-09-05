@@ -212,14 +212,17 @@ cargo install starship
 ##############################
 # Link dotfiles ##############
 ##############################
-ln -snfv ~/dotfiles/.gitconfig ~/
-ln -snfv ~/dotfiles/.commit_template ~/
-ln -snfv ~/dotfiles/.hyper.js ~/
-ln -snfv ~/dotfiles/starship.toml ~/.config/
-ln -snfv ~/dotfiles/.config/nvim ~/.config/
-ln -snfv ~/dotfiles/.config/coc ~/.config/
-ln -snfv ~/dotfiles/.config/fish/config.fish ~/.config/fish/
-ln -snfv ~/dotfiles/.config/fish/functions/fish_prompt.fish ~/.config/fish/functions/
+LINK=(".commit_template" ".gitconfig" ".hyper.js" 
+      ".config/starship.toml" ".config/nvim" ".config/coc"
+      ".config/fish/config.fish")
+
+for link in ${LINK[@]}
+do
+  echo $HOME/dotfiles/$link
+  if [ ! -L $HOME/$link ]; then
+    ln -snfv $HOME/dotfiles/$link $HOME/
+  fi
+done
 
 ##############################
 # SSH key ####################

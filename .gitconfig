@@ -4,9 +4,20 @@
 [core]
 	editor = nvim
 [alias]
-  icommit = commit -m \":tada: initial commit\"
+  icommit = commit --allow-empty -m \":tada: initial commit\"
   lograph = log --graph --decorate --oneline --branches
   logns = log --graph --decorate --oneline --branches --name-status
-  prebase = pull --rebase
+  ss = status
+  adu = add -u  # 変更ファイルのみ追加
+  adup = add -u -p  # 変更ファイルの差分の一部のみを追加
+  br = branch
+  brm = branch -m
+  brd = branch -d
+  brdd = branch -dd
+  co = checkout
+  sw = switch
+  swc = swich -c
+  mg = merge --no-ff
+  mgff = merge --ff
 [commit]
   template = ~/.commit_template

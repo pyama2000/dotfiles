@@ -213,7 +213,7 @@ cargo install starship
 # Link dotfiles ##############
 ##############################
 LINK=(".commit_template" ".gitconfig" ".hyper.js" 
-      ".config/starship.toml" ".config/nvim" ".config/coc"
+      ".config/starship.toml" ".config/nvim" ".config/coc/extension/package.json"
       ".config/fish/config.fish")
 
 for link in ${LINK[@]}

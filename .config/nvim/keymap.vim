@@ -11,6 +11,11 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 nmap <C-h> <C-w>h
 
+" Tab
+nmap <C-t>n :tabnew<CR>
+nmap <C-t>N :tabNext<CR>
+nmap <C-t>p :tabprevious<CR>
+
 nnoremap j gj
 nnoremap k gk
 

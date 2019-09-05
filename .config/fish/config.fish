@@ -42,10 +42,6 @@ eval (starship init fish)
 ##############################
 # Alias ######################
 ##############################
-## Git
-alias ga 'git add .'
-alias gc 'git commit'
-alias gco 'git checkout'
 ## ghq
 alias ghg 'ghq get'
 alias ghl 'ghq list'

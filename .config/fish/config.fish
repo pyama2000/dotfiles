@@ -53,9 +53,9 @@ alias lg 'lazygit'
 alias exaf 'exa --long --all --group-directories-first --bytes --header --git'
 alias exat 'exa --long --all --group-directories-first --bytes --header --git --tree --ignore-glob .git'
 ## cargo
-alias rfmt 'cargo +nightly fmt'
+alias rfmt 'cargo fmt'
 alias cch 'cargo check --color=always'
-alias clippy 'cargo +nightly clippy'
+alias clippy 'cargo clippy'
 ## Docker 
 function ddc
     if [ -z $argv ]

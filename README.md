@@ -8,7 +8,13 @@ $ git clone https://github.com/pyama2000/dotfiles.git
 $ bash dotfiles/install.sh
 ```
 
-## Installed list
+## Install fish completions
+
+```bash
+$ curl https://raw.githubusercontent.com/fish-shell/fish-shell/master/share/completions/[COMMAND_NAME].fish > ~/.config/fish/completions/git.fish
+```
+
+## Installed application list
 
 Shell: 
 

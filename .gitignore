@@ -1,2 +1,3 @@
 .config/coc/extensions/db.json
 .config/nvim/.netrwhist
+node_modules/

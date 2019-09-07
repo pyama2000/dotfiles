@@ -16,7 +16,7 @@
   brdd = branch -dd
   co = checkout
   sw = switch
-  swc = swich -c
+  swc = switch -c
   mg = merge --no-ff
   mgff = merge --ff
 [commit]

@@ -19,7 +19,7 @@ disabled = true
 disabled = true
 
 [python]
-disabled = true
+symbol = "python: "
 
 [rust]
-disabled = true
+symbol = "rust: "

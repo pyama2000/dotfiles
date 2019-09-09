@@ -1,4 +1,5 @@
 {
+  "rust-analyzer.enableCargoWatchOnStartup": "enabled",
   "languageserver": {
     "python": {
       "command": "python",

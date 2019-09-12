@@ -4,7 +4,7 @@
 [core]
 	editor = nvim
 [alias]
-  icommit = commit --allow-empty -m \":tada: initial commit\"
+  icommit = commit --allow-empty -m \":tada: Initial commit\"
   lograph = log --graph --decorate --oneline --branches
   logns = log --graph --decorate --oneline --branches --name-status
   ss = status
@@ -13,7 +13,7 @@
   br = branch
   brm = branch -m
   brd = branch -d
-  brdd = branch -dd
+  brdd = branch -D
   co = checkout
   sw = switch
   swc = switch -c

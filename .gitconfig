@@ -11,10 +11,12 @@
   adu = add -u  # 変更ファイルのみ追加
   adup = add -u -p  # 変更ファイルの差分の一部のみを追加
   br = branch
+  bra = branch --all
   brm = branch -m
   brd = branch -d
   brdd = branch -D
-  co = checkout
+  co = commit
+  com = commit -m
   sw = switch
   swc = switch -c
   mg = merge --no-ff

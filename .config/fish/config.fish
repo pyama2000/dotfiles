@@ -27,6 +27,7 @@ set -gx GOENV_DISABLE_GOPATH 1
 # Rust #######################
 ##############################
 set -gx PATH $HOME/.cargo/bin $PATH
+set -x RUSTC_WRAPPER sccache
 # set RUST_SRC_PATH (rustc --print sysroot)/lib/rustlib/src/rust/src
 
 ##############################
@@ -50,8 +51,8 @@ alias ghcd 'cd (ghq list --full-path | fzf)'
 ## lazygit (Simple terminal UI for git commands)
 alias lg 'lazygit'
 ## exa (Replacement for `ls` command)
-alias exaf 'exa --long --all --group-directories-first --bytes --header --git'
-alias exat 'exa --long --all --group-directories-first --bytes --header --git --tree --ignore-glob .git'
+alias exaf 'exa --long --all --group-directories-first --bytes --header --group --git'
+alias exat 'exa --long --all --group-directories-first --bytes --header --group --git --tree --ignore-glob .git'
 ## cargo
 alias rfmt 'cargo fmt'
 alias cch 'cargo check --color=always'

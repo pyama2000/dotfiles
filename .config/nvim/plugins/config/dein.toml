@@ -2,6 +2,14 @@
 [[plugins]]
 repo = "cespare/vim-toml"
 
+# syntax for Vue/Nuxt
+[[plugins]]
+repo = "posva/vim-vue"
+
+# syntax for Stylus
+[[plugins]]
+repo = "wavded/vim-stylus"
+
 # Status Line
 [[plugins]]
 repo = "itchyny/lightline.vim"

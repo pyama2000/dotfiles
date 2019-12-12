@@ -1,6 +1,7 @@
 
 
 # ######## Emoji prefix ########
+# 👍 :+1:Improve the functionality
 # ✨ :sparkles: Introducing new features.
 # 🎉 :tada :Initial commit.
 # ♻️ :recycle: Refactoring code.
@@ -29,7 +30,7 @@
 # 🐳 :whale: Work about Docker.
 # ☸️ :wheel_of_dharma: Work about Kubernetes
 # ======== Document ========
-# 📝 :memo: Writing docs.
+# 📚 :books: Writing docs.
 # 💡 :bulb: Documenting source code.
 # ======== Git ========
 # ⏪ :rewind: Reverting changes.

@@ -22,4 +22,4 @@
   mg = merge --no-ff
   mgff = merge --ff
 [commit]
-  template = ~/.commit_template
+  template = ~/.config/git/commit

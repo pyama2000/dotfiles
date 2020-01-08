@@ -3,6 +3,7 @@
 	email = 8256tako@gmail.com
 [core]
 	editor = nvim
+	quotepath = false
 [alias]
   icommit = commit --allow-empty -m \":tada: Initial commit\"
   lograph = log --graph --decorate --oneline --branches

@@ -1,0 +1,414 @@
+##############################
+# Setup                      #
+##############################
+[tasks.setup]
+dependencies = [
+    "package_manager",
+    "install_git",
+    "dotfiles",
+    "install_alacritty",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
+    "install_anyenv",
+    "setup_python",
+    "setup_go",
+    "setup_node",
+]
+
+##############################
+# Homebrew / Linuxbrew       #
+##############################
+[tasks.package_manager.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+'''
+]
+
+##############################
+# Git                        #
+##############################
+[tasks.install_git]
+dependencies = ["git"]
+# dependencies = ["git", "git_links", "gen_ssh-key"]
+
+[tasks.git.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+if (brew list | grep git > /dev/null); then
+    brew upgrade git
+else
+    brew install git
+fi
+'''
+]
+
+[tasks.git.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo add-apt-repository -y ppa:git-core/ppa
+sudo apt update -y
+sudo apt install -y git
+'''
+]
+
+[tasks.git_links]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/git ~/.config
+'''
+]
+
+[tasks.gen_ssh-key]
+condition = { env_set = [ "EMAIL_ADDRESS" ] }
+script = [
+'''
+#!/usr/bin/env bash
+
+ssh-keygen -t ed25519 -C $MAIL_ADDRESS
+'''
+]
+
+##############################
+# dotfiles                   #
+##############################
+[tasks.dotfiles]
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+git remote set-url origin git@github.com:pyama2000/dotfiles.git
+'''
+]
+
+##############################
+# Alacritty                  #
+##############################
+[tasks.install_alacritty]
+dependencies = ["alacritty", "alacritty_links"]
+
+[tasks.alacritty.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew cask install alacritty
+'''
+]
+
+[tasks.alacritty.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo add-apt-repository ppa:mmstick76/alacritty
+sudo apt install -y alacritty
+'''
+]
+
+[tasks.alacritty_dependencies.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y git automake bison build-essential pkg-config libevent-dev libncurses5-dev
+'''
+]
+
+[tasks.alacritty_links]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/.config/alacritty ~/.config
+'''
+]
+
+##############################
+# tmux                       #
+##############################
+[tasks.install_tmux]
+dependencies = ["tmux", "tmux_links"]
+
+[tasks.tmux.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install tmux
+'''
+]
+
+[tasks.tmux.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install tmux
+'''
+]
+
+[tasks.tmux_dependencies.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
+'''
+]
+
+[tasks.tmux_links]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/.tmux.conf ~/
+'''
+]
+
+##############################
+# fish shell                 #
+##############################
+[tasks.install_fish]
+dependencies = ["fish", "fish_plugin"]
+
+[tasks.fish.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install fish
+'''
+]
+
+[tasks.fish.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt-add-repository -y ppa:fish-shell/release-3
+sudo apt update -y
+sudo apt install -y fish
+'''
+]
+
+[tasks.fish_plugin]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+fish -c "fisher add jethrokuan/z"
+'''
+]
+
+[tasks.fish_links]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/.config/fish/config.fish ~/.config/fish
+ln -snfv ~/dotfiles/.config/fish/functions/* ~/.config/fish/functions
+ln -snfv ~/dotfiles/.config/fish/completions/* ~/.config/fish/completions
+'''
+]
+
+##############################
+# fzf                        #
+##############################
+[tasks.install_fzf]
+dependencies = ["fzf"]
+
+[tasks.fzf.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install fzf
+yes | /usr/local/opt/fzf/install
+'''
+]
+
+[tasks.fzf.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+yes | ~/.fzf/install
+'''
+]
+
+##############################
+# anyenv                     #
+##############################
+[tasks.install_anyenv]
+dependencies = ["anyenv", "anyenv_init", "anyenv_plugin"]
+
+[tasks.anyenv.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install anyenv
+echo 'eval "$(anyenv init -)"' >> ~/.profile
+'''
+]
+
+[tasks.anyenv.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone https://github.com/anyenv/anyenv ~/.anyenv
+echo 'export PATH="$HOME/.anyenv/bin:$PATH"' >> ~/.profile
+echo 'eval "$(anyenv init -)"' >> ~/.profile
+'''
+]
+
+[tasks.anyenv_init]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type anyenv > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+yes | anyenv install --init
+'''
+]
+
+[tasks.anyenv_plugin]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type anyenv > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+mkdir -p $(anyenv root)/plugins
+git clone https://github.com/znz/anyenv-update.git $(anyenv root)/plugins/anyenv-update
+git clone https://github.com/znz/anyenv-git.git $(anyenv root)/plugins/anyenv-git
+'''
+]
+
+##############################
+# Python                     #
+##############################
+[tasks.setup_python]
+dependencies = ["pyenv", "python", "pipenv"]
+
+[tasks.pyenv]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type anyenv > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+anyenv install pyenv
+'''
+]
+
+[tasks.python]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type pyenv > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+pyenv install 3.8.2
+pyenv global 3.8.2
+'''
+]
+
+[tasks.pipenv]
+script = [
+'''
+#!/usr/bin/env bash
+
+source ~/.profile
+pip install pipenv
+'''
+]
+
+##############################
+# Go                         #
+##############################
+[tasks.setup_go]
+dependencies = ["goenv", "go"]
+
+[tasks.goenv]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type anyenv > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+anyenv install goenv
+'''
+]
+
+[tasks.go]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type goenv > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+goenv install 1.14.2
+'''
+]
+
+##############################
+# Node                       #
+##############################
+[tasks.setup_node]
+dependencies = ["nodenv", "node"]
+
+[tasks.nodenv]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type anyenv > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+anyenv install nodenv
+'''
+]
+
+[tasks.node]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type nodenv > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+touch $(nodenv root)/default-packages
+nodenv install 12.16.3
+'''
+]

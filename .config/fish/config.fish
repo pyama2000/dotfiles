@@ -1,4 +1,7 @@
 set fish_greeting ''
+set -gx LC_ALL ja_JP.utf8
+set -gx LC_CTYPE ja_JP.utf8 
+set -gx LANG ja_JP.utf8
 
 ##############################
 # anyenv #####################

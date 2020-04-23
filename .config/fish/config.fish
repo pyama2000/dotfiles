@@ -1,7 +1,29 @@
+# Attach tmux session
+function attach_tmux_session_if_needed
+    set ID (tmux list-sessions)
+    if test -z "$ID"
+        tmux -u new-session
+        return
+    end
+
+    set new_session "Create New Session" 
+    set ID (echo $ID\n$new_session | fzf | cut -d: -f1)
+    if test "$ID" = "$new_session"
+        tmux -u new-session
+    else if test -n "$ID"
+        tmux -u attach-session -t "$ID"
+    end
+end
+
+if test -z $TMUX && status --is-login
+    attach_tmux_session_if_needed
+end
+
+# Config
 set fish_greeting ''
-set -gx LC_ALL ja_JP.utf8
-set -gx LC_CTYPE ja_JP.utf8 
-set -gx LANG ja_JP.utf8
+set -gx LC_ALL ja_JP.UTF-8
+set -gx LC_TYPE ja_JP.UTF-8
+set -gx LANG ja_JP.UTF-8
 
 ##############################
 # anyenv #####################

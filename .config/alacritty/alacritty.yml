@@ -1,17 +1,14 @@
-# Font configuration (changes require restart)
-font:
-  normal:
-    family: "Fira Code"
-    style: Regular
+# Background opacity
+#
+# Window opacity as a floating point number from `0.0` to `1.0`.
+# The value `0.0` is completely transparent and `1.0` is opaque.
+background_opacity: 0.95
 
 # Colors (Gruvbox dark)
 colors:
   # Default colors
   primary:
-    # hard contrast: background = '#1d2021'
-    # background: '#282828'
     background: '#32302f'
-    # soft contrast: background = '#32302f'
     foreground: '#ebdbb2'
 
   # Normal colors
@@ -36,9 +33,54 @@ colors:
     cyan:    '#8ec07c'
     white:   '#ebdbb2'
 
+# Font configuration (changes require restart)
+font:
+  # Normal (roman) font face
+  normal:
+    family: "Source Code Pro"
+    style: Regular
+
+  # Bold font face
+  bold:
+    family: "Source Code Pro"
+    style: Bold
+
+  # Italic font face
+  italic:
+    family: "Source Code Pro"
+    style: Italic
+
+  # Bold italic font face
+  bold_italic:
+    family: "Source Code Pro"
+    style: Bold Italic
+
+  # Point size
+  size: 11
+
 shell:
   program: /usr/local/bin/fish
   args:
     - --login
 
-background_opacity: 0.95
+# Window configuration
+window:
+  # Window decorations
+  #
+  # Available values:
+  # - full: borders and title bar
+  # - none: neither borders nor title bar
+  # - transparent: title bar, transparent background and title bar buttons
+  # - buttonless: title bar, transparent background, but no title bar buttons
+  decorations: full
+
+  # Startup Mode (changes require restart)
+  #
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  #
+  # Values for `startup_mode` (macOS only):
+  #   - SimpleFullscreen
+  startup_mode: Fullscreen

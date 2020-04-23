@@ -52,3 +52,11 @@ For neovim:
 - pynvim(For python2 and python3 provider)
 - neovim(For Node provider)
 - dein.nvim
+
+## CHANGELOG
+
+### 2020/04/24
+
+- Alacritty
+- tmux
+- Source Code Pro fonts

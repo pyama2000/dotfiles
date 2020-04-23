@@ -19,6 +19,6 @@ nmap <C-t>p :tabprevious<CR>
 nnoremap j gj
 nnoremap k gk
 
-inoremap <silent> jj <ESC><CR>
+inoremap <silent> jj <ESC>
 inoremap <silent> jjw <ESC>:w!<CR>
 inoremap <silent> jjq <ESC>:wq!<CR>

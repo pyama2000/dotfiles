@@ -91,3 +91,53 @@ VIMの移動と同様にパネル間を移動できる
 #### ペインの削除
 
 <kbd> prefix + x </kbd>
+
+## Neovim
+
+### インサートモードからノーマルモードの切り替え
+
+#### ESC
+
+<kbd> jj </kbd>
+
+#### ESC + 保存
+
+<kbd> jjw </kbd>
+
+#### ESC + 保存して終了
+
+<kbd> jjq </kbd>
+
+### ハイライトを解除する
+
+<kbd> C-n </kbd>
+
+#### パネル関連
+
+prefix: <kbd> C-w </kbd>
+
+#### 水平分割
+
+<kbd> prefix + v </kbd>
+
+#### 垂直分割
+
+<kbd> prefix + s </kbd>
+
+#### パネルの移動
+
+<kbd> prefix + \<VIM\> </kbd>
+
+### タブ関連
+
+prefix: <kbd> C-t </kbd>
+
+#### 新規タブ
+
+<kbd> prefix + n </kbd>
+
+#### 次のタブに移動
+<kbd> prefix + N </kbd>
+
+#### 前のタブに移動
+<kbd> prefix + p </kbd>

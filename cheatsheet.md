@@ -86,7 +86,7 @@ $ tmux rename -t <OLD_SESSION_NAME> <NEW_SESSION_NAME>
 #### ペイン間の移動
 
 VIMの移動と同様にパネル間を移動できる
-<kbd> prefix + <VIM> </kbd>
+<kbd> prefix + \<VIM\> </kbd>
 
 #### ペインの削除
 

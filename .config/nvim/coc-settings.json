@@ -1,8 +1,10 @@
 {
   "rust-analyzer.enableCargoWatchOnStartup": "enabled",
   "python.jediEnabled": false,
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintArgs": ["--load-plugins", "pylint_django"],
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.enabled": true,
+  "python.linting.flake8Args": [ "--ignore=E501" ],
   "python.formatting.blackPath": "~/.anyenv/envs/pyenv/shims/black",
   "python.formatting.provider": "black",
   "yaml.schemas": {

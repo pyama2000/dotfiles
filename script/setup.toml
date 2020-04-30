@@ -272,10 +272,16 @@ script = [
 '''
 #!/usr/bin/env bash
 
-sudo apt install -y jq
+sudo apt update -y
+sudo apt install -y bat jq
+
+bat --version
+jq --version
 
 source ~/.profile
-go version
+
+go get github.com/x-motemen/ghq
+ghq --version
 '''
 ]
 

@@ -413,6 +413,9 @@ fi
 
 goenv install 1.14.2
 goenv global 1.14.2
+
+echo 'export GOPATH="$HOME/go"' >> ~/.profile
+echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
 '''
 ]
 

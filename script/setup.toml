@@ -256,14 +256,14 @@ yes | ~/.fzf/install
 # CLI tools                  #
 ##############################
 [tasks.install_clitools]
-dependencies = ["clitools"]
+dependencies = ["clitools", "clitools_from_cargo"]
 
 [tasks.clitools.mac]
 script = [
 '''
 #!/usr/bin/env bash
 
-brew install bat ghq jq
+brew install ghq jq
 '''
 ]
 
@@ -272,16 +272,21 @@ script = [
 '''
 #!/usr/bin/env bash
 
-sudo apt update -y
-sudo apt install -y bat jq
-
-bat --version
-jq --version
+sudo apt install -y jq
 
 source ~/.profile
 
 go get github.com/x-motemen/ghq
 ghq --version
+'''
+]
+
+[tasks.clitools_from_cargo]
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install bat exa hyperfine ripgrep starship tokei zoxide
 '''
 ]
 

@@ -310,7 +310,7 @@ git clone https://github.com/znz/anyenv-git.git $(anyenv root)/plugins/anyenv-gi
 # Rust                       #
 ##############################
 [tasks.setup_rust]
-dependencies = ["components", "cargo-*"]
+dependencies = ["components", "cargo-tools"]
 
 [tasks.components]
 script = [
@@ -319,7 +319,7 @@ rustup component add clippy rustfmt rust-src
 '''
 ]
 
-[tasks.cargo-*]
+[tasks.cargo-tools]
 script = [
 '''
 cargo install cargo-update cargo-watch

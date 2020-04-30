@@ -10,11 +10,11 @@ dependencies = [
     # "install_tmux",
     # "install_fish",
     # "install_fzf",
-    "install_clitools",
-    # "install_anyenv",
+    "install_anyenv",
     # "setup_python",
-    # "setup_go",
+    "setup_go",
     # "setup_node",
+    "install_clitools",
 ]
 
 ##############################
@@ -256,23 +256,26 @@ yes | ~/.fzf/install
 # CLI tools                  #
 ##############################
 [tasks.install_clitools]
-dependencies = ["bat"]
+dependencies = ["clitools"]
 
-[tasks.bat.mac]
+[tasks.clitools.mac]
 script = [
 '''
 #!/usr/bin/env bash
 
-brew install bat
+brew install bat ghq
 '''
 ]
 
-[tasks.bat.linux]
+[tasks.clitools.linux]
 script = [
 '''
 #!/usr/bin/env bash
 
+source ~/.profile
+
 sudo apt install -y bat
+go version
 '''
 ]
 

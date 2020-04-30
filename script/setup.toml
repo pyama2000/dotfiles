@@ -406,6 +406,7 @@ if !(type goenv > /dev/null 2>&1); then
 fi
 
 goenv install 1.14.2
+goenv global 1.14.2
 '''
 ]
 
@@ -439,5 +440,6 @@ fi
 
 touch $(nodenv root)/default-packages
 nodenv install 12.16.3
+nodenv global 12.16.3
 '''
 ]

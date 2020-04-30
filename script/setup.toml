@@ -3,17 +3,18 @@
 ##############################
 [tasks.setup]
 dependencies = [
-    "package_manager",
-    "install_git",
-    "dotfiles",
-    "install_alacritty",
-    "install_tmux",
-    "install_fish",
-    "install_fzf",
-    "install_anyenv",
-    "setup_python",
-    "setup_go",
-    "setup_node",
+    # "package_manager",
+    # "install_git",
+    # "dotfiles",
+    # "install_alacritty",
+    # "install_tmux",
+    # "install_fish",
+    # "install_fzf",
+    # "install_anyenv",
+    # "setup_python",
+    # "setup_go",
+    # "setup_node",
+    "setup_rust",
 ]
 
 ##############################
@@ -302,6 +303,26 @@ fi
 mkdir -p $(anyenv root)/plugins
 git clone https://github.com/znz/anyenv-update.git $(anyenv root)/plugins/anyenv-update
 git clone https://github.com/znz/anyenv-git.git $(anyenv root)/plugins/anyenv-git
+'''
+]
+
+##############################
+# Rust                       #
+##############################
+[tasks.setup_rust]
+dependencies = ["components", "cargo-*"]
+
+[tasks.components]
+script = [
+'''
+rustup component add clippy rustfmt rust-src
+'''
+]
+
+[tasks.cargo-*]
+script = [
+'''
+cargo install cargo-update cargo-watch
 '''
 ]
 

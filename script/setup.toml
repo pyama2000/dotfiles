@@ -4,16 +4,17 @@
 [tasks.setup]
 dependencies = [
     "package_manager",
-    "install_git",
-    "dotfiles",
-    "install_alacritty",
-    "install_tmux",
-    "install_fish",
-    "install_fzf",
-    "install_anyenv",
-    "setup_python",
-    "setup_go",
-    "setup_node",
+    # "install_git",
+    # "dotfiles",
+    # "install_alacritty",
+    # "install_tmux",
+    # "install_fish",
+    # "install_fzf",
+    "install_clitools",
+    # "install_anyenv",
+    # "setup_python",
+    # "setup_go",
+    # "setup_node",
 ]
 
 ##############################
@@ -247,6 +248,31 @@ script = [
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 yes | ~/.fzf/install
+'''
+]
+
+
+##############################
+# CLI tools                  #
+##############################
+[tasks.install_clitools]
+dependencies = ["bat"]
+
+[tasks.bat.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install bat
+'''
+]
+
+[tasks.bat.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y bat
 '''
 ]
 

@@ -263,7 +263,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-brew install bat ghq
+brew install bat ghq jq
 '''
 ]
 
@@ -272,9 +272,9 @@ script = [
 '''
 #!/usr/bin/env bash
 
-source ~/.profile
+sudo apt install -y jq
 
-sudo apt install -y bat
+source ~/.profile
 go version
 '''
 ]

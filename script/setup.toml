@@ -131,7 +131,8 @@ script = [
 #!/usr/bin/env bash
 
 ls -la ~/.fonts/adobefont/source-code-pro
-cp --archive ~/.fonts/adobefont/source-code-pro/TTF/* ~/Library/Fonts
+ls -la ~/Library/Fonts
+cp -a ~/.fonts/adobefont/source-code-pro/TTF/* ~/Library/Fonts
 '''
 ]
 dependencies = ["source-code-pro_install"]

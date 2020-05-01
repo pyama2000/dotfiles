@@ -612,7 +612,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-ln ~/dotfiles/.config/nvim/* ~/.config/nvim
-ln ~/dotfiles/.config/coc/extensions/package.json ~/.config/coc/extensions
+ln -snfv ~/dotfiles/.config/nvim/* ~/.config/nvim
+ln -snfv ~/dotfiles/.config/coc/extensions/package.json ~/.config/coc/extensions
 '''
 ]

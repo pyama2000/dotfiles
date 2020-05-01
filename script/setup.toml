@@ -282,6 +282,9 @@ cat ~/.profile
 echo $PATH
 
 ls -la ~/
+ls -la ~/go
+ls -la ~/go/bin
+
 $HOME/go/bin/ghq --version
 '''
 ]

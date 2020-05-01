@@ -46,6 +46,15 @@ dependencies = [
     "setup_neovim",
 ]
 
+[tasks.links]
+dependencies = [
+    "git_link",
+    "alacritty_link",
+    "tmux_link",
+    "fish_links",
+    "starship_link",
+]
+
 ##############################
 # Homebrew / Linuxbrew       #
 ##############################

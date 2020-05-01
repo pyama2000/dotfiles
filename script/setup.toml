@@ -118,7 +118,7 @@ cd /tmp/adobefont
 
 curl -LO https://github.com/adobe-fonts/source-code-pro/archive/release.zip
 unzip release.zip
-cp --archive source-code-pro-release/* ~/.fonts/adobefont/source-code-pro
+mv source-code-pro-release/* ~/.fonts/adobefont/source-code-pro
 
 cd ../
 rm -rf adobefont

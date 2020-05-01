@@ -3,18 +3,19 @@
 ##############################
 [tasks.setup]
 dependencies = [
-    # "package_manager",
-    # "install_git",
-    # "dotfiles",
-    # "install_alacritty",
-    # "install_tmux",
-    # "install_fish",
-    # "install_fzf",
-    # "install_anyenv",
-    # "setup_python",
-    # "setup_go",
-    # "setup_node",
+    "package_manager",
+    "install_git",
+    "dotfiles",
+    "install_alacritty",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
+    "install_anyenv",
+    "setup_python",
+    "setup_go",
+    "setup_node",
     "setup_rust",
+    "install_clitools",
 ]
 
 ##############################
@@ -251,6 +252,43 @@ yes | ~/.fzf/install
 '''
 ]
 
+
+##############################
+# CLI tools                  #
+##############################
+[tasks.install_clitools]
+dependencies = ["clitools", "clitools_from_cargo"]
+
+[tasks.clitools.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install ghq jq
+'''
+]
+
+[tasks.clitools.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y jq
+
+source ~/.profile
+go get github.com/x-motemen/ghq
+'''
+]
+
+[tasks.clitools_from_cargo]
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install bat exa hyperfine ripgrep starship tokei zoxide
+'''
+]
+
 ##############################
 # anyenv                     #
 ##############################
@@ -398,6 +436,11 @@ if !(type goenv > /dev/null 2>&1); then
 fi
 
 goenv install 1.14.2
+goenv global 1.14.2
+
+echo 'export GOPATH="$HOME/go"' >> ~/.profile
+echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
+echo 'export GOENV_DISABLE_GOPATH="1"' >> ~/.profile
 '''
 ]
 
@@ -431,5 +474,6 @@ fi
 
 touch $(nodenv root)/default-packages
 nodenv install 12.16.3
+nodenv global 12.16.3
 '''
 ]

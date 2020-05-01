@@ -1,23 +1,47 @@
 ##############################
+# CI                         #
+##############################
+[tasks.github-actions]
+dependencies = [
+    "package_manager",
+    "install_git_github-actions",
+    "dotfiles",
+    "install_alacritty",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
+    "install_anyenv",
+    "setup_python",
+    "setup_go",
+    "setup_node",
+    "setup_rust",
+    "install_clitools",
+    "setup_neovim",
+]
+
+[tasks.install_git_github-actions]
+dependencies = ["git", "git_links"]
+
+##############################
 # Setup                      #
 ##############################
 [tasks.setup]
 dependencies = [
-    # "package_manager",
+    "package_manager",
     "install_git",
-    # "dotfiles",
+    "dotfiles",
     "setup_fonts",
-    # "install_alacritty",
-    # "install_tmux",
-    # "install_fish",
-    # "install_fzf",
-    # "install_anyenv",
-    # "setup_python",
-    # "setup_go",
-    # "setup_node",
-    # "setup_rust",
-    # "install_clitools",
-    # "setup_neovim",
+    "install_alacritty",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
+    "install_anyenv",
+    "setup_python",
+    "setup_go",
+    "setup_node",
+    "setup_rust",
+    "install_clitools",
+    "setup_neovim",
 ]
 
 ##############################
@@ -36,8 +60,7 @@ script = [
 # Git                        #
 ##############################
 [tasks.install_git]
-dependencies = ["git"]
-# dependencies = ["git", "git_links", "gen_ssh-key"]
+dependencies = ["git", "git_links", "gen_ssh-key"]
 
 [tasks.git.mac]
 script = [

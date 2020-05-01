@@ -6,17 +6,18 @@ dependencies = [
     "package_manager",
     # "install_git",
     # "dotfiles",
+    "setup_fonts",
     # "install_alacritty",
     # "install_tmux",
     # "install_fish",
     # "install_fzf",
-    "install_anyenv",
-    "setup_python",
+    # "install_anyenv",
+    # "setup_python",
     # "setup_go",
     # "setup_node",
     # "setup_rust",
     # "install_clitools",
-    "setup_neovim",
+    # "setup_neovim",
 ]
 
 ##############################
@@ -92,6 +93,29 @@ script = [
 git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 git remote set-url origin git@github.com:pyama2000/dotfiles.git
+'''
+]
+
+##############################
+# fonts                      #
+##############################
+[tasks.setup_fonts]
+dependencies = ["source-code-pro"]
+
+[tasks.source-code-pro]
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ ! -d "~/.fonts" ] ; then
+    mkdir ~/.fonts
+fi
+
+mkdir /tmp/adobefont
+cd /tmp/adobefont
+
+curl -LO https://github.com/adobe-fonts/source-code-pro/archive/release.zip
+unzip release.zip
 '''
 ]
 

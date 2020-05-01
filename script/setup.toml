@@ -483,7 +483,7 @@ nodenv global 12.16.3
 # Neovim                     #
 ##############################
 [tasks.setup_neovim]
-dependencies = ["neovim", "provider"]
+dependencies = ["neovim", "provider", "dein"]
 
 [tasks.neovim.mac]
 script = [
@@ -509,5 +509,17 @@ script = [
 #!/usr/bin/env bash
 
 pip install pynvim
+'''
+]
+
+[tasks.dein]
+script = [
+'''
+#!/usr/bin/env bash
+
+
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/installer.sh
+sh ~/installer.sh ~/.cache/dein
+rm ~/install.sh
 '''
 ]

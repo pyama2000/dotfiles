@@ -117,7 +117,8 @@ mkdir -p /tmp/adobefont
 cd /tmp/adobefont
 
 curl -LO https://github.com/adobe-fonts/source-code-pro/archive/release.zip
-unzip release.zip -d ~/.fonts/adobefont/source-code-pro
+unzip release.zip
+mv source-code-pro-release/* ~/.fonts/adobefont/source-code-pro
 '''
 ]
 

@@ -21,7 +21,7 @@ dependencies = [
 ]
 
 [tasks.install_git_github-actions]
-dependencies = ["git", "git_links"]
+dependencies = ["git", "git_link"]
 
 ##############################
 # Setup                      #
@@ -62,7 +62,7 @@ script = [
 # Git                        #
 ##############################
 [tasks.install_git]
-dependencies = ["git", "git_links", "gen_ssh-key"]
+dependencies = ["git", "git_link", "gen_ssh-key"]
 
 [tasks.git.mac]
 script = [
@@ -88,7 +88,7 @@ sudo apt install -y git
 '''
 ]
 
-[tasks.git_links]
+[tasks.git_link]
 script = [
 '''
 #!/usr/bin/env bash
@@ -174,7 +174,7 @@ dependencies = ["source-code-pro_install"]
 # Alacritty                  #
 ##############################
 [tasks.install_alacritty]
-dependencies = ["alacritty", "alacritty_links"]
+dependencies = ["alacritty", "alacritty_link"]
 
 [tasks.alacritty.mac]
 script = [
@@ -204,7 +204,7 @@ sudo apt install -y git automake bison build-essential pkg-config libevent-dev l
 '''
 ]
 
-[tasks.alacritty_links]
+[tasks.alacritty_link]
 script = [
 '''
 #!/usr/bin/env bash
@@ -217,7 +217,7 @@ ln -snfv ~/dotfiles/.config/alacritty ~/.config
 # tmux                       #
 ##############################
 [tasks.install_tmux]
-dependencies = ["tmux", "tmux_links"]
+dependencies = ["tmux", "tmux_link"]
 
 [tasks.tmux.mac]
 script = [
@@ -246,7 +246,7 @@ sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-
 '''
 ]
 
-[tasks.tmux_links]
+[tasks.tmux_link]
 script = [
 '''
 #!/usr/bin/env bash
@@ -259,7 +259,7 @@ ln -snfv ~/dotfiles/.tmux.conf ~/
 # fish shell                 #
 ##############################
 [tasks.install_fish]
-dependencies = ["fish", "fish_plugin"]
+dependencies = ["fish", "fish_plugin", "fish_links"]
 
 [tasks.fish.mac]
 script = [

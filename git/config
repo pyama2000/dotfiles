@@ -22,5 +22,6 @@
   swc = switch -c
   mg = merge --no-ff
   mgff = merge --ff
+  rbrd = push --delete origin
 [commit]
   template = ~/.config/git/commit

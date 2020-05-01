@@ -119,6 +119,7 @@ cd /tmp/adobefont
 curl -LO https://github.com/adobe-fonts/source-code-pro/archive/release.zip
 unzip release.zip
 mv source-code-pro-release/* ~/.fonts/adobefont/source-code-pro
+rm -rf release.zip source-code-pro-release
 '''
 ]
 
@@ -127,8 +128,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-ls -la /tmp/adobefont
-ls -la ~/.fonts/adobefont/source-code-pro
+cp -a ~/.fonts/adobefont/source-code-pro/TTF/* ~/Library/Fonts
 '''
 ]
 dependencies = ["source-code-pro_install"]
@@ -138,8 +138,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-ls -la /tmp/adobefont
-ls -la ~/.fonts/adobefont/source-code-pro
+fc-cache -f -v ~/.fonts/adobefont/source-code-pro
 '''
 ]
 dependencies = ["source-code-pro_install"]

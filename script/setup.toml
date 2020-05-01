@@ -5,7 +5,7 @@
 dependencies = [
     # "package_manager",
     # "install_git_github-actions",
-    # "dotfiles",
+    "dotfiles",
     # "install_alacritty",
     # "install_tmux",
     # "install_fish",
@@ -345,7 +345,7 @@ cargo install starship
 [tasks.starship_link]
 script = [
 '''
-"!/usr/bin/env bash
+#!/usr/bin/env bash
 
 ln -snfv ~/dotfiles/.config/starship.toml ~/.config/
 '''

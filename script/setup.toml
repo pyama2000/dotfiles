@@ -31,6 +31,27 @@ dependencies = ["git", "git_link"]
 dependencies = [
     "package_manager",
     "dependencies",
+    "install_git_for_chromeOS",
+    "dotfiles",
+    "setup_fonts",
+    "install_alacritty",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
+    "install_starship",
+    "install_anyenv",
+    "setup_python",
+    "setup_go",
+    "setup_node",
+    "setup_rust",
+    "install_clitools",
+    "setup_neovim",
+]
+
+[tasks.setup_for_chromeOS]
+dependencies = [
+    "package_manager",
+    "dependencies",
     "install_git",
     "dotfiles",
     "setup_fonts",
@@ -72,8 +93,8 @@ script = [
 '''
 #!/usr/bin/env bash
 
-sudo apt install -y automake bison build-essential cmake curl \
-git libbz2-dev libevent-dev libffi-dev libfreetype6-dev \
+sudo apt install -y autoconf automake bison build-essential cmake curl \
+gettext git libbz2-dev libevent-dev libffi-dev libfreetype6-dev \
 libfontconfig1-dev liblzma-dev libncursesw5-dev libreadline-dev \
 libsqlite3-dev libssl-dev libxcb-xfixes0-dev llvm make \
 pkg-config python-openssl python3 tk-dev  wget xz-utils zlib1g-dev
@@ -98,6 +119,9 @@ script = [
 [tasks.install_git]
 dependencies = ["git", "git_link", "gen_ssh-key"]
 
+[tasks.install_git_for_chromeOS]
+dependencies = ["git_for_chromeOS", "git_link", "gen_ssh-key"]
+
 [tasks.git.mac]
 script = [
 '''
@@ -119,6 +143,18 @@ script = [
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt update -y
 sudo apt install -y git
+'''
+]
+
+[tasks.git_for_chromeOS]
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone https://github.com/git/git.git ~/git
+cd ~/git
+make prefix=/usr/local all
+sudo make prefix=/usr/local install
 '''
 ]
 

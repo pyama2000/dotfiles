@@ -62,7 +62,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-brew intall readline xz
+brew install readline xz
 '''
 ]
 

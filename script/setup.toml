@@ -3,21 +3,21 @@
 ##############################
 [tasks.github-actions]
 dependencies = [
-    # "package_manager",
-    # "install_git_github-actions",
+    "package_manager",
+    "install_git_github-actions",
     "dotfiles",
-    # "install_alacritty",
-    # "install_tmux",
-    # "install_fish",
-    # "install_fzf",
+    "install_alacritty",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
     "install_starship",
-    # "install_anyenv",
-    # "setup_python",
-    # "setup_go",
-    # "setup_node",
-    # "setup_rust",
-    # "install_clitools",
-    # "setup_neovim",
+    "install_anyenv",
+    "setup_python",
+    "setup_go",
+    "setup_node",
+    "setup_rust",
+    "install_clitools",
+    "setup_neovim",
 ]
 
 [tasks.install_git_github-actions]
@@ -36,6 +36,7 @@ dependencies = [
     "install_tmux",
     "install_fish",
     "install_fzf",
+    "install_starship",
     "install_anyenv",
     "setup_python",
     "setup_go",

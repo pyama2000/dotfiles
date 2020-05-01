@@ -4,16 +4,16 @@
 [tasks.setup]
 dependencies = [
     "package_manager",
-    # "install_git",
-    # "dotfiles",
-    # "install_alacritty",
-    # "install_tmux",
-    # "install_fish",
-    # "install_fzf",
+    "install_git",
+    "dotfiles",
+    "install_alacritty",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
     "install_anyenv",
-    # "setup_python",
+    "setup_python",
     "setup_go",
-    # "setup_node",
+    "setup_node",
     "install_clitools",
 ]
 
@@ -275,10 +275,7 @@ script = [
 sudo apt install -y jq
 
 source ~/.profile
-
 go get github.com/x-motemen/ghq
-
-ghq --version
 '''
 ]
 

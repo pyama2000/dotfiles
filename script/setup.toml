@@ -4,20 +4,20 @@
 [tasks.setup]
 dependencies = [
     "package_manager",
-    # "install_git",
-    # "dotfiles",
+    "install_git",
+    "dotfiles",
     "setup_fonts",
-    # "install_alacritty",
-    # "install_tmux",
-    # "install_fish",
-    # "install_fzf",
-    # "install_anyenv",
-    # "setup_python",
-    # "setup_go",
-    # "setup_node",
-    # "setup_rust",
-    # "install_clitools",
-    # "setup_neovim",
+    "install_alacritty",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
+    "install_anyenv",
+    "setup_python",
+    "setup_go",
+    "setup_node",
+    "setup_rust",
+    "install_clitools",
+    "setup_neovim",
 ]
 
 ##############################

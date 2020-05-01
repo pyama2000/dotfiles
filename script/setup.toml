@@ -130,8 +130,6 @@ script = [
 '''
 #!/usr/bin/env bash
 
-ls -la ~/.fonts/adobefont/source-code-pro
-ls -la ~/Library/Fonts
 cp -a ~/.fonts/adobefont/source-code-pro/TTF/* ~/Library/Fonts
 '''
 ]

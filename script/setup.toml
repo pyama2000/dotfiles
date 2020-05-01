@@ -53,6 +53,7 @@ dependencies = [
     "tmux_link",
     "fish_links",
     "starship_link",
+    "neovim_link",
 ]
 
 ##############################

@@ -592,7 +592,7 @@ nodenv global 12.16.3
 # Neovim                     #
 ##############################
 [tasks.setup_neovim]
-dependencies = ["neovim", "provider", "dein"]
+dependencies = ["neovim", "provider", "dein", "neovim_link"]
 
 [tasks.neovim.mac]
 script = [
@@ -629,5 +629,19 @@ script = [
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/installer.sh
 sh ~/installer.sh ~/.cache/dein
 rm ~/installer.sh
+'''
+]
+
+[tasks.neovim_link]
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ ! -d "~/.config/coc/extensions" ] ; then
+    mkdir -p ~/.config/coc/extensions
+fi
+
+ln -snfv ~/dotfiles/.config/nvim ~/.config
+ln -snfv ~/dotfiles/.config/coc/extensions/package.json ~/.config/coc/extensions
 '''
 ]

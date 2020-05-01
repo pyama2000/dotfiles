@@ -16,7 +16,12 @@ fi
 
 if [ $OS == "Linux" ]; then
   sudo apt update -y
-  sudo apt install -y curl build-essential software-properties-common
+  sudo apt install -y automake bison build-essential cmake curl \
+    git libbz2-dev libevent-dev libffi-dev libfreetype6-dev \
+    libfontconfig1-dev liblzma-dev libncursesw5-dev libreadline-dev \
+    libsqlite3-dev libssl-dev libxcb-xfixes0-dev llvm make \
+    pkg-config python-openssl python3 software-properties-common tk-dev  wget xz-utils zlib1g-dev
+
 fi
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

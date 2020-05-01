@@ -6,16 +6,16 @@ dependencies = [
     "package_manager",
     "install_git_github-actions",
     "dotfiles",
-    "install_alacritty",
-    "install_tmux",
-    "install_fish",
-    "install_fzf",
+    # "install_alacritty",
+    # "install_tmux",
+    # "install_fish",
+    # "install_fzf",
     "install_anyenv",
     "setup_python",
-    "setup_go",
-    "setup_node",
-    "setup_rust",
-    "install_clitools",
+    # "setup_go",
+    # "setup_node",
+    # "setup_rust",
+    # "install_clitools",
     "setup_neovim",
 ]
 
@@ -567,7 +567,7 @@ nodenv global 12.16.3
 # Neovim                     #
 ##############################
 [tasks.setup_neovim]
-dependencies = ["neovim", "provider", "dein"]
+dependencies = ["neovim", "provider", "dein", "neovim_link"]
 
 [tasks.neovim.mac]
 script = [
@@ -604,5 +604,15 @@ script = [
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/installer.sh
 sh ~/installer.sh ~/.cache/dein
 rm ~/installer.sh
+'''
+]
+
+[tasks.neovim_link]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln ~/dotfiles/.config/nvim/* ~/.config/nvim
+ln ~/dotfiles/.config/coc/extensions/package.json ~/.config/coc/extensions
 '''
 ]

@@ -279,11 +279,15 @@ source ~/.profile
 go get github.com/x-motemen/ghq
 
 cat ~/.profile
+
+echo $GOPATH
 echo $PATH
 
 ls -la ~/
 ls -la ~/go
 ls -la ~/go/bin
+
+go env | grep GOPATH
 
 $HOME/go/bin/ghq --version
 '''

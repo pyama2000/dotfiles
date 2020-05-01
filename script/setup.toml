@@ -4,18 +4,19 @@
 [tasks.setup]
 dependencies = [
     "package_manager",
-    "install_git",
-    "dotfiles",
-    "install_alacritty",
-    "install_tmux",
-    "install_fish",
-    "install_fzf",
+    # "install_git",
+    # "dotfiles",
+    # "install_alacritty",
+    # "install_tmux",
+    # "install_fish",
+    # "install_fzf",
     "install_anyenv",
     "setup_python",
-    "setup_go",
-    "setup_node",
-    "setup_rust",
-    "install_clitools",
+    # "setup_go",
+    # "setup_node",
+    # "setup_rust",
+    # "install_clitools",
+    "setup_neovim",
 ]
 
 ##############################
@@ -475,5 +476,29 @@ fi
 touch $(nodenv root)/default-packages
 nodenv install 12.16.3
 nodenv global 12.16.3
+'''
+]
+
+##############################
+# Neovim                     #
+##############################
+[tasks.setup_neovim]
+dependencies = ["neovim"]
+
+[tasks.neovim.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install neovim
+'''
+]
+
+[tasks.neovim.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y neovim
 '''
 ]

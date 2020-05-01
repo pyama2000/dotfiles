@@ -281,7 +281,7 @@ go get github.com/x-motemen/ghq
 cat ~/.profile
 echo $PATH
 
-ghq --version
+ls -la ~/
 $HOME/go/bin/ghq --version
 '''
 ]

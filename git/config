@@ -28,3 +28,6 @@
 
 [commit]
   template = ~/.config/git/commit
+
+[fetch]
+  prune = true

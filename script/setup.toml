@@ -67,19 +67,6 @@ brew install readline xz
 '''
 ]
 
-[tasks.dependencies.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y automake bison build-essential cmake curl \
-git libbz2-dev libevent-dev libffi-dev libfreetype6-dev \
-libfontconfig1-dev liblzma-dev libncursesw5-dev libreadline-dev \
-libsqlite3-dev libssl-dev libxcb-xfixes0-dev llvm make \
-pkg-config python-openssl python3 tk-dev  wget xz-utils zlib1g-dev
-'''
-]
-
 ##############################
 # Homebrew / Linuxbrew       #
 ##############################

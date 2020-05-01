@@ -3,20 +3,21 @@
 ##############################
 [tasks.github-actions]
 dependencies = [
-    "package_manager",
-    "install_git_github-actions",
-    "dotfiles",
-    "install_alacritty",
-    "install_tmux",
-    "install_fish",
-    "install_fzf",
-    "install_anyenv",
-    "setup_python",
-    "setup_go",
-    "setup_node",
-    "setup_rust",
-    "install_clitools",
-    "setup_neovim",
+    # "package_manager",
+    # "install_git_github-actions",
+    # "dotfiles",
+    # "install_alacritty",
+    # "install_tmux",
+    # "install_fish",
+    # "install_fzf",
+    "install_starship",
+    # "install_anyenv",
+    # "setup_python",
+    # "setup_go",
+    # "setup_node",
+    # "setup_rust",
+    # "install_clitools",
+    # "setup_neovim",
 ]
 
 [tasks.install_git_github-actions]
@@ -326,6 +327,29 @@ yes | ~/.fzf/install
 '''
 ]
 
+##############################
+# starship                   #
+##############################
+[tasks.install_starship]
+dependencies = ["starship", "starship_link"]
+
+[tasks.starship]
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install starship
+'''
+]
+
+[tasks.starship_link]
+script = [
+'''
+"!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/.config/starship.toml ~/.config/
+'''
+]
 
 ##############################
 # CLI tools                  #
@@ -359,7 +383,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-cargo install bat exa hyperfine ripgrep starship tokei zoxide
+cargo install bat exa hyperfine ripgrep tokei zoxide
 '''
 ]
 

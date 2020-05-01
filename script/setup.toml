@@ -278,18 +278,7 @@ source ~/.profile
 
 go get github.com/x-motemen/ghq
 
-cat ~/.profile
-
-echo $GOPATH
-echo $PATH
-
-ls -la ~/
-ls -la ~/go
-ls -la ~/go/bin
-
-go env | grep GOPATH
-
-$HOME/go/bin/ghq --version
+ghq --version
 '''
 ]
 
@@ -433,6 +422,7 @@ goenv global 1.14.2
 
 echo 'export GOPATH="$HOME/go"' >> ~/.profile
 echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
+echo 'export GOENV_DISABLE_GOPATH="1"' >> ~/.profile
 '''
 ]
 

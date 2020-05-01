@@ -3,20 +3,20 @@
 ##############################
 [tasks.github-actions]
 dependencies = [
-    "package_manager",
+    # "package_manager",
     "install_git_github-actions",
-    "dotfiles",
-    "install_alacritty",
-    "install_tmux",
-    "install_fish",
-    "install_fzf",
-    "install_anyenv",
-    "setup_python",
-    "setup_go",
-    "setup_node",
+    # "dotfiles",
+    # "install_alacritty",
+    # "install_tmux",
+    # "install_fish",
+    # "install_fzf",
+    # "install_anyenv",
+    # "setup_python",
+    # "setup_go",
+    # "setup_node",
     "setup_rust",
-    "install_clitools",
-    "setup_neovim",
+    # "install_clitools",
+    # "setup_neovim",
 ]
 
 [tasks.install_git_github-actions]
@@ -422,7 +422,7 @@ git clone https://github.com/znz/anyenv-git.git $(anyenv root)/plugins/anyenv-gi
 # Rust                       #
 ##############################
 [tasks.setup_rust]
-dependencies = ["components", "cargo-tools"]
+dependencies = ["components", "cargo-tools", "rust-analyzer"]
 
 [tasks.components]
 script = [
@@ -435,6 +435,17 @@ rustup component add clippy rustfmt rust-src
 script = [
 '''
 cargo install cargo-update cargo-watch
+'''
+]
+
+[tasks.rust-analyzer]
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone https://github.com/rust-analyzer/rust-analyzer.git ~/
+cd ~/rust-analyzer
+cargo xtask install --server
 '''
 ]
 

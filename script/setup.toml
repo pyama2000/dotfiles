@@ -840,10 +840,10 @@ ln -snfv ~/dotfiles/.vimrc ~
 # Docker                     #
 ##############################
 [tasks.install_docker_for_ubuntu]
-dependencies = ["docker_for_ubuntu"]
+dependencies = ["docker_for_ubuntu", "docker_without_root"]
 
 [tasks.install_docker_for_debian]
-dependencies = ["docker_for_debian"]
+dependencies = ["docker_for_debian", "docker_without_root"]
 
 [tasks.docker_for_ubuntu.linux]
 script = [
@@ -863,7 +863,6 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 '''
 ]
 dependencies = ["docker_dependencies"]
-run_task = "docker_without_root"
 
 [tasks.docker_for_debian.linux]
 script = [
@@ -883,7 +882,6 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 '''
 ]
 dependencies = ["docker_dependencies"]
-run_task = "docker_without_root"
 
 [tasks.docker_dependencies.linux]
 script = [

@@ -750,8 +750,8 @@ if !(type nodenv > /dev/null 2>&1); then
 fi
 
 touch $(nodenv root)/default-packages
-nodenv install "NODE_VERSION"
-nodenv global "NODE_VERSION"
+nodenv install "$NODE_VERSION"
+nodenv global "$NODE_VERSION"
 '''
 ]
 

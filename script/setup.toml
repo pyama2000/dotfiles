@@ -468,6 +468,16 @@ script = [
 cargo install bat exa hyperfine ripgrep tokei zoxide
 '''
 ]
+dependencies = ["clitools_from_cargo_dependencies"]
+
+[tasks.clitools_from_cargo_dependencies.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y libclang-dev
+'''
+]
 
 ##############################
 # anyenv                     #

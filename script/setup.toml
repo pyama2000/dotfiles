@@ -550,7 +550,8 @@ rustup component add clippy rustfmt rust-src
 [tasks.cargo-tools]
 script = [
 '''
-cargo install cargo-update cargo-watch
+cargo install cargo-update cargo-watch sccache
+echo 'export RUSTC_WRAPPER="$(which sccache)"' >> ~/.profile
 '''
 ]
 

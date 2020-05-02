@@ -1,8 +1,16 @@
+[env]
+PYTHON_VERSION = "3.8.2"
+GO_VERSION = "1.14.2"
+NODE_VERSION = "12.16.3"
+GIT_NAME = "pyama2000"
+GIT_EMAIL = "8256tako@gmail.com"
+
 ##############################
 # CI                         #
 ##############################
 [tasks.github-actions]
 dependencies = [
+    "check_envs",
     "package_manager",
     "dependencies",
     "install_git_github-actions",
@@ -30,6 +38,7 @@ dependencies = ["git", "git_link"]
 ##############################
 [tasks.setup]
 dependencies = [
+    "check_envs",
     "package_manager",
     "dependencies",
     "install_git",
@@ -52,6 +61,7 @@ dependencies = [
 
 [tasks.setup_for_chromeOS]
 dependencies = [
+    "check_envs",
     "package_manager",
     "dependencies",
     "install_git_for_chromeOS",
@@ -88,6 +98,41 @@ script = [
 #!/usr/bin/env bash
 
 brew install readline xz
+'''
+]
+
+##############################
+# Check envs                 #
+##############################
+[tasks.check_envs]
+script = [
+'''
+#!/usr/bin/env bash
+
+if test -z "$PYTHON_VERSION"; then
+    echo "Set PYTHON_VERSION"
+    exit 1
+fi
+
+if test -z "$GO_VERSION"; then
+    echo "Set GO_VERSION"
+    exit 1
+fi
+
+if test -z "$NODE_VERSION"; then
+    echo "Set NODE_VERSION"
+    exit 1
+fi
+
+if test -z "$GIT_NAME"; then
+    echo "Set GIT_NAME"
+    exit 1
+fi
+
+if test -z "$GIT_EMAIL"; then
+    echo "Set GIT_EMAIL"
+    exit 1
+fi
 '''
 ]
 
@@ -177,7 +222,7 @@ if [ ! -d "~/.ssh" ] ; then
     mkdir -m 700 ~/.ssh
 fi
 
-ssh-keygen -t ed25519 -N "" -C "8256tako@gmail.com" -f ~/.ssh/id_ed25519
+ssh-keygen -t ed25519 -N "" -C "$GIT_EMAIL" -f ~/.ssh/id_ed25519
 '''
 ]
 
@@ -628,8 +673,8 @@ if !(type pyenv > /dev/null 2>&1); then
     source ~/.profile
 fi
 
-pyenv install 3.8.2
-pyenv global 3.8.2
+pyenv install "$PYTHON_VERSION"
+pyenv global "$PYTHON_VERSON"
 '''
 ]
 
@@ -671,8 +716,8 @@ if !(type goenv > /dev/null 2>&1); then
     source ~/.profile
 fi
 
-goenv install 1.14.2
-goenv global 1.14.2
+goenv install "$GO_VERSION"
+goenv global "GO_VERSION"
 
 echo 'export GOPATH="$HOME/go"' >> ~/.profile
 echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
@@ -709,8 +754,8 @@ if !(type nodenv > /dev/null 2>&1); then
 fi
 
 touch $(nodenv root)/default-packages
-nodenv install 12.16.3
-nodenv global 12.16.3
+nodenv install "$NODE_VERSION"
+nodenv global "$NODE_VERSION"
 '''
 ]
 

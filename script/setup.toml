@@ -1,8 +1,12 @@
+[env]
+env_files = ["~/dotfiles/setup/setup.env"]
+
 ##############################
 # CI                         #
 ##############################
 [tasks.github-actions]
 dependencies = [
+    "check_envs",
     # "package_manager",
     # "dependencies",
     # "install_git_github-actions",
@@ -29,6 +33,7 @@ dependencies = ["git", "git_link"]
 ##############################
 [tasks.setup]
 dependencies = [
+    "check_envs",
     "package_manager",
     "dependencies",
     "install_git",
@@ -50,6 +55,7 @@ dependencies = [
 
 [tasks.setup_for_chromeOS]
 dependencies = [
+    "check_envs",
     "package_manager",
     "dependencies",
     "install_git_for_chromeOS",
@@ -84,6 +90,22 @@ script = [
 #!/usr/bin/env bash
 
 brew install readline xz
+'''
+]
+
+##############################
+# Check envs                 #
+##############################
+[tasks.check_envs]
+script = [
+'''
+#!/usr/bin/env bash
+
+echo $PYTHON_VERSION
+echo $GO_VERSION
+echo $NODE_VERSION
+echo $GIT_NAME
+echo $GIT_EMAIL
 '''
 ]
 

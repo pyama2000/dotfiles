@@ -16,11 +16,15 @@ fi
 
 if [ $OS == "Linux" ]; then
   sudo apt update -y
-  sudo apt install -y automake bison build-essential cmake curl \
-    git libbz2-dev libevent-dev libffi-dev libfreetype6-dev \
-    libfontconfig1-dev liblzma-dev libncursesw5-dev libreadline-dev \
-    libsqlite3-dev libssl-dev libxcb-xfixes0-dev llvm make \
-    pkg-config python-openssl python3 software-properties-common tk-dev  wget xz-utils zlib1g-dev
+  sudo apt upgrade -y
+  sudo apt full-upgrade -y
+
+  sudo apt install -y autoconf automake bison build-essential cmake curl \
+    gettext git libbz2-dev libclang-dev libcurl4-gnutls-dev libevent-dev libexpat1-dev \
+    libffi-dev libfreetype6-dev libfontconfig1-dev libghc-zlib-dev liblzma-dev \
+    libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev \
+    libxcb-xfixes0-dev llvm make pkg-config python-openssl python3 \
+    software-properties-common tk-dev  wget xz-utils zlib1g-dev
 
 fi
 

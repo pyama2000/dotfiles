@@ -160,6 +160,10 @@ script = [
 '''
 #!/usr/bin/env bash
 
+if [ ! -d "~/.ssh" ] ; then
+    yas | ssh localhost
+fi
+
 ssh-keygen -t ed25519 -N "" -C $EMAIL_ADDRESS -f .ssh/id_ed25519
 '''
 ]
@@ -171,6 +175,10 @@ ssh-keygen -t ed25519 -N "" -C $EMAIL_ADDRESS -f .ssh/id_ed25519
 script = [
 '''
 #!/usr/bin/env bash
+
+if [ ! -d "~/.fonts" ] ; then
+    mkdir ~/.fonts
+fi
 
 git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
 cd ~/dotfiles

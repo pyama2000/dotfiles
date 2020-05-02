@@ -176,11 +176,10 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if [ ! -d "~/.fonts" ] ; then
-    mkdir ~/.fonts
+if [ ! -d "~/dotfiles" ] ; then
+    git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
 fi
 
-git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 git remote set-url origin git@github.com:pyama2000/dotfiles.git
 '''

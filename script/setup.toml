@@ -776,7 +776,7 @@ ln -snfv ~/dotfiles/.config/coc/extensions/package.json ~/.config/coc/extensions
 ##############################
 # Vim                        #
 ##############################
-[tasks.setup_neovim]
+[tasks.setup_vim]
 dependencies = ["vim_link"]
 
 [tasks.vim_link]

@@ -358,6 +358,14 @@ script = [
 '''
 #!/usr/bin/env bash
 
+if [ ! -d "~/.config/fish/functinos" ] ; then
+    mkdir -p ~/.config/fish/functinos
+fi
+
+if [ ! -d "~/.config/fish/completions" ] ; then
+    mkdir -p ~/.config/fish/completions
+fi
+
 ln -snfv ~/dotfiles/.config/fish/config.fish ~/.config/fish
 ln -snfv ~/dotfiles/.config/fish/functions/* ~/.config/fish/functions
 ln -snfv ~/dotfiles/.config/fish/completions/* ~/.config/fish/completions

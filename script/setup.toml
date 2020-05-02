@@ -279,10 +279,8 @@ script = [
 '''
 #!/usr/bin/env bash
 
-git clone https://github.com/alacritty/alacritty.git
+git clone https://github.com/alacritty/alacritty.git ~/alacritty
 cd alacritty
-
-cargo build --release
 
 cargo install cargo-deb
 cargo deb --install -p alacritty

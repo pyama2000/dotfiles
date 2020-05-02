@@ -143,6 +143,17 @@ make prefix=/usr/local all
 sudo make prefix=/usr/local install
 '''
 ]
+dependencies = ["git_dependencies_for_chromeOS"]
+
+[tasks.git_dependencies_for_chromeOS]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y autoconf gettext libcurl4-gnutls-dev \
+libexpat1-dev libghc-zlib-dev libssl-dev make
+'''
+]
 
 [tasks.git_link]
 script = [

@@ -863,6 +863,7 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 '''
 ]
 dependencies = ["docker_dependencies"]
+run_task = "docker_without_root"
 
 [tasks.docker_for_debian.linux]
 script = [
@@ -882,6 +883,7 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 '''
 ]
 dependencies = ["docker_dependencies"]
+run_task = "docker_without_root"
 
 [tasks.docker_dependencies.linux]
 script = [
@@ -890,5 +892,15 @@ script = [
 
 sudo apt install -y apt-transport-https ca-certificates \
   curl gnupg2 software-properties-common
+'''
+]
+
+[tasks.docker_without_root.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
 '''
 ]

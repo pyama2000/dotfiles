@@ -1,5 +1,5 @@
 [env]
-env_files = ["~/dotfiles/setup/setup.env"]
+env_files = ["~/dotfiles/script/setup.env"]
 
 ##############################
 # CI                         #

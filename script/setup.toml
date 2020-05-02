@@ -248,6 +248,7 @@ script = [
 #!/usr/bin/env bash
 
 sudo add-apt-repository ppa:mmstick76/alacritty
+sudo apt update -y
 sudo apt install -y alacritty
 '''
 ]

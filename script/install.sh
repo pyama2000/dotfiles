@@ -16,6 +16,9 @@ fi
 
 if [ $OS == "Linux" ]; then
   sudo apt update -y
+  sudo apt upgrade -y
+  sudo apt full-upgrade -y
+
   sudo apt install -y autoconf automake bison build-essential cmake curl \
     gettext git libbz2-dev libcurl4-gnutls-dev libevent-dev libexpat1-dev \
     libffi-dev libfreetype6-dev libfontconfig1-dev libghc-zlib-dev liblzma-dev \

@@ -20,7 +20,7 @@ if [ $OS == "Linux" ]; then
   sudo apt full-upgrade -y
 
   sudo apt install -y autoconf automake bison build-essential cmake curl \
-    gettext git libbz2-dev libcurl4-gnutls-dev libevent-dev libexpat1-dev \
+    gettext git libbz2-dev libclang-dev libcurl4-gnutls-dev libevent-dev libexpat1-dev \
     libffi-dev libfreetype6-dev libfontconfig1-dev libghc-zlib-dev liblzma-dev \
     libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev \
     libxcb-xfixes0-dev llvm make pkg-config python-openssl python3 \

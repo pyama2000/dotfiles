@@ -10,24 +10,24 @@ GIT_EMAIL = "8256tako@gmail.com"
 ##############################
 [tasks.github-actions]
 dependencies = [
-    "check_envs",
+    # "check_envs",
     "package_manager",
-    "dependencies",
-    "install_git_github-actions",
-    "dotfiles",
-    "install_alacritty",
+    # "dependencies",
+    # "install_git_github-actions",
+    # "dotfiles",
+    # "install_alacritty",
     "install_tmux",
-    "install_fish",
-    "install_fzf",
-    "install_starship",
-    "install_anyenv",
-    "setup_python",
-    "setup_go",
-    "setup_node",
-    "setup_rust",
-    "install_clitools",
-    "setup_neovim",
-    "setup_vim",
+    # "install_fish",
+    # "install_fzf",
+    # "install_starship",
+    # "install_anyenv",
+    # "setup_python",
+    # "setup_go",
+    # "setup_node",
+    # "setup_rust",
+    # "install_clitools",
+    # "setup_neovim",
+    # "setup_vim",
 ]
 
 [tasks.install_git_github-actions]
@@ -340,7 +340,7 @@ ln -snfv ~/dotfiles/.config/alacritty ~/.config
 # tmux                       #
 ##############################
 [tasks.install_tmux]
-dependencies = ["tmux", "tmux_link"]
+dependencies = ["tmux", "tmux_plugin", "tmux_link"]
 
 [tasks.tmux.mac]
 script = [
@@ -366,6 +366,15 @@ script = [
 #!/usr/bin/env bash
 
 sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
+'''
+]
+
+[tasks.tmux_plugin.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install reattach-to-user-namespace
 '''
 ]
 

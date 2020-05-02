@@ -126,7 +126,7 @@ if test -z "$GIT_NAME"; then
 fi
 
 if test -z "$GIT_EMAIL"; then
-    echo "Set GIT_EMAIL
+    echo "Set GIT_EMAIL"
     exit 1
 fi
 '''

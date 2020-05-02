@@ -160,7 +160,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-ssh-keygen -t ed25519 -N "" -C "$MAIL_ADDRESS" -f .ssh/id_ed25519
+ssh-keygen -t ed25519 -N "" -C $EMAIL_ADDRESS -f .ssh/id_ed25519
 '''
 ]
 

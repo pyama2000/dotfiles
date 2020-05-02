@@ -56,6 +56,7 @@ dependencies = [
     "install_git_for_chromeOS",
     "dotfiles",
     "setup_fonts",
+    "install_alacritty_for_chromeOS",
     "install_tmux",
     "install_fish",
     "install_fzf",

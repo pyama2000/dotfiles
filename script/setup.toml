@@ -278,7 +278,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-git lone https://github.com/alacritty/alacritty.git
+git clone https://github.com/alacritty/alacritty.git
 cd alacritty
 
 cargo build --release

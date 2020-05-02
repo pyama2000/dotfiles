@@ -31,7 +31,7 @@ dependencies = ["git", "git_link"]
 dependencies = [
     "package_manager",
     "dependencies",
-    "install_git_for_chromeOS",
+    "install_git",
     "dotfiles",
     "setup_fonts",
     "install_alacritty",
@@ -52,7 +52,7 @@ dependencies = [
 dependencies = [
     "package_manager",
     "dependencies",
-    "install_git",
+    "install_git_for_chromeOS",
     "dotfiles",
     "setup_fonts",
     "install_alacritty",

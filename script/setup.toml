@@ -710,6 +710,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
+source ~/.profile
 pip install pynvim
 '''
 ]

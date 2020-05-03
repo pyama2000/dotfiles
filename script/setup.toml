@@ -840,10 +840,18 @@ ln -snfv ~/dotfiles/.vimrc ~
 # Docker                     #
 ##############################
 [tasks.install_docker_for_ubuntu]
-dependencies = ["docker_for_ubuntu", "docker_without_root"]
+dependencies = [
+    "docker_for_ubuntu",
+    "docker_without_root",
+    "docker-compose",
+]
 
 [tasks.install_docker_for_debian]
-dependencies = ["docker_for_debian", "docker_without_root"]
+dependencies = [
+    "docker_for_debian",
+    "docker_without_root",
+    "docker-compose",
+]
 
 [tasks.docker_for_ubuntu.linux]
 script = [
@@ -900,5 +908,15 @@ script = [
 
 sudo groupadd docker
 sudo usermod -aG docker $USER
+'''
+]
+
+[tasks.docker-compose.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 '''
 ]

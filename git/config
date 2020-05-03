@@ -1,9 +1,11 @@
 [user]
 	name = T.YAMASHITA
 	email = 8256tako@gmail.com
+
 [core]
 	editor = nvim
 	quotepath = false
+
 [alias]
   icommit = commit --allow-empty -m \":tada: Initial commit\"
   lograph = log --graph --decorate --oneline --branches
@@ -22,5 +24,10 @@
   swc = switch -c
   mg = merge --no-ff
   mgff = merge --ff
+  rbrd = push --delete origin
+
 [commit]
   template = ~/.config/git/commit
+
+[fetch]
+  prune = true

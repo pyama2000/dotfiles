@@ -458,7 +458,7 @@ if !(type brew > /dev/null 2>&1); then
 fi
 
 brew install fzf
-yes | (brew --prefix)/opt/fzf/install
+yes | $(brew --prefix)/opt/fzf/install
 '''
 ]
 

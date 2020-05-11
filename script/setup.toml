@@ -12,23 +12,23 @@ GIT_EMAIL = "8256tako@gmail.com"
 dependencies = [
     "check_envs",
     "package_manager",
-    "dependencies",
-    "install_git_github-actions",
-    "dotfiles",
-    "install_alacritty",
-    "install_tmux",
-    "install_fish",
-    "install_fzf",
-    "install_starship",
-    "install_anyenv",
-    "setup_python",
-    "setup_go",
-    "setup_node",
-    "setup_rust",
-    "install_clitools",
-    "setup_neovim",
-    "setup_vim",
-    "install_docker_for_ubuntu",
+    # "dependencies",
+    # "install_git_github-actions",
+    # "dotfiles",
+    # "install_alacritty",
+    # "install_tmux",
+    # "install_fish",
+    # "install_fzf",
+    # "install_starship",
+    # "install_anyenv",
+    # "setup_python",
+    # "setup_go",
+    # "setup_node",
+    # "setup_rust",
+    # "install_clitools",
+    # "setup_neovim",
+    # "setup_vim",
+    # "install_docker_for_ubuntu",
 ]
 
 [tasks.install_git_github-actions]
@@ -148,6 +148,20 @@ script = [
 #!/usr/bin/env bash
 
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+'''
+]
+
+[tasks.package_manager.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
 '''
 ]
 

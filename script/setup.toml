@@ -12,23 +12,23 @@ GIT_EMAIL = "8256tako@gmail.com"
 dependencies = [
     "check_envs",
     "package_manager",
-    # "dependencies",
+    "dependencies",
     "install_git_github-actions",
-    # "dotfiles",
-    # "install_alacritty",
-    # "install_tmux",
-    # "install_fish",
-    # "install_fzf",
-    # "install_starship",
-    # "install_anyenv",
-    # "setup_python",
-    # "setup_go",
-    # "setup_node",
-    # "setup_rust",
-    # "install_clitools",
-    # "setup_neovim",
-    # "setup_vim",
-    # "install_docker_for_ubuntu",
+    "dotfiles",
+    "install_alacritty",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
+    "install_starship",
+    "install_anyenv",
+    "setup_python",
+    "setup_go",
+    "setup_node",
+    "setup_rust",
+    "install_clitools",
+    "setup_neovim",
+    "setup_vim",
+    "install_docker_for_ubuntu",
 ]
 
 [tasks.install_git_github-actions]
@@ -179,6 +179,10 @@ script = [
 '''
 #!/usr/bin/env bash
 
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
 if (brew list | grep git > /dev/null); then
     brew upgrade git
 else
@@ -309,6 +313,10 @@ script = [
 '''
 #!/usr/bin/env bash
 
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
 brew cask install alacritty
 '''
 ]
@@ -341,6 +349,10 @@ dependencies = ["tmux", "tmux_plugin", "tmux_link"]
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 brew install tmux
 '''
@@ -383,6 +395,10 @@ dependencies = ["fish", "fish_plugin", "fish_links"]
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 brew install fish
 '''
@@ -427,6 +443,10 @@ script = [
 '''
 #!/usr/bin/env bash
 
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
 brew install fzf
 yes | /usr/local/opt/fzf/install
 '''
@@ -467,6 +487,10 @@ script = [
 '''
 #!/usr/bin/env bash
 
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
 brew install ghq jq
 '''
 ]
@@ -500,6 +524,10 @@ dependencies = ["anyenv", "anyenv_init", "anyenv_plugin"]
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 brew install anyenv
 echo 'eval "$(anyenv init -)"' >> ~/.profile
@@ -720,6 +748,10 @@ dependencies = ["neovim", "provider", "dein", "neovim_link"]
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 brew install neovim
 '''

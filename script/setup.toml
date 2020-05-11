@@ -151,6 +151,20 @@ script = [
 '''
 ]
 
+[tasks.package_manager.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+'''
+]
+
 ##############################
 # Git                        #
 ##############################
@@ -160,27 +174,20 @@ dependencies = ["git", "git_link", "gen_ssh-key"]
 [tasks.install_git_for_chromeOS]
 dependencies = ["git_for_chromeOS", "git_link", "gen_ssh-key"]
 
-[tasks.git.mac]
+[tasks.git]
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 if (brew list | grep git > /dev/null); then
     brew upgrade git
 else
     brew install git
 fi
-'''
-]
-
-[tasks.git.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo add-apt-repository -y ppa:git-core/ppa
-sudo apt update -y
-sudo apt install -y git
 '''
 ]
 
@@ -306,6 +313,10 @@ script = [
 '''
 #!/usr/bin/env bash
 
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
 brew cask install alacritty
 '''
 ]
@@ -314,7 +325,6 @@ brew cask install alacritty
 script = [
 '''
 #!/usr/bin/env bash
-
 sudo add-apt-repository -y ppa:mmstick76/alacritty
 sudo apt update -y
 sudo apt install -y alacritty
@@ -345,21 +355,16 @@ ln -snfv ~/dotfiles/.config/alacritty ~/.config
 [tasks.install_tmux]
 dependencies = ["tmux", "tmux_plugin", "tmux_link"]
 
-[tasks.tmux.mac]
+[tasks.tmux]
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 brew install tmux
-'''
-]
-
-[tasks.tmux.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install tmux
 '''
 ]
 
@@ -396,23 +401,16 @@ ln -snfv ~/dotfiles/.tmux.conf ~/
 [tasks.install_fish]
 dependencies = ["fish", "fish_plugin", "fish_links"]
 
-[tasks.fish.mac]
+[tasks.fish]
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 brew install fish
-'''
-]
-
-[tasks.fish.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt-add-repository -y ppa:fish-shell/release-3
-sudo apt update -y
-sudo apt install -y fish
 '''
 ]
 
@@ -450,23 +448,17 @@ ln -snfv ~/dotfiles/.config/fish/completions/* ~/.config/fish/completions
 [tasks.install_fzf]
 dependencies = ["fzf"]
 
-[tasks.fzf.mac]
+[tasks.fzf]
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 brew install fzf
-yes | /usr/local/opt/fzf/install
-'''
-]
-
-[tasks.fzf.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-yes | ~/.fzf/install
+yes | $(brew --prefix)/opt/fzf/install
 '''
 ]
 
@@ -500,24 +492,16 @@ ln -snfv ~/dotfiles/.config/starship.toml ~/.config/
 [tasks.install_clitools]
 dependencies = ["clitools", "clitools_from_cargo"]
 
-[tasks.clitools.mac]
+[tasks.clitools]
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 brew install ghq jq
-'''
-]
-
-[tasks.clitools.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y jq
-
-source ~/.profile
-go get github.com/x-motemen/ghq
 '''
 ]
 
@@ -546,23 +530,16 @@ sudo apt install -y libclang-dev
 [tasks.install_anyenv]
 dependencies = ["anyenv", "anyenv_init", "anyenv_plugin"]
 
-[tasks.anyenv.mac]
+[tasks.anyenv]
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 brew install anyenv
-echo 'eval "$(anyenv init -)"' >> ~/.profile
-'''
-]
-
-[tasks.anyenv.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-git clone https://github.com/anyenv/anyenv ~/.anyenv
-echo 'export PATH="$HOME/.anyenv/bin:$PATH"' >> ~/.profile
 echo 'eval "$(anyenv init -)"' >> ~/.profile
 '''
 ]
@@ -777,21 +754,16 @@ nodenv global "$NODE_VERSION"
 [tasks.setup_neovim]
 dependencies = ["neovim", "provider", "dein", "neovim_link"]
 
-[tasks.neovim.mac]
+[tasks.neovim]
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 brew install neovim
-'''
-]
-
-[tasks.neovim.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y neovim
 '''
 ]
 

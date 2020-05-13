@@ -20,6 +20,7 @@ dependencies = [
     "install_fish",
     "install_fzf",
     "install_starship",
+    "install_direnv",
     "install_anyenv",
     "setup_python",
     "setup_go",
@@ -50,6 +51,7 @@ dependencies = [
     "install_fish",
     "install_fzf",
     "install_starship",
+    "install_direnv",
     "install_anyenv",
     "setup_python",
     "setup_go",
@@ -73,6 +75,7 @@ dependencies = [
     "install_fish",
     "install_fzf",
     "install_starship",
+    "install_direnv",
     "install_anyenv",
     "setup_python",
     "setup_go",
@@ -521,6 +524,25 @@ script = [
 #!/usr/bin/env bash
 
 sudo apt install -y libclang-dev
+'''
+]
+
+##############################
+# direnv                     #
+##############################
+[tasks.install_direnv]
+dependencies = ["direnv"]
+
+[tasks.direnv]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+brew install direnv
 '''
 ]
 

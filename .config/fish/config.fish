@@ -71,6 +71,12 @@ eval (starship init fish)
 zoxide init fish | source
 
 ##############################
+# direnv #####################
+##############################
+set -x EDITOR nvim
+eval (direnv hook fish)
+
+##############################
 # Alias ######################
 ##############################
 ## ghq

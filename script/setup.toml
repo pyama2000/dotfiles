@@ -663,7 +663,7 @@ if !(type pyenv > /dev/null 2>&1); then
 fi
 
 pyenv install "$PYTHON_VERSION"
-pyenv global "$PYTHON_VERSON"
+pyenv global "$PYTHON_VERSION"
 '''
 ]
 

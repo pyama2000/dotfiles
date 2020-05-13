@@ -21,6 +21,8 @@ if [ $OS == "Linux" ]; then
         libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev \
         libxcb-xfixes0-dev llvm make pkg-config python-openssl python3 \
         software-properties-common tk-dev  wget xz-utils zlib1g-dev
+
+    sudo apt autoremove -y
 fi
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

@@ -30,6 +30,7 @@ dependencies = [
     "setup_neovim",
     "setup_vim",
     "install_docker_for_ubuntu",
+    "finalize",
 ]
 
 [tasks.install_git_github-actions]
@@ -61,6 +62,7 @@ dependencies = [
     "setup_neovim",
     "setup_vim",
     "install_docker_for_ubuntu",
+    "finalize",
 ]
 
 [tasks.setup_for_chromeOS]
@@ -85,6 +87,7 @@ dependencies = [
     "setup_neovim",
     "setup_vim",
     "install_docker_for_debian",
+    "finalize",
 ]
 
 [tasks.links]
@@ -921,5 +924,30 @@ script = [
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
+'''
+]
+
+##############################
+# Finalize                   #
+##############################
+[tasks.finalize]
+dependencies = ["link_bash", "apt_autoremove"]
+
+[tasks.link_bash]
+script = [
+'''
+#!/usr/bin/env bash
+
+mv ~/.profile ~/.profile.bk
+ln -snfv ~/dotfiles/.profile ~
+'''
+]
+
+[tasks.apt_autoremove.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt autoremove -y
 '''
 ]

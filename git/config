@@ -22,7 +22,7 @@
   com = commit -m
   sw = switch
   swc = switch -c
-  mg = merge --no-ff
+  mg = merge --no-ff --no-edit
   mgff = merge --ff
   rbrd = push --delete origin
 

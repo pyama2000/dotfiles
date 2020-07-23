@@ -62,6 +62,8 @@ shell:
   program: /usr/local/bin/fish
   args:
     - --login
+    - --command
+    - "tmux attach || tmux"
 
 # Window configuration
 window:

@@ -57,14 +57,6 @@ font:
 
   # Point size
   size: 12
-
-shell:
-  program: /usr/local/bin/fish
-  args:
-    - --login
-    - --command
-    - "tmux attach || tmux"
-
 # Window configuration
 window:
   # Window decorations
@@ -86,3 +78,10 @@ window:
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
   startup_mode: Fullscreen
+shell:
+  program: /usr/local/bin/fish
+  args:
+    - --login
+    - --command
+    - "tmux attach || tmux"
+

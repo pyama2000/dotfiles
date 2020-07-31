@@ -71,3 +71,5 @@ alias fpre 'fzf --preview "bat --color=always {}"'
 alias fvim 'nvim (fpre)'
 ## pipenv
 alias piid 'pipenv install --dev flake8 pylint isort mypy pysnooper pydocstyle bandit && pipenv install --dev --pre black'
+## Docker
+alias dc 'docker-compose'

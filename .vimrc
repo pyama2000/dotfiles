@@ -35,8 +35,6 @@ nmap <C-t>n :tabnew<CR>
 nmap <C-t>N :tabNext<CR>
 nmap <C-t>p :tabprevious<CR>
 
-nnoremap ; :
-nnoremap : ;
 nnoremap j gj
 nnoremap k gk
 nnoremap <Space>w :w!<CR>

@@ -4,7 +4,7 @@
   "python.linting.pylintEnabled": false,
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
-  "python.linting.flake8Args": [ "--ignore=E501" ],
+  "python.linting.flake8Args": [ "--ignore=E501,W503" ],
   "python.formatting.blackPath": "~/.anyenv/envs/pyenv/shims/black",
   "python.formatting.provider": "black",
   "yaml.schemas": {

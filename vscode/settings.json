@@ -1,14 +1,21 @@
 {
+    //******************
     // VSCode settings
+    //******************
     "editor.minimap.enabled": false,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.colorTheme": "Gruvbox Dark Hard",
+    // Tabs
+    "workbench.editor.tabSizing": "shrink",
+    "workbench.editor.tabCloseButton": "off",
+    "workbench.editor.showTabs": false,
 
     //**********************
-    //* Extension settings *
+    // Extension settings
     //**********************
     // Vim settings
     "vim.useSystemClipboard": true, // Use system clipboard
+    "vim.useCtrlKeys": true,  // Enable Vim ctrl keys overriding common VS Code operations
     "vim.hlsearch": true, // Highlight all matches
     "vim.visualstar": true, // Search with `*` and `#`
     "vim.leader": "<space>",  // Set <space> to leader
@@ -77,13 +84,25 @@
         {
             "before": ["<C-l>"],
             "after": ["<C-w>", "l"]
-        }
+        },
+        // Bind `Ctrl+b` to open recent file
+        {
+            "before": ["<C-b>"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+        // Bind `Ctrl+f` to open file viewer
+        {
+            "before": ["<C-f>"],
+            "commands": ["workbench.view.explorer"]
+        },
     ],
     "vim.handleKeys": {
         "<C-a>": false,
-        "<C-f>": false
+        "<C-k>": false,
     },
-
     // Remote SSH
-    "remote.SSH.showLoginTerminal": false
+    "remote.SSH.showLoginTerminal": false,
+    "remote.SSH.remotePlatform": {
+        "cybershield": "linux"
+    }
 }

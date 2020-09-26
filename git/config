@@ -22,6 +22,8 @@
   com = commit -m
   sw = switch
   swc = switch -c
+  rs = restore
+  rss = restore --staged
   mg = merge --no-ff --no-edit
   mgff = merge --ff
   rbrd = push --delete origin

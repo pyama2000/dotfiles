@@ -1,6 +1,5 @@
-[user]
-	name = T.YAMASHITA
-	email = 8256tako@gmail.com
+[include]
+  path = ~/.config/git/config.local
 
 [core]
 	editor = nvim

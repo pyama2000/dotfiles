@@ -1,8 +1,5 @@
 add_newline = false
 
-[character]
-symbol = "$"
-
 [aws]
 disabled = true
 

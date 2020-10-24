@@ -40,7 +40,7 @@ set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 ##############################
 # starship                   #
 ##############################
-eval (starship init fish)
+starship init fish | source
 
 ##############################
 # zoxide                     #

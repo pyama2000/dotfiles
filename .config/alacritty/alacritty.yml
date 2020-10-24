@@ -1,17 +1,15 @@
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.95
-
-# Colors (Gruvbox dark)
+env:
+  TERM: alacritty
+shell:
+  program: /usr/local/bin/fish
+  args:
+    - --login
+    - --command
+    - "tmux attach || tmux"
 colors:
-  # Default colors
   primary:
     background: '#32302f'
     foreground: '#ebdbb2'
-
-  # Normal colors
   normal:
     black:   '#282828'
     red:     '#cc241d'
@@ -21,8 +19,6 @@ colors:
     magenta: '#b16286'
     cyan:    '#689d6a'
     white:   '#a89984'
-
-  # Bright colors
   bright:
     black:   '#928374'
     red:     '#fb4934'
@@ -32,56 +28,21 @@ colors:
     magenta: '#d3869b'
     cyan:    '#8ec07c'
     white:   '#ebdbb2'
-
-# Font configuration (changes require restart)
 font:
-  # Normal (roman) font face
-  normal:
-    family: "Source Code Pro"
-    style: Regular
-
-  # Bold font face
-  bold:
-    family: "Source Code Pro"
-    style: Bold
-
-  # Italic font face
-  italic:
-    family: "Source Code Pro"
-    style: Italic
-
-  # Bold italic font face
-  bold_italic:
-    family: "Source Code Pro"
-    style: Bold Italic
-
-  # Point size
   size: 12
-# Window configuration
+  normal:
+    family: 'Source Code Pro'
+    style: Regular
+  bold:
+    family: 'Source Code Pro'
+    style: Bold
+  italic:
+    family: 'Source Code Pro'
+    style: Italic
+  bold_italic:
+    family: 'Source Code Pro'
+    style: Bold Italic
 window:
-  # Window decorations
-  #
-  # Available values:
-  # - full: borders and title bar
-  # - none: neither borders nor title bar
-  # - transparent: title bar, transparent background and title bar buttons
-  # - buttonless: title bar, transparent background, but no title bar buttons
   decorations: full
-
-  # Startup Mode (changes require restart)
-  #
-  # Values for `startup_mode`:
-  #   - Windowed
-  #   - Maximized
-  #   - Fullscreen
-  #
-  # Values for `startup_mode` (macOS only):
-  #   - SimpleFullscreen
-  startup_mode: Fullscreen
-shell:
-  program: /usr/local/bin/fish
-  args:
-    - --login
-    - --command
-    - "tmux attach || tmux"
-
+  startup_mode: Windowed
+background_opacity: 0.95

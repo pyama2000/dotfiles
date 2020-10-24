@@ -18,3 +18,5 @@ set softtabstop=2
 set clipboard=unnamedplus
 set nobackup
 set nowritebackup
+
+set pumblend=30

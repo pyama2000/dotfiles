@@ -32,17 +32,17 @@ font:
   size: 12
   normal:
     family: 'Source Code Pro'
-    style: Regular
+    style:  Regular
   bold:
     family: 'Source Code Pro'
-    style: Bold
+    style:  Bold
   italic:
     family: 'Source Code Pro'
-    style: Italic
+    style:  Italic
   bold_italic:
     family: 'Source Code Pro'
-    style: Bold Italic
+    style:  Bold Italic
 window:
-  decorations: full
+  decorations:  full
   startup_mode: Windowed
 background_opacity: 0.95

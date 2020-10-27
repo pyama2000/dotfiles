@@ -16,9 +16,6 @@ nnoremap <silent><C-d>gs :<C-u>Denite -resume -buffer-name=search<CR>
 " Gather command histories and run it
 nnoremap <silent><C-d>c :<C-u>Denite command_history -split=floating<CR>
 
-autocmd FileType denite set winblend=10
-autocmd FileType denite-filter set winblend=10
-
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> <CR>

@@ -1,5 +1,5 @@
-let g:python_host_prog = $PYENV_ROOT . '/versions/2.7.16/bin/python2'
-let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+let g:python_host_prog = '~/.asdf/shims/python2'
+let g:python3_host_prog = '~/.asdf/shims/python3'
 
 runtime! plugins/dein.rc.vim
 runtime! keymap.vim

@@ -7,12 +7,9 @@ set -gx LC_TYPE ja_JP.UTF-8
 set -gx LANG ja_JP.UTF-8
 
 ##############################
-# anyenv                     #
+# asdf                       #
 ##############################
-set -gx ANYENV_ROOT $HOME/.anyenv
-set PATH $ANYENV_ROOT/bin $PATH
-anyenv init - fish | source
-
+source ~/.asdf/asdf.fish
 
 ##############################
 # Python                     #

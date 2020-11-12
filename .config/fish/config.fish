@@ -17,19 +17,19 @@ anyenv init - fish | source
 ##############################
 # Python                     #
 ##############################
-set -gx PIPENV_VENV_IN_PROJECT 1
+set -x PIPENV_VENV_IN_PROJECT 1
 
 ##############################
 # Go                         #
 ##############################
-set -gx GOPATH $HOME/go
-set -gx PATH $GOPATH/bin $PATH
-set -gx GOENV_DISABLE_GOPATH 1
+set -x GOPATH $HOME/go
+set -g fish_user_paths $GOPATH/bin $fish_user_paths
+set -x GOENV_DISABLE_GOPATH 1
 
 ##############################
 # Rust                       #
 ##############################
-set -gx PATH $HOME/.cargo/bin $PATH
+set -g fish_user_paths $HOME/.cargo/bin $fish_user_paths
 set -x RUSTC_WRAPPER sccache
 
 ##############################

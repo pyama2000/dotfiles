@@ -1,5 +1,5 @@
 [env]
-PYTHON_VERSION = "3.8.2"
+PYTHON_VERSION = "3.9.0"
 GO_VERSION = "1.14.2"
 NODE_VERSION = "12.16.3"
 GIT_NAME = "pyama2000"
@@ -146,17 +146,8 @@ fi
 ]
 
 ##############################
-# Homebrew / Linuxbrew       #
+# Linuxbrew                  #
 ##############################
-[tasks.package_manager.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-'''
-]
-
 [tasks.package_manager.linux]
 script = [
 '''
@@ -319,11 +310,12 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if !(type brew > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-brew cask install alacritty
+git clone https://github.com/alacritty/alacritty.git
+cd alacritty
+rustup override set stable
+rustup update stable
+make app
+cp -r target/release/osx/Alacritty.app /Applications/
 '''
 ]
 
@@ -550,12 +542,12 @@ brew install direnv
 ]
 
 ##############################
-# anyenv                     #
+# asdf                       #
 ##############################
-[tasks.install_anyenv]
-dependencies = ["anyenv", "anyenv_init", "anyenv_plugin"]
+[tasks.install_asdf]
+dependencies = ['asdf_dependencies', 'asdf']
 
-[tasks.anyenv]
+[tasks.asdf]
 script = [
 '''
 #!/usr/bin/env bash
@@ -564,36 +556,19 @@ if !(type brew > /dev/null 2>&1); then
     source ~/.profile
 fi
 
-brew install anyenv
-echo 'eval "$(anyenv init -)"' >> ~/.profile
+brew install asdf
 '''
 ]
 
-[tasks.anyenv_init]
+[tasks.asdf_dependencies]
 script = [
 '''
 #!/usr/bin/env bash
-
-if !(type anyenv > /dev/null 2>&1); then
+if !(type brew > /dev/null 2>&1); then
     source ~/.profile
 fi
 
-yes | anyenv install --init
-'''
-]
-
-[tasks.anyenv_plugin]
-script = [
-'''
-#!/usr/bin/env bash
-
-if !(type anyenv > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-mkdir -p $(anyenv root)/plugins
-git clone https://github.com/znz/anyenv-update.git $(anyenv root)/plugins/anyenv-update
-git clone https://github.com/znz/anyenv-git.git $(anyenv root)/plugins/anyenv-git
+brew install coreutils curl git
 '''
 ]
 
@@ -633,7 +608,7 @@ cargo xtask install --server
 # Python                     #
 ##############################
 [tasks.setup_python]
-dependencies = ["python_dependencies", "pyenv", "python", "pipenv"]
+dependencies = ["python_dependencies", "asdf_python", "python", "pyflow"]
 
 [tasks.python_dependencies.mac]
 script = [
@@ -665,16 +640,12 @@ xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
 '''
 ]
 
-[tasks.pyenv]
+[tasks.asdf_python]
 script = [
 '''
 #!/usr/bin/env bash
 
-if !(type anyenv > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-anyenv install pyenv
+asdf plugin-add python
 '''
 ]
 
@@ -682,23 +653,17 @@ anyenv install pyenv
 script = [
 '''
 #!/usr/bin/env bash
-
-if !(type pyenv > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-pyenv install "$PYTHON_VERSION"
-pyenv global "$PYTHON_VERSION"
+asdf install python latest 2.7.18
+asdf global python latest 2.7.18
 '''
 ]
 
-[tasks.pipenv]
+[tasks.pyflow]
 script = [
 '''
 #!/usr/bin/env bash
 
-source ~/.profile
-pip install pipenv
+cargo install pyflow
 '''
 ]
 
@@ -706,18 +671,14 @@ pip install pipenv
 # Go                         #
 ##############################
 [tasks.setup_go]
-dependencies = ["goenv", "go"]
+dependencies = ["asdf_go", "go"]
 
-[tasks.goenv]
+[tasks.asdf_go]
 script = [
 '''
 #!/usr/bin/env bash
 
-if !(type anyenv > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-anyenv install goenv
+asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
 '''
 ]
 
@@ -726,12 +687,8 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if !(type goenv > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-goenv install "$GO_VERSION"
-goenv global "GO_VERSION"
+asdf install "$GO_VERSION"
+asdf global "GO_VERSION"
 
 echo 'export GOPATH="$HOME/go"' >> ~/.profile
 echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
@@ -743,18 +700,29 @@ echo 'export GOENV_DISABLE_GOPATH="1"' >> ~/.profile
 # Node                       #
 ##############################
 [tasks.setup_node]
-dependencies = ["nodenv", "node"]
+dependencies = ["asdf_node", "node"]
 
-[tasks.nodenv]
+[tasks.asdf_node]
 script = [
 '''
 #!/usr/bin/env bash
 
-if !(type anyenv > /dev/null 2>&1); then
+asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
+'''
+]
+dependencies = ['asdf_node_dependencies']
+
+[tasks.asdf_node_dependencies]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
     source ~/.profile
 fi
 
-anyenv install nodenv
+brew install gpg
 '''
 ]
 
@@ -763,13 +731,9 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if !(type nodenv > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
 touch $(nodenv root)/default-packages
-nodenv install "$NODE_VERSION"
-nodenv global "$NODE_VERSION"
+asdf install "$NODE_VERSION"
+asdf global "$NODE_VERSION"
 '''
 ]
 

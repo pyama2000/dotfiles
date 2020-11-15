@@ -23,6 +23,8 @@ if [ $OS == "Linux" ]; then
         software-properties-common tk-dev  wget xz-utils zlib1g-dev
 
     sudo apt autoremove -y
+elif [ $OS == "macOS" ]; then
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh
 fi
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

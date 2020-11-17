@@ -1,5 +1,6 @@
 extend = [
   { path = "tasks/alacritty.toml" },
+  { path = "tasks/asdf.toml" },
   { path = "tasks/fish.toml" },
   { path = "tasks/font.toml" },
   { path = "tasks/git.toml" },
@@ -31,6 +32,7 @@ dependencies = [
   "tmux",
   "fish",
   "starship",
+  "install_asdf",
   "languages",
   "install_tools",
   "setup_neovim",
@@ -52,6 +54,7 @@ dependencies = [
   "tmux",
   "fish",
   "starship",
+  "install_asdf",
   "languages",
   "install_tools",
   "setup_neovim",

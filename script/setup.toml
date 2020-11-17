@@ -1,5 +1,6 @@
 extend = [
   { path = "tasks/alacritty.toml" },
+  { path = "tasks/fish.toml" },
   { path = "tasks/git.toml" },
   { path = "tasks/tmux.toml" },
 ]
@@ -22,7 +23,7 @@ dependencies = [
   "dotfiles",
   "alacritty",
   "tmux",
-  "install_fish",
+  "fish",
   "install_fzf",
   "install_starship",
   "install_direnv",
@@ -49,7 +50,7 @@ dependencies = [
   "fonts",
   "alacritty",
   "tmux",
-  "install_fish",
+  "fish",
   "install_fzf",
   "install_starship",
   "install_direnv",
@@ -161,53 +162,6 @@ script = [
 #!/usr/bin/env bash
 
 fc-cache -f -v ~/.fonts/adobefont/source-code-pro
-'''
-]
-
-##############################
-# fish shell                 #
-##############################
-[tasks.install_fish]
-dependencies = ["fish", "fish_plugin", "fish_links"]
-
-[tasks.fish]
-script = [
-'''
-#!/usr/bin/env bash
-
-if !(type brew > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-brew install fish
-'''
-]
-
-[tasks.fish_plugin]
-script = [
-'''
-#!/usr/bin/env bash
-
-curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-'''
-]
-
-[tasks.fish_links]
-script = [
-'''
-#!/usr/bin/env bash
-
-if [ ! -d "~/.config/fish/functinos" ] ; then
-    mkdir -p ~/.config/fish/functinos
-fi
-
-if [ ! -d "~/.config/fish/completions" ] ; then
-    mkdir -p ~/.config/fish/completions
-fi
-
-ln -snfv ~/dotfiles/.config/fish/config.fish ~/.config/fish
-ln -snfv ~/dotfiles/.config/fish/functions/* ~/.config/fish/functions
-ln -snfv ~/dotfiles/.config/fish/completions/* ~/.config/fish/completions
 '''
 ]
 

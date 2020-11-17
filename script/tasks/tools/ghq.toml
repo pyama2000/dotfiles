@@ -1,0 +1,36 @@
+[tasks.install_ghq.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install ghq
+'''
+]
+
+[tasks.update_ghq.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew upgrade ghq
+'''
+]
+
+[tasks.install_ghq.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+go get github.com/x-motemen/ghq
+'''
+]
+
+[tasks.update_ghq.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+go get -u github.com/x-motemen/ghq
+'''
+]
+

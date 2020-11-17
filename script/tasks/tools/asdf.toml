@@ -1,6 +1,3 @@
-[tasks.asdf]
-dependencies = ["install_asdf"]
-
 [tasks.install_asdf]
 script = [
 '''
@@ -9,6 +6,8 @@ script = [
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
 mkdir -p ~/.config/fish/completions
 cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions
+
+echo '. $HOME/.asdf/asdf.sh' >> ~/.profile
 '''
 ]
 dependencies = ["dependencies_asdf"]

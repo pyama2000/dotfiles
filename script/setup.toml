@@ -1,13 +1,12 @@
 extend = [
   { path = "tasks/alacritty.toml" },
-  { path = "tasks/asdf.toml" },
-  { path = "tasks/direnv.toml" },
   { path = "tasks/fish.toml" },
   { path = "tasks/font.toml" },
-  { path = "tasks/fzf.toml" },
   { path = "tasks/git.toml" },
+  { path = "tasks/language.toml" },
   { path = "tasks/starship.toml" },
   { path = "tasks/tmux.toml" },
+  { path = "tasks/tool.toml" },
 ]
 
 [env]
@@ -29,15 +28,9 @@ dependencies = [
   "alacritty",
   "tmux",
   "fish",
-  "fzf",
   "starship",
-  "direnv",
-  "asdf",
-  "setup_python",
-  "setup_go",
-  "setup_node",
-  "setup_rust",
-  "install_clitools",
+  "languages",
+  "install_tools",
   "neovim",
   "vim",
   "install_docker_for_ubuntu",
@@ -56,15 +49,9 @@ dependencies = [
   "alacritty",
   "tmux",
   "fish",
-  "fzf",
   "starship",
-  "direnv",
-  "asdf",
-  "setup_python",
-  "setup_go",
-  "setup_node",
-  "setup_rust",
-  "install_clitools",
+  "languages",
+  "install_tools",
   "neovim",
   "vim",
   "install_docker_for_ubuntu",
@@ -158,171 +145,6 @@ script = [
 #!/usr/bin/env bash
 
 sudo apt install -y libclang-dev
-'''
-]
-
-##############################
-# Rust                       #
-##############################
-[tasks.setup_rust]
-dependencies = ["components", "cargo-tools", "rust-analyzer"]
-
-[tasks.components]
-script = [
-'''
-rustup component add clippy rustfmt rust-src
-'''
-]
-
-[tasks.cargo-tools]
-script = [
-'''
-cargo install cargo-update cargo-watch sccache
-echo 'export RUSTC_WRAPPER="$(which sccache)"' >> ~/.profile
-'''
-]
-
-[tasks.rust-analyzer]
-script = [
-'''
-#!/usr/bin/env bash
-
-git clone https://github.com/rust-analyzer/rust-analyzer.git ~/rust-analyzer
-cd ~/rust-analyzer
-cargo xtask install --server
-'''
-]
-
-##############################
-# Python                     #
-##############################
-[tasks.setup_python]
-dependencies = ["python_dependencies", "asdf_python", "python", "pyflow"]
-
-[tasks.python_dependencies.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-if (brew list | grep readline > /dev/null); then
-    brew upgrade readline
-else
-    brew install readline
-fi
-
-if (brew list | grep readline > /dev/null); then
-    brew upgrade xz
-else
-    brew install xz
-fi
-'''
-]
-
-[tasks.python_dependencies.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
-libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
-'''
-]
-
-[tasks.asdf_python]
-script = [
-'''
-#!/usr/bin/env bash
-
-asdf plugin-add python
-'''
-]
-
-[tasks.python]
-script = [
-'''
-#!/usr/bin/env bash
-asdf install python latest 2.7.18
-asdf global python latest 2.7.18
-'''
-]
-
-[tasks.pyflow]
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install pyflow
-'''
-]
-
-##############################
-# Go                         #
-##############################
-[tasks.setup_go]
-dependencies = ["asdf_go", "go"]
-
-[tasks.asdf_go]
-script = [
-'''
-#!/usr/bin/env bash
-
-asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
-'''
-]
-
-[tasks.go]
-script = [
-'''
-#!/usr/bin/env bash
-
-asdf install "$GO_VERSION"
-asdf global "GO_VERSION"
-
-echo 'export GOPATH="$HOME/go"' >> ~/.profile
-echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
-echo 'export GOENV_DISABLE_GOPATH="1"' >> ~/.profile
-'''
-]
-
-##############################
-# Node                       #
-##############################
-[tasks.setup_node]
-dependencies = ["asdf_node", "node"]
-
-[tasks.asdf_node]
-script = [
-'''
-#!/usr/bin/env bash
-
-asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
-'''
-]
-dependencies = ['asdf_node_dependencies']
-
-[tasks.asdf_node_dependencies]
-script = [
-'''
-#!/usr/bin/env bash
-
-if !(type brew > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-brew install gpg
-'''
-]
-
-[tasks.node]
-script = [
-'''
-#!/usr/bin/env bash
-
-touch $(nodenv root)/default-packages
-asdf install "$NODE_VERSION"
-asdf global "$NODE_VERSION"
 '''
 ]
 

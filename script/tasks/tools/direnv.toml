@@ -1,4 +1,4 @@
-[tasks.direnv.mac]
+[tasks.install_direnv.mac]
 script = [
 '''
 #!/usr/bin/env bash
@@ -7,7 +7,7 @@ brew install direnv
 '''
 ]
 
-[tasks.direnv.linux]
+[tasks.install_direnv.linux]
 script = [
 '''
 #!/usr/bin/env bash

@@ -1,4 +1,4 @@
-[tasks.fzf.mac]
+[tasks.install_fzf.mac]
 script = [
 '''
 #!/usr/bin/env bash
@@ -8,7 +8,7 @@ yes | $(brew --prefix)/opt/fzf/install
 '''
 ]
 
-[tasks.fzf.linuxt]
+[tasks.install_fzf.linuxt]
 script = [
 '''
 #!/usr/bin/env bash

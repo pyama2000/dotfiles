@@ -6,6 +6,10 @@ script = [
 '''
 #!/usr/bin/env bash
 
+if !(type asdf > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
 '''
@@ -34,6 +38,10 @@ sudo apt install -y dirmngr gpg curl
 script = [
 '''
 #!/usr/bin/env bash
+
+if !(type asdf > /dev/null 2>&1); then
+    source ~/.profile
+fi
 
 asdf install "$NODE_VERSION"
 asdf global "$NODE_VERSION"

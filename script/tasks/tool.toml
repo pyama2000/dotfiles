@@ -1,0 +1,52 @@
+extend = [
+  { path = "tools/asdf.toml" },
+  { path = "tools/direnv.toml" },
+  { path = "tools/fzf.toml" },
+  { path = "tools/ghq.toml" },
+  { path = "tools/jq.toml" },
+]
+
+[tasks.install_tools]
+dependencies = [
+  "install_asdf",
+  "install_direnv",
+  "install_fzf",
+  "install_ghq",
+  "install_jq",
+]
+
+[tasks.update_tools]
+dependencies = [
+  "update_package_tools",
+  "update_rust_tools",
+  "update_asdf",
+  "update_ghq",
+]
+
+[tasks.update_package_tools.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew upgrade
+'''
+]
+
+[tasks.update_package_tools.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt update -y
+sudo apt upgrade -y
+'''
+]
+
+[tasks.update_rust_tools]
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install-update --all
+'''
+]

@@ -31,7 +31,6 @@ dependencies = [
   "setup_neovim",
   "setup_vim",
   "link_bash",
-  "cleanup",
 ]
 
 ##############################

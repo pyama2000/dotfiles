@@ -1,5 +1,10 @@
 [tasks.python]
-dependencies = ["python_dependencies", "add_python_plugin", "install_python", "pyflow"]
+dependencies = [
+  "python_dependencies",
+  "asdf_python",
+  "install_python",
+  "pyflow"
+]
 
 [tasks.python_dependencies.mac]
 script = [

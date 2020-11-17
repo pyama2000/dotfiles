@@ -1,6 +1,7 @@
 extend = [
   { path = "tasks/alacritty.toml" },
   { path = "tasks/fish.toml" },
+  { path = "tasks/font.toml" },
   { path = "tasks/fzf.toml" },
   { path = "tasks/git.toml" },
   { path = "tasks/starship.toml" },
@@ -49,7 +50,7 @@ dependencies = [
   "check_envs",
   "git",
   "dotfiles",
-  "fonts",
+  "font",
   "alacritty",
   "tmux",
   "fish",
@@ -117,53 +118,6 @@ fi
 
 cd ~/dotfiles
 git remote set-url origin git@github.com:pyama2000/dotfiles.git
-'''
-]
-
-##############################
-# fonts                      #
-##############################
-[tasks.fonts]
-dependencies = ["download_source-code-pro", "source-code-pro"]
-
-[tasks.download_source-code-pro]
-script = [
-'''
-#!/usr/bin/env bash
-
-if [ ! -d "~/.fonts" ] ; then
-    mkdir ~/.fonts
-fi
-
-mkdir -p ~/.fonts/adobefont/source-code-pro
-
-mkdir -p /tmp/adobefont
-cd /tmp/adobefont
-
-curl -LO https://github.com/adobe-fonts/source-code-pro/archive/release.zip
-unzip release.zip
-mv source-code-pro-release/* ~/.fonts/adobefont/source-code-pro
-
-cd ../
-rm -rf adobefont
-'''
-]
-
-[tasks.source-code-pro.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-cp -a ~/.fonts/adobefont/source-code-pro/TTF/* ~/Library/Fonts
-'''
-]
-
-[tasks.source-code-pro.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-fc-cache -f -v ~/.fonts/adobefont/source-code-pro
 '''
 ]
 

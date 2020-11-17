@@ -1,4 +1,4 @@
-extend = "tasks/*.toml"
+extend = "tasks/git.toml"
 
 [env]
 GIT_NAME       = "pyama2000"

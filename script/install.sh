@@ -25,6 +25,7 @@ if [ $OS == "Linux" ]; then
   sudo apt autoremove -y
 elif [ $OS == "macOS" ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  brew install readline xz
 fi
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

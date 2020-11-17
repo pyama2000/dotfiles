@@ -1,4 +1,5 @@
 [env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
 PYTHON_VERSION = '3.9.0'
 GO_VERSION = '1.14.2'
 NODE_VERSION = '12.16.3'
@@ -20,7 +21,7 @@ dependencies = [
   'install_fzf',
   'install_starship',
   'install_direnv',
-  'install_anyenv',
+  'asdf',
   'setup_python',
   'setup_go',
   'setup_node',
@@ -47,7 +48,7 @@ dependencies = [
   'install_fzf',
   'install_starship',
   'install_direnv',
-  'install_anyenv',
+  'asdf',
   'setup_python',
   'setup_go',
   'setup_node',
@@ -102,67 +103,6 @@ if test -z "$GIT_EMAIL"; then
   echo "Set GIT_EMAIL"
   exit 1
 fi
-'''
-]
-
-##############################
-# Git                        #
-##############################
-[tasks.git]
-dependencies = [
-  "install_git",
-  "git_link",
-  "gen_ssh-key",
-  "gen_git_local"
-]
-
-[tasks.install_git]
-script = [
-'''
-#!/usr/bin/env bash
-
-if !(type brew > /dev/null 2>&1); then
-  source ~/.profile
-fi
-
-if (brew list | grep git > /dev/null); then
-  brew upgrade git
-else
-  brew install git
-fi
-'''
-]
-
-[tasks.git_link]
-script = [
-'''
-#!/usr/bin/env bash
-
-ln -snfv ~/dotfiles/git ~/.config
-'''
-]
-
-[tasks.gen_ssh-key]
-script = [
-'''
-#!/usr/bin/env bash
-
-if [ ! -d "~/.ssh" ] ; then
-  mkdir -m 700 ~/.ssh
-fi
-
-ssh-keygen -t ed25519 -N "" -C "$GIT_EMAIL" -f ~/.ssh/id_ed25519
-'''
-]
-
-[tasks.gen_git_local]
-script = [
-'''
-#!/usr/bin/env bash
-
-echo '[user]' >> ~/.config/git/config.local
-echo '  name = "$(GIT_NAME)"' >> ~/.config/git/config.local
-echo '  email = "$(GIT_EMAIL)"' >> ~/.config/git/config.local
 '''
 ]
 
@@ -497,10 +437,10 @@ brew install direnv
 ##############################
 # asdf                       #
 ##############################
-[tasks.install_asdf]
-dependencies = ['asdf_dependencies', 'asdf']
-
 [tasks.asdf]
+dependencies = ['install_asdf']
+
+[tasks.install_asdf.mac]
 script = [
 '''
 #!/usr/bin/env bash
@@ -512,8 +452,9 @@ fi
 brew install asdf
 '''
 ]
+dependencies = ['asdf_dependencies']
 
-[tasks.asdf_dependencies]
+[tasks.asdf_dependencies.mac]
 script = [
 '''
 #!/usr/bin/env bash

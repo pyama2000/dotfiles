@@ -1,8 +1,8 @@
 extend = [
-  { path = "tasks/languages/go.toml" },
-  { path = "tasks/languages/node.toml" },
-  { path = "tasks/languages/python.toml" },
-  { path = "tasks/languages/rust.toml" },
+  { path = "languages/go.toml" },
+  { path = "languages/node.toml" },
+  { path = "languages/python.toml" },
+  { path = "languages/rust.toml" },
 ]
 
 [tasks.language]

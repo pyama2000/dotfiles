@@ -1,5 +1,5 @@
 [tasks.go]
-dependencies = ["add_go_plugin", "install_go"]
+dependencies = ["asdf_go", "install_go"]
 
 [tasks.asdf_go]
 script = [

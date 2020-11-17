@@ -4,6 +4,7 @@ extend = [
   { path = "tasks/font.toml" },
   { path = "tasks/git.toml" },
   { path = "tasks/language.toml" },
+  { path = "tasks/neovim.toml" },
   { path = "tasks/starship.toml" },
   { path = "tasks/tmux.toml" },
   { path = "tasks/tool.toml" },
@@ -31,7 +32,7 @@ dependencies = [
   "starship",
   "languages",
   "install_tools",
-  "neovim",
+  "setup_neovim",
   "vim",
   "install_docker_for_ubuntu",
   "link_bash",
@@ -53,7 +54,7 @@ dependencies = [
   "starship",
   "languages",
   "install_tools",
-  "neovim",
+  "setup_neovim",
   "vim",
   "install_docker_for_ubuntu",
   "link_bash",
@@ -109,59 +110,6 @@ fi
 
 cd ~/dotfiles
 git remote set-url origin git@github.com:pyama2000/dotfiles.git
-'''
-]
-
-##############################
-# Neovim                     #
-##############################
-[tasks.neovim]
-dependencies = ["install_neovim", "provider", "dein", "neovim_link"]
-
-[tasks.install_neovim.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-if !(type brew > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-brew install neovim
-'''
-]
-
-[tasks.provider]
-script = [
-'''
-#!/usr/bin/env bash
-
-pip install pynvim
-'''
-]
-
-[tasks.dein]
-script = [
-'''
-#!/usr/bin/env bash
-
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/installer.sh
-sh ~/installer.sh ~/.cache/dein
-rm ~/installer.sh
-'''
-]
-
-[tasks.neovim_link]
-script = [
-'''
-#!/usr/bin/env bash
-
-if [ ! -d "~/.config/coc/extensions" ] ; then
-    mkdir -p ~/.config/coc/extensions
-fi
-
-ln -snfv ~/dotfiles/.config/nvim ~/.config
-ln -snfv ~/dotfiles/.config/coc/extensions/package.json ~/.config/coc/extensions
 '''
 ]
 
@@ -265,6 +213,9 @@ sudo chmod +x /usr/local/bin/docker-compose
 '''
 ]
 
+##############################
+# bash                       #
+##############################
 [tasks.link_bash]
 script = [
 '''

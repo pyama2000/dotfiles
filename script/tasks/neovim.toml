@@ -1,0 +1,51 @@
+[tasks.setup_neovim]
+dependencies = [
+  "install_neovim",
+  "install_dein",
+  "link_neovim",
+]
+
+[tasks.install_neovim.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install neovim
+'''
+]
+
+[tasks.install_neovim.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo add-apt-repository -y ppa:neovim-ppa/stable
+sudo apt update -y
+sudo apt install -y neovim
+'''
+]
+
+[tasks.install_dein]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/installer.sh
+sh ~/installer.sh ~/.cache/dein
+rm ~/installer.sh
+'''
+]
+
+[tasks.link_neovim]
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ ! -d "~/.config/coc/extensions" ] ; then
+    mkdir -p ~/.config/coc/extensions
+fi
+
+ln -snfv ~/dotfiles/.config/nvim ~/.config
+ln -snfv ~/dotfiles/.config/coc/extensions/package.json ~/.config/coc/extensions
+'''
+]

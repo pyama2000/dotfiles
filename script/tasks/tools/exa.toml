@@ -1,0 +1,8 @@
+[tasks.install_bat]
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install exa
+'''
+]

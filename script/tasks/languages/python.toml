@@ -11,17 +11,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if (brew list --formula | grep readline > /dev/null); then
-    brew upgrade readline
-else
-    brew install readline
-fi
-
-if (brew list --formula | grep xz > /dev/null); then
-    brew upgrade xz
-else
-    brew install xz
-fi
+brew install readline xz
 '''
 ]
 
@@ -42,7 +32,7 @@ script = [
 #!/usr/bin/env bash
 
 if !(type asdf > /dev/null 2>&1); then
-    source ~/.profile
+  source ~/.profile
 fi
 
 asdf plugin-add python
@@ -55,10 +45,11 @@ script = [
 #!/usr/bin/env bash
 
 if !(type asdf > /dev/null 2>&1); then
-    source ~/.profile
+  source ~/.profile
 fi
 
-asdf install python "$PYTHON_VERSION" 2.7.18
+asdf install python "$PYTHON_VERSION"
+asdf install python 2.7.18
 asdf global python "$PYTHON_VERSION" 2.7.18
 '''
 ]

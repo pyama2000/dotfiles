@@ -1,5 +1,6 @@
 extend = [
   { path = "tools/asdf.toml" },
+  { path = "tools/bat.toml" },
   { path = "tools/direnv.toml" },
   { path = "tools/fzf.toml" },
   { path = "tools/ghq.toml" },
@@ -9,6 +10,7 @@ extend = [
 [tasks.install_tools]
 dependencies = [
   "install_asdf",
+  "install_bat",
   "install_direnv",
   "install_fzf",
   "install_ghq",

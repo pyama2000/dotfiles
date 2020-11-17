@@ -32,13 +32,8 @@ dependencies = [
 ]
 
 [tasks.update_package_tools.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew upgrade
-'''
-]
+command = "brew"
+args = ["upgrade"]
 
 [tasks.update_package_tools.linux]
 script = [
@@ -51,22 +46,12 @@ sudo apt upgrade -y
 ]
 
 [tasks.update_rust_tools]
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install-update --all
-'''
-]
+command = "cargo"
+args = ["install-update", "--all"]
 
 [tasks.cleanup.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew cleanup
-'''
-]
+command = "brew"
+args = ["cleanup"]
 
 [tasks.cleanup.linux]
 script = [

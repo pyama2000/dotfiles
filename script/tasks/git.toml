@@ -1,9 +1,9 @@
 [tasks.git]
 dependencies = [
   "install_git",
-  "git_link",
   "gen_ssh_key",
   "gen_git_local"
+  "link_git",
 ]
 
 [tasks.install_git.mac]
@@ -23,7 +23,19 @@ fi
 '''
 ]
 
-[tasks.git_link]
+[tasks.install_git.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update -y
+sudo apt install -y git
+'''
+]
+
+
+[tasks.link_git]
 script = [
 '''
 #!/usr/bin/env bash

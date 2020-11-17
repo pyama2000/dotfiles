@@ -14,7 +14,8 @@ NODE_VERSION   = "12.16.3"
 dependencies = [
   'check_envs',
   'install_git',
-  'git_link',
+  "gen_git_local",
+  "link_git",
   'dotfiles',
   'alacritty',
   'install_tmux',
@@ -63,7 +64,7 @@ dependencies = [
 
 [tasks.links]
 dependencies = [
-  'git_link',
+  'link_git',
   'alacritty_link',
   'tmux_link',
   'fish_links',

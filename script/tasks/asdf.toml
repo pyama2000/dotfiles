@@ -1,0 +1,31 @@
+[tasks.asdf]
+dependencies = ["install_asdf"]
+
+[tasks.install_asdf]
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
+mkdir -p ~/.config/fish/completions; and cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions
+'''
+]
+dependencies = ["asdf_dependencies"]
+
+[tasks.asdf_dependencies.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install coreutils curl git
+'''
+]
+
+[tasks.asdf_dependencies.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y curl git
+'''
+]

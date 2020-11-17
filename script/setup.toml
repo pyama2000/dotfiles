@@ -1,5 +1,6 @@
 extend = [
   { path = "tasks/alacritty.toml" },
+  { path = "tasks/asdf.toml" },
   { path = "tasks/direnv.toml" },
   { path = "tasks/fish.toml" },
   { path = "tasks/font.toml" },
@@ -157,38 +158,6 @@ script = [
 #!/usr/bin/env bash
 
 sudo apt install -y libclang-dev
-'''
-]
-
-##############################
-# asdf                       #
-##############################
-[tasks.asdf]
-dependencies = ['install_asdf']
-
-[tasks.install_asdf.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-if !(type brew > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-brew install asdf
-'''
-]
-dependencies = ['asdf_dependencies']
-
-[tasks.asdf_dependencies.mac]
-script = [
-'''
-#!/usr/bin/env bash
-if !(type brew > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-brew install coreutils curl git
 '''
 ]
 

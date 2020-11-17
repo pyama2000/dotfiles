@@ -11,11 +11,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if !(type brew > /dev/null 2>&1); then
-  source ~/.profile
-fi
-
-if (brew list | grep git > /dev/null); then
+if (brew list --formula | grep git > /dev/null); then
   brew upgrade git
 else
   brew install git

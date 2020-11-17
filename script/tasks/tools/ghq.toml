@@ -7,15 +7,6 @@ brew install ghq
 '''
 ]
 
-[tasks.update_ghq.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew upgrade ghq
-'''
-]
-
 [tasks.install_ghq.linux]
 script = [
 '''

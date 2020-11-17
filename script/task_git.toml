@@ -1,0 +1,58 @@
+[tasks.git]
+dependencies = [
+  'install_git',
+  'git_link',
+  'gen_ssh_key',
+  'gen_git_local'
+]
+
+[tasks.install_git]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+  source ~/.profile
+fi
+
+if (brew list | grep git > /dev/null); then
+  brew upgrade git
+else
+  brew install git
+fi
+'''
+]
+
+[tasks.git_link]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/git ~/.config
+'''
+]
+
+[tasks.gen_ssh_key]
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ ! -d "~/.ssh" ] ; then
+  mkdir -m 700 ~/.ssh
+fi
+
+ssh-keygen -t ed25519 -N "" -C "$GIT_EMAIL" -f ~/.ssh/id_ed25519
+'''
+]
+
+[tasks.gen_git_local]
+script = [
+'''
+#!/usr/bin/env bash
+
+echo '[user]' >> ~/.config/git/config.local
+echo '  name = "$(GIT_NAME)"' >> ~/.config/git/config.local
+echo '  email = "$(GIT_EMAIL)"' >> ~/.config/git/config.local
+'''
+]
+

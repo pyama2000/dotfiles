@@ -41,11 +41,6 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if [ ! -d "~/.config/coc/extensions" ] ; then
-    mkdir -p ~/.config/coc/extensions
-fi
-
 ln -snfv ~/dotfiles/.config/nvim ~/.config
-ln -snfv ~/dotfiles/.config/coc/extensions/package.json ~/.config/coc/extensions
 '''
 ]

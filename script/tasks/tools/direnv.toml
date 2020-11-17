@@ -12,8 +12,8 @@ script = [
 '''
 #!/usr/bin/env bash
 
-curl -sfL https://direnv.net/install.sh | bash
-chmod +x direnv
-mv direnv /usr/local/bin
+sudo apt install -y direnv
+echo 'export EDITOR=nvim' >> ~/.profile
+echo 'eval "$(direnv hook bash)"' >> ~/.profile
 '''
 ]

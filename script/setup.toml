@@ -12,13 +12,6 @@ extend = [
   { path = "tasks/vim.toml" },
 ]
 
-[env]
-GIT_NAME       = "pyama2000"
-GIT_EMAIL      = "8256tako@gmail.com"
-PYTHON_VERSION = "3.9.0"
-GO_VERSION     = "1.14.2"
-NODE_VERSION   = "12.16.3"
-
 ##############################
 # CI                         #
 ##############################

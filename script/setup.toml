@@ -34,7 +34,8 @@ dependencies = [
   "neovim",
   "vim",
   "install_docker_for_ubuntu",
-  "finalize",
+  "link_bash",
+  "cleanup",
 ]
 
 ##############################
@@ -55,7 +56,8 @@ dependencies = [
   "neovim",
   "vim",
   "install_docker_for_ubuntu",
-  "finalize",
+  "link_bash",
+  "cleanup",
 ]
 
 ##############################
@@ -263,12 +265,6 @@ sudo chmod +x /usr/local/bin/docker-compose
 '''
 ]
 
-##############################
-# Finalize                   #
-##############################
-[tasks.finalize]
-dependencies = ["link_bash", "apt_autoremove"]
-
 [tasks.link_bash]
 script = [
 '''
@@ -276,14 +272,5 @@ script = [
 
 mv ~/.profile ~/.profile.bk
 ln -snfv ~/dotfiles/.profile ~
-'''
-]
-
-[tasks.apt_autoremove.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt autoremove -y
 '''
 ]

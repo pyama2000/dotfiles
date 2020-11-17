@@ -58,3 +58,23 @@ script = [
 cargo install-update --all
 '''
 ]
+
+[tasks.cleanup.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew cleanup
+'''
+]
+
+[tasks.cleanup.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt autoremove -y
+sudo apt autoclean -y
+sudo apt clean -y
+'''
+]

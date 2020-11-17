@@ -2,7 +2,7 @@
 dependencies = [
   "clone_alacritty",
   "install_alacritty",
-  "link_alacritty"
+  "link_alacritty",
 ]
 
 [tasks.clone_alacritty]

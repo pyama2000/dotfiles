@@ -1,6 +1,7 @@
 extend = [
   { path = "tasks/alacritty.toml" },
   { path = "tasks/git.toml" },
+  { path = "tasks/tmux.toml" },
 ]
 
 [env]
@@ -20,7 +21,7 @@ dependencies = [
   "link_git",
   "dotfiles",
   "alacritty",
-  "install_tmux",
+  "tmux",
   "install_fish",
   "install_fzf",
   "install_starship",
@@ -47,7 +48,7 @@ dependencies = [
   "dotfiles",
   "fonts",
   "alacritty",
-  "install_tmux",
+  "tmux",
   "install_fish",
   "install_fzf",
   "install_starship",
@@ -62,17 +63,6 @@ dependencies = [
   "vim",
   "install_docker_for_ubuntu",
   "finalize",
-]
-
-[tasks.links]
-dependencies = [
-  "link_git",
-  "alacritty_link",
-  "tmux_link",
-  "fish_links",
-  "starship_link",
-  "neovim_link",
-  "vim_link",
 ]
 
 ##############################
@@ -171,122 +161,6 @@ script = [
 #!/usr/bin/env bash
 
 fc-cache -f -v ~/.fonts/adobefont/source-code-pro
-'''
-]
-
-##############################
-# Alacritty                  #
-##############################
-[tasks.alacritty]
-dependencies = [
-  'clone_alacritty',
-  'install_alacritty',
-  'alacritty_link'
-]
-
-[tasks.clone_alacritty]
-script = [
-'''
-#!/usr/bin/env bash
-
-git clone https://github.com/alacritty/alacritty.git ~/alacritty
-cd ~/alacritty
-rustup override set stable
-rustup update stable
-'''
-]
-
-[tasks.install_alacritty.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-cd ~/alacritty
-make app
-cp -r target/release/osx/Alacritty.app /Applications/
-'''
-]
-
-[tasks.install_alacritty.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-cd ~/alacritty
-cargo build --release
-
-sudo cp target/release/alacritty /usr/local/bin
-sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-sudo desktop-file-install extra/linux/Alacritty.desktop
-sudo update-desktop-database
-
-sudo mkdir -p /usr/local/share/man/man1
-gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
-'''
-]
-dependencies = ['alacritty_dependencies']
-
-[tasks.alacritty_dependencies.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
-'''
-]
-
-[tasks.alacritty_link]
-script = [
-'''
-#!/usr/bin/env bash
-
-ln -snfv ~/dotfiles/.config/alacritty ~/.config
-'''
-]
-
-##############################
-# tmux                       #
-##############################
-[tasks.install_tmux]
-dependencies = ["tmux", "tmux_plugin", "tmux_link"]
-
-[tasks.tmux.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-if !(type brew > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-brew install tmux
-'''
-]
-
-[tasks.tmux_dependencies.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
-'''
-]
-
-[tasks.tmux_plugin.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install reattach-to-user-namespace
-'''
-]
-
-[tasks.tmux_link]
-script = [
-'''
-#!/usr/bin/env bash
-
-ln -snfv ~/dotfiles/.tmux.conf ~/
 '''
 ]
 

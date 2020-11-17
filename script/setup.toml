@@ -8,6 +8,7 @@ extend = [
   { path = "tasks/starship.toml" },
   { path = "tasks/tmux.toml" },
   { path = "tasks/tool.toml" },
+  { path = "tasks/vim.toml" },
 ]
 
 [env]
@@ -33,7 +34,7 @@ dependencies = [
   "languages",
   "install_tools",
   "setup_neovim",
-  "vim",
+  "setup_vim",
   "install_docker_for_ubuntu",
   "link_bash",
   "cleanup",
@@ -55,7 +56,7 @@ dependencies = [
   "languages",
   "install_tools",
   "setup_neovim",
-  "vim",
+  "setup_vim",
   "install_docker_for_ubuntu",
   "link_bash",
   "cleanup",
@@ -110,21 +111,6 @@ fi
 
 cd ~/dotfiles
 git remote set-url origin git@github.com:pyama2000/dotfiles.git
-'''
-]
-
-##############################
-# Vim                        #
-##############################
-[tasks.vim]
-dependencies = ["vim_link"]
-
-[tasks.vim_link]
-script = [
-'''
-#!/usr/bin/env bash
-
-ln -snfv ~/dotfiles/.vimrc ~
 '''
 ]
 

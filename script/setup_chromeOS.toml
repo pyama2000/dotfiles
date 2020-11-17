@@ -1,0 +1,917 @@
+[env]
+PYTHON_VERSION = "3.9.0"
+GO_VERSION = "1.14.2"
+NODE_VERSION = "12.16.3"
+GIT_NAME = "pyama2000"
+GIT_EMAIL = "8256tako@gmail.com"
+
+##############################
+# CI                         #
+##############################
+[tasks.github-actions]
+dependencies = [
+    "check_envs",
+    "package_manager",
+    "dependencies",
+    "install_git_github-actions",
+    "dotfiles",
+    "install_alacritty",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
+    "install_starship",
+    "install_direnv",
+    "install_anyenv",
+    "setup_python",
+    "setup_go",
+    "setup_node",
+    "setup_rust",
+    "install_clitools",
+    "setup_neovim",
+    "setup_vim",
+    "install_docker_for_ubuntu",
+    "finalize",
+]
+
+[tasks.install_git_github-actions]
+dependencies = ["install_git", "git_link"]
+
+##############################
+# Setup                      #
+##############################
+[tasks.setup]
+dependencies = [
+    "check_envs",
+    "package_manager",
+    "dependencies",
+    "git",
+    "dotfiles",
+    "setup_fonts",
+    "install_alacritty",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
+    "install_starship",
+    "install_direnv",
+    "install_anyenv",
+    "setup_python",
+    "setup_go",
+    "setup_node",
+    "setup_rust",
+    "install_clitools",
+    "setup_neovim",
+    "setup_vim",
+    "install_docker_for_ubuntu",
+    "finalize",
+]
+
+[tasks.setup_for_chromeOS]
+dependencies = [
+    "check_envs",
+    "package_manager",
+    "dependencies",
+    "git_for_chromeOS",
+    "dotfiles",
+    "setup_fonts",
+    "install_tmux",
+    "install_fish",
+    "install_fzf",
+    "install_starship",
+    "install_direnv",
+    "install_anyenv",
+    "setup_python",
+    "setup_go",
+    "setup_node",
+    "setup_rust",
+    "install_clitools",
+    "setup_neovim",
+    "setup_vim",
+    "install_docker_for_debian",
+    "finalize",
+]
+
+[tasks.links]
+dependencies = [
+    "git_link",
+    "alacritty_link",
+    "tmux_link",
+    "fish_links",
+    "starship_link",
+    "neovim_link",
+    "vim_link",
+]
+
+[tasks.dependencies.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install readline xz
+'''
+]
+
+##############################
+# Check envs                 #
+##############################
+[tasks.check_envs]
+script = [
+'''
+#!/usr/bin/env bash
+
+if test -z "$PYTHON_VERSION"; then
+    echo "Set PYTHON_VERSION"
+    exit 1
+fi
+
+if test -z "$GO_VERSION"; then
+    echo "Set GO_VERSION"
+    exit 1
+fi
+
+if test -z "$NODE_VERSION"; then
+    echo "Set NODE_VERSION"
+    exit 1
+fi
+
+if test -z "$GIT_NAME"; then
+    echo "Set GIT_NAME"
+    exit 1
+fi
+
+if test -z "$GIT_EMAIL"; then
+    echo "Set GIT_EMAIL"
+    exit 1
+fi
+'''
+]
+
+##############################
+# Linuxbrew                  #
+##############################
+[tasks.package_manager.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+'''
+]
+
+##############################
+# Git                        #
+##############################
+[tasks.git]
+dependencies = ["install_git", "git_link", "gen_ssh-key"]
+
+[tasks.git_for_chromeOS]
+dependencies = ["install_git_for_chromeOS", "git_link", "gen_ssh-key"]
+
+[tasks.git]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+if (brew list | grep git > /dev/null); then
+    brew upgrade git
+else
+    brew install git
+fi
+'''
+]
+
+[tasks.install_git_for_chromeOS]
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone https://github.com/git/git.git ~/git
+cd ~/git
+make prefix=/usr/local all
+sudo make prefix=/usr/local install
+'''
+]
+dependencies = ["git_dependencies_for_chromeOS"]
+
+[tasks.git_dependencies_for_chromeOS]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y autoconf gettext libcurl4-gnutls-dev \
+libexpat1-dev libghc-zlib-dev libssl-dev make
+'''
+]
+
+[tasks.git_link]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/git ~/.config
+'''
+]
+
+[tasks.gen_ssh-key]
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ ! -d "~/.ssh" ] ; then
+    mkdir -m 700 ~/.ssh
+fi
+
+ssh-keygen -t ed25519 -N "" -C "$GIT_EMAIL" -f ~/.ssh/id_ed25519
+'''
+]
+
+##############################
+# dotfiles                   #
+##############################
+[tasks.dotfiles]
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ ! -d "~/dotfiles" ] ; then
+    git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
+fi
+
+cd ~/dotfiles
+git remote set-url origin git@github.com:pyama2000/dotfiles.git
+'''
+]
+
+##############################
+# fonts                      #
+##############################
+[tasks.setup_fonts]
+dependencies = ["source-code-pro"]
+
+[tasks.source-code-pro_install]
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ ! -d "~/.fonts" ] ; then
+    mkdir ~/.fonts
+fi
+
+mkdir -p ~/.fonts/adobefont/source-code-pro
+
+mkdir -p /tmp/adobefont
+cd /tmp/adobefont
+
+curl -LO https://github.com/adobe-fonts/source-code-pro/archive/release.zip
+unzip release.zip
+mv source-code-pro-release/* ~/.fonts/adobefont/source-code-pro
+
+cd ../
+rm -rf adobefont
+'''
+]
+
+[tasks.source-code-pro.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+cp -a ~/.fonts/adobefont/source-code-pro/TTF/* ~/Library/Fonts
+'''
+]
+dependencies = ["source-code-pro_install"]
+
+[tasks.source-code-pro.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+fc-cache -f -v ~/.fonts/adobefont/source-code-pro
+'''
+]
+dependencies = ["source-code-pro_install"]
+
+##############################
+# Alacritty                  #
+##############################
+[tasks.install_alacritty]
+dependencies = ["alacritty", "alacritty_link"]
+
+[tasks.alacritty.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone https://github.com/alacritty/alacritty.git
+cd alacritty
+rustup override set stable
+rustup update stable
+make app
+cp -r target/release/osx/Alacritty.app /Applications/
+'''
+]
+
+[tasks.alacritty.linux]
+script = [
+'''
+#!/usr/bin/env bash
+sudo add-apt-repository -y ppa:mmstick76/alacritty
+sudo apt update -y
+sudo apt install -y alacritty
+'''
+]
+
+[tasks.alacritty_dependencies.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y git automake bison build-essential pkg-config libevent-dev libncurses5-dev
+'''
+]
+
+[tasks.alacritty_link]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/.config/alacritty ~/.config
+'''
+]
+
+##############################
+# tmux                       #
+##############################
+[tasks.install_tmux]
+dependencies = ["tmux", "tmux_plugin", "tmux_link"]
+
+[tasks.tmux]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+brew install tmux
+'''
+]
+
+[tasks.tmux_dependencies.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
+'''
+]
+
+[tasks.tmux_plugin.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install reattach-to-user-namespace
+'''
+]
+
+[tasks.tmux_link]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/.tmux.conf ~/
+'''
+]
+
+##############################
+# fish shell                 #
+##############################
+[tasks.install_fish]
+dependencies = ["fish", "fish_plugin", "fish_links"]
+
+[tasks.fish]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+brew install fish
+'''
+]
+
+[tasks.fish_plugin]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+'''
+]
+
+[tasks.fish_links]
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ ! -d "~/.config/fish/functinos" ] ; then
+    mkdir -p ~/.config/fish/functinos
+fi
+
+if [ ! -d "~/.config/fish/completions" ] ; then
+    mkdir -p ~/.config/fish/completions
+fi
+
+ln -snfv ~/dotfiles/.config/fish/config.fish ~/.config/fish
+ln -snfv ~/dotfiles/.config/fish/functions/* ~/.config/fish/functions
+ln -snfv ~/dotfiles/.config/fish/completions/* ~/.config/fish/completions
+'''
+]
+
+##############################
+# fzf                        #
+##############################
+[tasks.install_fzf]
+dependencies = ["fzf"]
+
+[tasks.fzf]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+brew install fzf
+yes | $(brew --prefix)/opt/fzf/install
+'''
+]
+
+##############################
+# starship                   #
+##############################
+[tasks.install_starship]
+dependencies = ["starship", "starship_link"]
+
+[tasks.starship]
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install starship
+'''
+]
+
+[tasks.starship_link]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/.config/starship.toml ~/.config/
+'''
+]
+
+##############################
+# CLI tools                  #
+##############################
+[tasks.install_clitools]
+dependencies = ["clitools", "clitools_from_cargo"]
+
+[tasks.clitools]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+brew install ghq jq
+'''
+]
+
+[tasks.clitools_from_cargo]
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install bat exa hyperfine ripgrep tokei zoxide
+'''
+]
+dependencies = ["clitools_from_cargo_dependencies"]
+
+[tasks.clitools_from_cargo_dependencies.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y libclang-dev
+'''
+]
+
+##############################
+# direnv                     #
+##############################
+[tasks.install_direnv]
+dependencies = ["direnv"]
+
+[tasks.direnv]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+brew install direnv
+'''
+]
+
+##############################
+# asdf                       #
+##############################
+[tasks.install_asdf]
+dependencies = ['asdf_dependencies', 'asdf']
+
+[tasks.asdf]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+brew install asdf
+'''
+]
+
+[tasks.asdf_dependencies]
+script = [
+'''
+#!/usr/bin/env bash
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+brew install coreutils curl git
+'''
+]
+
+##############################
+# Rust                       #
+##############################
+[tasks.setup_rust]
+dependencies = ["components", "cargo-tools", "rust-analyzer"]
+
+[tasks.components]
+script = [
+'''
+rustup component add clippy rustfmt rust-src
+'''
+]
+
+[tasks.cargo-tools]
+script = [
+'''
+cargo install cargo-update cargo-watch sccache
+echo 'export RUSTC_WRAPPER="$(which sccache)"' >> ~/.profile
+'''
+]
+
+[tasks.rust-analyzer]
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone https://github.com/rust-analyzer/rust-analyzer.git ~/rust-analyzer
+cd ~/rust-analyzer
+cargo xtask install --server
+'''
+]
+
+##############################
+# Python                     #
+##############################
+[tasks.setup_python]
+dependencies = ["python_dependencies", "asdf_python", "python", "pyflow"]
+
+[tasks.python_dependencies.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+if (brew list | grep readline > /dev/null); then
+    brew upgrade readline
+else
+    brew install readline
+fi
+
+if (brew list | grep readline > /dev/null); then
+    brew upgrade xz
+else
+    brew install xz
+fi
+'''
+]
+
+[tasks.python_dependencies.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+'''
+]
+
+[tasks.asdf_python]
+script = [
+'''
+#!/usr/bin/env bash
+
+asdf plugin-add python
+'''
+]
+
+[tasks.python]
+script = [
+'''
+#!/usr/bin/env bash
+asdf install python latest 2.7.18
+asdf global python latest 2.7.18
+'''
+]
+
+[tasks.pyflow]
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install pyflow
+'''
+]
+
+##############################
+# Go                         #
+##############################
+[tasks.setup_go]
+dependencies = ["asdf_go", "go"]
+
+[tasks.asdf_go]
+script = [
+'''
+#!/usr/bin/env bash
+
+asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+'''
+]
+
+[tasks.go]
+script = [
+'''
+#!/usr/bin/env bash
+
+asdf install "$GO_VERSION"
+asdf global "GO_VERSION"
+
+echo 'export GOPATH="$HOME/go"' >> ~/.profile
+echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
+echo 'export GOENV_DISABLE_GOPATH="1"' >> ~/.profile
+'''
+]
+
+##############################
+# Node                       #
+##############################
+[tasks.setup_node]
+dependencies = ["asdf_node", "node"]
+
+[tasks.asdf_node]
+script = [
+'''
+#!/usr/bin/env bash
+
+asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
+'''
+]
+dependencies = ['asdf_node_dependencies']
+
+[tasks.asdf_node_dependencies]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+brew install gpg
+'''
+]
+
+[tasks.node]
+script = [
+'''
+#!/usr/bin/env bash
+
+touch $(nodenv root)/default-packages
+asdf install "$NODE_VERSION"
+asdf global "$NODE_VERSION"
+'''
+]
+
+##############################
+# Neovim                     #
+##############################
+[tasks.setup_neovim]
+dependencies = ["neovim", "provider", "dein", "neovim_link"]
+
+[tasks.neovim]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type brew > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+brew install neovim
+'''
+]
+
+[tasks.provider]
+script = [
+'''
+#!/usr/bin/env bash
+
+source ~/.profile
+pip install pynvim
+'''
+]
+
+[tasks.dein]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/installer.sh
+sh ~/installer.sh ~/.cache/dein
+rm ~/installer.sh
+'''
+]
+
+[tasks.neovim_link]
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ ! -d "~/.config/coc/extensions" ] ; then
+    mkdir -p ~/.config/coc/extensions
+fi
+
+ln -snfv ~/dotfiles/.config/nvim ~/.config
+ln -snfv ~/dotfiles/.config/coc/extensions/package.json ~/.config/coc/extensions
+'''
+]
+
+##############################
+# Vim                        #
+##############################
+[tasks.setup_vim]
+dependencies = ["vim_link"]
+
+[tasks.vim_link]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/.vimrc ~
+'''
+]
+
+##############################
+# Docker                     #
+##############################
+[tasks.install_docker_for_ubuntu]
+dependencies = [
+    "docker_for_ubuntu",
+    "docker_without_root",
+    "docker-compose",
+]
+
+[tasks.install_docker_for_debian]
+dependencies = [
+    "docker_for_debian",
+    "docker_without_root",
+    "docker-compose",
+]
+
+[tasks.docker_for_ubuntu.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+sudo apt update -y
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+'''
+]
+dependencies = ["docker_dependencies"]
+
+[tasks.docker_for_debian.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable"
+
+sudo apt update -y
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+'''
+]
+dependencies = ["docker_dependencies"]
+
+[tasks.docker_dependencies.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y apt-transport-https ca-certificates \
+  curl gnupg2 software-properties-common
+'''
+]
+
+[tasks.docker_without_root.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+'''
+]
+
+[tasks.docker-compose.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+'''
+]
+
+##############################
+# Finalize                   #
+##############################
+[tasks.finalize]
+dependencies = ["link_bash", "apt_autoremove"]
+
+[tasks.link_bash]
+script = [
+'''
+#!/usr/bin/env bash
+
+mv ~/.profile ~/.profile.bk
+ln -snfv ~/dotfiles/.profile ~
+'''
+]
+
+[tasks.apt_autoremove.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt autoremove -y
+'''
+]

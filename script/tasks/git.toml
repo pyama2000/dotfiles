@@ -1,12 +1,12 @@
 [tasks.git]
 dependencies = [
-  'install_git',
-  'git_link',
-  'gen_ssh_key',
-  'gen_git_local'
+  "install_git",
+  "git_link",
+  "gen_ssh_key",
+  "gen_git_local"
 ]
 
-[tasks.install_git]
+[tasks.install_git.mac]
 script = [
 '''
 #!/usr/bin/env bash

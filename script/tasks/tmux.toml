@@ -10,7 +10,7 @@ brew install tmux
 '''
 ]
 
-[tasks.install_tmux.mac]
+[tasks.install_tmux.linux]
 script = [
 '''
 #!/usr/bin/env bash

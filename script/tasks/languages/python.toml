@@ -44,7 +44,7 @@ asdf plugin-add python
 '''
 ]
 
-[tasks.python]
+[tasks.install_python]
 script = [
 '''
 #!/usr/bin/env bash

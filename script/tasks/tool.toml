@@ -6,6 +6,7 @@ extend = [
   { path = "tools/fzf.toml" },
   { path = "tools/ghq.toml" },
   { path = "tools/jq.toml" },
+  { path = "tools/ripgrep.toml" },
 ]
 
 [tasks.install_tools]
@@ -17,6 +18,7 @@ dependencies = [
   "install_fzf",
   "install_ghq",
   "install_jq",
+  "install_ripgrep",
 ]
 
 [tasks.update_tools]

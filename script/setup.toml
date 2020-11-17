@@ -3,6 +3,7 @@ extend = [
   { path = "tasks/fish.toml" },
   { path = "tasks/fzf.toml" },
   { path = "tasks/git.toml" },
+  { path = "tasks/starship.toml" },
   { path = "tasks/tmux.toml" },
 ]
 
@@ -26,7 +27,7 @@ dependencies = [
   "tmux",
   "fish",
   "fzf",
-  "install_starship",
+  "starship",
   "install_direnv",
   "asdf",
   "setup_python",
@@ -53,7 +54,7 @@ dependencies = [
   "tmux",
   "fish",
   "fzf",
-  "install_starship",
+  "starship",
   "install_direnv",
   "asdf",
   "setup_python",
@@ -163,30 +164,6 @@ script = [
 #!/usr/bin/env bash
 
 fc-cache -f -v ~/.fonts/adobefont/source-code-pro
-'''
-]
-
-##############################
-# starship                   #
-##############################
-[tasks.install_starship]
-dependencies = ["starship", "starship_link"]
-
-[tasks.starship]
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install starship
-'''
-]
-
-[tasks.starship_link]
-script = [
-'''
-#!/usr/bin/env bash
-
-ln -snfv ~/dotfiles/.config/starship.toml ~/.config/
 '''
 ]
 

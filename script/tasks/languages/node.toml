@@ -43,7 +43,7 @@ if !(type asdf > /dev/null 2>&1); then
     source ~/.profile
 fi
 
-asdf install "$NODE_VERSION"
-asdf global "$NODE_VERSION"
+asdf install nodejs "$NODE_VERSION"
+asdf global nodejs "$NODE_VERSION"
 '''
 ]

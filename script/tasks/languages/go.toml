@@ -23,8 +23,8 @@ if !(type asdf > /dev/null 2>&1); then
     source ~/.profile
 fi
 
-asdf install "$GO_VERSION"
-asdf global "$GO_VERSION"
+asdf install golang "$GO_VERSION"
+asdf global golang "$GO_VERSION"
 
 echo 'export GOPATH="$HOME/go"' >> ~/.profile
 echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile

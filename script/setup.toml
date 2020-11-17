@@ -1,6 +1,7 @@
 extend = [
   { path = "tasks/alacritty.toml" },
   { path = "tasks/fish.toml" },
+  { path = "tasks/fzf.toml" },
   { path = "tasks/git.toml" },
   { path = "tasks/tmux.toml" },
 ]
@@ -24,7 +25,7 @@ dependencies = [
   "alacritty",
   "tmux",
   "fish",
-  "install_fzf",
+  "fzf",
   "install_starship",
   "install_direnv",
   "asdf",
@@ -51,7 +52,7 @@ dependencies = [
   "alacritty",
   "tmux",
   "fish",
-  "install_fzf",
+  "fzf",
   "install_starship",
   "install_direnv",
   "asdf",
@@ -162,26 +163,6 @@ script = [
 #!/usr/bin/env bash
 
 fc-cache -f -v ~/.fonts/adobefont/source-code-pro
-'''
-]
-
-##############################
-# fzf                        #
-##############################
-[tasks.install_fzf]
-dependencies = ["fzf"]
-
-[tasks.fzf]
-script = [
-'''
-#!/usr/bin/env bash
-
-if !(type brew > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-brew install fzf
-yes | $(brew --prefix)/opt/fzf/install
 '''
 ]
 

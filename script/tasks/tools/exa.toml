@@ -1,4 +1,4 @@
-[tasks.install_bat]
+[tasks.install_exa]
 script = [
 '''
 #!/usr/bin/env bash

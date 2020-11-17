@@ -3,7 +3,7 @@ dependencies = [
   "install_git",
   "gen_ssh_key",
   "gen_git_local",
-  "link_git"
+  "link_git",
 ]
 
 [tasks.install_git.mac]

@@ -1,4 +1,7 @@
-extend = "tasks/git.toml"
+extend = [
+  { path = "tasks/alacritty.toml" },
+  { path = "tasks/git.toml" },
+]
 
 [env]
 GIT_NAME       = "pyama2000"
@@ -12,26 +15,26 @@ NODE_VERSION   = "12.16.3"
 ##############################
 [tasks.github-actions]
 dependencies = [
-  'check_envs',
-  'install_git',
+  "check_envs",
+  "install_git",
   "link_git",
-  'dotfiles',
-  'alacritty',
-  'install_tmux',
-  'install_fish',
-  'install_fzf',
-  'install_starship',
-  'install_direnv',
-  'asdf',
-  'setup_python',
-  'setup_go',
-  'setup_node',
-  'setup_rust',
-  'install_clitools',
-  'neovim',
-  'vim',
-  'install_docker_for_ubuntu',
-  'finalize',
+  "dotfiles",
+  "alacritty",
+  "install_tmux",
+  "install_fish",
+  "install_fzf",
+  "install_starship",
+  "install_direnv",
+  "asdf",
+  "setup_python",
+  "setup_go",
+  "setup_node",
+  "setup_rust",
+  "install_clitools",
+  "neovim",
+  "vim",
+  "install_docker_for_ubuntu",
+  "finalize",
 ]
 
 ##############################
@@ -39,37 +42,37 @@ dependencies = [
 ##############################
 [tasks.setup]
 dependencies = [
-  'check_envs',
-  'git',
-  'dotfiles',
-  'fonts',
-  'alacritty',
-  'install_tmux',
-  'install_fish',
-  'install_fzf',
-  'install_starship',
-  'install_direnv',
-  'asdf',
-  'setup_python',
-  'setup_go',
-  'setup_node',
-  'setup_rust',
-  'install_clitools',
-  'neovim',
-  'vim',
-  'install_docker_for_ubuntu',
-  'finalize',
+  "check_envs",
+  "git",
+  "dotfiles",
+  "fonts",
+  "alacritty",
+  "install_tmux",
+  "install_fish",
+  "install_fzf",
+  "install_starship",
+  "install_direnv",
+  "asdf",
+  "setup_python",
+  "setup_go",
+  "setup_node",
+  "setup_rust",
+  "install_clitools",
+  "neovim",
+  "vim",
+  "install_docker_for_ubuntu",
+  "finalize",
 ]
 
 [tasks.links]
 dependencies = [
-  'link_git',
-  'alacritty_link',
-  'tmux_link',
-  'fish_links',
-  'starship_link',
-  'neovim_link',
-  'vim_link',
+  "link_git",
+  "alacritty_link",
+  "tmux_link",
+  "fish_links",
+  "starship_link",
+  "neovim_link",
+  "vim_link",
 ]
 
 ##############################

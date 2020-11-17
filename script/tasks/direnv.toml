@@ -1,0 +1,19 @@
+[tasks.direnv.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install direnv
+'''
+]
+
+[tasks.direnv.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl -sfL https://direnv.net/install.sh | bash
+chmod +x direnv
+mv direnv /usr/local/bin
+'''
+]

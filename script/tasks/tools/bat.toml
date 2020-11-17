@@ -6,6 +6,7 @@ script = [
 cargo install --locked bat
 '''
 ]
+dependencies = ["dependencies_bat"]
 
 [tasks.dependencies_bat.linux]
 script = [

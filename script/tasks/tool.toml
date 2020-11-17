@@ -7,6 +7,7 @@ extend = [
   { path = "tools/ghq.toml" },
   { path = "tools/jq.toml" },
   { path = "tools/ripgrep.toml" },
+  { path = "tools/zoxide.toml" },
 ]
 
 [tasks.install_tools]
@@ -19,6 +20,7 @@ dependencies = [
   "install_ghq",
   "install_jq",
   "install_ripgrep",
+  "install_zoxide",
 ]
 
 [tasks.update_tools]

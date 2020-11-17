@@ -5,7 +5,7 @@ extend = [
   { path = "languages/rust.toml" },
 ]
 
-[tasks.language]
+[tasks.languages]
 dependencies = [
   "go",
   "node",

@@ -35,7 +35,6 @@ dependencies = [
   "install_tools",
   "setup_neovim",
   "setup_vim",
-  "install_docker_for_ubuntu",
   "link_bash",
   "cleanup",
 ]
@@ -57,7 +56,6 @@ dependencies = [
   "install_tools",
   "setup_neovim",
   "setup_vim",
-  "install_docker_for_ubuntu",
   "link_bash",
   "cleanup",
 ]
@@ -111,91 +109,6 @@ fi
 
 cd ~/dotfiles
 git remote set-url origin git@github.com:pyama2000/dotfiles.git
-'''
-]
-
-##############################
-# Docker                     #
-##############################
-[tasks.install_docker_for_ubuntu]
-dependencies = [
-    "docker_for_ubuntu",
-    "docker_without_root",
-    "docker-compose",
-]
-
-[tasks.install_docker_for_debian]
-dependencies = [
-    "docker_for_debian",
-    "docker_without_root",
-    "docker-compose",
-]
-
-[tasks.docker_for_ubuntu.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
-
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-
-sudo apt update -y
-sudo apt install -y docker-ce docker-ce-cli containerd.io
-'''
-]
-dependencies = ["docker_dependencies"]
-
-[tasks.docker_for_debian.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
-
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/debian \
-   $(lsb_release -cs) \
-   stable"
-
-sudo apt update -y
-sudo apt install -y docker-ce docker-ce-cli containerd.io
-'''
-]
-dependencies = ["docker_dependencies"]
-
-[tasks.docker_dependencies.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y apt-transport-https ca-certificates \
-  curl gnupg2 software-properties-common
-'''
-]
-
-[tasks.docker_without_root.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo groupadd docker
-sudo usermod -aG docker $USER
-'''
-]
-
-[tasks.docker-compose.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
 '''
 ]
 

@@ -111,44 +111,6 @@ git remote set-url origin git@github.com:pyama2000/dotfiles.git
 ]
 
 ##############################
-# CLI tools                  #
-##############################
-[tasks.install_clitools]
-dependencies = ["clitools", "clitools_from_cargo"]
-
-[tasks.clitools]
-script = [
-'''
-#!/usr/bin/env bash
-
-if !(type brew > /dev/null 2>&1); then
-    source ~/.profile
-fi
-
-brew install ghq jq
-'''
-]
-
-[tasks.clitools_from_cargo]
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install bat exa hyperfine ripgrep tokei zoxide
-'''
-]
-dependencies = ["clitools_from_cargo_dependencies"]
-
-[tasks.clitools_from_cargo_dependencies.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y libclang-dev
-'''
-]
-
-##############################
 # Neovim                     #
 ##############################
 [tasks.neovim]

@@ -1,0 +1,19 @@
+[tasks.install_fzf.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install fzf
+yes | $(brew --prefix)/opt/fzf/install
+'''
+]
+
+[tasks.install_fzf.linuxt]
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+yes | ~/.fzf/install
+'''
+]

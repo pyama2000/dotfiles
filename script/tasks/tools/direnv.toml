@@ -1,0 +1,19 @@
+[tasks.install_direnv.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install direnv
+'''
+]
+
+[tasks.install_direnv.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y direnv
+echo 'export EDITOR=nvim' >> ~/.profile
+echo 'eval "$(direnv hook bash)"' >> ~/.profile
+'''
+]

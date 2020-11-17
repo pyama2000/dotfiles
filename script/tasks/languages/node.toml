@@ -1,0 +1,49 @@
+[tasks.node]
+dependencies = ["asdf_node", "install_node"]
+
+[tasks.asdf_node]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type asdf > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
+'''
+]
+dependencies = ['dependencies_asdf_node']
+
+[tasks.dependencies_asdf_node.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install coreutils gpg
+'''
+]
+
+[tasks.dependencies_asdf_node.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y dirmngr gpg curl
+'''
+]
+
+[tasks.install_node]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type asdf > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
+asdf install nodejs "$NODE_VERSION"
+asdf global nodejs "$NODE_VERSION"
+'''
+]

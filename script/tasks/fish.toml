@@ -1,0 +1,41 @@
+[tasks.fish]
+dependencies = ["install_fish", "link_fish"]
+
+[tasks.install_fish.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install fish
+'''
+]
+
+[tasks.install_fish.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt-add-repository ppa:fish-shell/release-3
+sudo apt update -y
+sudo apt install -y fish
+'''
+]
+
+[tasks.link_fish]
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ ! -d "~/.config/fish/functinos" ] ; then
+  mkdir -p ~/.config/fish/functinos
+fi
+
+if [ ! -d "~/.config/fish/completions" ] ; then
+  mkdir -p ~/.config/fish/completions
+fi
+
+ln -snfv ~/dotfiles/.config/fish/config.fish ~/.config/fish
+ln -snfv ~/dotfiles/.config/fish/functions/* ~/.config/fish/functions
+ln -snfv ~/dotfiles/.config/fish/completions/* ~/.config/fish/completions
+'''
+]

@@ -1,0 +1,18 @@
+[tasks.install_bat]
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install --locked bat
+'''
+]
+dependencies = ["dependencies_bat"]
+
+[tasks.dependencies_bat.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y libclang-dev
+'''
+]

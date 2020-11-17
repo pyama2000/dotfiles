@@ -1,0 +1,11 @@
+[tasks.setup_vim]
+dependencies = ["link_vim"]
+
+[tasks.link_vim]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/.vimrc ~
+'''
+]

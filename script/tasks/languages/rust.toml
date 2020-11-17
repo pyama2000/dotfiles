@@ -1,0 +1,16 @@
+[tasks.rust]
+dependencies = ["components", "cargo-tools"]
+
+[tasks.components]
+script = [
+'''
+rustup component add clippy rustfmt rust-src
+'''
+]
+
+[tasks.cargo-tools]
+script = [
+'''
+cargo install cargo-watch cargo-update
+'''
+]

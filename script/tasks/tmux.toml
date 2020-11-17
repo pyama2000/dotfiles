@@ -1,0 +1,38 @@
+[tasks.tmux]
+dependencies = ["install_tmux", "tmux_plugin", "link_tmux"]
+
+[tasks.install_tmux.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install tmux
+'''
+]
+
+[tasks.install_tmux.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y tmux
+'''
+]
+
+[tasks.tmux_plugin.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install reattach-to-user-namespace
+'''
+]
+
+[tasks.link_tmux]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/.tmux.conf ~/
+'''
+]

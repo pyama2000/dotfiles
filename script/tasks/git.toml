@@ -1,0 +1,66 @@
+[tasks.git]
+dependencies = [
+  "install_git",
+  "gen_ssh_key",
+  "gen_git_local",
+  "link_git",
+]
+
+[tasks.install_git.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+if (brew list --formula | grep git > /dev/null); then
+  brew upgrade git
+else
+  brew install git
+fi
+'''
+]
+
+[tasks.install_git.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo add-apt-repository -y ppa:git-core/ppa
+sudo apt update -y
+sudo apt install -y git
+'''
+]
+
+
+[tasks.link_git]
+script = [
+'''
+#!/usr/bin/env bash
+
+ln -snfv ~/dotfiles/git ~/.config
+'''
+]
+
+[tasks.gen_ssh_key]
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ ! -d "~/.ssh" ] ; then
+  mkdir -m 700 ~/.ssh
+fi
+
+ssh-keygen -t ed25519 -N "" -C "$GIT_EMAIL" -f ~/.ssh/id_ed25519
+'''
+]
+
+[tasks.gen_git_local]
+script = [
+'''
+#!/usr/bin/env bash
+
+echo '[user]' >> ~/.config/git/config.local
+echo '  name = "$(GIT_NAME)"' >> ~/.config/git/config.local
+echo '  email = "$(GIT_EMAIL)"' >> ~/.config/git/config.local
+'''
+]
+

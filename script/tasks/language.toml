@@ -1,0 +1,14 @@
+extend = [
+  { path = "languages/go.toml" },
+  { path = "languages/node.toml" },
+  { path = "languages/python.toml" },
+  { path = "languages/rust.toml" },
+]
+
+[tasks.languages]
+dependencies = [
+  "go",
+  "node",
+  "python",
+  "rust",
+]

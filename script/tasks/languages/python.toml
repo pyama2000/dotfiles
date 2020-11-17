@@ -1,0 +1,64 @@
+[tasks.python]
+dependencies = [
+  "python_dependencies",
+  "asdf_python",
+  "install_python",
+  "pyflow"
+]
+
+[tasks.python_dependencies.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install readline xz
+'''
+]
+
+[tasks.python_dependencies.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+'''
+]
+
+[tasks.asdf_python]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type asdf > /dev/null 2>&1); then
+  source ~/.profile
+fi
+
+asdf plugin-add python
+'''
+]
+
+[tasks.install_python]
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type asdf > /dev/null 2>&1); then
+  source ~/.profile
+fi
+
+asdf install python "$PYTHON_VERSION"
+asdf install python 2.7.18
+asdf global python "$PYTHON_VERSION" 2.7.18
+'''
+]
+
+[tasks.pyflow]
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install pyflow
+'''
+]

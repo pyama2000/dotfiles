@@ -1,4 +1,5 @@
-[tasks.git]
+[tasks.setup_git]
+category = "SETUP"
 dependencies = [
   "install_git",
   "gen_ssh_key",
@@ -7,6 +8,7 @@ dependencies = [
 ]
 
 [tasks.install_git.mac]
+category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -20,6 +22,7 @@ fi
 ]
 
 [tasks.install_git.linux]
+category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -32,6 +35,7 @@ sudo apt install -y git
 
 
 [tasks.link_git]
+category = "LINK"
 script = [
 '''
 #!/usr/bin/env bash
@@ -41,6 +45,7 @@ ln -snfv ~/dotfiles/git ~/.config
 ]
 
 [tasks.gen_ssh_key]
+category = "GENERATE"
 script = [
 '''
 #!/usr/bin/env bash
@@ -54,6 +59,7 @@ ssh-keygen -t ed25519 -N "" -C "$GIT_EMAIL" -f ~/.ssh/id_ed25519
 ]
 
 [tasks.gen_git_local]
+category = "GENERATE"
 script = [
 '''
 #!/usr/bin/env bash
@@ -63,4 +69,3 @@ echo '  name = "$(GIT_NAME)"' >> ~/.config/git/config.local
 echo '  email = "$(GIT_EMAIL)"' >> ~/.config/git/config.local
 '''
 ]
-

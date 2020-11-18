@@ -39,7 +39,7 @@ dependencies = [
 [tasks.setup]
 dependencies = [
   "check_envs",
-  "git",
+  "setup_git",
   "dotfiles",
   "setup_font",
   "setup_alacritty",

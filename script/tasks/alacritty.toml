@@ -49,9 +49,9 @@ sudo mkdir -p /usr/local/share/man/man1
 gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
 '''
 ]
-dependencies = ["alacritty_dependencies"]
+dependencies = ["dependencies_alacritty"]
 
-[tasks.alacritty_dependencies.linux]
+[tasks.dependencies_alacritty.linux]
 category = "DEPENDENCIES"
 script = [
 '''

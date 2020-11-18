@@ -1,4 +1,5 @@
 [tasks.setup_neovim]
+category = "SETUP"
 dependencies = [
   "install_neovim",
   "install_dein",
@@ -6,6 +7,7 @@ dependencies = [
 ]
 
 [tasks.install_neovim.mac]
+category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -15,6 +17,7 @@ brew install neovim
 ]
 
 [tasks.install_neovim.linux]
+category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -26,6 +29,7 @@ sudo apt install -y neovim
 ]
 
 [tasks.install_dein]
+category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -37,6 +41,7 @@ rm ~/installer.sh
 ]
 
 [tasks.link_neovim]
+category = "LINK"
 script = [
 '''
 #!/usr/bin/env bash

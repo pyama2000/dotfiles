@@ -1,6 +1,7 @@
 extend = [
   { path = "tasks/alacritty.toml" },
   { path = "tasks/asdf.toml" },
+  { path = "tasks/dotfiles.toml" },
   { path = "tasks/fish.toml" },
   { path = "tasks/font.toml" },
   { path = "tasks/git.toml" },
@@ -20,7 +21,7 @@ dependencies = [
   "check_envs",
   "install_git",
   "link_git",
-  "dotfiles",
+  "setup_dotfiles",
   "setup_alacritty",
   "setup_tmux",
   "setup_fish",
@@ -40,7 +41,7 @@ dependencies = [
 dependencies = [
   "check_envs",
   "setup_git",
-  "dotfiles",
+  "setup_dotfiles",
   "setup_font",
   "setup_alacritty",
   "setup_tmux",
@@ -93,19 +94,7 @@ fi
 ##############################
 # dotfiles                   #
 ##############################
-[tasks.dotfiles]
-script = [
-'''
-#!/usr/bin/env bash
 
-if [ ! -d "~/dotfiles" ] ; then
-  git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
-fi
-
-cd ~/dotfiles
-git remote set-url origin git@github.com:pyama2000/dotfiles.git
-'''
-]
 
 ##############################
 # bash                       #

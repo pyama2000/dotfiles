@@ -5,10 +5,11 @@ extend = [
   { path = "languages/rust.toml" },
 ]
 
-[tasks.languages]
+[tasks.setup_languages]
+category = "SETUP"
 dependencies = [
-  "go",
-  "node",
-  "python",
-  "rust",
+  "install_go",
+  "install_node",
+  "setup_python",
+  "setup_rust",
 ]

@@ -14,7 +14,7 @@ cargo make --makefile script/setup.toml github-actions \
   -e PYTHON_VERSION=<PYTHON_VERSION>
 ```
 
-### Environments
+Environments:
 
 | value           | key type | example             |
 |:----------------|:---------|:--------------------|

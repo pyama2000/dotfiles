@@ -42,7 +42,7 @@ dependencies = [
   "git",
   "dotfiles",
   "font",
-  "alacritty",
+  "setup_alacritty",
   "tmux",
   "fish",
   "starship",

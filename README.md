@@ -1,62 +1,46 @@
-# Build and share the  development enviroment
+# dotfiles
 
-## Build
-
-```bash
-$ cd ~
-$ git clone https://github.com/pyama2000/dotfiles.git
-$ bash dotfiles/install.sh
-```
-
-## Install fish completions
+## Installation
 
 ```bash
-$ curl https://raw.githubusercontent.com/fish-shell/fish-shell/master/share/completions/[COMMAND_NAME].fish > ~/.config/fish/completions/git.fish
+git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+script/install.sh
+cargo make --makefile script/setup.toml github-actions \
+  -e GIT_NAME=<GIT_NAME> \
+  -e GIT_EMAIL=<GIT_EMAIL> \
+  -e GO_VERSION=<GO_VERSION> \
+  -e NODE_VERSION=<NODE_VERSION> \
+  -e PYTHON_VERSION=<PYTHON_VERSION>
 ```
 
-## Installed application list
+Environments:
 
-Shell: 
+| value           | key type | example             |
+|:----------------|:---------|:--------------------|
+| GIT\_NAME       | string   | pyama2000           |
+| GIT\_EMAIL      | string   | example@example.com |
+| GO\_VERSION     | string   | 1.14.2              |
+| NODE\_VERSION   | string   | 12.16.9             |
+| PYTHON\_VERSION | string   | 3.9.0               |
 
-- fish shell
-    - fisher(package manager for `fish shell`)
+### GUI tools
 
-Languages:  
+- 1Password
+- Alfred
+- Clipy
+- Discord
+- Docker
+- gitify
+- Google Chrome
+- Google 日本語入力
+- Rectangle
+- Slack
+- Zoom
 
-- Go: 1.12.7
-- Node: 12.6.0
-- Python: 2.7.16, 3.7.4
-- Rust: latest stable, nightly
+## Update
 
-Tools:
-
-- anyenv
-    - anyenv-update
-- bat(Installed from `cargo`)
-- exa(Installed from `cargo`)
-- fzf
-- ghq(Installed from `go`)
-- goenv
-- lazydocker(Installed from `go`)
-- lazygiy(Installed from `go`)
-- neovim
-- pipenv
-- pyenv
-- ripgrep(Installed from `cargo`)
-- tokei(Installed from `cargo`)
-- yarn
-- starship
-
-For neovim:
-
-- pynvim(For python2 and python3 provider)
-- neovim(For Node provider)
-- dein.nvim
-
-## CHANGELOG
-
-### 2020/04/24
-
-- Alacritty
-- tmux
-- Source Code Pro fonts
+```bash
+cd ~/dotfiles
+cargo make --makefile script/tasks/tool.toml update_tools
+```

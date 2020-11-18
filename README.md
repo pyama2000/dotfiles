@@ -24,6 +24,20 @@ Environments:
 | NODE\_VERSION   | string   | 12.16.9             |
 | PYTHON\_VERSION | string   | 3.9.0               |
 
+### GUI tools
+
+- 1Password
+- Alfred
+- Clipy
+- Discord
+- Docker
+- gitify
+- Google Chrome
+- Google 日本語入力
+- Rectangle
+- Slack
+- Zoom
+
 ## Update
 
 ```bash

@@ -14,9 +14,7 @@ extend = [
   { path = "tasks/vim.toml" },
 ]
 
-##############################
-# CI                         #
-##############################
+# CI
 [tasks.github-actions]
 dependencies = [
   "check_envs",
@@ -35,9 +33,7 @@ dependencies = [
   "link_bash",
 ]
 
-##############################
-# Setup                      #
-##############################
+# Setup
 [tasks.setup]
 dependencies = [
   "check_envs",
@@ -57,9 +53,7 @@ dependencies = [
   "cleanup",
 ]
 
-##############################
-# Check envs                 #
-##############################
+# Check envs
 [tasks.check_envs]
 script = [
 '''

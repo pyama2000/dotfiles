@@ -1,6 +1,7 @@
 extend = [
   { path = "tasks/alacritty.toml" },
   { path = "tasks/asdf.toml" },
+  { path = "tasks/bash.toml" },
   { path = "tasks/dotfiles.toml" },
   { path = "tasks/fish.toml" },
   { path = "tasks/font.toml" },
@@ -88,23 +89,5 @@ if test -z "$GIT_EMAIL"; then
   echo "Set GIT_EMAIL"
   exit 1
 fi
-'''
-]
-
-##############################
-# dotfiles                   #
-##############################
-
-
-##############################
-# bash                       #
-##############################
-[tasks.link_bash]
-script = [
-'''
-#!/usr/bin/env bash
-
-mv ~/.profile ~/.profile.bk
-ln -snfv ~/dotfiles/.profile ~
 '''
 ]

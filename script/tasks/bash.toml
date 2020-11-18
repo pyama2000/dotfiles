@@ -1,0 +1,10 @@
+[tasks.link_bash]
+category = "LINK"
+script = [
+'''
+#!/usr/bin/env bash
+
+mv ~/.profile ~/.profile.bk
+ln -snfv ~/dotfiles/.profile ~
+'''
+]

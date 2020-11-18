@@ -1,7 +1,9 @@
-[tasks.rust]
-dependencies = ["components", "cargo-tools"]
+[tasks.setup_rust]
+category = "SETUP"
+dependencies = ["add_rust_components", "cargo-tools"]
 
-[tasks.components]
+[tasks.add_rust_components]
+category = "ADD_RUST_COMPONENTS"
 script = [
 '''
 rustup component add clippy rustfmt rust-src
@@ -9,6 +11,7 @@ rustup component add clippy rustfmt rust-src
 ]
 
 [tasks.cargo-tools]
+category = "INSTALL"
 script = [
 '''
 cargo install cargo-watch cargo-update

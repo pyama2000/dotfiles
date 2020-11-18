@@ -1,6 +1,8 @@
 extend = [
   { path = "tasks/alacritty.toml" },
   { path = "tasks/asdf.toml" },
+  { path = "tasks/bash.toml" },
+  { path = "tasks/dotfiles.toml" },
   { path = "tasks/fish.toml" },
   { path = "tasks/font.toml" },
   { path = "tasks/git.toml" },
@@ -12,42 +14,38 @@ extend = [
   { path = "tasks/vim.toml" },
 ]
 
-##############################
-# CI                         #
-##############################
+# CI
 [tasks.github-actions]
 dependencies = [
   "check_envs",
   "install_git",
   "link_git",
-  "dotfiles",
-  "alacritty",
-  "tmux",
-  "fish",
-  "starship",
+  "setup_dotfiles",
+  "setup_alacritty",
+  "setup_tmux",
+  "setup_fish",
+  "setup_starship",
   "install_asdf",
-  "languages",
+  "setup_languages",
   "install_tools",
   "setup_neovim",
   "setup_vim",
   "link_bash",
 ]
 
-##############################
-# Setup                      #
-##############################
+# Setup
 [tasks.setup]
 dependencies = [
   "check_envs",
-  "git",
-  "dotfiles",
-  "font",
-  "alacritty",
-  "tmux",
-  "fish",
-  "starship",
+  "setup_git",
+  "setup_dotfiles",
+  "setup_font",
+  "setup_alacritty",
+  "setup_tmux",
+  "setup_fish",
+  "setup_starship",
   "install_asdf",
-  "languages",
+  "setup_languages",
   "install_tools",
   "setup_neovim",
   "setup_vim",
@@ -55,9 +53,7 @@ dependencies = [
   "cleanup",
 ]
 
-##############################
-# Check envs                 #
-##############################
+# Check envs
 [tasks.check_envs]
 script = [
 '''
@@ -87,35 +83,5 @@ if test -z "$GIT_EMAIL"; then
   echo "Set GIT_EMAIL"
   exit 1
 fi
-'''
-]
-
-##############################
-# dotfiles                   #
-##############################
-[tasks.dotfiles]
-script = [
-'''
-#!/usr/bin/env bash
-
-if [ ! -d "~/dotfiles" ] ; then
-  git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
-fi
-
-cd ~/dotfiles
-git remote set-url origin git@github.com:pyama2000/dotfiles.git
-'''
-]
-
-##############################
-# bash                       #
-##############################
-[tasks.link_bash]
-script = [
-'''
-#!/usr/bin/env bash
-
-mv ~/.profile ~/.profile.bk
-ln -snfv ~/dotfiles/.profile ~
 '''
 ]

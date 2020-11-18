@@ -41,7 +41,7 @@ dependencies = [
   "check_envs",
   "git",
   "dotfiles",
-  "font",
+  "setup_font",
   "setup_alacritty",
   "tmux",
   "setup_fish",

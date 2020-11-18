@@ -6,7 +6,7 @@
 git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 script/install.sh
-cargo make --makefile script/setup.toml github-actions \
+cargo make --makefile script/setup.toml setup \
   -e GIT_NAME=<GIT_NAME> \
   -e GIT_EMAIL=<GIT_EMAIL> \
   -e GO_VERSION=<GO_VERSION> \

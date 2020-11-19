@@ -89,6 +89,7 @@ fi
 # Update
 [tasks.update]
 dependencies = [
+  "update_alacritty",
   "update_dotfiles",
   "update_languages",
   "update_tools",

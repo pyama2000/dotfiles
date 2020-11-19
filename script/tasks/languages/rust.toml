@@ -17,3 +17,13 @@ script = [
 cargo install cargo-watch cargo-update
 '''
 ]
+
+[tasks.update_rust]
+category = "UPDATA"
+script = [
+'''
+#!/usr/bin/env bash
+
+rustup update
+'''
+]

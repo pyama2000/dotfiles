@@ -11,3 +11,15 @@ cd ~/dotfiles
 git remote set-url origin git@github.com:pyama2000/dotfiles.git
 '''
 ]
+
+[tasks.update_dotfiles]
+category = "UPDATE"
+script = [
+'''
+#!/usr/bin/env bash
+
+cd ~/dotfiles
+git stash
+git pull --rebase origin master
+'''
+]

@@ -13,3 +13,7 @@ dependencies = [
   "setup_python",
   "setup_rust",
 ]
+
+[tasks.update_languages]
+category = "UPDATE"
+dependencies = ["update_rust"]

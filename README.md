@@ -1,5 +1,7 @@
 # dotfiles
 
+[INSTALLATION](https://github.com/pyama2000/dotfiles#installation) | [UPDATE](https://github.com/pyama2000/dotfiles#update) | [CHEAT SHEETS](https://github.com/pyama2000/dotfiles#cheatsheet)
+
 ## Installation
 
 ```bash
@@ -44,3 +46,13 @@ Environments:
 cd ~/dotfiles
 cargo make --makefile script/tasks/tool.toml update_tools
 ```
+
+## Cheatsheets
+
+- [tmux](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/tmux.md)
+- NeoVim
+    - [coc.nvim](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/neovim/coc.md)
+    - [defx.nvim](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/neovim/defx.md)
+    - [denite.nvim](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/neovim/denite.md)
+    - [deol.nvim](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/neovim/deol.md)
+    - [keymap](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/neovim/keymap.md)

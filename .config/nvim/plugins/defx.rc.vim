@@ -18,8 +18,6 @@ autocmd FileType defx call s:defx_my_settings()
      \ defx#do_action('open', 'split')
       nnoremap <silent><buffer><expr> v
      \ defx#do_action('open', 'vsplit')
-     nnoremap <silent><buffer><expr> P
-     \ defx#do_action('open', 'pedit')
       nnoremap <silent><buffer><expr> c
      \ defx#do_action('copy')
       nnoremap <silent><buffer><expr> m
@@ -36,16 +34,12 @@ autocmd FileType defx call s:defx_my_settings()
      \ defx#do_action('rename')
       nnoremap <silent><buffer><expr> t
      \ defx#do_action('open_or_close_tree')
-      nnoremap <silent><buffer><expr> x
-     \ defx#do_action('execute_system')
       nnoremap <silent><buffer><expr> yy
      \ defx#do_action('yank_path')
       nnoremap <silent><buffer><expr> .
      \ defx#do_action('toggle_ignored_files')
       nnoremap <silent><buffer><expr> ..
      \ defx#do_action('cd', ['..'])
-      nnoremap <silent><buffer><expr> ~
-     \ defx#do_action('cd')
       nnoremap <silent><buffer><expr> <Esc>
      \ defx#do_action('quit')
       nnoremap <silent><buffer><expr> q

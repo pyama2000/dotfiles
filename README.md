@@ -2,7 +2,7 @@
 
 [INSTALLATION](https://github.com/pyama2000/dotfiles#installation) | [UPDATE](https://github.com/pyama2000/dotfiles#update) | [CHEAT SHEETS](https://github.com/pyama2000/dotfiles#cheatsheet)
 
-## Installation
+## INSTALLATION
 
 ```bash
 git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
@@ -40,14 +40,14 @@ Environments:
 - Slack
 - Zoom
 
-## Update
+## UPDATE
 
 ```bash
 cd ~/dotfiles
 cargo make --makefile script/tasks/tool.toml update_tools
 ```
 
-## Cheatsheets
+## CHEAT SHEETS
 
 - [tmux](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/tmux.md)
 - NeoVim

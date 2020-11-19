@@ -1,6 +1,6 @@
 # dotfiles
 
-[INSTALLATION](https://github.com/pyama2000/dotfiles#installation) | [UPDATE](https://github.com/pyama2000/dotfiles#update) | [CHEAT SHEETS](https://github.com/pyama2000/dotfiles#cheatsheet)
+[INSTALLATION](https://github.com/pyama2000/dotfiles#installation) | [UPDATE](https://github.com/pyama2000/dotfiles#update) | [CHEAT SHEETS](https://github.com/pyama2000/dotfiles#cheat-sheets)
 
 ## INSTALLATION
 

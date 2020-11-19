@@ -8,7 +8,7 @@
 git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 script/install.sh
-cargo make --makefile script/setup.toml setup \
+cargo make --makefile script/task.toml setup \
   -e GIT_NAME=<GIT_NAME> \
   -e GIT_EMAIL=<GIT_EMAIL> \
   -e GO_VERSION=<GO_VERSION> \
@@ -44,7 +44,7 @@ Environments:
 
 ```bash
 cd ~/dotfiles
-cargo make --makefile script/tasks/tool.toml update_tools
+cargo make --makefile script/task.toml update
 ```
 
 ## CHEAT SHEETS

@@ -27,7 +27,6 @@ set -x GOENV_DISABLE_GOPATH 1
 # Rust                       #
 ##############################
 set -g fish_user_paths $HOME/.cargo/bin $fish_user_paths
-set -x RUSTC_WRAPPER sccache
 
 ##############################
 # fzf                        #

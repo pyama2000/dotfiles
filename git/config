@@ -29,6 +29,9 @@
     rbrd = push --delete origin
     rmerged = "!f () { git switch $1; git branch --merged | egrep -v '\\*|develop|master' | xargs git branch -d; };f"
 
+[init]
+	defaultBranch = main
+
 [commit]
     template = ~/.config/git/commit
 

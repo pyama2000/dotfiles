@@ -47,7 +47,7 @@ zoxide init fish | source
 # direnv                     #
 ##############################
 set -x EDITOR nvim
-eval (direnv hook fish)
+direnv hook fish | source
 
 ##############################
 # Alias                      #

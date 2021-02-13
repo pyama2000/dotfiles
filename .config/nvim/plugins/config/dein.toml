@@ -1,3 +1,15 @@
+# syntax for Svelte
+[[plugins]]
+repo = "evanleck/vim-svelte"
+
+# syntax for Javascript
+[[plugins]]
+repo = "pangloss/vim-javascript"
+
+# syntax for TypeScript
+[[plugins]]
+repo = "HerringtonDarkholme/yats.vim"
+
 # syntax for TOML
 [[plugins]]
 repo = "cespare/vim-toml"

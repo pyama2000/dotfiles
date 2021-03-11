@@ -1,6 +1,6 @@
 [tasks.setup_tmux]
 category = "SETUP"
-dependencies = ["install_tmux", "tmux_plugin", "link_tmux"]
+dependencies = ["install_tmux","install_tpm", "tmux_plugin", "link_tmux"]
 
 [tasks.install_tmux.mac]
 category = "INSTALL"
@@ -19,6 +19,16 @@ script = [
 #!/usr/bin/env bash
 
 sudo apt install -y tmux
+'''
+]
+
+[tasks.install_tpm]
+category = "INSTALL"
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 '''
 ]
 

@@ -5,6 +5,7 @@
 	  editor = nvim
 	  quotepath = false
     pager = delta
+    excludesfile = ~/.config/git/.gitignore_global
 
 [alias]
     icommit = commit --allow-empty -m \":tada: Initial commit\"

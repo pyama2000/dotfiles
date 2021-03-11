@@ -10,7 +10,7 @@ if (has("termguicolors"))
 endif
 
 set background=dark
-colorscheme gruvbox
+colorscheme elly 
 
 if g:colors_name == 'ayu'
   let ayucolor='dark'
@@ -23,4 +23,8 @@ endif
 if g:colors_name == 'gruvbox'
   set t_Co=256
   let g:lightline = { 'colorscheme': 'gruvbox' }
+endif
+
+if g:colors_name == 'elly'
+  let g:lightline = { 'colorscheme': 'elly' }
 endif

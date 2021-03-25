@@ -21,7 +21,6 @@ set -x PIPENV_VENV_IN_PROJECT 1
 ##############################
 set -x GOPATH $HOME/go
 set -g fish_user_paths $GOPATH/bin $fish_user_paths
-set -x GOENV_DISABLE_GOPATH 1
 
 ##############################
 # Rust                       #

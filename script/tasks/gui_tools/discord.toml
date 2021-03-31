@@ -1,0 +1,8 @@
+[tasks.install_discord]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask discord
+'''
+]

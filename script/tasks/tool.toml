@@ -6,6 +6,7 @@ extend = [
   { path = "gui_tools/gitify.toml" },
   { path = "gui_tools/qblocker.toml" },
   { path = "gui_tools/rectangle.toml" },
+  { path = "gui_tools/zoom.toml" },
   { path = "tools/bat.toml" },
   { path = "tools/direnv.toml" },
   { path = "tools/exa.toml" },
@@ -35,6 +36,7 @@ dependencies = [
   "install_qblocker",
   "install_rectangle",
   "install_ripgrep",
+  "install_zoom",
   "install_zoxide",
 ]
 

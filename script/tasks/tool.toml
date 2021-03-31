@@ -3,6 +3,7 @@ extend = [
   { path = "tools/alfred.toml" },
   { path = "tools/bat.toml" },
   { path = "tools/direnv.toml" },
+  { path = "tools/clipy.toml" },
   { path = "tools/exa.toml" },
   { path = "tools/fd.toml" },
   { path = "tools/fzf.toml" },
@@ -17,6 +18,7 @@ extend = [
 dependencies = [
   "install_alfred",
   "install_bat",
+  "install_clipy",
   "install_direnv",
   "install_exa",
   "install_fd",

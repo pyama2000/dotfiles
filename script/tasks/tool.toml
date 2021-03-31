@@ -1,5 +1,6 @@
 extend = [
   { path = "asdf.toml" },
+  { path = "tools/alfred.toml" },
   { path = "tools/bat.toml" },
   { path = "tools/direnv.toml" },
   { path = "tools/exa.toml" },
@@ -14,6 +15,7 @@ extend = [
 
 [tasks.install_tools]
 dependencies = [
+  "install_alfred",
   "install_bat",
   "install_direnv",
   "install_exa",

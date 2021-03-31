@@ -1,0 +1,8 @@
+[tasks.install_qblocker]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask qblocker
+'''
+]

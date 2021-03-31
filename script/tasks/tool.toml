@@ -1,8 +1,9 @@
 extend = [
   { path = "asdf.toml" },
   { path = "gui_tools/alfred.toml" },
-  { path = "tools/bat.toml" },
   { path = "gui_tools/clipy.toml" },
+  { path = "gui_tools/gitify.toml" },
+  { path = "tools/bat.toml" },
   { path = "tools/direnv.toml" },
   { path = "tools/exa.toml" },
   { path = "tools/fd.toml" },
@@ -24,6 +25,7 @@ dependencies = [
   "install_fd",
   "install_fzf",
   "install_ghq",
+  "install_gitify",
   "install_git-delta",
   "install_jq",
   "install_ripgrep",

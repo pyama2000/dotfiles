@@ -8,6 +8,7 @@ jobs:
     - name: Run setup.sh
       run: ./script/install.sh
     - name: Check envs
+      if: always()
       run: cargo make --makefile script/task.toml check_envs -e GIT_NAME=$GIT_NAME -e GIT_EMAIL=$GIT_EMAIL -e PYTHON_VERSION=$PYTHON_VERSION -e GO_VERSION=$GO_VERSION -e NODE_VERSION=$NODE_VERSION
       env:
         GIT_NAME: pyama2000

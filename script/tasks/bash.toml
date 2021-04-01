@@ -1,5 +1,4 @@
 [tasks.link_bash]
-category = "LINK"
 script = [
 '''
 #!/usr/bin/env bash

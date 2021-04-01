@@ -1,0 +1,8 @@
+[tasks.install_alfred]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask alfred
+'''
+]

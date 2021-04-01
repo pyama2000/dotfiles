@@ -1,0 +1,8 @@
+[tasks.install_rectangle]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask rectangle
+'''
+]

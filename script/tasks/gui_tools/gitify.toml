@@ -1,0 +1,8 @@
+[tasks.install_gitify]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask gitify
+'''
+]

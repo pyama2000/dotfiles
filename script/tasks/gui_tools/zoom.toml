@@ -1,0 +1,8 @@
+[tasks.install_zoom]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask zoom
+'''
+]

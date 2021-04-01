@@ -1,9 +1,7 @@
 [tasks.setup_tmux]
-category = "SETUP"
 dependencies = ["install_tmux","install_tpm", "tmux_plugin", "link_tmux"]
 
 [tasks.install_tmux.mac]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -13,7 +11,6 @@ brew install tmux
 ]
 
 [tasks.install_tmux.linux]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -23,7 +20,6 @@ sudo apt install -y tmux
 ]
 
 [tasks.install_tpm]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -33,7 +29,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ]
 
 [tasks.tmux_plugin.mac]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -43,7 +38,6 @@ brew install reattach-to-user-namespace
 ]
 
 [tasks.link_tmux]
-category = "LINK"
 script = [
 '''
 #!/usr/bin/env bash

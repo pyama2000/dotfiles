@@ -1,5 +1,4 @@
 [tasks.install_go]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -18,7 +17,6 @@ echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
 dependencies = ["asdf_go_plugin"]
 
 [tasks.asdf_go_plugin]
-category = "ADD_ASDF_PLUGIN"
 script = [
 '''
 #!/usr/bin/env bash

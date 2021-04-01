@@ -1,8 +1,6 @@
 [tasks.setup_starship]
-category = "SETUP"
 dependencies = ["install_starship", "link_starship"]
 
-[tasks.install_starship.mac]
 script = [
 '''
 #!/usr/bin/env bash
@@ -22,7 +20,6 @@ curl -fsSL https://starship.rs/install.sh | bash
 ]
 
 [tasks.link_starship]
-category = "LINK"
 script = [
 '''
 #!/usr/bin/env bash

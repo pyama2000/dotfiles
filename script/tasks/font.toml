@@ -1,9 +1,7 @@
 [tasks.setup_font]
-category = "SETUP"
 dependencies = ["download_source-code-pro", "source-code-pro"]
 
 [tasks.download_source-code-pro]
-category = "DOWNLOAD"
 script = [
 '''
 #!/usr/bin/env bash
@@ -27,7 +25,6 @@ rm -rf adobefont
 ]
 
 [tasks.source-code-pro.mac]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -37,7 +34,6 @@ cp -a ~/.fonts/adobefont/source-code-pro/TTF/* ~/Library/Fonts
 ]
 
 [tasks.source-code-pro.linux]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash

@@ -2,13 +2,22 @@
 category = "SETUP"
 dependencies = ["install_starship", "link_starship"]
 
-[tasks.install_starship]
-category = "INSTALL"
+[tasks.install_starship.mac]
 script = [
 '''
 #!/usr/bin/env bash
 
-cargo install starship
+brew install starship
+'''
+]
+
+
+[tasks.install_starship.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl -fsSL https://starship.rs/install.sh | bash
 '''
 ]
 

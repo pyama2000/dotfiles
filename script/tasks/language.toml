@@ -6,7 +6,6 @@ extend = [
 ]
 
 [tasks.setup_languages]
-category = "SETUP"
 dependencies = [
   "install_go",
   "install_node",
@@ -15,5 +14,4 @@ dependencies = [
 ]
 
 [tasks.update_languages]
-category = "UPDATE"
 dependencies = ["update_rust"]

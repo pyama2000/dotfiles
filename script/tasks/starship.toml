@@ -1,9 +1,7 @@
 [tasks.setup_starship]
-category = "SETUP"
 dependencies = ["install_starship", "link_starship"]
 
 [tasks.install_starship]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -13,7 +11,6 @@ cargo install starship
 ]
 
 [tasks.link_starship]
-category = "LINK"
 script = [
 '''
 #!/usr/bin/env bash

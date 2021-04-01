@@ -1,9 +1,7 @@
 [tasks.setup_fish]
-category = "SETUP"
 dependencies = ["install_fish", "link_fish"]
 
 [tasks.install_fish.mac]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -13,7 +11,6 @@ brew install fish
 ]
 
 [tasks.install_fish.linux]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -25,7 +22,6 @@ sudo apt install -y fish
 ]
 
 [tasks.link_fish]
-category = "LINK"
 script = [
 '''
 #!/usr/bin/env bash

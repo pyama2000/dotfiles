@@ -1,5 +1,4 @@
 [tasks.install_asdf]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -14,7 +13,6 @@ echo '. $HOME/.asdf/asdf.sh' >> ~/.profile
 dependencies = ["dependencies_asdf"]
 
 [tasks.dependencies_asdf.mac]
-category = "DEPENDENCIES"
 script = [
 '''
 #!/usr/bin/env bash
@@ -24,7 +22,6 @@ brew install coreutils curl git
 ]
 
 [tasks.dependencies_asdf.linux]
-category = "DEPENDENCIES"
 script = [
 '''
 #!/usr/bin/env bash
@@ -34,7 +31,6 @@ sudo apt install -y curl git
 ]
 
 [tasks.update_asdf]
-category = "UPDATE"
 script = [
 '''
 #!/usr/bin/env bash
@@ -44,7 +40,6 @@ asdf update
 ]
 
 [tasks.uninstall_asdf]
-category = "UNINSTALL"
 script = [
 '''
 #!/usr/bin/env bash

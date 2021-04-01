@@ -1,5 +1,4 @@
 [tasks.setup_alacritty]
-category = "SETUP"
 dependencies = [
   "clone_alacritty",
   "install_alacritty",
@@ -7,7 +6,6 @@ dependencies = [
 ]
 
 [tasks.clone_alacritty]
-category = "CLONE"
 script = [
 '''
 #!/usr/bin/env bash
@@ -20,7 +18,6 @@ rustup update stable
 ]
 
 [tasks.pull_alacritty]
-category = "PULL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -33,7 +30,6 @@ rustup update stable
 ]
 
 [tasks.install_alacritty.mac]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -45,7 +41,6 @@ cp -rf target/release/osx/Alacritty.app /Applications/
 ]
 
 [tasks.install_alacritty.linux]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -65,7 +60,6 @@ gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz 
 dependencies = ["dependencies_alacritty"]
 
 [tasks.dependencies_alacritty.linux]
-category = "DEPENDENCIES"
 script = [
 '''
 #!/usr/bin/env bash
@@ -75,7 +69,6 @@ sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-
 ]
 
 [tasks.link_alacritty]
-category = "LINK"
 script = [
 '''
 #!/usr/bin/env bash
@@ -85,5 +78,4 @@ ln -snfv ~/dotfiles/.config/alacritty ~/.config
 ]
 
 [tasks.update_alacritty]
-category = "UPDATE"
 dependencies = ["pull_alacritty", "install_alacritty"]

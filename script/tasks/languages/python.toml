@@ -1,12 +1,10 @@
 [tasks.setup_python]
-category = "SETUP"
 dependencies = [
   "install_python",
   "pyflow"
 ]
 
 [tasks.install_python]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -23,7 +21,6 @@ asdf global python "$PYTHON_VERSION" 2.7.18
 dependencies = ["dependencies_python", "asdf_python_plugin"]
 
 [tasks.dependencies_python.mac]
-category = "DEPENDENCIES"
 script = [
 '''
 #!/usr/bin/env bash
@@ -33,7 +30,6 @@ brew install readline xz
 ]
 
 [tasks.dependencies_python.linux]
-category = "DEPENDENCIES"
 script = [
 '''
 #!/usr/bin/env bash
@@ -45,7 +41,6 @@ xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
 ]
 
 [tasks.asdf_python_plugin]
-category = "ADD_ASDF_PLUGIN"
 script = [
 '''
 #!/usr/bin/env bash
@@ -59,7 +54,6 @@ asdf plugin-add python
 ]
 
 [tasks.pyflow]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash

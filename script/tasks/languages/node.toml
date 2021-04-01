@@ -1,5 +1,4 @@
 [tasks.install_node]
-category = "INSTALL"
 script = [
 '''
 #!/usr/bin/env bash
@@ -15,7 +14,6 @@ asdf global nodejs "$NODE_VERSION"
 dependencies = ["asdf_node_plugin"]
 
 [tasks.asdf_node_plugin]
-category = "ADD_ASDF_PLUGIN"
 script = [
 '''
 #!/usr/bin/env bash
@@ -31,7 +29,6 @@ bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-ke
 dependencies = ["dependencies_asdf_node"]
 
 [tasks.dependencies_asdf_node.mac]
-category = "DEPENDENCIES"
 script = [
 '''
 #!/usr/bin/env bash
@@ -41,7 +38,6 @@ brew install coreutils gpg
 ]
 
 [tasks.dependencies_asdf_node.linux]
-category = "DEPENDENCIES"
 script = [
 '''
 #!/usr/bin/env bash

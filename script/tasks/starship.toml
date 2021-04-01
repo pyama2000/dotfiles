@@ -1,6 +1,7 @@
 [tasks.setup_starship]
 dependencies = ["install_starship", "link_starship"]
 
+[tasks.install_starship.mac]
 script = [
 '''
 #!/usr/bin/env bash

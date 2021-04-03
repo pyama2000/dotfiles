@@ -59,7 +59,7 @@ script = [
 #!/usr/bin/env bash
 
 echo '[user]' >> ~/.config/git/config.local
-echo '  name = "$(GIT_NAME)"' >> ~/.config/git/config.local
-echo '  email = "$(GIT_EMAIL)"' >> ~/.config/git/config.local
+echo "  name = \"$GIT_NAME\"" >> ~/.config/git/config.local
+echo "  email = \"$GIT_EMAIL\"" >> ~/.config/git/config.local
 '''
 ]

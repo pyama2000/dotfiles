@@ -58,12 +58,17 @@ script = [
 '''
 #!/usr/bin/env bash
 
-ls -la ~
-ls -la ~/.config
-ls -la ~/.config/git
+ls -la ~/
+ls -la ~/.config/
+ls -la ~/.config/git/
 
 if [ ! -f ~/.config/git/config.local ]; then
+  touch ~/.test
+  ls -la ~/
+  touch ~/.config/.test
+  ls -la ~/.config/
   touch ~/.config/git/config.local
+  ls -la ~/.config/git/
 fi
 
 echo '[user]' >> ~/.config/git/config.local

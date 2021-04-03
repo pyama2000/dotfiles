@@ -1,4 +1,4 @@
-[tasks.install_qblocker]
+[tasks.install_qblocker.mac]
 script = [
 '''
 #!/usr/bin/env bash

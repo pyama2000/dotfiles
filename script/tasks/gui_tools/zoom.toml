@@ -1,4 +1,4 @@
-[tasks.install_zoom]
+[tasks.install_zoom.mac]
 script = [
 '''
 #!/usr/bin/env bash

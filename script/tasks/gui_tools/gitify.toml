@@ -1,4 +1,4 @@
-[tasks.install_gitify]
+[tasks.install_gitify.mac]
 script = [
 '''
 #!/usr/bin/env bash

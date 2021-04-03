@@ -62,7 +62,7 @@ if [ ! -f ~/.config/git/config.local ]; then
   touch ~/.config/git/config.local
 fi
 
-echo '[user]' > ~/.config/git/config.local
+echo '[user]' >> ~/.config/git/config.local
 echo "  name = \"$GIT_NAME\"" >> ~/.config/git/config.local
 echo "  email = \"$GIT_EMAIL\"" >> ~/.config/git/config.local
 '''

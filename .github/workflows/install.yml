@@ -56,6 +56,9 @@ jobs:
     - name: Setup neovim
       if: always()
       run: cargo make --makefile script/task.toml setup_neovim
+    - name: Update Neovim provider
+      if: always()
+      run: cargo make --makefile script/task.toml update_neovim_provider
     - name: Setup vim 
       if: always()
       run: cargo make --makefile script/task.toml setup_vim
@@ -118,6 +121,9 @@ jobs:
     - name: Setup neovim
       if: always()
       run: cargo make --makefile script/task.toml setup_neovim
+    - name: Update Neovim provider
+      if: always()
+      run: cargo make --makefile script/task.toml update_neovim_provider
     - name: Setup vim 
       if: always()
       run: cargo make --makefile script/task.toml setup_vim

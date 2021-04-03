@@ -20,6 +20,7 @@ dependencies = [
   "check_envs",
   "install_git",
   "link_git",
+  "gen_git_local",
   "setup_dotfiles",
   "setup_alacritty",
   "setup_tmux",

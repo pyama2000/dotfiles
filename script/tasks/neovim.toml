@@ -3,7 +3,7 @@ dependencies = [
   "install_neovim",
   "install_dein",
   "link_neovim",
-  "install_provider"
+  "install_neovim_provider",
 ]
 
 [tasks.install_neovim.mac]

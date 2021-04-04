@@ -28,9 +28,15 @@ jobs:
     - name: Setup dotfiles
       if: always()
       run: cargo make --makefile script/task.toml setup_dotfiles
+    - name: Update dotfiles
+      if: always()
+      run: cargo make --makefile script/task.toml update_dotfiles
     - name: Setup alacritty 
       if: always()
       run: cargo make --makefile script/task.toml setup_alacritty
+    - name: Update alacritty 
+      if: always()
+      run: cargo make --makefile script/task.toml update_alacritty
     - name: Setup tmux
       if: always()
       run: cargo make --makefile script/task.toml setup_tmux
@@ -50,9 +56,15 @@ jobs:
         PYTHON_VERSION: 3.9.0
         GO_VERSION: 1.14.2
         NODE_VERSION: 12.16.3
+    - name: Update languages
+      if: always()
+      run: cargo make --makefile script/task.toml update_languages
     - name: Install tools
       if: always()
       run: cargo make --makefile script/task.toml install_tools
+    - name: Update tools
+      if: always()
+      run: cargo make --makefile script/task.toml update_tools
     - name: Setup neovim
       if: always()
       run: cargo make --makefile script/task.toml setup_neovim
@@ -93,9 +105,15 @@ jobs:
     - name: Setup dotfiles
       if: always()
       run: cargo make --makefile script/task.toml setup_dotfiles
+    - name: Update dotfiles
+      if: always()
+      run: cargo make --makefile script/task.toml update_dotfiles
     - name: Setup alacritty 
       if: always()
       run: cargo make --makefile script/task.toml setup_alacritty
+    - name: Update alacritty 
+      if: always()
+      run: cargo make --makefile script/task.toml update_alacritty
     - name: Setup tmux
       if: always()
       run: cargo make --makefile script/task.toml setup_tmux
@@ -115,9 +133,15 @@ jobs:
         PYTHON_VERSION: 3.9.0
         GO_VERSION: 1.14.2
         NODE_VERSION: 12.16.3
+    - name: Update languages
+      if: always()
+      run: cargo make --makefile script/task.toml update_languages
     - name: Install tools
       if: always()
       run: cargo make --makefile script/task.toml install_tools
+    - name: Update tools
+      if: always()
+      run: cargo make --makefile script/task.toml update_tools
     - name: Setup neovim
       if: always()
       run: cargo make --makefile script/task.toml setup_neovim

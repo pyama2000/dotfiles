@@ -1,4 +1,4 @@
-[tasks.install_clipy]
+[tasks.install_clipy.mac]
 script = [
 '''
 #!/usr/bin/env bash

@@ -1,4 +1,4 @@
-[tasks.install_rectangle]
+[tasks.install_rectangle.mac]
 script = [
 '''
 #!/usr/bin/env bash

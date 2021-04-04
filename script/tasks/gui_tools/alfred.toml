@@ -1,4 +1,4 @@
-[tasks.install_alfred]
+[tasks.install_alfred.mac]
 script = [
 '''
 #!/usr/bin/env bash

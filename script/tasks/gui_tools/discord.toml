@@ -1,4 +1,4 @@
-[tasks.install_discord]
+[tasks.install_discord.mac]
 script = [
 '''
 #!/usr/bin/env bash

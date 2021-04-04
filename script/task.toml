@@ -14,25 +14,6 @@ extend = [
   { path = "tasks/vim.toml" },
 ]
 
-# CI
-[tasks.github-actions]
-dependencies = [
-  "check_envs",
-  "install_git",
-  "link_git",
-  "setup_dotfiles",
-  "setup_alacritty",
-  "setup_tmux",
-  "setup_fish",
-  "setup_starship",
-  "install_asdf",
-  "setup_languages",
-  "install_tools",
-  "setup_neovim",
-  "setup_vim",
-  "link_bash",
-]
-
 # Setup
 [tasks.setup]
 dependencies = [

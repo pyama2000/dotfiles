@@ -25,6 +25,9 @@ jobs:
     - name: Create git config link
       if: always()
       run: cargo make --makefile script/task.toml link_git
+    - name: Create local git config file
+      if: always()
+      run: cargo make --makefile script/task.toml gen_git_local -e GIT_NAME=$GIT_NAME -e GIT_EMAIL=$GIT_EMAIL
     - name: Setup dotfiles
       if: always()
       run: cargo make --makefile script/task.toml setup_dotfiles
@@ -102,6 +105,9 @@ jobs:
     - name: Create git config link
       if: always()
       run: cargo make --makefile script/task.toml link_git
+    - name: Create local git config file
+      if: always()
+      run: cargo make --makefile script/task.toml gen_git_local -e GIT_NAME=$GIT_NAME -e GIT_EMAIL=$GIT_EMAIL
     - name: Setup dotfiles
       if: always()
       run: cargo make --makefile script/task.toml setup_dotfiles

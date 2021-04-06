@@ -71,9 +71,9 @@ fi
 # Update
 [tasks.update]
 dependencies = [
+  "update_languages",
   "update_alacritty",
   "update_dotfiles",
-  "update_languages",
   "update_tools",
   "update_neovim_provider",
 ]

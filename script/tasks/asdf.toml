@@ -35,6 +35,10 @@ script = [
 '''
 #!/usr/bin/env bash
 
+if !(type asdf > /dev/null 2>&1); then
+    source ~/.profile
+fi
+
 asdf update
 '''
 ]

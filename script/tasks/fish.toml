@@ -26,8 +26,8 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if [ ! -d "~/.config/fish/functinos" ] ; then
-  mkdir -p ~/.config/fish/functinos
+if [ ! -d "~/.config/fish/functions" ] ; then
+  mkdir -p ~/.config/fish/functions
 fi
 
 if [ ! -d "~/.config/fish/completions" ] ; then

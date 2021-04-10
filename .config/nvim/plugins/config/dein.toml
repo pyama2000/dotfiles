@@ -1,3 +1,6 @@
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
 # syntax for Svelte
 [[plugins]]
 repo = "evanleck/vim-svelte"
@@ -27,7 +30,11 @@ repo = "wavded/vim-stylus"
 repo = "vim-airline/vim-airline"
 hook_add = """
 let g:airline_theme='elly'
+
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
 let g:airline_powerline_fonts = 1
 """
 

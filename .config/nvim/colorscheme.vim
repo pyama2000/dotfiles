@@ -10,7 +10,7 @@ if (has("termguicolors"))
 endif
 
 set background=dark
-colorscheme elly 
+colorscheme tokyonight 
 
 if g:colors_name == 'ayu'
   let ayucolor='dark'
@@ -27,4 +27,10 @@ endif
 
 if g:colors_name == 'elly'
   let g:lightline = { 'colorscheme': 'elly' }
+endif
+
+if g:colors_name == 'tokyonight'
+  let g:tokyonight_style = 'night' " available: night / storm
+  let g:tokyonight_enable_italic = 1
+  let g:airline= { 'colorscheme': 'tokyonight' }
 endif

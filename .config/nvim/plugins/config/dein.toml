@@ -29,8 +29,6 @@ repo = "wavded/vim-stylus"
 [[plugins]]
 repo = "vim-airline/vim-airline"
 hook_add = """
-let g:airline_theme='elly'
-
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -96,3 +94,6 @@ repo = "morhetz/gruvbox"
 
 [[plugins]]
 repo = "ulwlu/elly.vim"
+
+[[plugins]]
+repo = "ghifarit53/tokyonight-vim"

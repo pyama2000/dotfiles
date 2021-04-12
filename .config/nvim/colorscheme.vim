@@ -10,27 +10,28 @@ if (has("termguicolors"))
 endif
 
 set background=dark
-colorscheme tokyonight 
+colorscheme ayu
 
 if g:colors_name == 'ayu'
-  let ayucolor='dark'
+  let ayucolor='dark' " available: light / dark / mirage
+  let g:airline_theme = 'ayu_dark' " available: ayu_light / ayu_dark / ayu_mirage
 endif
 
 if g:colors_name == 'onedark'
-  let g:lightline = { 'colorscheme': 'onedark' }
+  let g:airline_theme = 'onedark'
 endif
 
 if g:colors_name == 'gruvbox'
   set t_Co=256
-  let g:lightline = { 'colorscheme': 'gruvbox' }
+  let g:airline_theme = 'gruvbox'
 endif
 
 if g:colors_name == 'elly'
-  let g:lightline = { 'colorscheme': 'elly' }
+  let g:airline_theme = 'elly'
 endif
 
 if g:colors_name == 'tokyonight'
   let g:tokyonight_style = 'night' " available: night / storm
   let g:tokyonight_enable_italic = 1
-  let g:airline= { 'colorscheme': 'tokyonight' }
+  let g:airline_theme= 'tokyonight'
 endif

@@ -8,26 +8,26 @@ shell:
     - "tmux attach || tmux"
 colors:
   primary:
-    background: '#111a1f'
-    foreground: '#acb3b5'
+    foreground: "#b3b1ad"
+    background: "#0a0e14"
   normal:
-    black:   '#111a1f'
-    red:     '#8d7856'
-    green:   '#798362'
-    yellow:  '#9b9257'
-    blue:    '#63768a'
-    magenta: '#738c9c'
-    cyan:    '#6998b3'
-    white:   '#acb3b5'
+    black: "#0a0e14"
+    red: "#f07178"
+    green: "#c2d94c"
+    yellow: "#e6b450"
+    blue: "#39bae6"
+    magenta: "#ffb454"
+    cyan: "#36a3d9"
+    white: "#b3b1ad"
   bright:
-    black:   '#868b8d'
-    red:     '#8d7856'
-    green:   '#798362'
-    yellow:  '#9b9257'
-    blue:    '#63768a'
-    magenta: '#738c9c'
-    cyan:    '#6998b3'
-    white:   '#acb3b5'
+    black: "#0a0e14"
+    red: "#ff3333"
+    green: "#c2d94c"
+    yellow: "#e6b450"
+    blue: "#39bae6"
+    magenta: "#f07178"
+    cyan: "#59c2ff"
+    white: "#b3b1ad"
 font:
   size: 12
   normal:

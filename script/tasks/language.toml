@@ -14,4 +14,8 @@ dependencies = [
 ]
 
 [tasks.update_languages]
-dependencies = ["update_rust"]
+dependencies = [
+  "update_rust",
+  "update_pip_version",
+  "update_npm_version",
+]

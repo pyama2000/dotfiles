@@ -76,4 +76,5 @@ dependencies = [
   "update_dotfiles",
   "update_tools",
   "update_neovim_provider",
+  "update_neovim_plugins",
 ]

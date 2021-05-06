@@ -77,3 +77,12 @@ if type node >/dev/null 2>&1; then
 fi
 '''
 ]
+
+[tasks.update_neovim_plugins]
+script = [
+'''
+#!/usr/bin/env bash
+
+nvim +"call dein#update()" +qall
+'''
+]

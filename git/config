@@ -23,6 +23,7 @@
     com = commit -m
     sw = switch
     swc = switch -c
+    swr = !"git fetch origin $1 && git switch"
     rs = restore
     rss = restore --staged
     mg = merge --no-ff --no-edit

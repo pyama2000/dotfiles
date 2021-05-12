@@ -6,7 +6,7 @@ nnoremap <silent><C-d>b :<C-u>Denite buffer -split=floating file:new<CR>
 nnoremap <silent><C-d>f :<C-u>Denite file -split=floating file:new<CR>
 " To browse recursive list of all the files under the current working
 " directory
-nnoremap <silent><C-d>r :<C-u>Denite file/rec -split=floating file:new<CR>
+nnoremap <silent><C-d>r :<C-u>Denite file/rec file:new<CR>
 " Normal grep
 nnoremap <silent><C-d>gr :<C-u>Denite grep -buffer-name=search<CR>
 " Grep under the cursor word
@@ -14,7 +14,7 @@ nnoremap <silent><C-d>, :<C-u>DeniteCursorWord grep -buffer-name=search line<CR>
 " Resume the grep search buffer
 nnoremap <silent><C-d>gs :<C-u>Denite -resume -buffer-name=search<CR>
 " Gather command histories and run it
-nnoremap <silent><C-d>c :<C-u>Denite command_history -split=floating<CR>
+nnoremap <silent><C-d>c :<C-u>Denite command_history<CR>
 
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
@@ -45,16 +45,28 @@ function! s:denite_filter_my_settings() abort
   imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
 endfunction
 
-" Change file/rec command for `ripgrep`
+" Change file/rec command 
 call denite#custom#var('file/rec', 'command',
-    \ ['rg', '--files', '--hidden', '--glob', '!.git'])
+    \ ['rg', '--files', '--hidden', '--glob', '!.git', '--color', 'never'])
+" Ripgrep command on grep source
+call denite#custom#var('grep', {
+    \ 'command': ['rg'],
+    \ 'default_opts': ['-i', '--vimgrep', '--no-heading'],
+    \ 'recursive_opts': [],
+    \ 'pattern_opt': ['--regexp'],
+    \ 'separator': ['--'],
+    \ 'final_opts': [],
+    \ })
 
-" Change grep source command for `ripgrep`
-call denite#custom#var('grep', 'command',
-    \ ['rg', '--hidden', '--glob', '!.git'])
-call denite#custom#var('grep', 'default_opts',
-		\ ['-i', '--vimgrep', '--no-heading'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
+let s:denite_win_width_ratio = 0.85
+let s:denite_win_height_ratio = 0.7
+let s:denite_default_options = {
+    \ 'split': 'floating',
+    \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_ratio)) / 2),
+    \ 'winheight': float2nr(&lines * s:denite_win_height_ratio),
+    \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_ratio)) / 2),
+    \ 'winwidth': float2nr(&columns * s:denite_win_width_ratio),
+    \ 'highlight_filter_background': 'DeniteFilter',
+    \ 'prompt': '% ',
+    \ }
+call denite#custom#option('default', s:denite_default_options)

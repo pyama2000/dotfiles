@@ -7,5 +7,7 @@
 " 
 " " nnoremap <silent><C-o> :<C-u>Deol fish -split=floating -winwidth=deol_win_width -winheight=deol_win_height<CR>
 " nnoremap <silent><C-o> :<C-u>Deol fish -split=floating -winwidth=200 -winheight=50<CR>
-nnoremap <silent><C-o> :<C-u>Deol fish -split=floating<CR>
+nnoremap <silent><C-o>f :<C-u>Deol fish -split=floating<CR>
+nnoremap <silent><C-o>h :<C-u>Deol fish -split=farleft<CR>
+nnoremap <silent><C-o>l :<C-u>Deol fish -split=farright<CR>
 tnoremap <ESC>   <C-\><C-n>

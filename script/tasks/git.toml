@@ -59,9 +59,12 @@ script = [
 #!/usr/bin/env bash
 
 if [ ! -f ~/.config/git/config.local ]; then
+  echo "CREATE GIT LOCAL FILE"
   touch ~/.config/git/config.local
 fi
 
+ls ~/.config
+ls ~/.config/git
 echo '[user]' >> ~/.config/git/config.local
 echo "  name = \"$GIT_NAME\"" >> ~/.config/git/config.local
 echo "  email = \"$GIT_EMAIL\"" >> ~/.config/git/config.local

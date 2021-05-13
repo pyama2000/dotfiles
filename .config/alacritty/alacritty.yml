@@ -31,16 +31,16 @@ colors:
 font:
   size: 12
   normal:
-    family: 'Source Code Pro'
+    family: 'HackGen35Nerd'
     style:  Regular
   bold:
-    family: 'Source Code Pro'
+    family: 'HackGen35Nerd'
     style:  Bold
   italic:
-    family: 'Source Code Pro'
+    family: 'HackGen35Nerd'
     style:  Italic
   bold_italic:
-    family: 'Source Code Pro'
+    family: 'HackGen35Nerd'
     style:  Bold Italic
 window:
   decorations:  full

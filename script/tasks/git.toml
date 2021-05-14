@@ -59,18 +59,7 @@ script = [
 #!/usr/bin/env bash
 
 if [ ! -f ~/.config/git/config.local ]; then
-  echo "[START] PRINT ~/.config"
-  ls -la ~/.config
-  echo "[END] PRINT ~/.config"
-  echo "[START] PRINT ~/.config/git"
-  ls -la ~/.config/git
-  echo "[END] PRINT ~/.config/git"
-  echo "[START] CREATE GIT LOCAL FILE at ~/.config"
-  touch ~/.config/config.local
-  echo "[END] CREATE GIT LOCAL FILE at ~/.config"
-  echo "[START] CREATE GIT LOCAL FILE at ~/.config/git"
   touch ~/.config/git/config.local
-  echo "[END] CREATE GIT LOCAL FILE at ~/.config/git"
 fi
 
 echo '[user]' >> ~/.config/git/config.local

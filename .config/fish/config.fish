@@ -56,7 +56,7 @@ alias ghg 'ghq get'
 alias ghl 'ghq list'
 ## exa (Replacement for `ls` command)
 alias exaf 'exa --long --all --group-directories-first --bytes --header --group --git'
-alias exat 'exa --long --all --group-directories-first --bytes --header --group --git --tree --ignore-glob .git'
+alias exat 'exa --all --group-directories-first --group --git --tree --ignore-glob .git'
 ## cargo
 alias rfmt 'cargo fmt'
 alias cch 'cargo check --color=always'

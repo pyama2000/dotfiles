@@ -1,9 +1,9 @@
 " To browse a list of current directory and buffers
-nnoremap <silent><C-d>a :<C-u>Denite file buffer -split=floating file:new<CR>
+nnoremap <silent><C-d>a :<C-u>Denite file buffer file:new<CR>
 " To browse a list of currently open buffers
-nnoremap <silent><C-d>b :<C-u>Denite buffer -split=floating file:new<CR>
+nnoremap <silent><C-d>b :<C-u>Denite buffer file:new<CR>
 " To browse a list of current directory
-nnoremap <silent><C-d>f :<C-u>Denite file -split=floating file:new<CR>
+nnoremap <silent><C-d>f :<C-u>Denite file file:new<CR>
 " To browse recursive list of all the files under the current working
 " directory
 nnoremap <silent><C-d>r :<C-u>Denite file/rec file:new<CR>

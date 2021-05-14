@@ -1,43 +1,52 @@
 [tasks.setup_font]
-dependencies = ["download_source-code-pro", "source-code-pro"]
+dependencies = ["download_HackGenNerd", "apply_font"]
 
-[tasks.download_source-code-pro]
+[tasks.download_HackGenNerd]
 script = [
 '''
 #!/usr/bin/env bash
 
-if [ ! -d "~/.fonts" ] ; then
-    mkdir ~/.fonts
-fi
+FONT_PATH='HackGenNerd'
 
-mkdir -p ~/.fonts/adobefont/source-code-pro
+mkdir -p ~/.fonts/$FONT_PATH
 
-mkdir -p /tmp/adobefont
-cd /tmp/adobefont
+mkdir -p /tmp/$FONT_PATH
+cd /tmp/$FONT_PATH
 
-curl -LO https://github.com/adobe-fonts/source-code-pro/archive/release.zip
-unzip release.zip
-mv source-code-pro-release/* ~/.fonts/adobefont/source-code-pro
+FILE_NAME=$(https://api.github.com/repos/yuru7/HackGen/releases/latest |
+    jq -r '.assets[].name' |
+    grep HackGenNerd)
+
+curl -sL https://api.github.com/repos/yuru7/HackGen/releases/latest |
+    jq -r '.assets[].browser_download_url' |
+    grep "$FILE_NAME" |
+    xargs curl -fsLJO
+
+unzip "$FILE_NAME"
+
+mv $FILE_NAME/* ~/.fonts/$FONT_PATH
 
 cd ../
-rm -rf adobefont
+rm -rf $FONT_PATH
 '''
 ]
 
-[tasks.source-code-pro.mac]
+[tasks.apply_font.mac]
 script = [
 '''
 #!/usr/bin/env bash
 
-cp -a ~/.fonts/adobefont/source-code-pro/TTF/* ~/Library/Fonts
+FONT_PATH='HackGenNerd'
+cp -a ~/.fonts/$FONT_PATH/* ~/Library/Fonts
 '''
 ]
 
-[tasks.source-code-pro.linux]
+[tasks.apply_font.linux]
 script = [
 '''
 #!/usr/bin/env bash
 
-fc-cache -f -v ~/.fonts/adobefont/source-code-pro
+FONT_PATH='HackGenNerd'
+fc-cache -f -v ~/.fonts/$FONT_PATH
 '''
 ]

@@ -46,6 +46,7 @@ dependencies = [
   "update_rust_tools",
   "update_asdf",
   "update_ghq",
+  "update_starship",
 ]
 
 [tasks.update_package_tools.mac]

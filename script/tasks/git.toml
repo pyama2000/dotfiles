@@ -60,10 +60,10 @@ script = [
 
 if [ ! -f ~/.config/git/config.local ]; then
   echo "[START] PRINT ~/.config"
-  ls ~/.config
+  ls -la ~/.config
   echo "[END] PRINT ~/.config"
   echo "[START] PRINT ~/.config/git"
-  ls ~/.config/git
+  ls -la ~/.config/git
   echo "[END] PRINT ~/.config/git"
   echo "[START] CREATE GIT LOCAL FILE at ~/.config"
   touch ~/.config/config.local

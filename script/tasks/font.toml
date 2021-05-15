@@ -13,6 +13,11 @@ mkdir -p ~/.fonts/$FONT_PATH
 mkdir -p /tmp/$FONT_PATH
 cd /tmp/$FONT_PATH
 
+echo "FILE_NAME"
+https://api.github.com/repos/yuru7/HackGen/releases/latest |
+    jq -r '.assets[].name' |
+    grep HackGenNerd
+
 FILE_NAME=$(https://api.github.com/repos/yuru7/HackGen/releases/latest |
     jq -r '.assets[].name' |
     grep HackGenNerd)

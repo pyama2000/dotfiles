@@ -1,22 +1,12 @@
 [tasks.setup_starship]
 dependencies = ["install_starship", "link_starship"]
 
-[tasks.install_starship.mac]
+[tasks.install_starship]
 script = [
 '''
 #!/usr/bin/env bash
 
-brew install starship
-'''
-]
-
-
-[tasks.install_starship.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-curl -fsSL https://starship.rs/install.sh | bash -s -- -y
+sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
 '''
 ]
 
@@ -26,5 +16,14 @@ script = [
 #!/usr/bin/env bash
 
 ln -snfv ~/dotfiles/.config/starship.toml ~/.config/
+'''
+]
+
+[tasks.update_starship]
+script = [
+'''
+#!/usr/bin/env bash
+
+sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 '''
 ]

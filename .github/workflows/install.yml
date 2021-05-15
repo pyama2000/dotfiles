@@ -56,6 +56,9 @@ jobs:
     - name: Install tools
       if: always()
       run: cargo make --makefile script/task.toml install_tools
+    - name: Install font
+      if: always()
+      run: cargo make --makefile script/task.toml setup_font
     - name: Setup neovim
       if: always()
       run: cargo make --makefile script/task.toml setup_neovim
@@ -124,6 +127,9 @@ jobs:
     - name: Install tools
       if: always()
       run: cargo make --makefile script/task.toml install_tools
+    - name: Install font
+      if: always()
+      run: cargo make --makefile script/task.toml setup_font
     - name: Setup neovim
       if: always()
       run: cargo make --makefile script/task.toml setup_neovim

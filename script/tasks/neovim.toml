@@ -79,36 +79,10 @@ fi
 ]
 
 [tasks.update_neovim_provider.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-if type python >/dev/null 2>&1; then
-  python2 -m pip install --user --upgrade pynvim
-  python3 -m pip install --user --upgrade pynvim
-fi
-
-if type node >/dev/null 2>&1; then
-  npm install -g neovim
-fi
-'''
-]
+dependencies = ['install_neovim_provider']
 
 [tasks.update_neovim_provider.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-if type python >/dev/null 2>&1; then
-  python2 -m pip install --user --upgrade pynvim
-  python3 -m pip install --user --upgrade pynvim
-fi
-
-if type node >/dev/null 2>&1; then
-  sudo npm install -g neovim
-fi
-'''
-]
+dependencies = ['install_neovim_provider']
 
 [tasks.update_neovim_plugins]
 script = [

@@ -2,4 +2,4 @@
 .config/nvim/.netrwhist
 node_modules/
 rust-analyzer
-git/config.local
+git/local/

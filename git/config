@@ -2,8 +2,8 @@
     path = ~/.config/git/config.local
 
 [core]
-	  editor = nvim
-	  quotepath = false
+    editor = nvim
+    quotepath = false
     pager = delta
     excludesfile = ~/.config/git/.gitignore_global
 
@@ -32,7 +32,7 @@
     rmerged = "!f () { git switch $1; git branch --merged | egrep -v '\\*|develop|master' | xargs git branch -d; };f"
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [commit]
     template = ~/.config/git/commit
@@ -50,4 +50,4 @@
 [interactive]
     diffFilter = delta --color-only
 [pull]
-	rebase = true
+    rebase = true

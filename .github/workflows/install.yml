@@ -2,7 +2,7 @@ name: CI
 on: [push]
 jobs:
   macos:
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
     - name: Run setup.sh

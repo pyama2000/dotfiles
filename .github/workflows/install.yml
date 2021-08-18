@@ -2,7 +2,7 @@ name: CI
 on: [push]
 jobs:
   macos:
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v1
     - name: Run setup.sh
@@ -68,6 +68,18 @@ jobs:
     - name: Create bash config link
       if: always()
       run: cargo make --makefile script/task.toml link_bash
+    - name: Update language
+      if: always()
+      run: cargo make --makefile script/task.toml update_languages 
+    - name: Update Alacritty 
+      if: always()
+      run: cargo make --makefile script/task.toml update_alacritty
+    - name: Update tools
+      if: always()
+      run: cargo make --makefile script/task.toml update_tools
+    - name: Update tools
+      if: always()
+      run: cargo make --makefile script/task.toml update_tools
 
   ubuntu:
     runs-on: ubuntu-latest
@@ -136,3 +148,15 @@ jobs:
     - name: Create bash config link
       if: always()
       run: cargo make --makefile script/task.toml link_bash
+    - name: Update language
+      if: always()
+      run: cargo make --makefile script/task.toml update_languages 
+    - name: Update Alacritty 
+      if: always()
+      run: cargo make --makefile script/task.toml update_alacritty
+    - name: Update tools
+      if: always()
+      run: cargo make --makefile script/task.toml update_tools
+    - name: Update tools
+      if: always()
+      run: cargo make --makefile script/task.toml update_tools

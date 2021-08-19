@@ -7,6 +7,10 @@ source ~/.config/nvim/plugins/vim-floaterm.rc.vim
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
+# syntax for Kotlin
+[[plugins]]
+repo = "udalov/kotlin-vim"
+
 # syntax for Svelte
 [[plugins]]
 repo = "evanleck/vim-svelte"

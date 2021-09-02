@@ -17,9 +17,15 @@ extend = [
 [tasks.setup]
 describe = "Run setup task"
 category = "setup"
+condition = { env_set = [
+  "PYTHON_VERSION",
+  "GO_VERSION",
+  "NODE_VERSION",
+  "GIT_NAME",
+  "GIT_EMAIL",
+] }
 run_task = [
   { name = [
-    "check_envs",
     "setup_git",
     "setup_dotfiles",
     "setup_font",
@@ -36,39 +42,6 @@ run_task = [
     "link_bash",
     "cleanup",
   ] },
-]
-
-# Check envs
-[tasks.check_envs]
-script = [
-'''
-#!/usr/bin/env bash
-
-if test -z "$PYTHON_VERSION"; then
-  echo "Set PYTHON_VERSION"
-  exit 1
-fi
-
-if test -z "$GO_VERSION"; then
-  echo "Set GO_VERSION"
-  exit 1
-fi
-
-if test -z "$NODE_VERSION"; then
-  echo "Set NODE_VERSION"
-  exit 1
-fi
-
-if test -z "$GIT_NAME"; then
-  echo "Set GIT_NAME"
-  exit 1
-fi
-
-if test -z "$GIT_EMAIL"; then
-  echo "Set GIT_EMAIL"
-  exit 1
-fi
-'''
 ]
 
 [tasks.update]

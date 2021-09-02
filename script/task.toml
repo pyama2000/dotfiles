@@ -14,25 +14,28 @@ extend = [
   { path = "tasks/vim.toml" },
 ]
 
-# Setup
 [tasks.setup]
-dependencies = [
-  "check_envs",
-  "setup_git",
-  "setup_dotfiles",
-  "setup_font",
-  "setup_alacritty",
-  "setup_tmux",
-  "setup_fish",
-  "setup_starship",
-  "install_asdf",
-  "setup_languages",
-  "install_tools",
-  "setup_neovim",
-  "install_neovim_provider",
-  "setup_vim",
-  "link_bash",
-  "cleanup",
+describe = "Run setup task"
+category = "setup"
+run_task = [
+  { name = [
+    "check_envs",
+    "setup_git",
+    "setup_dotfiles",
+    "setup_font",
+    "setup_alacritty",
+    "setup_tmux",
+    "setup_fish",
+    "setup_starship",
+    "install_asdf",
+    "setup_languages",
+    "install_tools",
+    "setup_neovim",
+    "install_neovim_provider",
+    "setup_vim",
+    "link_bash",
+    "cleanup",
+  ] },
 ]
 
 # Check envs
@@ -68,13 +71,16 @@ fi
 '''
 ]
 
-# Update
 [tasks.update]
-dependencies = [
-  "update_languages",
-  "update_alacritty",
-  "update_dotfiles",
-  "update_tools",
-  "update_neovim_provider",
-  "update_neovim_plugins",
+describe = "Run update task"
+category = "update"
+run_task = [
+  { name = [
+    "update_languages",
+    "update_alacritty",
+    "update_dotfiles",
+    "update_tools",
+    "update_neovim_provider",
+    "update_neovim_plugins",
+  ] },
 ]

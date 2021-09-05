@@ -1,9 +1,6 @@
 [tasks.setup_git]
-dependencies = [
-  "install_git",
-  "link_git",
-  "gen_ssh_key",
-  "gen_git_local",
+run_task = [
+  { name = ["install_git", "link_git", "gen_ssh_key", "gen_git_local"] },
 ]
 
 [tasks.install_git.mac]

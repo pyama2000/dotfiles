@@ -1,5 +1,5 @@
 [tasks.setup_tmux]
-dependencies = ["install_tmux","install_tpm", "tmux_plugin", "link_tmux"]
+run_task = [{ name = ["install_tmux", "install_tpm", "tmux_plugin", "link_tmux"] }]
 
 [tasks.install_tmux.mac]
 script = [

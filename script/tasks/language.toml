@@ -6,16 +6,15 @@ extend = [
 ]
 
 [tasks.setup_languages]
-dependencies = [
-  "install_go",
-  "install_node",
-  "setup_python",
-  "setup_rust",
+description = "Setup languages"
+category = "SETUP"
+run_task = [
+  { name = ["install_go", "install_node", "setup_python", "setup_rust"] },
 ]
 
 [tasks.update_languages]
-dependencies = [
-  "update_rust",
-  "update_pip_version",
-  "update_npm_version",
+description = "Update languages"
+category = "UPDATE"
+run_task = [
+  { name = ["update_rust", "update_pip_version", "update_npm_version"] },
 ]

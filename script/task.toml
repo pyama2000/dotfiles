@@ -40,6 +40,7 @@ run_task = [
     "install_neovim_provider",
     "setup_vim",
     "link_bash",
+    "link_vim",
     "cleanup",
   ] },
 ]

@@ -1,18 +1,14 @@
 [tasks.install_go]
 description = "Install Golang"
 category = "INSTALL_LANGUAGE"
-condition_script = [
+script = [
 '''
 #!/usr/bin/env bash
+
 if test -z "$GO_VERSION"; then
   echo "GO_VERSION must be set"
   exit 1
 fi
-'''
-]
-script = [
-'''
-#!/usr/bin/env bash
 
 if !(type asdf > /dev/null 2>&1); then
   source ~/.profile

@@ -59,6 +59,13 @@ hook_add = """
 source ~/.config/nvim/plugins/coc.rc.vim
 """
 
+[[plugins]]
+repo = "nvim-treesitter/nvim-treesitter"
+merged = 0
+hook_add = """
+source ~/.config/nvim/plugins/nvim-treesitter.rc.vim
+"""
+
 ##############################
 # Dark Power plugins #########
 ##############################

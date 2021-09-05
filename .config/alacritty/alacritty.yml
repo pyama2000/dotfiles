@@ -8,41 +8,63 @@ shell:
     - "tmux attach || tmux"
 colors:
   primary:
-    foreground: "#b3b1ad"
-    background: "#0a0e14"
-  normal:
-    black: "#0a0e14"
-    red: "#f07178"
-    green: "#c2d94c"
-    yellow: "#e6b450"
-    blue: "#39bae6"
-    magenta: "#ffb454"
-    cyan: "#36a3d9"
-    white: "#b3b1ad"
+    # hard contrast background - '#1d2021'
+    background: &gruvbox_dark_bg "#282828"
+    # soft contrast background - '#32302f'
+    foreground: "#ebdbb2"
+    bright_foreground: "#fbf1c7"
+    dim_foreground: "#a89984"
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+  selection:
+    text: CellBackground
+    background: CellForeground
   bright:
-    black: "#0a0e14"
-    red: "#ff3333"
-    green: "#c2d94c"
-    yellow: "#e6b450"
-    blue: "#39bae6"
-    magenta: "#f07178"
-    cyan: "#59c2ff"
-    white: "#b3b1ad"
+    black: "#928374"
+    red: "#fb4934"
+    green: "#b8bb26"
+    yellow: "#fabd2f"
+    blue: "#83a598"
+    magenta: "#d3869b"
+    cyan: "#8ec07c"
+    white: "#ebdbb2"
+  normal:
+    black: *gruvbox_dark_bg
+    red: "#cc241d"
+    green: "#98971a"
+    yellow: "#d79921"
+    blue: "#458588"
+    magenta: "#b16286"
+    cyan: "#689d6a"
+    white: "#a89984"
+  dim:
+    black: "#32302f"
+    red: "#9d0006"
+    green: "#79740e"
+    yellow: "#b57614"
+    blue: "#076678"
+    magenta: "#8f3f71"
+    cyan: "#427b58"
+    white: "#928374"
 font:
   size: 12
   normal:
-    family: 'HackGen35Nerd'
-    style:  Regular
+    family: "HackGen35Nerd"
+    style: Regular
   bold:
-    family: 'HackGen35Nerd'
-    style:  Bold
+    family: "HackGen35Nerd"
+    style: Bold
   italic:
-    family: 'HackGen35Nerd'
-    style:  Italic
+    family: "HackGen35Nerd"
+    style: Italic
   bold_italic:
-    family: 'HackGen35Nerd'
-    style:  Bold Italic
+    family: "HackGen35Nerd"
+    style: Bold Italic
 window:
-  decorations:  full
+  decorations: full
   startup_mode: Windowed
   opacity: 0.95

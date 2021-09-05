@@ -1,5 +1,5 @@
 [tasks.setup_fish]
-dependencies = ["install_fish", "link_fish"]
+run_task = [{ name = ["install_fish", "link_fish"] }]
 
 [tasks.install_fish.mac]
 script = [

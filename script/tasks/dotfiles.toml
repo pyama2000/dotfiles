@@ -19,6 +19,7 @@ script = [
 
 cd ~/dotfiles
 git stash
+git sw master
 git pull --rebase origin master
 '''
 ]

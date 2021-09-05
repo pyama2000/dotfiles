@@ -1,7 +1,11 @@
 [tasks.install_go]
+description = "Install Golang"
+category = "install"
+condition = { env_set = [ "GO_VERION" ] }
 script = [
 '''
 #!/usr/bin/env bash
+set -eux
 
 if !(type asdf > /dev/null 2>&1); then
     source ~/.profile
@@ -20,6 +24,7 @@ dependencies = ["asdf_go_plugin"]
 script = [
 '''
 #!/usr/bin/env bash
+set -eux
 
 if !(type asdf > /dev/null 2>&1); then
     source ~/.profile

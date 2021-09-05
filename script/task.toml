@@ -15,7 +15,7 @@ extend = [
 ]
 
 [tasks.setup]
-describe = "Run setup task"
+description = "Run setup task"
 category = "setup"
 condition = {
   env_set = [
@@ -49,7 +49,7 @@ run_task = [
 ]
 
 [tasks.update]
-describe = "Run update task"
+description = "Run update task"
 category = "update"
 run_task = [
   {

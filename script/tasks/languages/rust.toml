@@ -13,7 +13,7 @@ rustup component add clippy rustfmt rust-src
 '''
 ]
 
-[tasks.cargo-tools]
+[tasks.cargo_tools]
 description = "Install cargo tools for dev"
 script = [
 '''

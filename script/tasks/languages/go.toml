@@ -1,7 +1,7 @@
 [tasks.install_go]
 description = "Install Golang"
-category = "install"
-condition = { env_set = [ "GO_VERION" ] }
+category = "INSTALL_LANGUAGE"
+condition = { env_set = ["GO_VERION"], fail_message = "$GO_VERSION must be set" }
 script = [
 '''
 #!/usr/bin/env bash
@@ -21,6 +21,8 @@ echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
 dependencies = ["asdf_go_plugin"]
 
 [tasks.asdf_go_plugin]
+description = "Install asdf plugin for Golang"
+category = "INSTALL_ASDF_PLUGIN"
 script = [
 '''
 #!/usr/bin/env bash

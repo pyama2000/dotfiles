@@ -17,49 +17,43 @@ extend = [
 [tasks.setup]
 description = "Run setup task"
 category = "setup"
-condition = {
-  env_set = [
-    "PYTHON_VERSION",
-    "GO_VERSION",
-    "NODE_VERSION",
-    "GIT_NAME",
-    "GIT_EMAIL",
-  ]
-}
+condition = { env_set = [
+  "PYTHON_VERSION",
+  "GO_VERSION",
+  "NODE_VERSION",
+  "GIT_NAME",
+  "GIT_EMAIL",
+] }
 run_task = [
-  {
-    name = [
-      "setup_git",
-      "setup_dotfiles",
-      "setup_font",
-      "setup_alacritty",
-      "setup_tmux",
-      "setup_fish",
-      "setup_starship",
-      "install_asdf",
-      "setup_languages",
-      "install_tools",
-      "setup_neovim",
-      "install_neovim_provider",
-      "setup_vim",
-      "link_bash",
-      "cleanup",
-    ]
-  },
+  { name = [
+    "setup_git",
+    "setup_dotfiles",
+    "setup_font",
+    "setup_alacritty",
+    "setup_tmux",
+    "setup_fish",
+    "setup_starship",
+    "install_asdf",
+    "setup_languages",
+    "install_tools",
+    "setup_neovim",
+    "install_neovim_provider",
+    "setup_vim",
+    "link_bash",
+    "cleanup",
+  ] },
 ]
 
 [tasks.update]
 description = "Run update task"
 category = "update"
 run_task = [
-  {
-    name = [
-      "update_languages",
-      "update_alacritty",
-      "update_dotfiles",
-      "update_tools",
-      "update_neovim_provider",
-      "update_neovim_plugins",
-    ]
-  },
+  { name = [
+    "update_languages",
+    "update_alacritty",
+    "update_dotfiles",
+    "update_tools",
+    "update_neovim_provider",
+    "update_neovim_plugins",
+  ] },
 ]

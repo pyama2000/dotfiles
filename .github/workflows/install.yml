@@ -55,7 +55,7 @@ jobs:
       run: cargo make --makefile script/task.toml update_neovim_provider
     - name: Setup vim 
       if: always()
-      run: cargo make --makefile script/task.toml setup_vim
+      run: cargo make --makefile script/task.toml link_vim 
     - name: Create bash config link
       if: always()
       run: cargo make --makefile script/task.toml link_bash
@@ -126,7 +126,7 @@ jobs:
       run: cargo make --makefile script/task.toml update_neovim_provider
     - name: Setup vim 
       if: always()
-      run: cargo make --makefile script/task.toml setup_vim
+      run: cargo make --makefile script/task.toml link_vim
     - name: Create bash config link
       if: always()
       run: cargo make --makefile script/task.toml link_bash

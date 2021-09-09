@@ -1,21 +1,30 @@
 [tasks.setup_rust]
-dependencies = ["add_rust_components", "cargo-tools"]
+description = "Install Rust and cargo tools"
+category = "SETUP_LANGUAGE"
+run_task = [{ name = ["add_rust_components", "cargo_tools"] }]
 
 [tasks.add_rust_components]
+description = "Add rust components"
 script = [
 '''
+#!/usr/bin/env bash
+
 rustup component add clippy rustfmt rust-src
 '''
 ]
 
-[tasks.cargo-tools]
+[tasks.cargo_tools]
+description = "Install cargo tools for dev"
 script = [
 '''
+#!/usr/bin/env bash
+
 cargo install cargo-watch cargo-update
 '''
 ]
 
 [tasks.update_rust]
+description = "Update Rust"
 script = [
 '''
 #!/usr/bin/env bash

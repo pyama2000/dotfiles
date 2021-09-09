@@ -7,15 +7,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: Run setup.sh
       run: ./script/install.sh
-    - name: Check envs
-      if: always()
-      run: cargo make --makefile script/task.toml check_envs -e GIT_NAME=$GIT_NAME -e GIT_EMAIL=$GIT_EMAIL -e PYTHON_VERSION=$PYTHON_VERSION -e GO_VERSION=$GO_VERSION -e NODE_VERSION=$NODE_VERSION
-      env:
-        GIT_NAME: pyama2000
-        GIT_EMAIL: example@example.com
-        PYTHON_VERSION: 3.9.0
-        GO_VERSION: 1.14.2
-        NODE_VERSION: 12.16.3
     - name: Install Git
       if: always()
       run: cargo make --makefile script/task.toml install_git -e GIT_NAME=$GIT_NAME -e GIT_EMAIL=$GIT_EMAIL
@@ -64,7 +55,7 @@ jobs:
       run: cargo make --makefile script/task.toml update_neovim_provider
     - name: Setup vim 
       if: always()
-      run: cargo make --makefile script/task.toml setup_vim
+      run: cargo make --makefile script/task.toml link_vim 
     - name: Create bash config link
       if: always()
       run: cargo make --makefile script/task.toml link_bash
@@ -87,15 +78,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: Run setup.sh
       run: ./script/install.sh
-    - name: Check envs
-      if: always()
-      run: cargo make --makefile script/task.toml check_envs -e GIT_NAME=$GIT_NAME -e GIT_EMAIL=$GIT_EMAIL -e PYTHON_VERSION=$PYTHON_VERSION -e GO_VERSION=$GO_VERSION -e NODE_VERSION=$NODE_VERSION
-      env:
-        GIT_NAME: pyama2000
-        GIT_EMAIL: example@example.com
-        PYTHON_VERSION: 3.9.0
-        GO_VERSION: 1.14.2
-        NODE_VERSION: 12.16.3
     - name: Install Git
       if: always()
       run: cargo make --makefile script/task.toml install_git -e GIT_NAME=$GIT_NAME -e GIT_EMAIL=$GIT_EMAIL
@@ -144,7 +126,7 @@ jobs:
       run: cargo make --makefile script/task.toml update_neovim_provider
     - name: Setup vim 
       if: always()
-      run: cargo make --makefile script/task.toml setup_vim
+      run: cargo make --makefile script/task.toml link_vim
     - name: Create bash config link
       if: always()
       run: cargo make --makefile script/task.toml link_bash

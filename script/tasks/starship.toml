@@ -1,5 +1,5 @@
 [tasks.setup_starship]
-dependencies = ["install_starship", "link_starship"]
+run_task = [{ name = ["install_starship", "link_starship"] }]
 
 [tasks.install_starship]
 script = [
@@ -20,10 +20,4 @@ ln -snfv ~/dotfiles/.config/starship.toml ~/.config/
 ]
 
 [tasks.update_starship]
-script = [
-'''
-#!/usr/bin/env bash
-
-sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
-'''
-]
+run_task = [{ name = ["install_starship"] }]

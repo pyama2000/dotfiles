@@ -1,10 +1,17 @@
 [tasks.install_node]
+description = "Install Node.js"
+category = "INSTALL_LANGUAGE"
 script = [
 '''
 #!/usr/bin/env bash
 
+if test -z "$NODE_VERSION"; then
+  echo "NODE_VERSION must be set"
+  exit 1
+fi
+
 if !(type asdf > /dev/null 2>&1); then
-    source ~/.profile
+  source ~/.profile
 fi
 
 asdf install nodejs "$NODE_VERSION"
@@ -14,12 +21,14 @@ asdf global nodejs "$NODE_VERSION"
 dependencies = ["asdf_node_plugin"]
 
 [tasks.asdf_node_plugin]
+description = "Install asdf plugin for Node.js"
+category = "INSTALL_ASDF_PLUGIN"
 script = [
 '''
 #!/usr/bin/env bash
 
 if !(type asdf > /dev/null 2>&1); then
-    source ~/.profile
+  source ~/.profile
 fi
 
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
@@ -47,6 +56,8 @@ sudo apt install -y dirmngr gpg curl
 ]
 
 [tasks.update_npm_version]
+description = "Update npm version"
+category = "UPDATE"
 script = [
 '''
 #!/usr/bin/env bash

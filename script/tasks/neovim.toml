@@ -1,9 +1,11 @@
 [tasks.setup_neovim]
-dependencies = [
-  "install_neovim",
-  "install_dein",
-  "link_neovim",
-  "install_neovim_provider",
+run_task = [
+  { name = [
+    "install_neovim",
+    "install_dein",
+    "link_neovim",
+    "install_neovim_provider",
+  ] },
 ]
 
 [tasks.install_neovim.mac]
@@ -78,11 +80,8 @@ fi
 '''
 ]
 
-[tasks.update_neovim_provider.mac]
-dependencies = ['install_neovim_provider']
-
-[tasks.update_neovim_provider.linux]
-dependencies = ['install_neovim_provider']
+[tasks.update_neovim_provider]
+run_task = [{ name = ["install_neovim_provider"] }]
 
 [tasks.update_neovim_plugins]
 script = [

@@ -14,67 +14,46 @@ extend = [
   { path = "tasks/vim.toml" },
 ]
 
-# Setup
 [tasks.setup]
-dependencies = [
-  "check_envs",
-  "setup_git",
-  "setup_dotfiles",
-  "setup_font",
-  "setup_alacritty",
-  "setup_tmux",
-  "setup_fish",
-  "setup_starship",
-  "install_asdf",
-  "setup_languages",
-  "install_tools",
-  "setup_neovim",
-  "install_neovim_provider",
-  "setup_vim",
-  "link_bash",
-  "cleanup",
+description = "Run setup task"
+category = "setup"
+condition = { env_set = [
+  "PYTHON_VERSION",
+  "GO_VERSION",
+  "NODE_VERSION",
+  "GIT_NAME",
+  "GIT_EMAIL",
+] }
+run_task = [
+  { name = [
+    "setup_git",
+    "setup_dotfiles",
+    "setup_font",
+    "setup_alacritty",
+    "setup_tmux",
+    "setup_fish",
+    "setup_starship",
+    "install_asdf",
+    "setup_languages",
+    "install_tools",
+    "setup_neovim",
+    "install_neovim_provider",
+    "link_bash",
+    "link_vim",
+    "cleanup",
+  ] },
 ]
 
-# Check envs
-[tasks.check_envs]
-script = [
-'''
-#!/usr/bin/env bash
-
-if test -z "$PYTHON_VERSION"; then
-  echo "Set PYTHON_VERSION"
-  exit 1
-fi
-
-if test -z "$GO_VERSION"; then
-  echo "Set GO_VERSION"
-  exit 1
-fi
-
-if test -z "$NODE_VERSION"; then
-  echo "Set NODE_VERSION"
-  exit 1
-fi
-
-if test -z "$GIT_NAME"; then
-  echo "Set GIT_NAME"
-  exit 1
-fi
-
-if test -z "$GIT_EMAIL"; then
-  echo "Set GIT_EMAIL"
-  exit 1
-fi
-'''
-]
-
-# Update
 [tasks.update]
-dependencies = [
-  "update_languages",
-  "update_alacritty",
-  "update_dotfiles",
-  "update_tools",
-  "update_neovim_provider",
-  "update_neovim_plugins",
+description = "Run update task"
+category = "update"
+run_task = [
+  { name = [
+    "update_languages",
+    "update_alacritty",
+    "update_dotfiles",
+    "update_tools",
+    "update_neovim_provider",
+    "update_neovim_plugins",
+  ] },
 ]

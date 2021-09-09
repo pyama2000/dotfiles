@@ -20,33 +20,37 @@ extend = [
 ]
 
 [tasks.install_tools]
-dependencies = [
-  "install_alfred",
-  "install_bat",
-  "install_clipy",
-  "install_direnv",
-  "install_discord",
-  "install_exa",
-  "install_fd",
-  "install_fzf",
-  "install_ghq",
-  "install_gitify",
-  "install_git-delta",
-  "install_jq",
-  "install_qblocker",
-  "install_rectangle",
-  "install_ripgrep",
-  "install_zoom",
-  "install_zoxide",
+run_task = [
+  { name = [
+    "install_alfred",
+    "install_bat",
+    "install_clipy",
+    "install_direnv",
+    "install_discord",
+    "install_exa",
+    "install_fd",
+    "install_fzf",
+    "install_ghq",
+    "install_gitify",
+    "install_git-delta",
+    "install_jq",
+    "install_qblocker",
+    "install_rectangle",
+    "install_ripgrep",
+    "install_zoom",
+    "install_zoxide",
+  ] },
 ]
 
 [tasks.update_tools]
-dependencies = [
-  "update_package_tools",
-  "update_rust_tools",
-  "update_asdf",
-  "update_ghq",
-  "update_starship",
+run_task = [
+  { name = [
+    "update_package_tools",
+    "update_rust_tools",
+    "update_asdf",
+    "update_ghq",
+    "update_starship",
+  ] },
 ]
 
 [tasks.update_package_tools.mac]

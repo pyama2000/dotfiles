@@ -1,5 +1,5 @@
 [tasks.setup_font]
-dependencies = ["download_HackGenNerd", "apply_font"]
+run_task = [{ name = ["download_HackGenNerd", "apply_font"] }]
 
 [tasks.download_HackGenNerd]
 script = [

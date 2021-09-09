@@ -1,6 +1,3 @@
-[tasks.setup_vim]
-dependencies = ["link_vim"]
-
 [tasks.link_vim]
 script = [
 '''

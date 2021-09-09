@@ -1,5 +1,5 @@
 [tasks.setup_tmux]
-run_task = [{ name = ["install_tmux", "install_tpm", "tmux_plugin", "link_tmux"] }]
+run_task = [{ name = ["install_tmux", "install_tpm", "link_tmux"] }]
 
 [tasks.install_tmux.mac]
 script = [
@@ -25,15 +25,6 @@ script = [
 #!/usr/bin/env bash
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-'''
-]
-
-[tasks.tmux_plugin.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install reattach-to-user-namespace
 '''
 ]
 

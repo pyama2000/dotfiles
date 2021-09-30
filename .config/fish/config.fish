@@ -5,6 +5,7 @@ set fish_greeting ''
 set -gx LC_ALL ja_JP.UTF-8
 set -gx LC_TYPE ja_JP.UTF-8
 set -gx LANG ja_JP.UTF-8
+fish_add_path /usr/local/sbin
 
 ##############################
 # asdf                       #
@@ -20,12 +21,12 @@ set -x PIPENV_VENV_IN_PROJECT 1
 # Go                         #
 ##############################
 set -x GOPATH $HOME/go
-set -g fish_user_paths $GOPATH/bin $fish_user_paths
+fish_add_path $GOPATH/bin
 
 ##############################
 # Rust                       #
 ##############################
-set -g fish_user_paths $HOME/.cargo/bin $fish_user_paths
+fish_add_path $HOME/.cargo/bin
 
 ##############################
 # fzf                        #

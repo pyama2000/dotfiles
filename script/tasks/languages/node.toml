@@ -16,6 +16,8 @@ fi
 
 asdf install nodejs "$NODE_VERSION"
 asdf global nodejs "$NODE_VERSION"
+
+set -U fish_user_paths (npm get prefix)/bin $fish_user_paths
 '''
 ]
 dependencies = ["asdf_node_plugin"]

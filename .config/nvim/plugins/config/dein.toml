@@ -90,6 +90,9 @@ hook_add = """
 source ~/.config/nvim/plugins/denite.rc.vim
 """
 
+[[plugins]]
+repo = "ozelentok/denite-gtags"
+
 # Shell interfaces
 [[plugins]]
 repo = "shougo/deol.nvim"

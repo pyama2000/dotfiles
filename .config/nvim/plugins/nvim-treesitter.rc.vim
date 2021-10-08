@@ -7,6 +7,7 @@ require'nvim-treesitter.configs'.setup {
       'lua',
       'ruby',
       'c_sharp',
+      'dockerfile',
     }
   }
 }

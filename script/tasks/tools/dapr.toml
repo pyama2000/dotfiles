@@ -1,0 +1,36 @@
+[tasks.install_dapr.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl -fsSL https://raw.githubusercontent.com/dapr/cli/master/install/install.sh | /bin/bash
+'''
+]
+
+[tasks.install_dapr.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+'''
+]
+
+[tasks.update_dapr.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl -fsSL https://raw.githubusercontent.com/dapr/cli/master/install/install.sh | /bin/bash
+'''
+]
+
+[tasks.update_dapr.linux]
+script = [
+'''
+#!/usr/bin/env bash
+
+wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+'''
+]
+

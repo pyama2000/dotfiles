@@ -16,6 +16,7 @@ extend = [
   { path = "tools/ghq.toml" },
   { path = "tools/git-delta.toml" },
   { path = "tools/jq.toml" },
+  { path = "tools/kubecli.toml" },
   { path = "tools/ripgrep.toml" },
   { path = "tools/zoxide.toml" },
 ]
@@ -36,6 +37,7 @@ run_task = [
     "install_gitify",
     "install_git-delta",
     "install_jq",
+    "install_kubecli",
     "install_qblocker",
     "install_rectangle",
     "install_ripgrep",
@@ -52,6 +54,7 @@ run_task = [
     "update_asdf",
     "update_dapr",
     "update_ghq",
+    "update_kubecli",
     "update_starship",
   ] },
 ]

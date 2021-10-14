@@ -1,0 +1,17 @@
+[tasks.install_kubecli.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
+'''
+]
+
+[tasks.update_kubecli.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
+'''
+]

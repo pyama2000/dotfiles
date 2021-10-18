@@ -66,6 +66,12 @@ hook_add = """
 source ~/.config/nvim/plugins/nvim-treesitter.rc.vim
 """
 
+[[plugins]]
+repo = "tyru/open-browser.vim"
+
+[[plugins]]
+repo = "tyru/open-browser-github.vim"
+
 ##############################
 # Dark Power plugins #########
 ##############################

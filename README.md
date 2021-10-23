@@ -1,6 +1,5 @@
-# dotfiles
-
-[INSTALLATION](https://github.com/pyama2000/dotfiles#installation) | [UPDATE](https://github.com/pyama2000/dotfiles#update) | [CHEAT SHEETS](https://github.com/pyama2000/dotfiles#cheat-sheets)
+dotfiles
+===
 
 ## INSTALLATION
 
@@ -54,5 +53,4 @@ cargo make --makefile script/task.toml update
     - [coc.nvim](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/neovim/coc.md)
     - [defx.nvim](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/neovim/defx.md)
     - [denite.nvim](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/neovim/denite.md)
-    - [deol.nvim](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/neovim/deol.md)
     - [keymap](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/neovim/keymap.md)

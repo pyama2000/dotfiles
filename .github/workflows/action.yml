@@ -9,6 +9,7 @@ jobs:
         os: [macos-10.15, macos-11, ubuntu-18.04, ubuntu-20.04]
     steps:
     - uses: actions/checkout@v2
+    # Install and setup
     - name: Run setup.sh
       run: ./script/install.sh
     - name: Install Git
@@ -54,15 +55,16 @@ jobs:
     - name: Setup neovim
       if: always()
       run: cargo make --makefile script/task.toml setup_neovim
-    - name: Update Neovim provider
-      if: always()
-      run: cargo make --makefile script/task.toml update_neovim_provider
     - name: Setup vim 
       if: always()
       run: cargo make --makefile script/task.toml link_vim 
     - name: Create bash config link
       if: always()
       run: cargo make --makefile script/task.toml link_bash
+    # Update Task
+    - name: Update Neovim provider
+      if: always()
+      run: cargo make --makefile script/task.toml update_neovim_provider
     - name: Update language
       if: always()
       run: cargo make --makefile script/task.toml update_languages 

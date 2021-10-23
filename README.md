@@ -35,8 +35,12 @@ Environments:
 - gitify
 - Google Chrome
 - Google 日本語入力
+- Insomnia
+- Postman
+- QBlocker
 - Rectangle
 - Slack
+- TablePlus
 - Zoom
 
 ## UPDATE

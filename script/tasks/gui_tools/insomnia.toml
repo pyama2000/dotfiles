@@ -1,0 +1,8 @@
+[tasks.install_insomnia.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask insomnia
+'''
+]

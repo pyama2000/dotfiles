@@ -1,0 +1,8 @@
+[tasks.install_postman.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask postman
+'''
+]

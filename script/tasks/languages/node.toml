@@ -57,7 +57,7 @@ sudo apt install -y dirmngr gpg curl
 '''
 ]
 
-[tasks.update_npm_version]
+[tasks.update_npm_version.mac]
 description = "Update npm version"
 category = "UPDATE"
 script = [
@@ -65,5 +65,16 @@ script = [
 #!/usr/bin/env bash
 
 npm install -g npm
+'''
+]
+
+[tasks.update_npm_version.linux]
+description = "Update npm version"
+category = "UPDATE"
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo npm install -g npm
 '''
 ]

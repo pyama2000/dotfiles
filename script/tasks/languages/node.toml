@@ -54,7 +54,7 @@ sudo apt install -y dirmngr gpg curl
 ]
 
 [tasks.update_npm_version]
-env = { "NPM_VERSION" = "latest" }
+condition = { env = { "NPM_VERSION" = "latest" } }
 script = [
 '''
 #!/usr/bin/env bash

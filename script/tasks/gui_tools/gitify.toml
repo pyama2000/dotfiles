@@ -1,8 +1,0 @@
-[tasks.install_gitify.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install --cask gitify
-'''
-]

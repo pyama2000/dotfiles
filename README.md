@@ -46,7 +46,6 @@ cargo make --makefile script/task.toml update
 - Clipy
 - Discord
 - Docker
-- gitify
 - Google Chrome
 - Google 日本語入力
 - Insomnia

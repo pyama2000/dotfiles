@@ -1,6 +1,4 @@
 [tasks.install_node]
-description = "Install Node.js"
-category = "INSTALL_LANGUAGE"
 script = [
 '''
 #!/usr/bin/env bash
@@ -17,14 +15,12 @@ fi
 asdf install nodejs "$NODE_VERSION"
 asdf global nodejs "$NODE_VERSION"
 
-set -U fish_user_paths (npm get prefix)/bin $fish_user_paths
+fish -c "set -U fish_user_paths (npm get prefix)/bin $fish_user_paths"
 '''
 ]
 dependencies = ["asdf_node_plugin"]
 
 [tasks.asdf_node_plugin]
-description = "Install asdf plugin for Node.js"
-category = "INSTALL_ASDF_PLUGIN"
 script = [
 '''
 #!/usr/bin/env bash
@@ -58,12 +54,10 @@ sudo apt install -y dirmngr gpg curl
 ]
 
 [tasks.update_npm_version]
-description = "Update npm version"
-category = "UPDATE"
 script = [
 '''
 #!/usr/bin/env bash
 
-npm install -g npm
+npm update -g npm
 '''
 ]

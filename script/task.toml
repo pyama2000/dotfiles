@@ -15,8 +15,6 @@ extend = [
 ]
 
 [tasks.setup]
-description = "Run setup task"
-category = "setup"
 condition = { env_set = [
   "PYTHON_VERSION",
   "GO_VERSION",
@@ -45,8 +43,6 @@ run_task = [
 ]
 
 [tasks.update]
-description = "Run update task"
-category = "update"
 run_task = [
   { name = [
     "update_languages",

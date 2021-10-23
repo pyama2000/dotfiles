@@ -59,6 +59,8 @@ script = [
 '''
 #!/usr/bin/env bash
 
+echo "$NPM_VERSION"
+
 npm update -g npm@"$NPM_VERSION"
 '''
 ]

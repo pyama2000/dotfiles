@@ -1,10 +1,10 @@
-name: CI
+name: Build a development environment
 on: [push]
 jobs:
   macos:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Run setup.sh
       run: ./script/install.sh
     - name: Install Git
@@ -75,7 +75,7 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Run setup.sh
       run: ./script/install.sh
     - name: Install Git

@@ -54,5 +54,3 @@ jobs:
       run: cargo make --makefile script/task.toml update_alacritty
     - name: Update tools
       run: cargo make --makefile script/task.toml update_tools
-    - name: Update tools
-      run: cargo make --makefile script/task.toml update_tools

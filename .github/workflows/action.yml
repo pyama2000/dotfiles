@@ -27,8 +27,8 @@ jobs:
     - name: Create local git config file
       if: always()
       run: cargo make --makefile script/task.toml gen_git_local -e GIT_NAME="$GIT_NAME" -e GIT_EMAIL="$GIT_EMAIL"
-    - name: Setup alacritty 
-      if: always()
+    # - name: Setup alacritty 
+    #   if: always()
     #   run: cargo make --makefile script/task.toml setup_alacritty
     # - name: Setup tmux
     #   if: always()

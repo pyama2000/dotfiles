@@ -14,7 +14,7 @@ jobs:
       run: ./script/install.sh
     - name: Install Git
       if: always()
-      run: cargo make --makefile script/task.toml install_git -e GIT_NAME=$GIT_NAME -e GIT_EMAIL=$GIT_EMAIL
+      run: cargo make --makefile script/task.toml install_git -e GIT_NAME="$GIT_NAME" -e GIT_EMAIL="$GIT_EMAIL"
       env:
         GIT_NAME: pyama2000
         GIT_EMAIL: example@example.com
@@ -26,7 +26,7 @@ jobs:
       run: cargo make --makefile script/task.toml link_git
     - name: Create local git config file
       if: always()
-      run: cargo make --makefile script/task.toml gen_git_local -e GIT_NAME=$GIT_NAME -e GIT_EMAIL=$GIT_EMAIL
+      run: cargo make --makefile script/task.toml gen_git_local -e GIT_NAME="$GIT_NAME" -e GIT_EMAIL="$GIT_EMAIL"
     - name: Setup alacritty 
       if: always()
       run: cargo make --makefile script/task.toml setup_alacritty
@@ -44,7 +44,7 @@ jobs:
       run: cargo make --makefile script/task.toml install_asdf
     - name: Setup languages
       if: always()
-      run: cargo make --makefile script/task.toml setup_languages -e PYTHON_VERSION=$PYTHON_VERSION -e GO_VERSION=$GO_VERSION -e NODE_VERSION=$NODE_VERSION
+      run: cargo make --makefile script/task.toml setup_languages -e PYTHON_VERSION="$PYTHON_VERSION" -e GO_VERSION="$GO_VERSION" -e NODE_VERSION="$NODE_VERSION"
       env:
         PYTHON_VERSION: 3.9.0
         GO_VERSION: 1.14.2

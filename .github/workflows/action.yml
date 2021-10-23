@@ -74,3 +74,6 @@ jobs:
     - name: Update tools
       if: always()
       run: cargo make --makefile script/task.toml update_tools
+    - name: Cleanup
+      if: always()
+      run: cargo make --makefile script/task.toml cleanup

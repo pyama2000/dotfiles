@@ -6,15 +6,7 @@ extend = [
 ]
 
 [tasks.setup_languages]
-description = "Setup languages"
-category = "SETUP"
-run_task = [
-  { name = ["install_go", "install_node", "setup_python", "setup_rust"] },
-]
+run_task = [{ name = ["install_go", "install_node", "setup_python", "setup_rust"] }]
 
 [tasks.update_languages]
-description = "Update languages"
-category = "UPDATE"
-run_task = [
-  { name = ["update_rust", "update_pip_version", "update_npm_version"] },
-]
+run_task = [{ name = ["update_rust", "update_pip_version", "update_npm_version"] }]

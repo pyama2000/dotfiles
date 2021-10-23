@@ -1,5 +1,4 @@
 [tasks.setup_alacritty]
-description = "Setup alacritty"
 run_task = [
   { name = ["clone_alacritty", "install_alacritty", "link_alacritty"] },
 ]

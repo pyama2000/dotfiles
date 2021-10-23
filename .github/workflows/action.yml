@@ -1,7 +1,7 @@
-name: Build a development environment
+name: Setup a development environment for macOS and Ubuntu
 on: [push]
 jobs:
-  macos:
+  setup:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false

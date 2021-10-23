@@ -2,9 +2,11 @@ name: Build a development environment
 on: [push]
 jobs:
   macos:
-    runs-on: macos-10.15
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
+      matrix:
+        os: [macos-10.15, ubuntu-latest]
     steps:
     - uses: actions/checkout@v2
     - name: Run setup.sh
@@ -44,60 +46,6 @@ jobs:
       run: cargo make --makefile script/task.toml update_neovim_provider
     - name: Setup vim 
       run: cargo make --makefile script/task.toml link_vim 
-    - name: Create bash config link
-      run: cargo make --makefile script/task.toml link_bash
-    - name: Update language
-      run: cargo make --makefile script/task.toml update_languages 
-    - name: Update Alacritty 
-      run: cargo make --makefile script/task.toml update_alacritty
-    - name: Update tools
-      run: cargo make --makefile script/task.toml update_tools
-    - name: Update tools
-      run: cargo make --makefile script/task.toml update_tools
-
-  ubuntu:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run setup.sh
-      run: ./script/install.sh
-    - name: Install Git
-      run: cargo make --makefile script/task.toml install_git -e GIT_NAME=$GIT_NAME -e GIT_EMAIL=$GIT_EMAIL
-      env:
-        GIT_NAME: pyama2000
-        GIT_EMAIL: example@example.com
-    - name: Clone dotfiles repository
-      run: cargo make --makefile script/task.toml setup_dotfiles
-    - name: Create git config link
-      run: cargo make --makefile script/task.toml link_git
-    - name: Create local git config file
-      run: cargo make --makefile script/task.toml gen_git_local -e GIT_NAME=$GIT_NAME -e GIT_EMAIL=$GIT_EMAIL
-    - name: Setup alacritty 
-      run: cargo make --makefile script/task.toml setup_alacritty
-    - name: Setup tmux
-      run: cargo make --makefile script/task.toml setup_tmux
-    - name: Setup fish 
-      run: cargo make --makefile script/task.toml setup_fish
-    - name: Setup starship
-      run: cargo make --makefile script/task.toml setup_starship
-    - name: Install asdf 
-      run: cargo make --makefile script/task.toml install_asdf
-    - name: Setup languages
-      run: cargo make --makefile script/task.toml setup_languages -e PYTHON_VERSION=$PYTHON_VERSION -e GO_VERSION=$GO_VERSION -e NODE_VERSION=$NODE_VERSION
-      env:
-        PYTHON_VERSION: 3.9.0
-        GO_VERSION: 1.14.2
-        NODE_VERSION: 12.16.3
-    - name: Install tools
-      run: cargo make --makefile script/task.toml install_tools
-    - name: Setup neovim
-      run: cargo make --makefile script/task.toml setup_neovim
-    - name: Update Neovim provider
-      run: cargo make --makefile script/task.toml update_neovim_provider
-    - name: Setup vim 
-      run: cargo make --makefile script/task.toml link_vim
     - name: Create bash config link
       run: cargo make --makefile script/task.toml link_bash
     - name: Update language

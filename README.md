@@ -1,9 +1,11 @@
 dotfiles
 ===
 
-## INSTALLATION
+## 開発環境構築
 
-```bash
+cargo-make で `setup` タスクを実行する. 
+
+```
 git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 script/install.sh
@@ -15,17 +17,29 @@ cargo make --makefile script/task.toml setup \
   -e PYTHON_VERSION=<PYTHON_VERSION>
 ```
 
-Environments:
+環境変数:
 
 | value           | key type | example             |
 |:----------------|:---------|:--------------------|
 | GIT\_NAME       | string   | pyama2000           |
 | GIT\_EMAIL      | string   | example@example.com |
-| GO\_VERSION     | string   | 1.14.2              |
-| NODE\_VERSION   | string   | 12.16.9             |
-| PYTHON\_VERSION | string   | 3.9.0               |
+| GO\_VERSION     | string   | 1.17.1              |
+| NODE\_VERSION   | string   | 14.16.0             |
+| PYTHON\_VERSION | string   | 3.10.0              |
 
-### GUI tools
+
+## 開発環境更新
+
+cargo-make で `update` タスクを実行する. 
+
+```
+cd ~/dotfiles
+cargo make --makefile script/task.toml update
+```
+
+## インストールされるツール
+
+### GUI ツール
 
 - 1Password
 - Alfred
@@ -43,14 +57,7 @@ Environments:
 - TablePlus
 - Zoom
 
-## UPDATE
-
-```bash
-cd ~/dotfiles
-cargo make --makefile script/task.toml update
-```
-
-## CHEAT SHEETS
+## チートシート
 
 - [tmux](https://github.com/pyama2000/dotfiles/tree/master/doc/cheatsheet/tmux.md)
 - NeoVim

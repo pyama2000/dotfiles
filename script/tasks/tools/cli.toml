@@ -140,7 +140,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-go install github.com/x-motemen/ghq@latest
+go get github.com/x-motemen/ghq
 '''
 ]
 

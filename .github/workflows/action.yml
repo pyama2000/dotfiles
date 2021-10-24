@@ -71,7 +71,9 @@ jobs:
       run: cargo make --makefile script/task.toml update_neovim_provider
     - name: Update language
       if: always()
-      run: cargo make --makefile script/task.toml update_languages 
+      run: cargo make --makefile script/task.toml update_languages -e NPM_UPDATE_VERSION="$NPM_UPDATE_VERSION"
+      env:
+        NPM_UPDATE_VERSION: "7.6.0"
     - name: Update Alacritty 
       if: always()
       run: cargo make --makefile script/task.toml update_alacritty

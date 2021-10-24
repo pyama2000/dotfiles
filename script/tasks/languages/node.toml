@@ -58,6 +58,12 @@ script = [
 '''
 #!/usr/bin/env bash
 
-npm update -g npm
+if [ -z "$NPM_UPDATE_VERSION" ]; then
+  NPM_UPDATE_VERSION='latest'
+fi
+
+echo "$NPM_UPDATE_VERSION"
+
+npm update -g npm@"$NPM_UPDATE_VERSION"
 '''
 ]

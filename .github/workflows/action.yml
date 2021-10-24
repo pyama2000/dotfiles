@@ -1,5 +1,9 @@
 name: Setup a development environment for macOS and Ubuntu
-on: [push]
+on:
+  push:
+    paths:
+      - ".github/workflows/**"
+      - "script/**"
 jobs:
   setup:
     runs-on: ${{ matrix.os }}

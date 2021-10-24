@@ -28,7 +28,9 @@ jobs:
       run: cargo make --makefile script/task.toml update_npm_version
     - name: (DEBUG) Update npm@7.6.0
       if: always()
-      run: cargo make --makefile script/task.toml update_npm_version -e NPM_VERSION="7.6.0"
+      run: cargo make --makefile script/task.toml update_npm_version -e NPM_UPDATE_VERSION="$NPM_UPDATE_VERSION"
+      env:
+        NPM_UPDATE_VERSION: "7.6.0"
     - name: Cleanup
       if: always()
       run: cargo make --makefile script/task.toml cleanup

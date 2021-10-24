@@ -36,7 +36,7 @@ run_task = [
     "install_fzf",
     "install_ghq",
     "install_git-delta",
-    "install_insomnai",
+    "install_insomnia",
     "install_jq",
     "install_postman",
     "install_qblocker",

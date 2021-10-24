@@ -1,0 +1,95 @@
+[tasks.install_gui]
+run_task = [
+  { name = [
+    "install_alfred",
+    "install_clipy",
+    "install_discord",
+    "install_insomnia",
+    "install_postman",
+    "install_qblocker",
+    "install_rectangle",
+    "install_tableplus",
+    "install_zoom",
+  ] },
+]
+
+[tasks.install_alfred.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask alfred
+'''
+]
+
+[tasks.install_clipy.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask clipy
+'''
+]
+
+[tasks.install_discord.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask discord
+'''
+]
+
+[tasks.install_insomnia.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask insomnia
+'''
+]
+
+[tasks.install_postman.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask postman
+'''
+]
+
+[tasks.install_qblocker.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask qblocker
+'''
+]
+
+[tasks.install_rectangle.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask rectangle
+'''
+]
+
+[tasks.install_tableplus.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask tableplus
+'''
+]
+
+[tasks.install_zoom.mac]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew install --cask zoom
+'''
+]

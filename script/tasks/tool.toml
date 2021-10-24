@@ -1,30 +1,14 @@
 extend = [
   { path = "asdf.toml" },
-  { path = "gui_tools/alfred.toml" },
-  { path = "gui_tools/clipy.toml" },
-  { path = "gui_tools/discord.toml" },
-  { path = "gui_tools/insomnia.toml" },
-  { path = "gui_tools/postman.toml" },
-  { path = "gui_tools/qblocker.toml" },
-  { path = "gui_tools/rectangle.toml" },
-  { path = "gui_tools/tableplus.toml" },
-  { path = "gui_tools/zoom.toml" },
   { path = "tools/cli.toml" },
+  { path = "tools/gui.toml" },
 ]
 
 [tasks.install_tools]
 run_task = [
   { name = [
     "install_cli",
-    "install_alfred",
-    "install_clipy",
-    "install_discord",
-    "install_insomnia",
-    "install_postman",
-    "install_qblocker",
-    "install_rectangle",
-    "install_tableplus",
-    "install_zoom",
+    "install_gui",
   ] },
 ]
 
@@ -35,7 +19,6 @@ run_task = [
     "update_rust_tools",
     "update_cli",
     "update_asdf",
-    "update_dapr",
     "update_starship",
   ] },
 ]

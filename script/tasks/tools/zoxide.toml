@@ -1,9 +1,0 @@
-[tasks.install_zoxide]
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install zoxide
-echo 'eval "$(zoxide init bash)"' >> ~/.profile
-'''
-]

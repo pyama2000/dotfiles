@@ -1,8 +1,0 @@
-[tasks.install_ripgrep]
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install ripgrep
-'''
-]

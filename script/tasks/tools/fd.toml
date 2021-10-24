@@ -1,8 +1,0 @@
-[tasks.install_fd]
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install fd-find 
-'''
-]

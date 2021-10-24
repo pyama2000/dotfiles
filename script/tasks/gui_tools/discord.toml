@@ -1,8 +1,0 @@
-[tasks.install_discord.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install --cask discord
-'''
-]

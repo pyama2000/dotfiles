@@ -27,8 +27,6 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-eval "$(anyenv init -)"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export GOENV_DISABLE_GOPATH="1"

@@ -1,8 +1,0 @@
-[tasks.install_clipy.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install --cask clipy
-'''
-]

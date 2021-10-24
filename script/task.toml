@@ -1,6 +1,5 @@
 extend = [
   { path = "tasks/alacritty.toml" },
-  { path = "tasks/asdf.toml" },
   { path = "tasks/bash.toml" },
   { path = "tasks/dotfiles.toml" },
   { path = "tasks/fish.toml" },
@@ -30,7 +29,6 @@ run_task = [
     "setup_alacritty",
     "setup_tmux",
     "setup_fish",
-    "setup_starship",
     "install_asdf",
     "setup_languages",
     "install_tools",

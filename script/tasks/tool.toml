@@ -1,7 +1,12 @@
-extend = [{ path = "asdf.toml" }, { path = "tools/cli.toml" }, { path = "tools/gui.toml" }]
+extend = [
+  { path = "asdf.toml" },
+  { path = "tools/cli.toml" },
+  { path = "tools/gui.toml" },
+  { path = "starship.toml" },
+]
 
 [tasks.install_tools]
-run_task = [{ name = ["install_cli", "install_gui"] }]
+run_task = [{ name = ["install_cli", "install_gui", "setup_starship"] }]
 
 [tasks.update_tools]
 run_task = [

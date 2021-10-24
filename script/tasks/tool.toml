@@ -1,24 +1,15 @@
-extend = [
-  { path = "asdf.toml" },
-  { path = "tools/cli.toml" },
-  { path = "tools/gui.toml" },
-]
+extend = [{ path = "asdf.toml" }, { path = "tools/cli.toml" }, { path = "tools/gui.toml" }]
 
 [tasks.install_tools]
-run_task = [
-  { name = [
-    "install_cli",
-    "install_gui",
-  ] },
-]
+run_task = [{ name = ["install_cli", "install_gui"] }]
 
 [tasks.update_tools]
 run_task = [
   { name = [
+    "update_asdf",
+    "update_cli",
     "update_package_tools",
     "update_rust_tools",
-    "update_cli",
-    "update_asdf",
     "update_starship",
   ] },
 ]

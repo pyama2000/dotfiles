@@ -1,8 +1,0 @@
-[tasks.install_exa]
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install exa
-'''
-]

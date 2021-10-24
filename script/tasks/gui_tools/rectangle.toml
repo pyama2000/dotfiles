@@ -1,8 +1,0 @@
-[tasks.install_rectangle.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install --cask rectangle
-'''
-]

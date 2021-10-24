@@ -1,8 +1,0 @@
-[tasks.install_git-delta]
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install git-delta
-'''
-]

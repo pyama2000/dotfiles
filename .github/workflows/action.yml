@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - ".github/workflows/action.yml"
-      - "script/*/***"
+      - "script/*/*"
 jobs:
   setup:
     runs-on: ${{ matrix.os }}

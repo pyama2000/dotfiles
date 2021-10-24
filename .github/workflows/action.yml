@@ -1,5 +1,8 @@
 name: Setup a development environment for macOS and Ubuntu
-on: [push]
+on:
+  push:
+    paths:
+      - "script/*"
 jobs:
   setup:
     runs-on: ${{ matrix.os }}

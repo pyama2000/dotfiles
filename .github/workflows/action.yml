@@ -2,6 +2,7 @@ name: Setup a development environment for macOS and Ubuntu
 on:
   push:
     paths:
+      - ".github/workflows/action.yml"
       - "script/*"
 jobs:
   setup:

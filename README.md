@@ -37,7 +37,7 @@ cd ~/dotfiles
 cargo make --makefile script/task.toml update
 
 # npmのバージョンを指定して更新する
-cargo make --makefile script/task.toml update 
+cargo make --makefile script/task.toml update -e NPM_UPDATE_VERSION="7.6.0"
 ```
 
 ## インストールされるツール

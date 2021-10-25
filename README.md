@@ -35,6 +35,9 @@ cargo-make で `update` タスクを実行する.
 ```
 cd ~/dotfiles
 cargo make --makefile script/task.toml update
+
+# npmのバージョンを指定して更新する
+cargo make --makefile script/task.toml update 
 ```
 
 ## インストールされるツール

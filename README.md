@@ -5,7 +5,7 @@ dotfiles
 
 cargo-make で `setup` タスクを実行する. 
 
-```
+```shell script
 git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 script/install.sh
@@ -32,8 +32,7 @@ cargo make --makefile script/task.toml setup \
 
 cargo-make で `update` タスクを実行する. 
 
-```
-cd ~/dotfiles
+```shell script
 cargo make --makefile script/task.toml update
 
 # npmのバージョンを指定して更新する

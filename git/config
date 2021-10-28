@@ -48,3 +48,6 @@
 
 [interactive]
     diffFilter = delta --color-only
+
+[pull]
+    rebase = false

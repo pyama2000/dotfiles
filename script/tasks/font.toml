@@ -1,33 +1,27 @@
 [tasks.setup_font]
-run_task = [{ name = ["download_HackGenNerd", "apply_font"] }]
+run_task = [{ name = ["download_PlemolJP_NF", "apply_font"] }]
 
-[tasks.download_HackGenNerd]
+[tasks.download_PlemolJP_NF]
 script = [
 '''
 #!/usr/bin/env bash
 
-FONT_PATH='HackGenNerd'
+FONT_NAME='PlemolJP_NF'
+ENDPOINT='https://api.github.com/repos/yuru7/PlemolJP/releases/latest'
 
-mkdir -p ~/.fonts/$FONT_PATH
+mkdir -p ~/.fonts/"$FONT_NAME"
+mkdir -p /tmp/"$FONT_NAME"
+cd /tmp/"$FONT_NAME" || exit
 
-mkdir -p /tmp/$FONT_PATH
-cd /tmp/$FONT_PATH
-
-FILE_NAME=$(https://api.github.com/repos/yuru7/HackGen/releases/latest |
-    jq -r '.assets[].name' |
-    grep HackGenNerd)
-
-curl -sL https://api.github.com/repos/yuru7/HackGen/releases/latest |
-    jq -r '.assets[].browser_download_url' |
-    grep "$FILE_NAME" |
-    xargs curl -fsLJO
-
+FILE_NAME=$(curl -sL "$ENDPOINT" | jq -r '.assets[].name' | grep "$FONT_NAME")
+curl -sL "$ENDPOINT" | jq -r '.assets[].browser_download_url' | grep "$FILE_NAME" | xargs curl -fsLJO
 unzip "$FILE_NAME"
 
-mv $FILE_NAME/* ~/.fonts/$FONT_PATH
+FILE_BASENAME=$(basename "$FILE_NAME" .zip)
+find "$FILE_BASENAME" -name '*.ttf' | xargs -I% mv % ~/.fonts/"$FONT_NAME"
 
 cd ../
-rm -rf $FONT_PATH
+rm -rf "$FONT_NAME"
 '''
 ]
 
@@ -36,8 +30,9 @@ script = [
 '''
 #!/usr/bin/env bash
 
-FONT_PATH='HackGenNerd'
-cp -a ~/.fonts/$FONT_PATH/* ~/Library/Fonts
+FONT_NAME='PlemolJP_NF'
+
+cp -a ~/.fonts/"$FONT_NAME"/* ~/Library/Fonts
 '''
 ]
 
@@ -46,7 +41,8 @@ script = [
 '''
 #!/usr/bin/env bash
 
-FONT_PATH='HackGenNerd'
-fc-cache -f -v ~/.fonts/$FONT_PATH
+FONT_NAME='PlemolJP_NF'
+
+fc-cache -f -v ~/.fonts/"$FONT_NAME"
 '''
 ]

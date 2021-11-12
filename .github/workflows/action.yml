@@ -31,9 +31,6 @@ jobs:
     - name: Create local git config file
       if: always()
       run: cargo make --makefile script/task.toml gen_git_local -e GIT_NAME="$GIT_NAME" -e GIT_EMAIL="$GIT_EMAIL"
-    - name: Setup font
-      if: always()
-      run: cargo make --makefile script/task.toml setup_font
     - name: Setup alacritty 
       if: always()
       run: cargo make --makefile script/task.toml setup_alacritty

@@ -16,7 +16,7 @@ run_task = [
     "update_package_tools",
     "update_rust_tools",
     "update_starship",
-  ] },
+  ], parallel = true },
 ]
 
 [tasks.update_package_tools.mac]

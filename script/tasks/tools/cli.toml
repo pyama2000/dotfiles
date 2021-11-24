@@ -16,7 +16,7 @@ run_task = [
 ]
 
 [tasks.update_cli]
-run_task = [{ name = ["update_dapr", "update_ghq"] }]
+run_task = [{ name = ["update_dapr", "update_ghq"], parallel = true }]
 
 # bat
 [tasks.install_bat]

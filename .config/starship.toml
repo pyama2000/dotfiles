@@ -16,7 +16,7 @@ disabled = false
 disabled = true
 
 [nodejs]
-disabled = true
+symbol = "nodejs: "
 
 [python]
 symbol = "python: "

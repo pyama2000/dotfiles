@@ -14,12 +14,3 @@ disabled = false
 
 [ruby]
 disabled = true
-
-[nodejs]
-symbol = "nodejs: "
-
-[python]
-symbol = "python: "
-
-[rust]
-symbol = "rust: "

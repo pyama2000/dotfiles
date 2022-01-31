@@ -19,4 +19,9 @@ set clipboard=unnamedplus
 set nobackup
 set nowritebackup
 
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.php setlocal tabstop=2 shiftwidth=4
+augroup END
+
 set pumblend=30

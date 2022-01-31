@@ -1,7 +1,7 @@
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
   highlight = {
-    ensure_installed = "maintained",
     enable = true,
     disable = {
       'lua',
@@ -9,6 +9,9 @@ require'nvim-treesitter.configs'.setup {
       'c_sharp',
       'dockerfile',
     }
+  },
+  indent = {
+    enable = true,
   }
 }
 EOF

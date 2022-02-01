@@ -20,8 +20,15 @@ run_task = [
 ]
 
 [tasks.update_package_tools.mac]
-command = "brew"
-args = ["upgrade"]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew update
+brew upgrade
+brew upgrade --cask
+'''
+]
 
 [tasks.update_package_tools.linux]
 script = [

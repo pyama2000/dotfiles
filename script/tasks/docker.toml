@@ -1,0 +1,66 @@
+[tasks.setup_docker.mac]
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+CONTEXT_NAME='lima-docker'
+CONTEXT_DESCRIPTION='Use lima docker'
+CONTEXT_DOCKER_HOST="unix://$HOME/.lima/docker/sock/docker.sock"
+CONTEXT_DEFAULT_STACK_ORCHESTRATOR='swarm'
+
+docker context create "$CONTEXT_NAME" \
+  --description "$CONTEXT_DESCRIPTION" \
+  --docker host="$CONTEXT_DOCKER_HOST" \
+  --default-stack-orchestrator="$CONTEXT_DEFAULT_STACK_ORCHESTRATOR"
+
+docker context use "$CONTEXT_NAME"
+'''
+]
+dependencies = ["setup_lima", "install_docker", "install_docker-compose"]
+
+[tasks.setup_lima.mac]
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+limactl start $HOME/dotfiles/lima/docker.yml
+'''
+]
+dependencies = ["install_lima"]
+
+[tasks.install_lima.mac]
+command = "brew"
+args = ["install", "lima"]
+
+[tasks.install_docker.mac]
+command = "brew"
+args = ["install", "docker"]
+
+[tasks.install_docker-compose.mac]
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+WORKDIR='/tmp/docker-compose'
+mkdir -p "$WORKDIR"
+
+curl -sL https://api.github.com/repos/docker/compose/releases/latest \
+  | jq -r '.assets[].browser_download_url' \
+  | grep -E "docker-compose-darwin-x86_64\$" \
+  | xargs -I DOWNLOAD_URL curl -fso "$WORKDIR"/docker-compose DOWNLOAD_URL
+
+sudo chmod +x "$WORKDIR/docker-compose"
+cp "$WORKDIR/docker-compose" /usr/local/bin
+
+mkdir -p $HOME/.docker/cli-plugins
+ln -snfv /usr/local/bin/docker-compose $HOME/.docker/cli-plugins
+
+rm -rf "$WORKDIR"
+'''
+]
+
+[tasks.update_docker-compose.mac]
+run_task = [{ name = ["install_docker-compose"] }]

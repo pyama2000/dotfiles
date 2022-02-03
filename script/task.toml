@@ -1,6 +1,7 @@
 extend = [
   { path = "tasks/alacritty.toml" },
   { path = "tasks/bash.toml" },
+  { path = "tasks/docker.toml" },
   { path = "tasks/dotfiles.toml" },
   { path = "tasks/fish.toml" },
   { path = "tasks/font.toml" },
@@ -32,6 +33,7 @@ run_task = [
     "install_asdf",
     "setup_languages",
     "install_tools",
+    "setup_docker",
     "setup_neovim",
     "install_neovim_provider",
     "link_bash",
@@ -47,6 +49,7 @@ run_task = [
     "update_alacritty",
     "update_dotfiles",
     "update_tools",
+    "update_docker-compose",
     "update_neovim_provider",
     "update_neovim_plugins",
     "cleanup",

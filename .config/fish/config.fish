@@ -56,6 +56,11 @@ direnv hook fish | source
 set -x LIMA_INSTANCE docker
 
 ##############################
+# docker                     #
+##############################
+set -x DOKER_BUILDKIT=1
+
+##############################
 # Alias                      #
 ##############################
 ## ghq

@@ -25,6 +25,10 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
+ls -la ~
+ls -la ~/dotfiles
+ls -la ~/dotfiles/lima
+
 limactl start ~/dotfiles/lima/docker.yml
 '''
 ]

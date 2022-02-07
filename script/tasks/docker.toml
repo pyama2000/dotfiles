@@ -32,11 +32,23 @@ ls -la ~/dotfiles/lima
 limactl start ~/dotfiles/lima/docker.yml
 '''
 ]
-dependencies = ["install_lima"]
+dependencies = ["install_lima", "upgrade_filedescriptor"]
 
 [tasks.install_lima.mac]
 command = "brew"
 args = ["install", "lima"]
+
+[tasks.upgrade_filedescriptor.mac]
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+ln -snfv ~/dotfiles/lima/limit.maxfiles.plist /Library/LaunchDaemons
+sudo chown root /Library/LaunchDaemons/limit.maxfiles.plist
+sudo launchctl load -w /Library/LaunchDaemons/limit.maxfiles.plist
+'''
+]
 
 [tasks.install_docker.mac]
 command = "brew"

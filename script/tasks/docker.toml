@@ -54,7 +54,7 @@ mkdir -p "$WORKDIR"
 curl -sL https://api.github.com/repos/docker/compose/releases/latest \
   | jq -r '.assets[].browser_download_url' \
   | grep -E "docker-compose-darwin-x86_64\$" \
-  | xargs -I DOWNLOAD_URL curl -fso "$WORKDIR"/docker-compose DOWNLOAD_URL
+  | xargs -I DOWNLOAD_URL curl -Lfso "$WORKDIR"/docker-compose DOWNLOAD_URL
 
 sudo chmod +x "$WORKDIR/docker-compose"
 cp "$WORKDIR/docker-compose" /usr/local/bin

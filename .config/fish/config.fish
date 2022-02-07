@@ -6,6 +6,7 @@ set -gx LC_ALL ja_JP.UTF-8
 set -gx LC_TYPE ja_JP.UTF-8
 set -gx LANG ja_JP.UTF-8
 fish_add_path /usr/local/sbin
+fish_add_path $HOME/.local/bin
 
 ##############################
 # asdf                       #
@@ -48,6 +49,16 @@ zoxide init fish | source
 ##############################
 set -x EDITOR nvim
 direnv hook fish | source
+
+##############################
+# lima                       #
+##############################
+set -x LIMA_INSTANCE docker
+
+##############################
+# docker                     #
+##############################
+set -x DOCKER_BUILDKIT 1
 
 ##############################
 # Alias                      #

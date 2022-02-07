@@ -56,6 +56,9 @@ jobs:
     - name: Install tools
       if: always()
       run: cargo make --makefile script/task.toml install_tools
+    - name: Setup Docker
+      if: always()
+      run: cargo make --makefile script/task.toml setup_docker
     - name: Setup neovim
       if: always()
       run: cargo make --makefile script/task.toml setup_neovim
@@ -80,6 +83,9 @@ jobs:
     - name: Update tools
       if: always()
       run: cargo make --makefile script/task.toml update_tools
+    - name: Update docker-compose
+      if: always()
+      run: cargo make --makefile script/task.toml update_docker-compose
     - name: Cleanup
       if: always()
       run: cargo make --makefile script/task.toml cleanup

@@ -2,6 +2,7 @@
 run_task = [{ name = ["add_rust_components", "cargo_tools"] }]
 
 [tasks.add_rust_components]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -11,6 +12,7 @@ rustup component add clippy rustfmt rust-src
 ]
 
 [tasks.cargo_tools]
+private = true
 script = [
 '''
 #!/usr/bin/env bash

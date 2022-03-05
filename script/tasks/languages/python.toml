@@ -2,6 +2,8 @@
 run_task = [{ name = ["install_python", "install_package_manager"] }]
 
 [tasks.install_python]
+private = true
+dependencies = ["dependencies_python", "asdf_python_plugin"]
 script = [
 '''
 #!/usr/bin/env bash
@@ -20,9 +22,9 @@ asdf install python 2.7.18
 asdf global python "$PYTHON_VERSION" 2.7.18
 '''
 ]
-dependencies = ["dependencies_python", "asdf_python_plugin"]
 
 [tasks.dependencies_python.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -32,6 +34,7 @@ brew install readline xz
 ]
 
 [tasks.dependencies_python.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -43,6 +46,7 @@ sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
 ]
 
 [tasks.asdf_python_plugin]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -56,6 +60,7 @@ asdf plugin add python
 ]
 
 [tasks.install_package_manager]
+private = true
 script = [
 '''
 #!/usr/bin/env bash

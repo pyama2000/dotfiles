@@ -20,6 +20,7 @@ asdf global nodejs "$NODE_VERSION"
 ]
 
 [tasks.asdf_node_plugin]
+private = true
 script = [
 '''
 #!/usr/bin/env bash

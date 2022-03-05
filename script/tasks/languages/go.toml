@@ -22,6 +22,7 @@ echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
 ]
 
 [tasks.asdf_go_plugin]
+private = true
 script = [
 '''
 #!/usr/bin/env bash

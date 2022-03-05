@@ -1,7 +1,8 @@
 [tasks.setup_git]
 condition = { env_set = ["GIT_NAME", "GIT_EMAIL"] }
 run_task = [
-  { name = ["install_git", "link_git", "gen_ssh_key", "gen_git_local"] },
+  # { name = ["install_git", "link_git", "gen_ssh_key", "gen_git_local"] },
+  { name = ["install_git"] },
 ]
 script = [
 '''

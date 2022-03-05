@@ -1,0 +1,19 @@
+[tasks.install_deno]
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+curl -fsSL https://deno.land/install.sh | sh
+'''
+]
+
+[tasks.update_deno]
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+deno upgrade
+'''
+]

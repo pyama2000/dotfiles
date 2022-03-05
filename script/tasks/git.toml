@@ -72,6 +72,7 @@ ls -la $HOME
 ls -la $HOME/.config
 
 if [ ! -d $HOME/.config/git/local ]; then
+  mkdir -p $HOME/.config/git/local
   touch $HOME/.config/git/local/config
   touch $HOME/.config/git/local/excludesfile
 fi

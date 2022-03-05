@@ -20,7 +20,6 @@ asdf global nodejs "$NODE_VERSION"
 ]
 
 [tasks.asdf_node_plugin]
-dependencies = ["dependencies_asdf_node"]
 script = [
 '''
 #!/usr/bin/env bash
@@ -31,25 +30,6 @@ if !(type asdf > /dev/null 2>&1); then
 fi
 
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-'''
-]
-
-[tasks.dependencies_asdf_node.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install coreutils gpg
-'''
-]
-
-[tasks.dependencies_asdf_node.linux]
-script = [
-'''
-#!/usr/bin/env bash
-set -eux -o pipefail
-
-sudo apt install -y dirmngr gpg curl
 '''
 ]
 

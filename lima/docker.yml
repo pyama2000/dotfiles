@@ -6,7 +6,7 @@ images:
     arch: "aarch64"
 cpus: 4
 memory: "8GiB"
-disk: "20GiB"
+disk: "100GiB"
 mounts:
   - location: "~/ghq"
     writable: true

@@ -9,7 +9,7 @@ cargo-make で `setup` タスクを実行する.
 git clone https://github.com/pyama2000/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 script/install.sh
-cargo make --makefile script/task.toml setup \
+cargo make --profile production --makefile script/task.toml setup \
   -e GIT_NAME=<GIT_NAME> \
   -e GIT_EMAIL=<GIT_EMAIL> \
   -e GO_VERSION=<GO_VERSION> \
@@ -33,10 +33,10 @@ cargo make --makefile script/task.toml setup \
 cargo-make で `update` タスクを実行する. 
 
 ```shell script
-cargo make --makefile script/task.toml update
+cargo make --profile production --makefile script/task.toml update
 
 # npmのバージョンを指定して更新する
-cargo make --makefile script/task.toml update -e NPM_UPDATE_VERSION="7.6.0"
+cargo make --profile production --makefile script/task.toml update -e NPM_UPDATE_VERSION="7.6.0"
 ```
 
 ## インストールされるツール

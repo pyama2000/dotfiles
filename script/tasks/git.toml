@@ -68,6 +68,9 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
+ls -la $HOME
+ls -la $HOME/.config
+
 if [ ! -d $HOME/.config/git/local ]; then
   touch $HOME/.config/git/local/config
   touch $HOME/.config/git/local/excludesfile

@@ -1,12 +1,15 @@
 [tasks.setup_git]
+condition = { env_set = ["GIT_NAME", "GIT_EMAIL"] }
 run_task = [
   { name = ["install_git", "link_git", "gen_ssh_key", "gen_git_local"] },
 ]
 
 [tasks.install_git.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 if (brew list --formula | grep git > /dev/null); then
   brew upgrade git
@@ -17,9 +20,11 @@ fi
 ]
 
 [tasks.install_git.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 sudo add-apt-repository -y ppa:git-core/ppa
 sudo apt update -y
@@ -29,38 +34,50 @@ sudo apt install -y git
 
 
 [tasks.link_git]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
-ln -snfv ~/dotfiles/git ~/.config
+ln -snfv $HOME/dotfiles/git $HOME/.config
 '''
 ]
 
 [tasks.gen_ssh_key]
+private = true
+condition = { profiles = ["production"], env_set = ["GIT_NAME", "GIT_EMAIL"] }
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
-if [ ! -d "~/.ssh" ] ; then
-  mkdir -m 700 ~/.ssh
+if [ ! -d "$HOME/.ssh" ] ; then
+  mkdir -m 700 $HOME/.ssh
 fi
 
-ssh-keygen -t ed25519 -N "" -C "$GIT_EMAIL" -f ~/.ssh/id_ed25519
+ssh-keygen -t ed25519 -N "" -C "$GIT_EMAIL" -f $HOME/.ssh/id_ed25519
 '''
 ]
 
 [tasks.gen_git_local]
+private = true
+condition = { env_set = ["GIT_NAME", "GIT_EMAIL"] }
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
-if [ ! -f ~/.config/git/config.local ]; then
-  touch ~/.config/git/config.local
+if [ ! -d $HOME/.config/git/local ]; then
+  touch $HOME/.config/git/local/config
+  touch $HOME/.config/git/local/excludesfile
 fi
 
-echo '[user]' >> ~/.config/git/config.local
-echo "  name = \"$GIT_NAME\"" >> ~/.config/git/config.local
-echo "  email = \"$GIT_EMAIL\"" >> ~/.config/git/config.local
+echo '[user]' >> $HOME/.config/git/local/config
+echo -e "\tname = $GIT_NAME" >> $HOME/.config/git/local/config
+echo -e "\temail = $GIT_EMAIL" >> $HOME/.config/git/local/config
+
+echo '[core]' >> $HOME/.config/git/local/config
+echo -e '\texcludesfile = $HOME/.config/git/local/excludesfile' >> $HOME/.config/git/local/config
 '''
 ]

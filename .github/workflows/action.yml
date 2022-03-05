@@ -18,7 +18,7 @@ jobs:
       run: ./script/install.sh
     - name: Install Git
       if: always()
-      run: cargo make --makefile script/task.toml install_git -e GIT_NAME="$GIT_NAME" -e GIT_EMAIL="$GIT_EMAIL"
+      run: cargo make --makefile script/task.toml setup_git -e GIT_NAME="$GIT_NAME" -e GIT_EMAIL="$GIT_EMAIL"
       env:
         GIT_NAME: pyama2000
         GIT_EMAIL: example@example.com

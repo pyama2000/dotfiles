@@ -74,17 +74,17 @@ if [ ! -d $HOME/.config/git/local ]; then
   touch $HOME/.config/git/local/excludesfile
 fi
 
-# echo '[user]' >> $HOME/.config/git/local/config
-# echo -e "\tname = $GIT_NAME" >> $HOME/.config/git/local/config
-# echo -e "\temail = $GIT_EMAIL" >> $HOME/.config/git/local/config
-# 
-# echo '[core]' >> $HOME/.config/git/local/config
-# echo -e '\texcludesfile = $HOME/.config/git/local/excludesfile' >> $HOME/.config/git/local/config
+echo '[user]' >> $HOME/.config/git/local/config
+echo -e "\tname = $GIT_NAME" >> $HOME/.config/git/local/config
+echo -e "\temail = $GIT_EMAIL" >> $HOME/.config/git/local/config
+
+echo '[core]' >> $HOME/.config/git/local/config
+echo -e '\texcludesfile = $HOME/.config/git/local/excludesfile' >> $HOME/.config/git/local/config
 
 ls -la $HOME/.config/git
 ls -la $HOME/.config/git/local
-# cat $HOME/.config/git/config
-# cat $HOME/.config/git/config/local/config
-# cat $HOME/.config/git/config/local/excludesfile
+cat $HOME/.config/git/config
+cat $HOME/.config/git/config/local/config
+cat $HOME/.config/git/config/local/excludesfile
 '''
 ]

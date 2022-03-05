@@ -69,7 +69,7 @@ script = [
 set -eux -o pipefail
 
 if [ ! -d $HOME/.config/git/local ]; then
-  mkdir -p "$HOME/dotfiles/git/local"
+  mkdir -p "$HOME/.config/git/local"
   touch $HOME/.config/git/local/config
   touch $HOME/.config/git/local/excludesfile
 fi

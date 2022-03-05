@@ -35,4 +35,4 @@ export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 export EDITOR=nvim
-eval "$(direnv hook bash)"
+# eval "$(direnv hook bash)"

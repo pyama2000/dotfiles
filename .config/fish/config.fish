@@ -61,6 +61,17 @@ set -x LIMA_INSTANCE docker
 set -x DOCKER_BUILDKIT 1
 
 ##############################
+# Node.js                    #
+##############################
+fish_add_path (npm get prefix)/bin
+
+##############################
+# Deno                       #
+##############################
+set -x DENO_INSTALL "$HOME"/.deno
+fish_add_path $DENO_INSTALL/bin
+
+##############################
 # Alias                      #
 ##############################
 ## ghq

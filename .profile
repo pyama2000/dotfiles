@@ -31,7 +31,7 @@ export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export GOENV_DISABLE_GOPATH="1"
 export RUSTC_WRAPPER="$(which sccache)"
-export DENO_INSTALL="/Users/runner/.deno"
+export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 export EDITOR=nvim

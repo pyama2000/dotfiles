@@ -1,4 +1,7 @@
 [[plugins]]
+repo = 'vim-denops/denops.vim'
+
+[[plugins]]
 repo = 'voldikss/vim-floaterm'
 hook_add = '''
 source ~/.config/nvim/plugins/vim-floaterm.rc.vim

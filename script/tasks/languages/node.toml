@@ -1,4 +1,5 @@
 [tasks.install_node]
+dependencies = ["asdf_node_plugin"]
 script = [
 '''
 #!/usr/bin/env bash
@@ -15,13 +16,11 @@ fi
 
 asdf install nodejs "$NODE_VERSION"
 asdf global nodejs "$NODE_VERSION"
-
-fish -c "set -U fish_user_paths (npm get prefix)/bin $fish_user_paths"
 '''
 ]
-dependencies = ["asdf_node_plugin"]
 
 [tasks.asdf_node_plugin]
+dependencies = ["dependencies_asdf_node"]
 script = [
 '''
 #!/usr/bin/env bash
@@ -34,7 +33,6 @@ fi
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 '''
 ]
-dependencies = ["dependencies_asdf_node"]
 
 [tasks.dependencies_asdf_node.mac]
 script = [

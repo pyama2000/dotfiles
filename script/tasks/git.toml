@@ -3,18 +3,6 @@ condition = { env_set = ["GIT_NAME", "GIT_EMAIL"] }
 run_task = [
   { name = ["install_git", "link_git", "gen_ssh_key", "gen_git_local"] },
 ]
-script = [
-'''
-#!/usr/bin/env bash
-set -eux -o pipefail
-
-ls -la $HOME/.config/git
-ls -la $HOME/.config/git/local
-cat $HOME/.config/git/config
-cat $HOME/.config/git/config/local/config
-cat $HOME/.config/git/config/local/excludesfile
-'''
-]
 
 [tasks.install_git.mac]
 private = true

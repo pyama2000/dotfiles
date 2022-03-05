@@ -1,5 +1,5 @@
 [tasks.setup_python]
-run_task = [{ name = ["install_python", "pyflow"] }]
+run_task = [{ name = ["install_python", "install_package_manager"] }]
 
 [tasks.install_python]
 script = [
@@ -55,12 +55,12 @@ asdf plugin-add python
 '''
 ]
 
-[tasks.pyflow]
+[tasks.install_package_manager]
 script = [
 '''
 #!/usr/bin/env bash
 
-cargo install pyflow
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 '''
 ]
 

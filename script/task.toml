@@ -28,7 +28,7 @@ run_task = [
     "setup_git",
     "setup_tmux",
     "setup_fish",
-    # "setup_alacritty",
+    "setup_alacritty",
     # "install_asdf",
     # "setup_languages",
     # "install_tools",

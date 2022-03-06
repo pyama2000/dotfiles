@@ -2,6 +2,7 @@
 run_task = [{ name = ["download_PlemolJP_NF", "apply_font"] }]
 
 [tasks.download_PlemolJP_NF]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -27,6 +28,7 @@ rm -rf "$FONT_NAME"
 ]
 
 [tasks.apply_font.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -39,6 +41,7 @@ cp -a ~/.fonts/"$FONT_NAME"/* ~/Library/Fonts
 ]
 
 [tasks.apply_font.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash

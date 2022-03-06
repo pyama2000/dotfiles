@@ -29,7 +29,7 @@ run_task = [
     "setup_tmux",
     "setup_fish",
     "setup_alacritty",
-    # "install_asdf",
+    "setup_asdf",
     # "setup_languages",
     # "install_tools",
     # "setup_docker",

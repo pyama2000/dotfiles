@@ -15,12 +15,12 @@ run_task = { name = [
   "install_zoxide",
   "install_cargo-watch",
   "install_cargo-update",
-], parallel = true }
+] }
 
 [tasks.update_cli]
 category = "tools"
 description = "Update cli tools"
-run_task = { name = ["update_dapr", "update_ghq"], parallel = true }
+run_task = { name = ["update_dapr", "update_ghq"] }
 
 # bat
 [tasks.install_bat]

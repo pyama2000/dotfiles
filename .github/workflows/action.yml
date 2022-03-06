@@ -13,58 +13,16 @@ jobs:
         os: [macos-10.15, macos-11, ubuntu-20.04]
     steps:
     - uses: actions/checkout@v2
-    # Install and setup
     - name: Run setup.sh
       run: ./script/install.sh
-    - name: Clone dotfiles
-      if: always()
-      run: cargo make --makefile script/task.toml setup_dotfiles
-    - name: Install Git
-      if: always()
-      run: cargo make --makefile script/task.toml setup_git -e GIT_NAME="$GIT_NAME" -e GIT_EMAIL="$GIT_EMAIL"
+    - name: Run setup.sh
       env:
         GIT_NAME: pyama2000
         GIT_EMAIL: example@example.com
-    - name: Setup font
-      if: always()
-      run: cargo make --makefile script/task.toml setup_font
-    - name: Setup alacritty 
-      if: always()
-      run: cargo make --makefile script/task.toml setup_alacritty
-    - name: Setup tmux
-      if: always()
-      run: cargo make --makefile script/task.toml setup_tmux
-    - name: Setup fish 
-      if: always()
-      run: cargo make --makefile script/task.toml setup_fish
-    - name: Setup starship
-      if: always()
-      run: cargo make --makefile script/task.toml setup_starship
-    - name: Install asdf 
-      if: always()
-      run: cargo make --makefile script/task.toml install_asdf
-    - name: Setup languages
-      if: always()
-      run: cargo make --makefile script/task.toml setup_languages -e PYTHON_VERSION="$PYTHON_VERSION" -e GO_VERSION="$GO_VERSION" -e NODE_VERSION="$NODE_VERSION"
-      env:
         PYTHON_VERSION: 3.9.0
-        GO_VERSION: 1.14.2
-        NODE_VERSION: 12.16.3
-    - name: Install tools
-      if: always()
-      run: cargo make --makefile script/task.toml install_tools
-    - name: Setup Docker
-      if: always()
-      run: cargo make --makefile script/task.toml setup_docker
-    - name: Setup neovim
-      if: always()
-      run: cargo make --makefile script/task.toml setup_neovim
-    - name: Setup vim 
-      if: always()
-      run: cargo make --makefile script/task.toml link_vim 
-    - name: Create bash config link
-      if: always()
-      run: cargo make --makefile script/task.toml link_bash
+        GO_VERSION: 1.17.7
+        NODE_VERSION: 16.14.0
+      run: cargo make --makefile script/task.toml setup -e GIT_NAME="$GIT_NAME" -e GIT_EMAIL="$GIT_EMAIL" -e PYTHON_VERSION="$PYTHON_VERSION" -e GO_VERSION="$GO_VERSION" -e NODE_VERSION="$NODE_VERSION"
     # Update Task
     - name: Update Neovim provider
       if: always()

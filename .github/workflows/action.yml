@@ -25,7 +25,7 @@ jobs:
       env:
         GIT_NAME: pyama2000
         GIT_EMAIL: example@example.com
-    - name: Setup alacritty 
+    - name: Setup font
       if: always()
       run: cargo make --makefile script/task.toml setup_font
     - name: Setup alacritty 

@@ -36,6 +36,8 @@ set -eux -o pipefail
 
 FONT_NAME='PlemolJP_NF'
 
+ls -la ~/Library/Fonts
+
 cp -a ~/.fonts/"$FONT_NAME"/* ~/Library/Fonts
 '''
 ]

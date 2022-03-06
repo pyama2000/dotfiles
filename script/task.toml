@@ -45,9 +45,9 @@ run_task = [
 [tasks.update]
 run_task = [
   { name = [
+    "update_dotfiles",
     # "update_languages",
     # "update_alacritty",
-    # "update_dotfiles",
     # "update_tools",
     # "update_docker-compose",
     # "update_neovim_provider",

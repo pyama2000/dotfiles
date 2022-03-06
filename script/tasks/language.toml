@@ -23,6 +23,7 @@ description = "Update languages"
 run_task = { name = [
   "update_deno",
   "update_rust",
+  "update_go",
   # "update_pip_version",
   # "update_npm_version",
 ], parallel = true }

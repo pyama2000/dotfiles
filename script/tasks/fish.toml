@@ -4,8 +4,6 @@ description = "Setup fish shell"
 run_task = { name = ["install_fish", "link_fish"] }
 
 [tasks.install_fish.mac]
-category = "fish"
-description = "Install fish shell for mac"
 private = true
 script = [
 '''
@@ -16,8 +14,6 @@ brew install fish
 ]
 
 [tasks.install_fish.linux]
-category = "fish"
-description = "Install fish shell for linux"
 private = true
 script = [
 '''
@@ -30,8 +26,6 @@ sudo apt install -y fish
 ]
 
 [tasks.link_fish]
-category = "fish"
-description = "Create fish shell config symbolic link"
 private = true
 script = [
 '''

@@ -1,7 +1,10 @@
 [tasks.setup_starship]
-run_task = [{ name = ["install_starship", "link_starship"] }]
+category = "tools"
+description = "Setup starship"
+run_task = { name = ["install_starship", "link_starship"] }
 
 [tasks.install_starship]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -11,6 +14,7 @@ sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
 ]
 
 [tasks.link_starship]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -20,4 +24,6 @@ ln -snfv ~/dotfiles/.config/starship.toml ~/.config/
 ]
 
 [tasks.update_starship]
-run_task = [{ name = ["install_starship"] }]
+category = "tools"
+description = "Update starship"
+alias = "install_starship"

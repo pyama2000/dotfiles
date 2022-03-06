@@ -46,6 +46,7 @@ run_task = [
 run_task = [
   { name = [
     "update_dotfiles",
+    "update_asdf",
     # "update_languages",
     "update_alacritty",
     # "update_tools",

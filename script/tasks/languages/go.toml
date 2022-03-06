@@ -4,17 +4,12 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if test -z "$GO_VERSION"; then
-  echo "GO_VERSION must be set"
-  exit 1
-fi
-
 if !(type asdf > /dev/null 2>&1); then
   source ~/.profile
 fi
 
-asdf install golang "$GO_VERSION"
-asdf global golang "$GO_VERSION"
+asdf install golang latest
+asdf global golang latest
 
 echo 'export GOPATH="$HOME/go"' >> ~/.profile
 echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile

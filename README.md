@@ -12,7 +12,6 @@ script/install.sh
 cargo make --profile production --makefile script/task.toml setup \
   -e GIT_NAME=<GIT_NAME> \
   -e GIT_EMAIL=<GIT_EMAIL> \
-  -e GO_VERSION=<GO_VERSION> \
   -e NODE_VERSION=<NODE_VERSION> \
   -e PYTHON_VERSION=<PYTHON_VERSION>
 ```
@@ -23,7 +22,6 @@ cargo make --profile production --makefile script/task.toml setup \
 |:----------------|:---------|:--------------------|
 | GIT\_NAME       | string   | pyama2000           |
 | GIT\_EMAIL      | string   | example@example.com |
-| GO\_VERSION     | string   | 1.17.1              |
 | NODE\_VERSION   | string   | 14.16.0             |
 | PYTHON\_VERSION | string   | 3.10.0              |
 

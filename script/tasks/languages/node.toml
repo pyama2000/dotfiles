@@ -24,6 +24,7 @@ asdf global nodejs "$NODE_VERSION"
 [tasks.update_npm_version]
 category = "languages"
 description = "Update npm version"
+condition = { profiles = ["production"] }
 script = [
 '''
 #!/usr/bin/env bash

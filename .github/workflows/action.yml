@@ -27,6 +27,9 @@ jobs:
         GIT_EMAIL: example@example.com
     - name: Setup alacritty 
       if: always()
+      run: cargo make --makefile script/task.toml setup_font
+    - name: Setup alacritty 
+      if: always()
       run: cargo make --makefile script/task.toml setup_alacritty
     - name: Setup tmux
       if: always()

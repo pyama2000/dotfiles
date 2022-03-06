@@ -5,6 +5,7 @@ run_task = [{ name = ["download_PlemolJP_NF", "apply_font"] }]
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 FONT_NAME='PlemolJP_NF'
 ENDPOINT='https://api.github.com/repos/yuru7/PlemolJP/releases/latest'
@@ -29,6 +30,7 @@ rm -rf "$FONT_NAME"
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 FONT_NAME='PlemolJP_NF'
 
@@ -40,6 +42,7 @@ cp -a ~/.fonts/"$FONT_NAME"/* ~/Library/Fonts
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 FONT_NAME='PlemolJP_NF'
 

@@ -12,6 +12,8 @@ run_task = [
     "install_jq",
     "install_ripgrep",
     "install_zoxide",
+    "install_cargo-watch",
+    "install_cargo-update",
   ] },
 ]
 
@@ -202,5 +204,25 @@ script = [
 
 cargo install zoxide
 echo 'eval "$(zoxide init bash)"' >> ~/.profile
+'''
+]
+
+[tasks.install_cargo-watch]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install cargo-watch
+'''
+]
+
+[tasks.install_cargo-update]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+
+cargo install cargo-update
 '''
 ]

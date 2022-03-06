@@ -3,6 +3,11 @@ category = "alacritty"
 description = "Setup alacritty"
 run_task = { name = ["clone_alacritty", "install_alacritty", "link_alacritty"] }
 
+[tasks.update_alacritty]
+category = "alacritty"
+description = "Update alacritty"
+run_task = { name = ["pull_alacritty", "install_alacritty"] }
+
 [tasks.clone_alacritty]
 private = true
 script = [
@@ -80,8 +85,3 @@ script = [
 ln -snfv ~/dotfiles/.config/alacritty ~/.config
 '''
 ]
-
-[tasks.update_alacritty]
-category = "alacritty"
-description = "Update alacritty"
-run_task = { name = ["pull_alacritty", "install_alacritty"] }

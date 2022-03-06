@@ -1,27 +1,30 @@
 [tasks.install_cli]
-run_task = [
-  { name = [
-    "install_bat",
-    "install_dapr",
-    "install_direnv",
-    "install_exa",
-    "install_fd",
-    "install_fzf",
-    "install_ghq",
-    "install_git-delta",
-    "install_jq",
-    "install_ripgrep",
-    "install_zoxide",
-    "install_cargo-watch",
-    "install_cargo-update",
-  ] },
-]
+category = "tools"
+description = "Install cli tools"
+run_task = { name = [
+  "install_bat",
+  "install_dapr",
+  "install_direnv",
+  "install_exa",
+  "install_fd",
+  "install_fzf",
+  "install_ghq",
+  "install_git-delta",
+  "install_jq",
+  "install_ripgrep",
+  "install_zoxide",
+  "install_cargo-watch",
+  "install_cargo-update",
+], parallel = true }
 
 [tasks.update_cli]
+category = "tools"
+description = "Update cli tools"
 run_task = [{ name = ["update_dapr", "update_ghq"] }]
 
 # bat
 [tasks.install_bat]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -32,6 +35,7 @@ cargo install --locked bat
 dependencies = ["dependencies_bat"]
 
 [tasks.dependencies_bat.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -42,6 +46,7 @@ sudo apt install -y libclang-dev
 
 # dapr
 [tasks.install_dapr.mac]
+private = true
 condition = { profiles = ["production"]}
 script = [
 '''
@@ -52,6 +57,7 @@ curl -fsSL https://raw.githubusercontent.com/dapr/cli/master/install/install.sh 
 ]
 
 [tasks.install_dapr.linux]
+private = true
 condition = { profiles = ["production"]}
 script = [
 '''
@@ -62,13 +68,16 @@ wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O 
 ]
 
 [tasks.update_dapr.mac]
-run_task = [{ name = ["install_dapr"] }]
+private = true
+run_task = { name = ["install_dapr"] }
 
 [tasks.update_dapr.linux]
-run_task = [{ name = ["install_dapr"] }]
+private = true
+run_task = { name = ["install_dapr"] }
 
 # direnv
 [tasks.install_direnv.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -78,6 +87,7 @@ brew install direnv
 ]
 
 [tasks.install_direnv.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -90,6 +100,7 @@ echo 'eval "$(direnv hook bash)"' >> ~/.profile
 
 # exa
 [tasks.install_exa]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -100,6 +111,7 @@ cargo install exa
 
 # fd
 [tasks.install_fd]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -110,6 +122,7 @@ cargo install fd-find
 
 # fzf
 [tasks.install_fzf.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -120,6 +133,7 @@ yes | $(brew --prefix)/opt/fzf/install
 ]
 
 [tasks.install_fzf.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -131,6 +145,7 @@ yes | ~/.fzf/install
 
 # ghq
 [tasks.install_ghq.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -140,6 +155,7 @@ brew install ghq
 ]
 
 [tasks.install_ghq.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -149,6 +165,7 @@ go get github.com/x-motemen/ghq
 ]
 
 [tasks.update_ghq.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -159,6 +176,7 @@ go get -u github.com/x-motemen/ghq
 
 # git-delta
 [tasks.install_git-delta]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -169,6 +187,7 @@ cargo install git-delta
 
 # jq
 [tasks.install_jq.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -178,6 +197,7 @@ brew install jq
 ]
 
 [tasks.install_jq.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -188,6 +208,7 @@ sudo apt install -y jq
 
 # ripgrep
 [tasks.install_ripgrep]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -198,6 +219,7 @@ cargo install ripgrep
 
 # zoxide
 [tasks.install_zoxide]
+private = true
 script = [
 '''
 #!/usr/bin/env bash

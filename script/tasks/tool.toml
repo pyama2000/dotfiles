@@ -6,15 +6,18 @@ extend = [
 ]
 
 [tasks.install_tools]
-run_task = [{ name = ["install_cli", "install_gui", "setup_starship"] }]
+category = "tools"
+description = "Install tools"
+# run_task = { name = ["install_cli", "install_gui", "setup_starship"] }
+run_task = { name = ["install_cli"] }
 
 [tasks.update_tools]
 run_task = [
   { name = [
     "update_cli",
-    "update_package_tools",
-    "update_rust_tools",
-    "update_starship",
+    # "update_package_tools",
+    # "update_rust_tools",
+    # "update_starship",
   ] },
 ]
 

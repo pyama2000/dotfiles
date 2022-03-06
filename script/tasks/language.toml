@@ -14,7 +14,7 @@ run_task = { name = [
   "setup_rust",
   "install_go",
   "install_node",
-  # "setup_python",
+  "setup_python",
 # ], parallel = true }
 ] }
 
@@ -25,7 +25,7 @@ run_task = { name = [
   "update_deno",
   "update_rust",
   "update_go",
-  "update_npm_version",
-  # "update_pip_version",
+  "update_npm",
+  "update_pip",
 # ], parallel = true }
 ] }

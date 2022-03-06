@@ -21,7 +21,7 @@ asdf global nodejs "$NODE_VERSION"
 '''
 ]
 
-[tasks.update_npm_version]
+[tasks.update_npm]
 category = "languages"
 description = "Update npm version"
 condition = { profiles = ["production"] }

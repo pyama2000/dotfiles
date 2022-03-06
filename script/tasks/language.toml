@@ -15,7 +15,8 @@ run_task = { name = [
   "install_go",
   "install_node",
   # "setup_python",
-], parallel = true }
+# ], parallel = true }
+] }
 
 [tasks.update_languages]
 category = "languages"
@@ -26,4 +27,5 @@ run_task = { name = [
   "update_go",
   "update_npm_version",
   # "update_pip_version",
-], parallel = true }
+# ], parallel = true }
+] }

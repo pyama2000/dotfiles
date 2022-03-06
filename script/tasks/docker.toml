@@ -1,4 +1,5 @@
 [tasks.setup_docker.mac]
+dependencies = ["setup_lima", "install_docker", "install_docker-compose"]
 script = [
 '''
 #!/usr/bin/env bash
@@ -17,28 +18,33 @@ docker context create "$CONTEXT_NAME" \
 docker context use "$CONTEXT_NAME"
 '''
 ]
-dependencies = ["setup_lima", "install_docker", "install_docker-compose"]
 
 [tasks.setup_lima.mac]
+private = true
+dependencies = ["install_lima", "upgrade_filedescriptor"]
 script = [
 '''
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-ls -la ~
-ls -la ~/dotfiles
-ls -la ~/dotfiles/lima
-
 limactl start ~/dotfiles/lima/docker.yml
 '''
 ]
-dependencies = ["install_lima", "upgrade_filedescriptor"]
 
 [tasks.install_lima.mac]
-command = "brew"
-args = ["install", "lima"]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+brew install lima
+'''
+]
 
 [tasks.upgrade_filedescriptor.mac]
+private = true
+condition = { profiles = ["production"] }
 script = [
 '''
 #!/usr/bin/env bash
@@ -51,10 +57,18 @@ sudo launchctl load -w /Library/LaunchDaemons/limit.maxfiles.plist
 ]
 
 [tasks.install_docker.mac]
-command = "brew"
-args = ["install", "docker"]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+brew install docker
+'''
+]
 
 [tasks.install_docker-compose.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -79,4 +93,4 @@ rm -rf "$WORKDIR"
 ]
 
 [tasks.update_docker-compose.mac]
-run_task = [{ name = ["install_docker-compose"] }]
+run_task = { name = ["install_docker-compose"] }

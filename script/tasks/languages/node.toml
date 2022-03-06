@@ -1,7 +1,9 @@
 [tasks.install_node]
+dependencies = ["asdf_node_plugin"]
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 if test -z "$NODE_VERSION"; then
   echo "NODE_VERSION must be set"
@@ -14,42 +16,21 @@ fi
 
 asdf install nodejs "$NODE_VERSION"
 asdf global nodejs "$NODE_VERSION"
-
-fish -c "set -U fish_user_paths (npm get prefix)/bin $fish_user_paths"
 '''
 ]
-dependencies = ["asdf_node_plugin"]
 
 [tasks.asdf_node_plugin]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 if !(type asdf > /dev/null 2>&1); then
   source ~/.profile
 fi
 
-asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
-'''
-]
-dependencies = ["dependencies_asdf_node"]
-
-[tasks.dependencies_asdf_node.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install coreutils gpg
-'''
-]
-
-[tasks.dependencies_asdf_node.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y dirmngr gpg curl
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 '''
 ]
 
@@ -57,6 +38,7 @@ sudo apt install -y dirmngr gpg curl
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 if [ -z "$NPM_UPDATE_VERSION" ]; then
   NPM_UPDATE_VERSION='latest'

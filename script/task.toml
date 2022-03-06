@@ -24,8 +24,8 @@ condition = { env_set = [
 ] }
 run_task = [
   { name = [
-    "setup_git",
     "setup_dotfiles",
+    "setup_git",
     "setup_font",
     "setup_alacritty",
     "setup_tmux",

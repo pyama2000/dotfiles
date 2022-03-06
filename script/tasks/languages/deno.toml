@@ -5,6 +5,9 @@ script = [
 set -eux -o pipefail
 
 curl -fsSL https://deno.land/install.sh | sh
+
+echo 'export DENO_INSTALL="$HOME/.deno"' >> ~/.profile
+echo 'export PATH="$DENO_INSTALL/bin:$PATH"' >> ~/.profile
 '''
 ]
 
@@ -13,6 +16,10 @@ script = [
 '''
 #!/usr/bin/env bash
 set -eux -o pipefail
+
+if !(type deno > /dev/null 2>&1); then
+  source ~/.profile
+fi
 
 deno upgrade
 '''

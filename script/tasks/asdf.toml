@@ -11,7 +11,7 @@ script = [
 #!/usr/bin/env bash
 
 if !(type asdf > /dev/null 2>&1); then
-  source $HOME/.bashrc
+  source $HOME/.asdf/asdf.sh
 fi
 
 asdf update
@@ -52,4 +52,3 @@ script = [
 sudo apt install -y curl git
 '''
 ]
-

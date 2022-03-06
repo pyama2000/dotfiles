@@ -45,9 +45,8 @@ jobs:
       run: cargo make --makefile script/task.toml install_asdf
     - name: Setup languages
       if: always()
-      run: cargo make --makefile script/task.toml setup_languages -e PYTHON_VERSION="$PYTHON_VERSION" -e NODE_VERSION="$NODE_VERSION"
+      run: cargo make --makefile script/task.toml setup_languages -e NODE_VERSION="$NODE_VERSION"
       env:
-        PYTHON_VERSION: 3.9.0
         NODE_VERSION: 12.16.3
     - name: Install tools
       if: always()

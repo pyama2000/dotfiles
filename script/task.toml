@@ -16,7 +16,6 @@ extend = [
 
 [tasks.setup]
 condition = { env_set = [
-  "PYTHON_VERSION",
   "NODE_VERSION",
   "GIT_NAME",
   "GIT_EMAIL",

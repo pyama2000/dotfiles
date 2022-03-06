@@ -7,19 +7,15 @@ dependencies = ["dependencies_python", "asdf_python_plugin"]
 script = [
 '''
 #!/usr/bin/env bash
-
-if test -z "$PYTHON_VERSION"; then
-  echo "PYTHON_VERSION must be set"
-  exit 1
-fi
+set -eux -o pipefail
 
 if !(type asdf > /dev/null 2>&1); then
   source ~/.profile
 fi
 
-asdf install python "$PYTHON_VERSION"
+asdf install python latest
 asdf install python 2.7.18
-asdf global python "$PYTHON_VERSION" 2.7.18
+asdf global python latest 2.7.18
 '''
 ]
 
@@ -38,6 +34,7 @@ private = true
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
@@ -50,6 +47,7 @@ private = true
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 if !(type asdf > /dev/null 2>&1); then
   source ~/.profile
@@ -64,8 +62,20 @@ private = true
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+'''
+]
+
+[tasks.update_python]
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+asdf install python latest
+asdf global python latest 2.7.18
 '''
 ]
 
@@ -73,6 +83,7 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poet
 script = [
 '''
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 python2 -m pip install --user --upgrade pip
 python3 -m pip install --user --upgrade pip

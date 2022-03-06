@@ -34,8 +34,8 @@ run_task = [
     "install_neovim_provider",
     "setup_docker",
     "setup_font",
-    "link_bash",
-    "link_vim",
+    # "link_bash",
+    # "link_vim",
     "cleanup",
   ] },
 ]

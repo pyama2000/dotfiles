@@ -24,6 +24,7 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
+cat $HOME/.bashrc
 if !(type asdf > /dev/null 2>&1); then
   source ~/.profile
 fi

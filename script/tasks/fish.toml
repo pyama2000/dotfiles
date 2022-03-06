@@ -37,13 +37,8 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if [ ! -d "~/.config/fish/functions" ] ; then
-  mkdir -p ~/.config/fish/functions
-fi
-
-if [ ! -d "~/.config/fish/completions" ] ; then
-  mkdir -p ~/.config/fish/completions
-fi
+mkdir -p ~/.config/fish/functions
+mkdir -p ~/.config/fish/completions
 
 ln -snfv ~/dotfiles/.config/fish/config.fish ~/.config/fish
 ln -snfv ~/dotfiles/.config/fish/functions/* ~/.config/fish/functions

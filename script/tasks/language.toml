@@ -22,7 +22,7 @@ category = "languages"
 description = "Update languages"
 run_task = { name = [
   "update_deno",
-  "update_rust",
-  "update_pip_version",
-  "update_npm_version",
+  # "update_rust",
+  # "update_pip_version",
+  # "update_npm_version",
 ] }

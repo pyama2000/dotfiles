@@ -9,7 +9,7 @@ extend = [
 category = "tools"
 description = "Install tools"
 # run_task = { name = ["install_cli", "install_gui", "setup_starship"] }
-run_task = { name = ["install_cli"] }
+run_task = { name = ["install_cli", "install_gui"] }
 
 [tasks.update_tools]
 run_task = [

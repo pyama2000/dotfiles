@@ -1,6 +1,6 @@
 [tasks.install_cli]
 category = "tools"
-description = "Install cli tools"
+description = "Install CLI tools"
 run_task = { name = [
   "install_bat",
   "install_dapr",
@@ -19,7 +19,7 @@ run_task = { name = [
 
 [tasks.update_cli]
 category = "tools"
-description = "Update cli tools"
+description = "Update CLI tools"
 run_task = { name = ["update_dapr", "update_ghq"] }
 
 # bat
@@ -47,7 +47,7 @@ sudo apt install -y libclang-dev
 # dapr
 [tasks.install_dapr.mac]
 private = true
-condition = { profiles = ["production"]}
+condition = { profiles = ["production"] }
 script = [
 '''
 #!/usr/bin/env bash
@@ -58,7 +58,7 @@ curl -fsSL https://raw.githubusercontent.com/dapr/cli/master/install/install.sh 
 
 [tasks.install_dapr.linux]
 private = true
-condition = { profiles = ["production"]}
+condition = { profiles = ["production"] }
 script = [
 '''
 #!/usr/bin/env bash

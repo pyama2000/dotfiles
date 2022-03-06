@@ -29,24 +29,7 @@ jobs:
           -e PYTHON_VERSION="$PYTHON_VERSION" \
           -e GO_VERSION="$GO_VERSION" \
           -e NODE_VERSION="$NODE_VERSION"
-    # Update Task
-    - name: Update Neovim provider
-      if: always()
-      run: cargo make --makefile script/task.toml update_neovim_provider
-    - name: Update language
-      if: always()
-      run: cargo make --makefile script/task.toml update_languages -e NPM_UPDATE_VERSION="$NPM_UPDATE_VERSION"
+    - name: Run update task
       env:
         NPM_UPDATE_VERSION: "7.6.0"
-    - name: Update Alacritty 
-      if: always()
-      run: cargo make --makefile script/task.toml update_alacritty
-    - name: Update tools
-      if: always()
-      run: cargo make --makefile script/task.toml update_tools
-    - name: Update docker-compose
-      if: always()
-      run: cargo make --makefile script/task.toml update_docker-compose
-    - name: Cleanup
-      if: always()
-      run: cargo make --makefile script/task.toml cleanup
+      run: cargo make --makefile script/task.toml update -e NPM_UPDATE_VERSION="$NPM_UPDATE_VERSION"

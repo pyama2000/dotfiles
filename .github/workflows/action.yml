@@ -19,10 +19,16 @@ jobs:
       env:
         GIT_NAME: pyama2000
         GIT_EMAIL: example@example.com
-        PYTHON_VERSION: 3.9.0
+        PYTHON_VERSION: 3.10.2
         GO_VERSION: 1.17.7
         NODE_VERSION: 16.14.0
-      run: cargo make --makefile script/task.toml setup -e GIT_NAME="$GIT_NAME" -e GIT_EMAIL="$GIT_EMAIL" -e PYTHON_VERSION="$PYTHON_VERSION" -e GO_VERSION="$GO_VERSION" -e NODE_VERSION="$NODE_VERSION"
+      run: |
+        cargo make --makefile script/task.toml setup \
+          -e GIT_NAME="$GIT_NAME" \
+          -e GIT_EMAIL="$GIT_EMAIL" \
+          -e PYTHON_VERSION="$PYTHON_VERSION" \
+          -e GO_VERSION="$GO_VERSION" \
+          -e NODE_VERSION="$NODE_VERSION"
     # Update Task
     - name: Update Neovim provider
       if: always()

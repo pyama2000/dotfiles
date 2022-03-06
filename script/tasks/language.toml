@@ -12,7 +12,7 @@ description = "Setup languages in parallel"
 run_task = { name = [
   "install_deno",
   "setup_rust",
-  # "install_go",
+  "install_go",
   # "install_node",
   # "setup_python",
 ], parallel = true }

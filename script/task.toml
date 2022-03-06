@@ -26,9 +26,9 @@ run_task = [
   { name = [
     "setup_dotfiles",
     "setup_git",
-    # "setup_alacritty",
-    # "setup_tmux",
+    "setup_tmux",
     # "setup_fish",
+    # "setup_alacritty",
     # "install_asdf",
     # "setup_languages",
     # "install_tools",

@@ -6,7 +6,6 @@ dependencies = ["asdf_node_plugin"]
 script = [
 '''
 #!/usr/bin/env bash
-set -eux -o pipefail
 
 if test -z "$NODE_VERSION"; then
   echo "NODE_VERSION must be set"
@@ -28,7 +27,6 @@ description = "Update npm version"
 script = [
 '''
 #!/usr/bin/env bash
-set -eux -o pipefail
 
 if [ -z "$NPM_UPDATE_VERSION" ]; then
   NPM_UPDATE_VERSION='latest'
@@ -43,7 +41,6 @@ private = true
 script = [
 '''
 #!/usr/bin/env bash
-set -eux -o pipefail
 
 if !(type asdf > /dev/null 2>&1); then
   source $HOME/.asdf/asdf.sh

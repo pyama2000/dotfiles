@@ -16,8 +16,6 @@ extend = [
 
 [tasks.setup]
 condition = { env_set = [
-  "PYTHON_VERSION",
-  "GO_VERSION",
   "NODE_VERSION",
   "GIT_NAME",
   "GIT_EMAIL",
@@ -32,7 +30,7 @@ run_task = [
     "setup_asdf",
     "setup_languages",
     "install_tools",
-    # "setup_docker",
+    "setup_docker",
     # "setup_neovim",
     # "install_neovim_provider",
     # "link_bash",
@@ -50,7 +48,7 @@ run_task = [
     "update_languages",
     "update_alacritty",
     "update_tools",
-    # "update_docker-compose",
+    "update_docker-compose",
     # "update_neovim_provider",
     # "update_neovim_plugins",
     "cleanup",

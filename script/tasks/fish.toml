@@ -37,11 +37,11 @@ script = [
 '''
 #!/usr/bin/env bash
 
-mkdir -p ~/.config/fish/functions
-mkdir -p ~/.config/fish/completions
+mkdir -p $HOME/.config/fish/functions
+mkdir -p $HOME/.config/fish/completions
 
-ln -snfv ~/dotfiles/.config/fish/config.fish ~/.config/fish
-ln -snfv ~/dotfiles/.config/fish/functions/* ~/.config/fish/functions
-ln -snfv ~/dotfiles/.config/fish/completions/* ~/.config/fish/completions
+ln -snfv $HOME/dotfiles/.config/fish/config.fish $HOME/.config/fish
+ln -snfv $HOME/dotfiles/.config/fish/functions/* $HOME/.config/fish/functions
+ln -snfv $HOME/dotfiles/.config/fish/completions/* $HOME/.config/fish/completions
 '''
 ]

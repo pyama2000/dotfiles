@@ -26,7 +26,6 @@ run_task = [
   { name = [
     "setup_dotfiles",
     "setup_git",
-    "setup_font",
     "setup_alacritty",
     "setup_tmux",
     "setup_fish",
@@ -38,6 +37,7 @@ run_task = [
     "install_neovim_provider",
     "link_bash",
     "link_vim",
+    "setup_font",
     "cleanup",
   ] },
 ]

@@ -36,7 +36,9 @@ set -eux -o pipefail
 
 FONT_NAME='PlemolJP_NF'
 
-ls -la ~/Library/Fonts
+if [ ! -d "$HOME/Library/Fonts" ]; then
+  mkdir -p "$HOME"/Library/Fonts
+fi
 
 cp -a ~/.fonts/"$FONT_NAME"/* ~/Library/Fonts
 '''

@@ -63,7 +63,7 @@ set -x DOCKER_BUILDKIT 1
 ##############################
 # Node.js                    #
 ##############################
-fish_add_path (npm get prefix)/bin
+# fish_add_path (npm get prefix)/bin
 
 ##############################
 # Deno                       #

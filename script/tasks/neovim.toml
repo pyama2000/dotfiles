@@ -1,14 +1,31 @@
 [tasks.setup_neovim]
-run_task = [
-  { name = [
-    "install_neovim",
-    "install_dein",
-    "link_neovim",
-    "install_neovim_provider",
-  ] },
+category = "Neovim"
+description = "Setup Neovim"
+run_task = { name = [
+  "install_neovim",
+  "install_dein",
+  "link_neovim",
+  "install_neovim_provider",
+] }
+
+[tasks.update_neovim_provider]
+category = "Neovim"
+description = "Update Neovim provider"
+alias = "install_neovim_provider"
+
+[tasks.update_neovim_plugins]
+category = "Neovim"
+description = "Update Neovim plugins"
+script = [
+'''
+#!/usr/bin/env bash
+
+nvim +"call dein#update()" +qall
+'''
 ]
 
 [tasks.install_neovim.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -18,6 +35,7 @@ brew install neovim
 ]
 
 [tasks.install_neovim.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -29,6 +47,7 @@ sudo apt install -y neovim
 ]
 
 [tasks.install_dein]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -40,6 +59,7 @@ rm ~/installer.sh
 ]
 
 [tasks.link_neovim]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -49,6 +69,7 @@ ln -snfv ~/dotfiles/.config/nvim ~/.config
 ]
 
 [tasks.install_neovim_provider.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -65,6 +86,7 @@ fi
 ]
 
 [tasks.install_neovim_provider.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -77,17 +99,5 @@ fi
 if type node >/dev/null 2>&1; then
   sudo npm install -g neovim
 fi
-'''
-]
-
-[tasks.update_neovim_provider]
-run_task = [{ name = ["install_neovim_provider"] }]
-
-[tasks.update_neovim_plugins]
-script = [
-'''
-#!/usr/bin/env bash
-
-nvim +"call dein#update()" +qall
 '''
 ]

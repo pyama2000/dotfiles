@@ -16,8 +16,6 @@ extend = [
 
 [tasks.setup]
 condition = { env_set = [
-  "PYTHON_VERSION",
-  "GO_VERSION",
   "NODE_VERSION",
   "GIT_NAME",
   "GIT_EMAIL",
@@ -26,18 +24,18 @@ run_task = [
   { name = [
     "setup_dotfiles",
     "setup_git",
-    "setup_font",
-    "setup_alacritty",
     "setup_tmux",
     "setup_fish",
-    "install_asdf",
+    "setup_alacritty",
+    "setup_asdf",
     "setup_languages",
     "install_tools",
-    "setup_docker",
     "setup_neovim",
     "install_neovim_provider",
-    "link_bash",
-    "link_vim",
+    "setup_docker",
+    "setup_font",
+    # "link_bash",
+    # "link_vim",
     "cleanup",
   ] },
 ]
@@ -45,13 +43,14 @@ run_task = [
 [tasks.update]
 run_task = [
   { name = [
+    "update_dotfiles",
+    "update_asdf",
     "update_languages",
     "update_alacritty",
-    "update_dotfiles",
     "update_tools",
-    "update_docker-compose",
     "update_neovim_provider",
     "update_neovim_plugins",
+    "update_docker-compose",
     "cleanup",
   ] },
 ]

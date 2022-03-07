@@ -1,26 +1,33 @@
 [tasks.setup_alacritty]
-run_task = [
-  { name = ["clone_alacritty", "install_alacritty", "link_alacritty"] },
-]
+category = "alacritty"
+description = "Setup alacritty"
+run_task = { name = ["clone_alacritty", "install_alacritty", "link_alacritty"] }
+
+[tasks.update_alacritty]
+category = "alacritty"
+description = "Update alacritty"
+run_task = { name = ["pull_alacritty", "install_alacritty"] }
 
 [tasks.clone_alacritty]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
 
-git clone https://github.com/alacritty/alacritty.git ~/alacritty
-cd ~/alacritty
+git clone https://github.com/alacritty/alacritty.git $HOME/alacritty
+cd $HOME/alacritty
 rustup override set stable
 rustup update stable
 '''
 ]
 
 [tasks.pull_alacritty]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
 
-cd ~/alacritty
+cd $HOME/alacritty
 git pull --rebase origin master
 rustup override set stable
 rustup update stable
@@ -28,22 +35,25 @@ rustup update stable
 ]
 
 [tasks.install_alacritty.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
 
-cd ~/alacritty
+cd $HOME/alacritty
 make app
 cp -rf target/release/osx/Alacritty.app /Applications/
 '''
 ]
 
 [tasks.install_alacritty.linux]
+private = true
+dependencies = ["dependencies_alacritty"]
 script = [
 '''
 #!/usr/bin/env bash
 
-cd ~/alacritty
+cd $HOME/alacritty
 cargo build --release
 
 sudo cp -f target/release/alacritty /usr/local/bin
@@ -55,9 +65,9 @@ sudo mkdir -p /usr/local/share/man/man1
 gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
 '''
 ]
-dependencies = ["dependencies_alacritty"]
 
 [tasks.dependencies_alacritty.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -67,13 +77,11 @@ sudo apt install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-
 ]
 
 [tasks.link_alacritty]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
 
-ln -snfv ~/dotfiles/.config/alacritty ~/.config
+ln -snfv $HOME/dotfiles/.config/alacritty $HOME/.config
 '''
 ]
-
-[tasks.update_alacritty]
-run_task = [{ name = ["pull_alacritty", "install_alacritty"] }]

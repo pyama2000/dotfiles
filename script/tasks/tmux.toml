@@ -1,38 +1,35 @@
 [tasks.setup_tmux]
-run_task = [{ name = ["install_tmux", "install_tpm", "link_tmux"] }]
+run_task = { name = ["install_tmux", "install_tpm", "link_tmux"] }
 
 [tasks.install_tmux.mac]
-script = [
-'''
+private = true
+script = ['''
 #!/usr/bin/env bash
 
 brew install tmux
-'''
-]
+''']
 
 [tasks.install_tmux.linux]
-script = [
-'''
+private = true
+script = ['''
 #!/usr/bin/env bash
 
 sudo apt install -y tmux
-'''
-]
+''']
 
 [tasks.install_tpm]
-script = [
-'''
+private = true
+script = ['''
 #!/usr/bin/env bash
 
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-'''
-]
+mkdir -p $HOME/.tmux/plugins
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+''']
 
 [tasks.link_tmux]
-script = [
-'''
+private = true
+script = ['''
 #!/usr/bin/env bash
 
-ln -snfv ~/dotfiles/.tmux.conf ~/
-'''
-]
+ln -snfv $HOME/dotfiles/.tmux.conf $HOME/
+''']

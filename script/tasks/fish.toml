@@ -1,7 +1,10 @@
 [tasks.setup_fish]
-run_task = [{ name = ["install_fish", "link_fish"] }]
+category = "fish"
+description = "Setup fish shell"
+run_task = { name = ["install_fish", "link_fish"] }
 
 [tasks.install_fish.mac]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -11,6 +14,7 @@ brew install fish
 ]
 
 [tasks.install_fish.linux]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
@@ -22,20 +26,16 @@ sudo apt install -y fish
 ]
 
 [tasks.link_fish]
+private = true
 script = [
 '''
 #!/usr/bin/env bash
 
-if [ ! -d "~/.config/fish/functions" ] ; then
-  mkdir -p ~/.config/fish/functions
-fi
+mkdir -p $HOME/.config/fish/functions
+mkdir -p $HOME/.config/fish/completions
 
-if [ ! -d "~/.config/fish/completions" ] ; then
-  mkdir -p ~/.config/fish/completions
-fi
-
-ln -snfv ~/dotfiles/.config/fish/config.fish ~/.config/fish
-ln -snfv ~/dotfiles/.config/fish/functions/* ~/.config/fish/functions
-ln -snfv ~/dotfiles/.config/fish/completions/* ~/.config/fish/completions
+ln -snfv $HOME/dotfiles/.config/fish/config.fish $HOME/.config/fish
+ln -snfv $HOME/dotfiles/.config/fish/functions/* $HOME/.config/fish/functions
+ln -snfv $HOME/dotfiles/.config/fish/completions/* $HOME/.config/fish/completions
 '''
 ]

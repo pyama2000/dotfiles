@@ -1,4 +1,6 @@
 [tasks.setup_docker.mac]
+category = "Docker"
+description = "Install Docker"
 dependencies = ["setup_lima", "install_docker", "install_docker-compose"]
 script = [
 '''
@@ -18,6 +20,11 @@ docker context create "$CONTEXT_NAME" \
 docker context use "$CONTEXT_NAME"
 '''
 ]
+
+[tasks.update_docker-compose.mac]
+category = "Docker"
+description = "Update docker compose"
+alias = "install_docker-compose"
 
 [tasks.setup_lima.mac]
 private = true
@@ -91,6 +98,3 @@ ln -snfv /usr/local/bin/docker-compose ~/.docker/cli-plugins
 rm -rf "$WORKDIR"
 '''
 ]
-
-[tasks.update_docker-compose.mac]
-run_task = { name = ["install_docker-compose"] }

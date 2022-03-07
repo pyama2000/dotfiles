@@ -1,42 +1,17 @@
-[tasks.install_asdf]
-script = [
-'''
-#!/usr/bin/env bash
-
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
-mkdir -p ~/.config/fish/completions
-cp ~/.asdf/completions/asdf.fish ~/.config/fish/completions
-
-echo '. $HOME/.asdf/asdf.sh' >> ~/.profile
-'''
-]
-dependencies = ["dependencies_asdf"]
-
-[tasks.dependencies_asdf.mac]
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install coreutils curl git
-'''
-]
-
-[tasks.dependencies_asdf.linux]
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y curl git
-'''
-]
+[tasks.setup_asdf]
+category = "asdf"
+description = "Setup asdf"
+run_task = { name = ["install_asdf"] }
 
 [tasks.update_asdf]
+category = "asdf"
+description = "Update asdf"
 script = [
 '''
 #!/usr/bin/env bash
 
 if !(type asdf > /dev/null 2>&1); then
-    source ~/.profile
+  source $HOME/.asdf/asdf.sh
 fi
 
 asdf update
@@ -44,10 +19,36 @@ asdf update
 ]
 
 [tasks.uninstall_asdf]
+category = "asdf"
+description = "Uninstall asdf"
 script = [
 '''
 #!/usr/bin/env bash
 
-rm -rf ${ASDF_DATA_DIR:-$HOME/.asdf} ~/.tool-versions
+rm -rf ${ASDF_DIR:-$HOME/.asdf} $HOME/.tool-versions
+'''
+]
+
+[tasks.install_asdf]
+private = true
+dependencies = ["dependencies_asdf"]
+script = [
+'''
+#!/usr/bin/env bash
+
+git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.9.0
+mkdir -p $HOME/.config/fish/completions
+ln -s $HOME/.asdf/completions/asdf.fish $HOME/.config/fish/completions
+echo '. $HOME/.asdf/asdf.sh' >> $HOME/.bashrc
+'''
+]
+
+[tasks.dependencies_asdf.linux]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+
+sudo apt install -y curl git
 '''
 ]

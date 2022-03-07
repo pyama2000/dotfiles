@@ -1,9 +1,11 @@
 [tasks.install_node]
+category = "languages"
+description = "Install Node.js"
+condition = { env_set = ["NODE_VERSION"] }
 dependencies = ["asdf_node_plugin"]
 script = [
 '''
 #!/usr/bin/env bash
-set -eux -o pipefail
 
 if test -z "$NODE_VERSION"; then
   echo "NODE_VERSION must be set"
@@ -11,11 +13,27 @@ if test -z "$NODE_VERSION"; then
 fi
 
 if !(type asdf > /dev/null 2>&1); then
-  source ~/.profile
+  source $HOME/.asdf/asdf.sh
 fi
 
 asdf install nodejs "$NODE_VERSION"
 asdf global nodejs "$NODE_VERSION"
+'''
+]
+
+[tasks.update_npm]
+category = "languages"
+description = "Update npm version"
+condition = { profiles = ["production"] }
+script = [
+'''
+#!/usr/bin/env bash
+
+if [ -z "$NPM_UPDATE_VERSION" ]; then
+  NPM_UPDATE_VERSION='latest'
+fi
+
+npm update -g npm@"$NPM_UPDATE_VERSION"
 '''
 ]
 
@@ -24,26 +42,11 @@ private = true
 script = [
 '''
 #!/usr/bin/env bash
-set -eux -o pipefail
 
 if !(type asdf > /dev/null 2>&1); then
-  source ~/.profile
+  source $HOME/.asdf/asdf.sh
 fi
 
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-'''
-]
-
-[tasks.update_npm_version]
-script = [
-'''
-#!/usr/bin/env bash
-set -eux -o pipefail
-
-if [ -z "$NPM_UPDATE_VERSION" ]; then
-  NPM_UPDATE_VERSION='latest'
-fi
-
-npm update -g npm@"$NPM_UPDATE_VERSION"
 '''
 ]

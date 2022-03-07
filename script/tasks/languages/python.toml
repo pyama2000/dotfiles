@@ -1,5 +1,19 @@
 [tasks.setup_python]
-run_task = [{ name = ["install_python", "install_package_manager"] }]
+category = "languages"
+description = "Setup python"
+run_task = { name = ["install_python", "install_package_manager"] }
+
+[tasks.update_pip]
+category = "languages"
+description = "Update pip version"
+script = [
+'''
+#!/usr/bin/env bash
+
+python2 -m pip install --user --upgrade pip
+python3 -m pip install --user --upgrade pip
+'''
+]
 
 [tasks.install_python]
 private = true
@@ -14,7 +28,7 @@ if test -z "$PYTHON_VERSION"; then
 fi
 
 if !(type asdf > /dev/null 2>&1); then
-  source ~/.profile
+  source $HOME/.asdf/asdf.sh
 fi
 
 asdf install python "$PYTHON_VERSION"
@@ -52,7 +66,7 @@ script = [
 #!/usr/bin/env bash
 
 if !(type asdf > /dev/null 2>&1); then
-  source ~/.profile
+  source $HOME/.asdf/asdf.sh
 fi
 
 asdf plugin add python
@@ -66,15 +80,5 @@ script = [
 #!/usr/bin/env bash
 
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-'''
-]
-
-[tasks.update_pip_version]
-script = [
-'''
-#!/usr/bin/env bash
-
-python2 -m pip install --user --upgrade pip
-python3 -m pip install --user --upgrade pip
 '''
 ]

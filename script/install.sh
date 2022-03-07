@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ue
+set -eux -o pipefail
 
 if [ $(uname) == "Darwin" ]; then
   OS="macOS"

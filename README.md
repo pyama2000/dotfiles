@@ -11,7 +11,8 @@ cd ~/dotfiles
 script/install.sh
 cargo make --profile production --makefile script/task.toml setup \
   -e GIT_NAME=<GIT_NAME> \
-  -e GIT_EMAIL=<GIT_EMAIL>
+  -e GIT_EMAIL=<GIT_EMAIL> \
+  -e NODE_VERSION=<NODE_VERSION>
 ```
 
 環境変数:

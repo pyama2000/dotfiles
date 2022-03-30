@@ -81,21 +81,19 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-WORKDIR='/tmp/docker-compose'
-mkdir -p "$WORKDIR"
+DOWNLOAD_BINARY_TMP_PATH='/tmp/docker-compose'
 
 curl -sL https://api.github.com/repos/docker/compose/releases/latest \
   | jq -r '.assets[].browser_download_url' \
   | grep -E "docker-compose-darwin-x86_64\$" \
-  | xargs -I DOWNLOAD_URL curl -Lfso "$WORKDIR"/docker-compose DOWNLOAD_URL
+  | xargs curl -Lfo "$DOWNLOAD_BINARY_TMP_PATH"
 
-sudo chmod +x "$WORKDIR/docker-compose"
-cp "$WORKDIR/docker-compose" /usr/local/bin
+sudo chmod +x "$DOWNLOAD_BINARY_TMP_PATH"
 
 mkdir -p ~/.docker/cli-plugins
-ln -snfv /usr/local/bin/docker-compose ~/.docker/cli-plugins
+cp "$DOWNLOAD_BINARY_TMP_PATH" $HOME/.docker/cli-plugins
 
-rm -rf "$WORKDIR"
+rm -rf "$DOWNLOAD_BINARY_TMP_PATH"
 '''
 ]
 

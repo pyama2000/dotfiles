@@ -1,7 +1,7 @@
 [tasks.setup_docker.mac]
 category = "Docker"
 description = "Install Docker"
-dependencies = ["setup_lima", "install_docker", "install_docker-compose"]
+dependencies = ["setup_lima", "install_docker", "install_docker-compose", "install_docker-buildx"]
 script = [
 '''
 #!/usr/bin/env bash
@@ -21,10 +21,10 @@ docker context use "$CONTEXT_NAME"
 '''
 ]
 
-[tasks.update_docker-compose.mac]
+[tasks.update_docker_cli_plugins.mac]
 category = "Docker"
-description = "Update docker compose"
-alias = "install_docker-compose"
+description = "Update docker CLI plugins"
+run_task = [{ name = ["update_docker-compose", "update_docker-buildx"] }]
 
 [tasks.setup_lima.mac]
 private = true
@@ -81,20 +81,49 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-WORKDIR='/tmp/docker-compose'
-mkdir -p "$WORKDIR"
+DOWNLOAD_BINARY_TMP_PATH='/tmp/docker-compose'
 
 curl -sL https://api.github.com/repos/docker/compose/releases/latest \
   | jq -r '.assets[].browser_download_url' \
   | grep -E "docker-compose-darwin-x86_64\$" \
-  | xargs -I DOWNLOAD_URL curl -Lfso "$WORKDIR"/docker-compose DOWNLOAD_URL
+  | xargs curl -Lfo "$DOWNLOAD_BINARY_TMP_PATH"
 
-sudo chmod +x "$WORKDIR/docker-compose"
-cp "$WORKDIR/docker-compose" /usr/local/bin
+sudo chmod +x "$DOWNLOAD_BINARY_TMP_PATH"
 
 mkdir -p ~/.docker/cli-plugins
-ln -snfv /usr/local/bin/docker-compose ~/.docker/cli-plugins
+cp "$DOWNLOAD_BINARY_TMP_PATH" $HOME/.docker/cli-plugins
 
-rm -rf "$WORKDIR"
+rm -rf "$DOWNLOAD_BINARY_TMP_PATH"
 '''
 ]
+
+[tasks.update_docker-compose.mac]
+private = true
+alias = "install_docker-compose"
+
+[tasks.install_docker-buildx.mac]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+DOWNLOAD_BINARY_TMP_PATH='/tmp/docker-buildx'
+
+curl -sL https://api.github.com/repos/docker/buildx/releases/latest \
+  | jq -r '.assets[].browser_download_url' \
+  | grep -E "buildx-v[0-9]+.[0-9]+.[0-9]+\.darwin-amd64" \
+  | xargs curl -Lfo "$DOWNLOAD_BINARY_TMP_PATH"
+
+sudo chmod +x "$DOWNLOAD_BINARY_TMP_PATH"
+
+mkdir -p $HOME/.docker/cli-plugins
+cp "$DOWNLOAD_BINARY_TMP_PATH" $HOME/.docker/cli-plugin
+
+rm "$DOWNLOAD_BINARY_TMP_PATH"
+'''
+]
+
+[tasks.update_docker-buildx.mac]
+private = true
+alias = "install_docker-buildx"

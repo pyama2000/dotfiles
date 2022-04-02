@@ -19,7 +19,7 @@ script = [
 '''
 #!/usr/bin/env bash
 
-ln -snfv ~/dotfiles/.config/starship.toml ~/.config/
+ln -snfv ~/dotfiles/starship/starship.toml ~/.config/
 '''
 ]
 

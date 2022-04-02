@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/Users/r0417/ghq/github.com/RettyInc/retty3-web-frontend/scripts/circleci'
+let g:netrw_dirhist_5='/Users/r0417/ghq/github.com/RettyInc/retty3-web-frontend/.circleci'
+let g:netrw_dirhist_4='/Users/r0417/ghq/github.com/RettyInc/retty3-web-frontend/scripts/circleci'
+let g:netrw_dirhist_3='/Users/r0417/ghq/github.com/RettyInc/retty_design/dev-resources/src/pancake/mypage/src/js/components/organisms/SocialSetting'
+let g:netrw_dirhist_2='/Users/r0417/ghq/github.com/RettyInc/retty_design/dev-resources/specs/__tests__/macaron/restaurant/components'
+let g:netrw_dirhist_1='/Users/r0417/ghq/github.com/RettyInc/ebisu-zz/resources/Daikoku2/src/ebisu-reserve-sp/js/components'

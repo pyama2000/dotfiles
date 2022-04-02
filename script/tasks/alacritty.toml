@@ -82,6 +82,6 @@ script = [
 '''
 #!/usr/bin/env bash
 
-ln -snfv $HOME/dotfiles/.config/alacritty $HOME/.config
+ln -snfv $HOME/dotfiles/alacritty $HOME/.config
 '''
 ]

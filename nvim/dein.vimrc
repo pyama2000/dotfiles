@@ -1,5 +1,6 @@
 " let s:plugin = '~/.config/nvim/plugins/config/dein.toml'
 " let s:plugin_lazy = '~/.config/nvim/plugins/config/dein_lazy.toml'
+let s:theme = '$HOME/.config/nvim/plugins/config/dein_theme.toml'
 
 if &compatible
   set nocompatible
@@ -17,6 +18,7 @@ if dein#load_state(s:cache_dir)
 
   " call dein#load_toml(s:plugin, {'lazy': 0})
   " call dein#load_toml(s:plugin_lazy, {'lazy': 1})
+  call dein#load_toml(s:theme, {'lazy': 0})
 
   call dein#end()
   call dein#save_state()
@@ -27,4 +29,3 @@ if dein#check_install()
 endif
 
 filetype plugin indent on
-syntax enable

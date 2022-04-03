@@ -1,8 +1,7 @@
 source $HOME/.config/nvim/provider.vimrc
 source $HOME/.config/nvim/dein.vimrc
+source $HOME/.config/nvim/keymap.vimrc
 
-" runtime! plugins/dein.rc.vim
-" runtime! keymap.vim
 " runtime! colorscheme.vim
 " 
 " syntax enable

@@ -46,6 +46,12 @@ repo = "tpope/vim-fugitive"
 [[plugins]]
 repo = "lambdalisue/gin.vim"
 
+[[plugins]]
+repo = "tyru/open-browser.vim"
+
+[[plugins]]
+repo = "tyru/open-browser-github.vim"
+
 # [[plugins]]
 # repo = 'Shougo/ddu.vim'
 # hook_add = """
@@ -109,9 +115,3 @@ repo = "lambdalisue/gin.vim"
 # 
 # [[plugins]]
 # repo = 'Shougo/ddu-ui-ff'
- 
-# [[plugins]]
-# repo = "tyru/open-browser.vim"
-# 
-# [[plugins]]
-# repo = "tyru/open-browser-github.vim"

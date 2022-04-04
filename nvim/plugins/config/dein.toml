@@ -21,6 +21,22 @@ let g:airline_powerline_fonts = 1
 [[plugins]]
 repo = "vim-airline/vim-airline-themes"
 
+[[plugins]]
+repo = "Shougo/defx.nvim"
+depends = ["defx-git"]
+hook_add = "call RequirePlugin('defx.vimrc')"
+
+[[plugins]]
+repo ="kristijanhusak/defx-git"
+hook_add = "call RequirePlugin('defx-git.vimrc')"
+
+[[plugins]]
+repo = "Shougo/denite.nvim"
+hook_add = "call RequirePlugin('denite.vimrc')"
+
+[[plugins]]
+repo = "ozelentok/denite-gtags"
+
 # [[plugins]]
 # repo = 'Shougo/ddu.vim'
 # hook_add = """

@@ -3,9 +3,10 @@ repo = "neoclide/coc.nvim"
 merged = 0
 rev = "release"
 hook_add = "call RequirePlugin('coc.vimrc')"
-# hook_add = """
-# source ~/.config/nvim/plugins/coc.rc.vim
-# """
+
+[[plugins]]
+repo = "voldikss/vim-floaterm"
+hook_add = "call RequirePlugin('vim-floaterm.vimrc')"
 
 # [[plugins]]
 # repo = 'Shougo/ddu.vim'
@@ -73,12 +74,6 @@ hook_add = "call RequirePlugin('coc.vimrc')"
 # 
 # [[plugins]]
 # repo = 'vim-denops/denops.vim'
-# 
-# [[plugins]]
-# repo = 'voldikss/vim-floaterm'
-# hook_add = '''
-# source ~/.config/nvim/plugins/vim-floaterm.rc.vim
-# '''
 # 
 # [[plugins]]
 # repo = 'tpope/vim-fugitive'

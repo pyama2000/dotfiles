@@ -1,9 +1,4 @@
 [[plugins]]
-repo = "nvim-treesitter/nvim-treesitter"
-hook_post_update = "TSUpdate"
-hook_add = "call RequirePlugin('nvim-treesitter.lua')"
-
-[[plugins]]
 repo = "neoclide/coc.nvim"
 merged = 0
 rev = "release"

@@ -16,7 +16,7 @@ function! RequirePlugin(path)
   execute "source" s:plugin_vimrc_dir . '/' . a:path
 endfunction
 
-let g:dein#auto_recache = v:true
+" let g:dein#auto_recache = v:true
 if dein#load_state(s:cache_dir)
   call dein#begin(s:cache_dir)
   call dein#add(s:repo_dir)

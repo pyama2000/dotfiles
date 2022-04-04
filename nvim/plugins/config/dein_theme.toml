@@ -1,0 +1,14 @@
+[[plugins]]
+repo = "ayu-theme/ayu-vim"
+
+[[plugins]]
+repo = "joshdick/onedark.vim"
+
+[[plugins]]
+repo = "morhetz/gruvbox"
+
+[[plugins]]
+repo = "ulwlu/elly.vim"
+
+[[plugins]]
+repo = "ghifarit53/tokyonight-vim"

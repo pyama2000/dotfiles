@@ -1,4 +1,7 @@
 [[plugins]]
+repo = 'vim-denops/denops.vim'
+
+[[plugins]]
 repo = "neoclide/coc.nvim"
 merged = 0
 rev = "release"
@@ -38,7 +41,10 @@ hook_add = "call RequirePlugin('denite.vimrc')"
 repo = "ozelentok/denite-gtags"
 
 [[plugins]]
-repo = 'tpope/vim-fugitive'
+repo = "tpope/vim-fugitive"
+
+[[plugins]]
+repo = "lambdalisue/gin.vim"
 
 # [[plugins]]
 # repo = 'Shougo/ddu.vim'
@@ -103,9 +109,6 @@ repo = 'tpope/vim-fugitive'
 # 
 # [[plugins]]
 # repo = 'Shougo/ddu-ui-ff'
-# 
-# [[plugins]]
-# repo = 'vim-denops/denops.vim'
  
 # [[plugins]]
 # repo = "tyru/open-browser.vim"

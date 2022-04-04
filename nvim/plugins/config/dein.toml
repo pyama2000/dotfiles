@@ -37,6 +37,9 @@ hook_add = "call RequirePlugin('denite.vimrc')"
 [[plugins]]
 repo = "ozelentok/denite-gtags"
 
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
 # [[plugins]]
 # repo = 'Shougo/ddu.vim'
 # hook_add = """
@@ -103,9 +106,6 @@ repo = "ozelentok/denite-gtags"
 # 
 # [[plugins]]
 # repo = 'vim-denops/denops.vim'
-# 
-# [[plugins]]
-# repo = 'tpope/vim-fugitive'
  
 # [[plugins]]
 # repo = "tyru/open-browser.vim"

@@ -4,6 +4,8 @@ nnoremap <silent> ;b
       \ <Cmd>call ddu#start({'name': 'buffers'})<CR>
 nnoremap <silent> ;g
       \ <Cmd>call ddu#start({'name': 'grep'})<CR>
+nnoremap <silent> ;c
+      \ <Cmd>call ddu#start({'name': 'cursor-grep', 'sources': [{'name': 'rg', 'params': {'input': expand('<cword>')}}]})<CR>
 
 let s:float_window_width_ratio = 0.85
 let s:float_window_height_ratio = 0.7
@@ -38,7 +40,7 @@ call ddu#custom#patch_local('buffers', {
     \   'uiParams': {
     \     'ff': {
     \       'startFilter': v:false,
-    \     }
+    \     },
     \   },
     \   'sources': [{'name': 'buffer'}],
     \ })
@@ -49,7 +51,7 @@ call ddu#custom#patch_local('grep', {
     \     'ff': {
     \       'ignoreEmpty': v:false,
     \       'autoResize': v:false,
-    \     }
+    \     },
     \   },
     \   'sources': [{'name': 'rg'}],
     \   'sourceParams': {
@@ -60,6 +62,22 @@ call ddu#custom#patch_local('grep', {
     \   'sourceOptions': {
     \     '_': {
     \       'matchers': [],
+    \     },
+    \   },
+    \ })
+
+call ddu#custom#patch_local('cursor-grep', {
+    \   'uiParams': {
+    \     'ff': {
+    \       'startFilter': v:false,
+    \       'ignoreEmpty': v:false,
+    \       'autoResize': v:false,
+    \     },
+    \   },
+    \   'sources': [{'name': 'rg'}],
+    \   'sourceParams': {
+    \     'rg': {
+    \       'args': ['--column', '--no-heading', '--color', 'never'],
     \     },
     \   },
     \ })

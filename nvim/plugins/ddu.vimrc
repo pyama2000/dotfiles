@@ -94,6 +94,8 @@ function! s:ddu_my_settings() abort
         \ <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
   nnoremap <buffer><silent> p
         \ <Cmd>call ddu#ui#ff#do_action('preview')<CR>
+  nnoremap <buffer><silent> <Esc>
+        \ <Cmd>call ddu#ui#ff#do_action('quit')<CR>
   nnoremap <buffer><silent> q
         \ <Cmd>call ddu#ui#ff#do_action('quit')<CR>
 endfunction
@@ -101,9 +103,11 @@ endfunction
 autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
 function! s:ddu_filter_my_settings() abort
   inoremap <buffer><silent> <CR>
-  \ <Esc><Cmd>close<CR>
+        \ <Esc><Cmd>close<CR>
   nnoremap <buffer><silent> <CR>
-  \ <Cmd>close<CR>
+        \ <Cmd>close<CR>
+  nnoremap <buffer><silent> <Esc>
+        \ <Cmd>close<CR>
   nnoremap <buffer><silent> q
-  \ <Cmd>close<CR>
+        \ <Cmd>close<CR>
 endfunction

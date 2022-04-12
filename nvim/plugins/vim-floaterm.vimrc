@@ -11,3 +11,4 @@ nnoremap   <silent>   <C-u>]    :FloatermNext<CR>
 tnoremap   <silent>   <C-u>]    <C-\><C-n>:FloatermNext<CR>
 nnoremap   <silent>   <C-u>t   :FloatermToggle<CR>
 tnoremap   <silent>   <C-u>t   <C-\><C-n>:FloatermToggle<CR>
+tnoremap <ESC> <C-\><C-n>

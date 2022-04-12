@@ -2,6 +2,11 @@ nnoremap <silent> ;a
       \ <Cmd>call ddu#start({})<CR>
 nnoremap <silent> ;b
       \ <Cmd>call ddu#start({'name': 'buffers'})<CR>
+nnoremap <silent> ;g
+      \ <Cmd>call ddu#start({'name': 'grep'})<CR>
+
+let s:float_window_width_ratio = 0.85
+let s:float_window_height_ratio = 0.7
 
 call ddu#custom#patch_global({
     \   'ui': 'ff',
@@ -9,20 +14,17 @@ call ddu#custom#patch_global({
     \     'ff': {
     \       'split': 'floating',
     \       'startFilter': v:true,
+    \       'winCol': float2nr((&columns - (&columns * s:float_window_width_ratio)) / 2),
+    \       'winHeight': float2nr(&lines * s:float_window_height_ratio),
+    \       'winRow': float2nr((&lines - (&lines * s:float_window_height_ratio)) / 2),
+    \       'winWidth': float2nr(&columns * s:float_window_width_ratio),
     \       'prompt': '❯ ',
     \     },
     \   },
-    \   'sources': [
-    \     {'name': 'file_rec', 'params': {}},
-    \   ],
+    \   'sources': [{'name': 'file_rec'}],
     \   'sourceOptions': {
     \     '_': {
     \       'matchers': ['matcher_substring'],
-    \     },
-    \   },
-    \   'sourceParams': {
-    \     'rg': {
-    \       'args': ['--column', '--no-heading', '--color', 'never'],
     \     },
     \   },
     \   'kindOptions': {
@@ -39,6 +41,27 @@ call ddu#custom#patch_local('buffers', {
     \     }
     \   },
     \   'sources': [{'name': 'buffer'}],
+    \ })
+
+call ddu#custom#patch_local('grep', {
+    \   'volatile': v:true,
+    \   'uiParams': {
+    \     'ff': {
+    \       'ignoreEmpty': v:false,
+    \       'autoResize': v:false,
+    \     }
+    \   },
+    \   'sources': [{'name': 'rg'}],
+    \   'sourceParams': {
+    \     'rg': {
+    \       'args': ['--column', '--no-heading', '--color', 'never'],
+    \     },
+    \   },
+    \   'sourceOptions': {
+    \     '_': {
+    \       'matchers': [],
+    \     },
+    \   },
     \ })
 
 autocmd FileType ddu-ff call s:ddu_my_settings()

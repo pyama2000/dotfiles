@@ -1,56 +1,56 @@
 [include]
-    path = ~/.config/git/local/config
+	path = ~/.config/git/local/config
 
 [core]
-    editor = nvim
-    quotepath = false
-    pager = delta
+	editor = nvim
+	quotepath = false
+	pager = delta
 
 [alias]
-    icommit = commit --allow-empty -m \":tada: Initial commit\"
-    lograph = log --graph --decorate --oneline --branches
-    logns = log --graph --decorate --oneline --branches --name-status
-    ss = status
-    adu = add -u  # 変更ファイルのみ追加
-    adup = add -u -p  # 変更ファイルの差分の一部のみを追加
-    br = branch
-    bra = branch --all
-    brm = branch -m
-    brd = branch -d
-    brdd = branch -D
-    co = commit
-    com = commit -m
-    sw = switch
-    swc = switch -c
-    swr = !"git fetch origin $1 && git switch"
-    rs = restore
-    rss = restore --staged
-    mg = merge --no-ff --no-edit
-    mgff = merge --ff
-    rbrd = push --delete origin
-    rmerged = "!f () { git switch $1; git branch --merged | egrep -v '\\*|develop|master' | xargs git branch -d; };f"
+	icommit = commit --allow-empty -m \":tada: Initial commit\"
+	lograph = log --graph --decorate --oneline --branches
+	logns = log --graph --decorate --oneline --branches --name-status
+	ss = status
+	adu = add -u  # 変更ファイルのみ追加
+	adup = add -u -p  # 変更ファイルの差分の一部のみを追加
+	br = branch
+	bra = branch --all
+	brm = branch -m
+	brd = branch -d
+	brdd = branch -D
+	co = commit
+	com = commit -m
+	sw = switch
+	swc = switch -c
+	swr = !"git fetch origin $1 && git switch"
+	rs = restore
+	rss = restore --staged
+	mg = merge --no-ff --no-edit
+	mgff = merge --ff
+	rbrd = push --delete origin
+	rmerged = "!f () { git switch $1; git branch --merged | egrep -v '\\*|develop|master' | xargs git branch -d; };f"
 
 [init]
-    defaultBranch = main
+	defaultBranch = main
 
 [commit]
-    template = ~/.config/git/commit
+	template = ~/.config/git/commit
 
 [fetch]
-    prune = true
+	prune = true
 
 [delta]
-    plus-color = "#012800"
-    minus-color = "#340001"
-    syntax-theme = Monokai Extended
-    line-numbers = true
-    colorMoved = default
+	plus-color = "#012800"
+	minus-color = "#340001"
+	syntax-theme = Monokai Extended
+	line-numbers = true
+	colorMoved = default
 
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [pull]
-    rebase = false
+	rebase = false
 
 [rebase]
 	autosquash = true

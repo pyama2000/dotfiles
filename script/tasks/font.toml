@@ -1,6 +1,32 @@
 [tasks.setup_font]
 run_task = [{ name = ["download_PlemolJP_NF", "apply_font"] }]
 
+[tasks.download_UDEVGothic]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+FONT_NAME='UDEVGothic_NF'
+ENDPOINT='https://api.github.com/repos/yuru7/udev-gothic/releases/latest'
+
+mkdir -p ~/.fonts/"$FONT_NAME"
+mkdir -p /tmp/"$FONT_NAME"
+cd /tmp/"$FONT_NAME" || exit
+
+FILE_NAME=$(curl -sL "$ENDPOINT" | jq -r '.assets[].name' | grep "$FONT_NAME")
+curl -sL "$ENDPOINT" | jq -r '.assets[].browser_download_url' | grep "$FILE_NAME" | xargs curl -fsLJO
+unzip "$FILE_NAME"
+
+FILE_BASENAME=$(basename "$FILE_NAME" .zip)
+find "$FILE_BASENAME" -name '*.ttf' | xargs -I% mv % ~/.fonts/"$FONT_NAME"
+
+cd ../
+rm -rf "$FONT_NAME"
+'''
+]
+
 [tasks.download_PlemolJP_NF]
 private = true
 script = [

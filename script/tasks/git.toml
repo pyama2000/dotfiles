@@ -9,6 +9,10 @@ private = true
 script = [
 '''
 #!/usr/bin/env bash
+brew list --formula
+brew list --formula | grep git
+brew list --formula | grep git > /dev/null
+echo $?
 if (brew list --formula | grep git > /dev/null); then
   git --version
   brew upgrade git

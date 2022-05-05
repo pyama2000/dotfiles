@@ -15,7 +15,8 @@ brew list --formula | grep git > /dev/null
 echo $?
 if (brew list --formula | grep git > /dev/null); then
   git --version
-  brew upgrade git
+  brew install git
+  # brew upgrade git
 else
   brew install git
 fi

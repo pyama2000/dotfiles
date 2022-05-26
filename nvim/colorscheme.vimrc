@@ -10,7 +10,7 @@ if (has("termguicolors"))
 endif
 
 set background=dark
-colorscheme gruvbox
+colorscheme kanagawa
 
 if g:colors_name == 'ayu'
   let ayucolor='dark' " available: light / dark / mirage

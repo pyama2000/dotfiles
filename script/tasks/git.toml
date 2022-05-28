@@ -9,8 +9,6 @@ private = true
 script = [
 '''
 #!/usr/bin/env bash
-set -eux -o pipefail
-
 if (brew list --formula | grep git > /dev/null); then
   brew upgrade git
 else

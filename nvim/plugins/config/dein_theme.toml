@@ -12,3 +12,6 @@ repo = "ulwlu/elly.vim"
 
 [[plugins]]
 repo = "ghifarit53/tokyonight-vim"
+
+[[plugins]]
+repo = "rebelot/kanagawa.nvim"

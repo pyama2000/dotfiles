@@ -12,19 +12,6 @@ repo = "voldikss/vim-floaterm"
 hook_add = "call RequirePlugin('vim-floaterm.vimrc')"
 
 [[plugins]]
-repo = "vim-airline/vim-airline"
-hook_add = """
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-
-let g:airline_powerline_fonts = 1
-"""
-
-[[plugins]]
-repo = "vim-airline/vim-airline-themes"
-
-[[plugins]]
 repo = "Shougo/defx.nvim"
 depends = ["defx-git"]
 hook_add = "call RequirePlugin('defx.vimrc')"
@@ -51,3 +38,7 @@ repo = "tyru/open-browser.vim"
 
 [[plugins]]
 repo = "tyru/open-browser-github.vim"
+
+[[plugins]]
+repo = "nvim-lualine/lualine.nvim"
+hook_add = "call RequirePlugin('lualine.lua')"

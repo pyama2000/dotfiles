@@ -21,6 +21,6 @@ script = ['''
 
 cd ~/dotfiles
 git stash
-git sw master
-git pull --rebase origin master
+git sw main
+git pull --rebase origin main
 ''']

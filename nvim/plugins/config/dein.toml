@@ -42,3 +42,7 @@ repo = "tyru/open-browser-github.vim"
 [[plugins]]
 repo = "nvim-lualine/lualine.nvim"
 hook_add = "call RequirePlugin('lualine.lua')"
+
+[[plugins]]
+repo = "udalov/kotlin-vim"
+on_ft = ['kotlin']

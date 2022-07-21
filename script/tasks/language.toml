@@ -4,6 +4,7 @@ extend = [
   { path = "languages/node.toml" },
   { path = "languages/python.toml" },
   { path = "languages/rust.toml" },
+  { path = "languages/lsp/kotlin.toml" },
 ]
 
 [tasks.setup_languages]
@@ -15,6 +16,7 @@ run_task = { name = [
   "install_go",
   "install_node",
   "setup_python",
+  "setup-kotlin_language_server",
 ], parallel = true }
 
 [tasks.update_languages]

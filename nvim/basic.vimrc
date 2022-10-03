@@ -9,6 +9,7 @@ set softtabstop=2
 set nobackup
 set nowritebackup
 set pumblend=30
+set mouse=
 " set cursorline
 " set autoindent
 " set smartindent

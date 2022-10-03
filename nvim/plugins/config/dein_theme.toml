@@ -15,3 +15,4 @@ repo = "ghifarit53/tokyonight-vim"
 
 [[plugins]]
 repo = "rebelot/kanagawa.nvim"
+hook_add = "call RequirePlugin('kanagawa.lua')"

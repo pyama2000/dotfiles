@@ -12,7 +12,14 @@ require("lualine").setup({
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diagnostics" },
 		lualine_c = { "filename" },
-		lualine_x = { "encoding", "fileformat", "filetype" },
+		lualine_x = {
+			function()
+				return vim.pesc(vim.g.coc_status or "")
+			end,
+			"encoding",
+			"fileformat",
+			"filetype",
+		},
 		lualine_y = { "progress" },
 		lualine_z = { "location" },
 	},

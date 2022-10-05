@@ -13,9 +13,7 @@ require("lualine").setup({
 		lualine_b = { "branch", "diagnostics" },
 		lualine_c = { "filename" },
 		lualine_x = {
-			function()
-				return vim.pesc(vim.g.coc_status or "")
-			end,
+			"g:coc_status",
 			"encoding",
 			"fileformat",
 			"filetype",

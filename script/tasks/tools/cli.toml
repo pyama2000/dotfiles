@@ -15,12 +15,17 @@ run_task = { name = [
   "install_zoxide",
   "install_cargo-watch",
   "install_cargo-update",
+  "install_slack_cli",
 ] }
 
 [tasks.update_cli]
 category = "tools"
 description = "Update CLI tools"
-run_task = { name = ["update_dapr", "update_ghq"] }
+run_task = { name = [
+  "update_dapr",
+  "update_ghq",
+  "update_slack_cli",
+] }
 
 # bat
 [tasks.install_bat]
@@ -244,3 +249,17 @@ script = [
 cargo install cargo-update
 '''
 ]
+
+[tasks.install_slack_cli]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+
+curl -fsSL https://downloads.slack-edge.com/slack-cli/install.sh | bash
+'''
+]
+
+[tasks.update_slack_cli]
+private = true
+alias = "install_slack_cli"

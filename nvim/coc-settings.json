@@ -3,6 +3,11 @@
     "kotlin": {
       "command": "~/lsp/kotlin/server/bin/kotlin-language-server",
       "filetypes": ["kotlin"]
+    },
+    "astro": {
+      "command": "astro-ls",
+      "args": ["--stdio"],
+      "filetypes": ["astro"]
     }
   },
   "jedi.enable": true,

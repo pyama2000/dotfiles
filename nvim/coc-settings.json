@@ -8,6 +8,11 @@
       "command": "astro-ls",
       "args": ["--stdio"],
       "filetypes": ["astro"]
+    },
+    "buf": {
+      "command": "bufls",
+      "args": ["serve"],
+      "filetypes": ["proto"]
     }
   },
   "jedi.enable": true,

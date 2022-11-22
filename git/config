@@ -7,7 +7,8 @@
 	pager = delta
 
 [alias]
-	icommit = commit --allow-empty -m \":tada: Initial commit\"
+	icommit = commit --allow-empty -m \"initial commit\"
+	empty = commit --allow-empty -m \"empty commit\"
 	lograph = log --graph --decorate --oneline --branches
 	logns = log --graph --decorate --oneline --branches --name-status
 	ss = status

@@ -30,6 +30,7 @@
 	mgff = merge --ff
 	rbrd = push --delete origin
 	rmerged = "!f () { git switch $1; git branch --merged | egrep -v '\\*|develop|master' | xargs git branch -d; };f"
+	cp = cherry-pick
 
 [init]
 	defaultBranch = main

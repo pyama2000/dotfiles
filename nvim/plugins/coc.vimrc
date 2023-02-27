@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-json', 'coc-rust-analyzer', 'coc-go', 'coc-phpls', 'coc-tsserver', 'coc-vetur']
+let g:coc_global_extensions = ['coc-json', 'coc-rust-analyzer', 'coc-go']
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup

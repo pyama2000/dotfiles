@@ -124,7 +124,7 @@ alias fvim 'nvim (fpre)'
 ## pipenv
 alias piid 'pipenv install --dev flake8 pylint isort mypy pysnooper pydocstyle bandit && pipenv install --dev --pre black'
 ## Docker
-alias dc 'docker-compose'
+alias dc 'docker compose'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/r0417/google-cloud-sdk/path.fish.inc' ]; . '/Users/r0417/google-cloud-sdk/path.fish.inc'; end

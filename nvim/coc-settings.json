@@ -15,6 +15,7 @@
       "filetypes": ["proto"]
     }
   },
+  "rust-analyzer.cargo.buildScripts.enable": true,
   "jedi.enable": true,
   "jedi.startupMessage": true,
   "intelephense": {

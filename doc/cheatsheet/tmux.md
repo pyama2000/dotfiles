@@ -14,6 +14,11 @@
 $ tmux ls
 ```
 
+#### セッションの新規作成
+
+<kbd> prefix + s </kbd>
+<kbd> prefix + :new </kbd>
+
 #### セッションのデタッチ
 
 <kbd> prefix + d </kbd>

@@ -17,3 +17,4 @@ packages:
 - name: stedolan/jq@jq-1.6
 - name: go-task/task@v3.22.0
 - name: ktr0731/evans@v0.10.11
+- name: tfutils/tfenv@v3.0.0

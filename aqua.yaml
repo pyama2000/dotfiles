@@ -18,3 +18,4 @@ packages:
 - name: go-task/task@v3.22.0
 - name: ktr0731/evans@v0.10.11
 - name: tfutils/tfenv@v3.0.0
+- name: jamesWoolfenden/pike@v0.2.71

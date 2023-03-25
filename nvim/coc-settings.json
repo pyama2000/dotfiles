@@ -13,6 +13,12 @@
       "command": "bufls",
       "args": ["serve"],
       "filetypes": ["proto"]
+    },
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {}
     }
   },
   "rust-analyzer.cargo.buildScripts.enable": true,
@@ -26,12 +32,12 @@
       "undefinedMethods": false,
       "undefinedProperties": false,
       "undefinedTypes": false
-     },
+    },
     "command": "intelephense",
     "args": ["--stdio"],
     "filetypes": ["php"],
     "initializationOptions": {
       "storagePath": "/tmp/intelephense"
-     }
-   }
+    }
+  }
 }

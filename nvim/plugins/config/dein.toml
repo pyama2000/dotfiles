@@ -50,3 +50,7 @@ on_ft = ['kotlin']
 [[plugins]]
 repo = "wuelnerdotexe/vim-astro"
 hook_add = "call RequirePlugin('vim-astro.vimrc')"
+
+[[plugins]]
+repo = "varnishcache-friends/vim-varnish"
+on_ft = ['vcl']

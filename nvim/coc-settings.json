@@ -40,5 +40,6 @@
     "initializationOptions": {
       "storagePath": "/tmp/intelephense"
     }
-  }
+  },
+  "coc.preferences.formatOnSaveFiletypes": ["go", "terraform", "tf"]
 }

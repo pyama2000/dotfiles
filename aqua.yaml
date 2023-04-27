@@ -25,3 +25,4 @@ packages:
 - name: ogham/dog@v0.1.0
 - name: CircleCI-Public/circleci-cli@v0.1.26094
 - name: x-motemen/ghq@v1.4.2
+- name: junegunn/fzf@0.39.0

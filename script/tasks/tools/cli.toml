@@ -6,7 +6,6 @@ run_task = { name = [
   "install_exa",
   "install_fd",
   "install_fzf",
-  "install_ghq",
   "install_git-delta",
   "install_jq",
   "install_ripgrep",
@@ -20,7 +19,6 @@ run_task = { name = [
 category = "tools"
 description = "Update CLI tools"
 run_task = { name = [
-  "update_ghq",
   "update_slack_cli",
 ] }
 
@@ -88,37 +86,6 @@ script = [
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 yes | ~/.fzf/install
-'''
-]
-
-# ghq
-[tasks.install_ghq.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install ghq
-'''
-]
-
-[tasks.install_ghq.linux]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-go get github.com/x-motemen/ghq
-'''
-]
-
-[tasks.update_ghq.linux]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-go get -u github.com/x-motemen/ghq
 '''
 ]
 

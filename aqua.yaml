@@ -22,3 +22,4 @@ packages:
 - name: hashicorp/packer@v1.8.6
 - name: dapr/cli@v1.10.0
 - name: direnv/direnv@v2.32.2
+- name: ogham/dog@v0.1.0

@@ -3,7 +3,6 @@ category = "tools"
 description = "Install CLI tools"
 run_task = { name = [
   "install_bat",
-  "install_direnv",
   "install_exa",
   "install_fd",
   "install_fzf",
@@ -44,29 +43,6 @@ script = [
 #!/usr/bin/env bash
 
 sudo apt install -y libclang-dev
-'''
-]
-
-# direnv
-[tasks.install_direnv.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install direnv
-'''
-]
-
-[tasks.install_direnv.linux]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y direnv
-echo 'export EDITOR=nvim' >> ~/.profile
-echo 'eval "$(direnv hook bash)"' >> ~/.profile
 '''
 ]
 

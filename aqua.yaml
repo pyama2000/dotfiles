@@ -20,3 +20,4 @@ packages:
 - name: tfutils/tfenv@v3.0.0
 - name: jamesWoolfenden/pike@v0.2.71
 - name: hashicorp/packer@v1.8.6
+- name: dapr/cli@v1.10.0

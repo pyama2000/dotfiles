@@ -29,3 +29,4 @@ packages:
 - name: koalaman/shellcheck@v0.9.0
 - name: mvdan/sh@v3.6.0
 - name: hashicorp/terraform-ls@v0.31.0
+- name: hadolint/hadolint@v2.12.0

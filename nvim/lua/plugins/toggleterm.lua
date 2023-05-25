@@ -1,10 +1,10 @@
 return {
   {
-    'akinsho/toggleterm.nvim',
+    "akinsho/toggleterm.nvim",
     version = "*",
     event = "VeryLazy",
     opts = {
-      direction = "float"
+      direction = "float",
     },
     keys = {
       {
@@ -23,5 +23,5 @@ return {
         "<cmd>ToggleTerm<CR>",
       },
     },
-  }
+  },
 }

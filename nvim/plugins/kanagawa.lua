@@ -1,4 +1,4 @@
-require('kanagawa').setup({
+require("kanagawa").setup({
   overrides = function(colors)
     return {
       CocFloating = { fg = colors.palette.fugiWhite, bg = colors.palette.waveBlue1 },

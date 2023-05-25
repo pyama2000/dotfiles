@@ -8,3 +8,7 @@ vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.list = true
 vim.opt.listchars = { tab = "»-", trail = "-", extends = "»", precedes = "«", nbsp = "%" }
+
+if vim.fn.exists("+termguicolors") then
+  vim.opt.termguicolors = true
+end

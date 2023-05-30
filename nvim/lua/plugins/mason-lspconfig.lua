@@ -8,12 +8,8 @@ return {
     local cmp = require("cmp")
     cmp.setup({
       snippet = {
-        -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-          vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-          -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-          -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-          -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+          vim.fn["vsnip#anonymous"](args.body)
         end,
       },
       sources = cmp.config.sources({
@@ -37,15 +33,18 @@ return {
 
     mason_lspconfig.setup({
       ensure_installed = {
-        -- "rust_analyzer",
+        "rust_analyzer",
         "lua_ls",
-        -- "jsonls",
+        "gopls",
+        "jsonls",
       },
     })
     mason_lspconfig.setup_handlers({
       function(server_name)
-        local opts = {}
-        nvim_lsp[server_name].setup(opts)
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        nvim_lsp[server_name].setup({
+          capabilities = capabilities,
+        })
       end,
     })
   end,

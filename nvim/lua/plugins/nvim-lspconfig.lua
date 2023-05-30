@@ -35,5 +35,63 @@ return {
         },
       },
     })
+    lspconfig.rust_analyzer.setup({
+      settings = {
+        ["rust-analyzer"] = {
+          diagnostics = {
+            enable = false,
+          },
+        },
+      },
+    })
+    lspconfig.gopls.setup({})
+    lspconfig.intelephense.setup({})
   end,
+  keys = {
+    {
+      mode = "n",
+      "K",
+      "<cmd>lua vim.lsp.buf.hover()<CR>",
+    },
+    {
+      mode = "n",
+      "gf",
+      "<cmd>lua vim.lsp.buf.formatting()<CR>",
+    },
+    {
+      mode = "n",
+      "gr",
+      "<cmd>lua vim.lsp.buf.references()<CR>",
+    },
+    {
+      mode = "n",
+      "gd",
+      "<cmd>lua vim.lsp.buf.definition()<CR>",
+    },
+    {
+      mode = "n",
+      "gi",
+      "<cmd>lua vim.lsp.buf.implementation()<CR>",
+    },
+    {
+      mode = "n",
+      "<F2>",
+      "<cmd>lua vim.lsp.buf.rename()<CR>",
+    },
+    {
+      mode = "n",
+      "<F3>",
+      "<cmd>lua vim.lsp.buf.code_action()<CR>",
+    },
+    {
+      mode = "n",
+      "g[",
+      "<cmd>lua vim.lsp.buf.goto_prev()<CR>",
+    },
+    {
+      mode = "n",
+      "g]",
+      "<cmd>lua vim.lsp.buf.goto_next()<CR>",
+    },
+  },
 }

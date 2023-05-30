@@ -86,12 +86,12 @@ return {
     {
       mode = "n",
       "g[",
-      "<cmd>lua vim.lsp.buf.goto_prev()<CR>",
+      "<cmd>lua vim.diagnostic.goto_prev()<cr>",
     },
     {
       mode = "n",
       "g]",
-      "<cmd>lua vim.lsp.buf.goto_next()<CR>",
+      "<cmd>lua vim.diagnostic.goto_next()<cr>",
     },
   },
 }

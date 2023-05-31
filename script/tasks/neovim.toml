@@ -3,26 +3,8 @@ category = "Neovim"
 description = "Setup Neovim"
 run_task = { name = [
   "install_neovim",
-  "install_dein",
   "link_neovim",
-  "install_neovim_provider",
 ] }
-
-[tasks.update_neovim_provider]
-category = "Neovim"
-description = "Update Neovim provider"
-alias = "install_neovim_provider"
-
-[tasks.update_neovim_plugins]
-category = "Neovim"
-description = "Update Neovim plugins"
-script = [
-'''
-#!/usr/bin/env bash
-
-nvim +"call dein#update()" +qall
-'''
-]
 
 [tasks.install_neovim.mac]
 private = true
@@ -46,18 +28,6 @@ sudo apt install -y neovim
 '''
 ]
 
-[tasks.install_dein]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/installer.sh
-sh ~/installer.sh ~/.cache/dein
-rm ~/installer.sh
-'''
-]
-
 [tasks.link_neovim]
 private = true
 script = [
@@ -65,39 +35,5 @@ script = [
 #!/usr/bin/env bash
 
 ln -snfv ~/dotfiles/nvim ~/.config
-'''
-]
-
-[tasks.install_neovim_provider.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-if type python >/dev/null 2>&1; then
-  python2 -m pip install --user --upgrade pynvim
-  python3 -m pip install --user --upgrade pynvim
-fi
-
-if type node >/dev/null 2>&1; then
-  npm install -g neovim
-fi
-'''
-]
-
-[tasks.install_neovim_provider.linux]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-if type python >/dev/null 2>&1; then
-  python2 -m pip install --user --upgrade pynvim
-  python3 -m pip install --user --upgrade pynvim
-fi
-
-if type node >/dev/null 2>&1; then
-  sudo npm install -g neovim
-fi
 '''
 ]

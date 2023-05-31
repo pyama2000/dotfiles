@@ -12,6 +12,7 @@ return {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/vim-vsnip",
     "hrsh7th/cmp-vsnip",
+    "b0o/schemastore.nvim",
   },
   -- init = function()
   --   require("core.plugin").on_attach(function(client, bufnr)
@@ -41,10 +42,9 @@ return {
     lspconfig.yamlls.setup({
       settings = {
         yaml = {
-          schemas = {
-            ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-            ["https://json.schemastore.org/circleciconfig.json"] = "/.circleci/config.yml",
-          },
+          schemas = require("schemastore").yaml.schemas(),
+          validate = true,
+          format = { enable = true },
         },
       },
     })

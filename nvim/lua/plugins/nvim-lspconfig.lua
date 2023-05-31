@@ -46,6 +46,16 @@ return {
     })
     lspconfig.gopls.setup({})
     lspconfig.intelephense.setup({})
+    lspconfig.yamlls.setup({
+      settings = {
+        yaml = {
+          schemas = {
+            ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+            ["https://json.schemastore.org/circleciconfig.json"] = "/.circleci/config.yml",
+          },
+        },
+      },
+    })
   end,
   keys = {
     {

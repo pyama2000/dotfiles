@@ -37,6 +37,7 @@ return {
         "lua_ls",
         "gopls",
         "jsonls",
+        "yamlls",
       },
     })
     mason_lspconfig.setup_handlers({

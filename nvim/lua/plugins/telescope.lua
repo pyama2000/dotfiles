@@ -47,6 +47,8 @@ return {
       vim.keymap.set("n", "<C-d>b", builtin.buffers, { noremap = true, silent = true })
       vim.keymap.set("n", "<C-d>l", builtin.live_grep, { noremap = true, silent = true })
       vim.keymap.set("n", "<C-d>r", builtin.resume, { noremap = true, silent = true })
+      vim.keymap.set("n", "<C-d>c", builtin.command_history, { noremap = true, silent = true })
+      vim.keymap.set("n", "<C-d>s", builtin.search_history, { noremap = true, silent = true })
       vim.keymap.set({ "n", "x" }, "<C-d>g", builtin.grep_string, { noremap = true, silent = true })
       vim.keymap.set("n", "<C-f>b", telescope.extensions.file_browser.file_browser, { noremap = true, silent = true })
     end,

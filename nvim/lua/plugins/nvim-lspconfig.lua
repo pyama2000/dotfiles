@@ -83,12 +83,12 @@ return {
     {
       mode = "i",
       "<C-k>",
-      "<cmd>vim.lsp.buf.signature_help()<CR>",
+      "<cmd>lua vim.lsp.buf.signature_help()<CR>",
     },
     {
       mode = "n",
       "gk",
-      "<cmd>vim.lsp.buf.signature_help()<CR>",
+      "<cmd>lua vim.lsp.buf.signature_help()<CR>",
     },
     {
       mode = "n",

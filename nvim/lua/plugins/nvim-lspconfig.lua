@@ -61,7 +61,7 @@ return {
     {
       mode = "n",
       "gr",
-      "<cmd>lua vim.lsp.buf.references()<CR>",
+      "<cmd>Telescope lsp_references<CR>",
     },
     {
       mode = "n",
@@ -70,8 +70,28 @@ return {
     },
     {
       mode = "n",
+      "gt",
+      "<cmd>lua vim.lsp.buf.type_definition()<CR>",
+    },
+    {
+      mode = "n",
       "gi",
-      "<cmd>lua vim.lsp.buf.implementation()<CR>",
+      "<cmd>Telescope lsp_implementations<CR>",
+    },
+    {
+      mode = "i",
+      "<C-k>",
+      "<cmd>vim.lsp.buf.signature_help()<CR>",
+    },
+    {
+      mode = "n",
+      "gk",
+      "<cmd>vim.lsp.buf.signature_help()<CR>",
+    },
+    {
+      mode = "n",
+      "ga",
+      "<cmd>Telescope diagnostics<CR>",
     },
     {
       mode = "n",
@@ -86,12 +106,12 @@ return {
     {
       mode = "n",
       "g[",
-      "<cmd>lua vim.diagnostic.goto_prev()<cr>",
+      "<cmd>lua vim.diagnostic.goto_prev()<CR>",
     },
     {
       mode = "n",
       "g]",
-      "<cmd>lua vim.diagnostic.goto_next()<cr>",
+      "<cmd>lua vim.diagnostic.goto_next()<CR>",
     },
   },
 }

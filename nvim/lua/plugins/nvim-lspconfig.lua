@@ -1,6 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-  -- event = { "BufReadPre" },
+  event = { "BufReadPre" },
   -- FIXME: dependencies を整理する
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
@@ -14,17 +14,6 @@ return {
     "hrsh7th/cmp-vsnip",
     "b0o/schemastore.nvim",
   },
-  -- init = function()
-  --   require("core.plugin").on_attach(function(client, bufnr)
-  --     local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
-
-  --     require("plugin.nvim-lspconfig.keymaps").on_attach(client, bufnr)
-  --     require("plugin.nvim-lspconfig.diagnostic").on_attach(client, bufnr)
-  --     require("plugin.nvim-lspconfig.format").on_attach(client, bufnr)
-
-  --     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  --   end)
-  -- end,
   config = function()
     local lspconfig = require("lspconfig")
     lspconfig.lua_ls.setup({})
@@ -47,6 +36,9 @@ return {
           format = { enable = true },
         },
       },
+    })
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+      border = "single",
     })
   end,
   keys = {

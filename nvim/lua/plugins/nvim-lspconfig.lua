@@ -58,7 +58,7 @@ return {
     {
       mode = "n",
       "gf",
-      "<cmd>lua vim.lsp.buf.formatting()<CR>",
+      "<cmd>lua vim.lsp.buf.format()<CR>",
     },
     {
       mode = "n",

@@ -48,8 +48,6 @@ run_task = [
     "update_languages",
     "update_alacritty",
     "update_tools",
-    "update_neovim_provider",
-    "update_neovim_plugins",
     "update_docker_cli_plugins",
     "cleanup",
   ] },

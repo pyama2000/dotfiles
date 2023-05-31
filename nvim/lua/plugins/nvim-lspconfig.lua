@@ -26,15 +26,7 @@ return {
   -- end,
   config = function()
     local lspconfig = require("lspconfig")
-    lspconfig.lua_ls.setup({
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
-        },
-      },
-    })
+    lspconfig.lua_ls.setup({})
     lspconfig.rust_analyzer.setup({
       settings = {
         ["rust-analyzer"] = {

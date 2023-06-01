@@ -33,8 +33,9 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - install-and-update
+    if: always()
     steps:
-      - run: echo 'dbg'
+      - run: echo ${{ needs.install-and-update.result }}
   actionlint:
     runs-on: ubuntu-latest
     steps:

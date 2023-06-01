@@ -4,7 +4,6 @@ description = "Install CLI tools"
 run_task = { name = [
   "install_fzf",
   "install_jq",
-  "install_ripgrep",
   "install_zoxide",
   "install_cargo-watch",
   "install_cargo-update",
@@ -59,17 +58,6 @@ script = [
 #!/usr/bin/env bash
 
 sudo apt install -y jq
-'''
-]
-
-# ripgrep
-[tasks.install_ripgrep]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install ripgrep
 '''
 ]
 

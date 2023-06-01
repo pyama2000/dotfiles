@@ -27,7 +27,9 @@ jobs:
   install-and-update:
     needs:
       - pre-install-and-update
-    if: false
+    if: >-
+      contains(needs.pre-install-and-update.outputs.diff, '.github/workflows/') ||
+      contains(needs.pre-install-and-update.outputs.diff, 'script/')
     uses: ./.github/workflows/install-and-update.yaml
   post-install-and-update:
     runs-on: ubuntu-latest

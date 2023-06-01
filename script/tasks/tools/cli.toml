@@ -2,7 +2,6 @@
 category = "tools"
 description = "Install CLI tools"
 run_task = { name = [
-  "install_fd",
   "install_fzf",
   "install_git-delta",
   "install_jq",
@@ -19,17 +18,6 @@ description = "Update CLI tools"
 run_task = { name = [
   "update_slack_cli",
 ] }
-
-# fd
-[tasks.install_fd]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install fd-find 
-'''
-]
 
 # fzf
 [tasks.install_fzf.mac]

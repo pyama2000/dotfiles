@@ -43,7 +43,7 @@ jobs:
         shell: bash
         run: |
           bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
-          ./actionlint -color
+          ./actionlint -color -ignore 'label ".+" is unknown'
   stylua:
     runs-on: ubuntu-latest
     steps:

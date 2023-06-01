@@ -23,7 +23,7 @@ jobs:
             script/**
       - name: Export outputs
         id: export
-        run: echo "diff=${{ env.GIT_DIFF }}" >> $GITHUB_OUTPUT
+        run: echo "diff=${{ env.GIT_DIFF }}" >> "$GITHUB_OUTPUT"
   install-and-update:
     needs:
       - pre-install-and-update

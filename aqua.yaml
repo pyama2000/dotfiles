@@ -35,3 +35,4 @@ packages:
 - name: sharkdp/bat@v0.23.0
 - name: ogham/exa@v0.10.1
 - name: sharkdp/fd@v8.7.0
+- name: dandavison/delta@0.15.1

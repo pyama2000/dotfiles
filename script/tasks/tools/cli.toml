@@ -3,7 +3,6 @@ category = "tools"
 description = "Install CLI tools"
 run_task = { name = [
   "install_fzf",
-  "install_git-delta",
   "install_jq",
   "install_ripgrep",
   "install_zoxide",
@@ -39,17 +38,6 @@ script = [
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 yes | ~/.fzf/install
-'''
-]
-
-# git-delta
-[tasks.install_git-delta]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install git-delta
 '''
 ]
 

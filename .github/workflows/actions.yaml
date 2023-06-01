@@ -18,26 +18,26 @@ jobs:
       - uses: technote-space/get-diff-action@v6
         with:
           PATTERNS: |
-            .github/workflows/**
+            # .github/workflows/**
             script/**
       - name: Run setup.sh
         if: contains(env.GIT_DIFF, '.github/workflows/') || contains(env.GIT_DIFF, 'script/')
-        run: echo ${{ env.GIT_DIFF }}
-      #   run: ./script/install.sh
-      # - name: Run setup task
-      #   env:
-      #     GIT_NAME: pyama2000
-      #     GIT_EMAIL: example@example.com
-      #     PYTHON_VERSION: 3.10.2
-      #     GO_VERSION: 1.17.0
-      #     NODE_VERSION: 18.16.0
-      #   run: |
-      #     cargo make --makefile script/task.toml setup \
-      #       -e GIT_NAME="$GIT_NAME" \
-      #       -e GIT_EMAIL="$GIT_EMAIL" \
-      #       -e PYTHON_VERSION="$PYTHON_VERSION" \
-      #       -e GO_VERSION="$GO_VERSION" \
-      #       -e NODE_VERSION="$NODE_VERSION"
+        run: ./script/install.sh
+      - name: Run setup task
+        if: contains(env.GIT_DIFF, '.github/workflows/') || contains(env.GIT_DIFF, 'script/')
+        env:
+          GIT_NAME: pyama2000
+          GIT_EMAIL: example@example.com
+          PYTHON_VERSION: 3.10.2
+          GO_VERSION: 1.17.0
+          NODE_VERSION: 18.16.0
+        run: |
+          cargo make --makefile script/task.toml setup \
+            -e GIT_NAME="$GIT_NAME" \
+            -e GIT_EMAIL="$GIT_EMAIL" \
+            -e PYTHON_VERSION="$PYTHON_VERSION" \
+            -e GO_VERSION="$GO_VERSION" \
+            -e NODE_VERSION="$NODE_VERSION"
   actionlint:
     runs-on: ubuntu-latest
     steps:
@@ -59,10 +59,11 @@ jobs:
   status-check:
     runs-on: ubuntu-latest
     needs:
+      - install
       - actionlint
       - stylua
     if: always()
     steps:
-      - if: (needs.actionlint.result == 'failure' || needs.stylua.result == 'failure')
+      - if: (needs.install.result == 'failure' || needs.actionlint.result == 'failure' || needs.stylua.result == 'failure')
         run: exit 1
       - run: exit 0

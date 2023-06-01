@@ -21,4 +21,6 @@ jobs:
     needs:
       - actionlint
     steps:
-      - run: exit 1
+      - if: cancelled()
+        run: exit 1
+      - run: exit 0

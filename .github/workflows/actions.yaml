@@ -20,7 +20,7 @@ jobs:
           PATTERNS: |
             script/**
       - name: Run setup.sh
-        run: ./script.install.sh
+        run: ./script/install.sh
       - name: Run setup task
         env:
           GIT_NAME: pyama2000

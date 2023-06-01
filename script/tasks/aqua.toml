@@ -1,5 +1,10 @@
+[tasks.setup_aqua]
+description = "setup asdf"
+run_task = { name = ["install_aqua", "install_aqua_packages"]}
+
 [tasks.install_aqua]
-description = "Clone dotfiles and set remote url"
+private = true
+description = "install aqua"
 script = ['''
 #!/usr/bin/env bash
 set -eux -o pipefail
@@ -9,4 +14,14 @@ curl -sSfL -O https://raw.githubusercontent.com/aquaproj/aqua-installer/v2.1.1/a
 echo "c2af02bdd15da6794f9c98db40332c804224930212f553a805425441f8331665  aqua-installer" | sha256sum -c
 chmod +x aqua-installer
 ./aqua-installer
+''']
+
+[tasks.install_aqua_packages]
+private = true
+description = "install aqua packages"
+script = ['''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+aqua i
 ''']

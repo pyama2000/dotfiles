@@ -1,6 +1,7 @@
 name: install-and-update
 on:
   workflow_call:
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * FRI'
 jobs:

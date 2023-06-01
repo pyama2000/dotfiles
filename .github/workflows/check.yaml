@@ -30,7 +30,7 @@ jobs:
       - pre-install-and-update
     steps:
       - uses: actions/checkout@v3
-      - run: echo ${{ needa.pre-install-and-update.outputs.diff }}
+      - run: echo ${{ needs.pre-install-and-update.outputs.diff }}
   install:
     runs-on: ubuntu-latest
     steps:

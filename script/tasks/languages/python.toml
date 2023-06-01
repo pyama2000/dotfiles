@@ -3,18 +3,6 @@ category = "languages"
 description = "Setup python"
 run_task = { name = ["install_python", "install_package_manager"] }
 
-[tasks.update_pip]
-category = "languages"
-description = "Update pip version"
-script = [
-'''
-#!/usr/bin/env bash
-
-python2 -m pip install --user --upgrade pip
-python3 -m pip install --user --upgrade pip
-'''
-]
-
 [tasks.install_python]
 private = true
 dependencies = ["dependencies_python", "asdf_python_plugin"]
@@ -22,18 +10,12 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if test -z "$PYTHON_VERSION"; then
-  echo "PYTHON_VERSION must be set"
-  exit 1
-fi
-
 if !(type asdf > /dev/null 2>&1); then
   source $HOME/.asdf/asdf.sh
 fi
 
-asdf install python "$PYTHON_VERSION"
-asdf install python 2.7.18
-asdf global python "$PYTHON_VERSION" 2.7.18
+asdf install python latest
+asdf global python latest
 '''
 ]
 

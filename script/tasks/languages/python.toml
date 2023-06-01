@@ -1,19 +1,7 @@
 [tasks.setup_python]
 category = "languages"
 description = "Setup python"
-run_task = { name = ["install_python", "install_package_manager"] }
-
-[tasks.update_pip]
-category = "languages"
-description = "Update pip version"
-script = [
-'''
-#!/usr/bin/env bash
-
-python2 -m pip install --user --upgrade pip
-python3 -m pip install --user --upgrade pip
-'''
-]
+run_task = { name = ["install_python"] }
 
 [tasks.install_python]
 private = true
@@ -22,18 +10,12 @@ script = [
 '''
 #!/usr/bin/env bash
 
-if test -z "$PYTHON_VERSION"; then
-  echo "PYTHON_VERSION must be set"
-  exit 1
-fi
-
 if !(type asdf > /dev/null 2>&1); then
   source $HOME/.asdf/asdf.sh
 fi
 
-asdf install python "$PYTHON_VERSION"
-asdf install python 2.7.18
-asdf global python "$PYTHON_VERSION" 2.7.18
+asdf install python latest
+asdf global python latest
 '''
 ]
 
@@ -55,7 +37,7 @@ script = [
 
 sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
   libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-  xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+  xz-utils tk-dev libffi-dev liblzma-dev python3-openssl git
 '''
 ]
 
@@ -70,15 +52,5 @@ if !(type asdf > /dev/null 2>&1); then
 fi
 
 asdf plugin add python
-'''
-]
-
-[tasks.install_package_manager]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 '''
 ]

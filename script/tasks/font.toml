@@ -41,7 +41,7 @@ mkdir -p ~/.fonts/"$FONT_NAME"
 mkdir -p /tmp/"$FONT_NAME"
 cd /tmp/"$FONT_NAME" || exit
 
-FILE_NAME=$(curl -sL "$ENDPOINT" | jq -r '.assets[].name' | grep "$FONT_NAME")
+FILE_NAME=$(curl -sL "$ENDPOINT" | jq -r '.assets[].name' | grep "${FONT_NAME}_")
 curl -sL "$ENDPOINT" | jq -r '.assets[].browser_download_url' | grep "$FILE_NAME" | xargs curl -fsLJO
 unzip "$FILE_NAME"
 

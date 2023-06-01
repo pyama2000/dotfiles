@@ -36,6 +36,30 @@ jobs:
       - name: Export outputs
         id: export
         run: echo "diff=${{ env.GIT_DIFF }}" >> "$GITHUB_OUTPUT"
+  add-label:
+    runs-on: ubuntu-latest
+    needs:
+      - export-diff
+    steps:
+      - uses: actions/checkout@v3
+      - name: Add workflow label
+        if: contains(needs.export-diff.outputs.diff, '.github/workflows/')
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{github.event.pull_request.html_url}}
+        run: gh pr edit --add-label 'workflow'
+      - name: Add script label
+        if: contains(needs.export-diff.outputs.diff, 'script/')
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{github.event.pull_request.html_url}}
+        run: gh pr edit --add-label 'script'
+      - name: Add nvim label
+        if: contains(needs.export-diff.outputs.diff, 'nvim/')
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{github.event.pull_request.html_url}}
+        run: gh pr edit --add-label 'nvim'
   install-and-update:
     needs:
       - export-diff
@@ -65,6 +89,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - enable-auto-merge
+      - add-label
       - install-and-update
       - actionlint
       - stylua

@@ -11,6 +11,17 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  enable-auto-merge:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.pull_request.draft == false ||
+      github.event.label.name != 'dependencies'
+    steps:
+      - name: Enable auto-merge
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{github.event.pull_request.html_url}}
+        run: gh pr merge --auto --merge "$PR_URL"
   pre-install-and-update:
     runs-on: ubuntu-latest
     outputs:

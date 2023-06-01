@@ -10,6 +10,27 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  pre-install-and-update:
+    runs-on: ubuntu-latest
+    outputs:
+      diff: ${{ steps.export.outputs.diff }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: technote-space/get-diff-action@v6
+        with:
+          PATTERNS: |
+            .github/workflows/**
+            script/**
+      - name: Export outputs
+        id: export
+        run: echo "diff=${{ env.GIT_DIFF }}" >> $GITHUB_OUTPUT
+  dbg:
+    runs-on: ubuntu-latest
+    needs:
+      - pre-install-and-update
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo ${{ needa.pre-install-and-update.outputs.diff }}
   install:
     runs-on: ubuntu-latest
     steps:

@@ -58,6 +58,6 @@ jobs:
     steps:
       - if: >-
           needs.actionlint.result == 'failure' ||
-          needs.stylua.result == 'failure')
+          needs.stylua.result == 'failure'
         run: exit 1
       - run: exit 0

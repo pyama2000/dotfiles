@@ -19,7 +19,7 @@ if [ $OS == "Linux" ]; then
     gettext git libbz2-dev libclang-dev libcurl4-gnutls-dev libevent-dev libexpat1-dev \
     libffi-dev libfreetype6-dev libfontconfig1-dev libghc-zlib-dev liblzma-dev \
     libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev \
-    libxcb-xfixes0-dev llvm make pkg-config python3 \
+    libxcb-xfixes0-dev llvm make pkg-config python3 python3-openssl \
     software-properties-common tk-dev wget xz-utils zlib1g-dev
 
   sudo apt autoremove -y

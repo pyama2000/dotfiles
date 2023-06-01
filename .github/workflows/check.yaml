@@ -69,12 +69,19 @@ jobs:
       - stylua
     if: always()
     steps:
-      - if: >-
+      - name: Failure
+        if: >-
           needs.install-and-update.result == 'failure' ||
           needs.install-and-update.result == 'cancelled' ||
           needs.actionlint.result == 'failure' ||
           needs.actionlint.result == 'cancelled' ||
           needs.stylua.result == 'failure' ||
           needs.stylua.result == 'cancelled'
-        run: exit 1
-      - run: exit 0
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{github.event.pull_request.html_url}}
+        run: |
+          gh pr merge --disable-auto "$PR_URL"
+          exit 1
+      - name: Success
+        run: exit 0

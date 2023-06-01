@@ -24,24 +24,13 @@ jobs:
       - name: Export outputs
         id: export
         run: echo "diff=${{ env.GIT_DIFF }}" >> $GITHUB_OUTPUT
-  dbg:
-    runs-on: ubuntu-latest
+  install-and-update:
     needs:
       - pre-install-and-update
-    steps:
-      - uses: actions/checkout@v3
-      - run: echo ${{ needs.pre-install-and-update.outputs.diff }}
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: technote-space/get-diff-action@v6
-        with:
-          PATTERNS: |
-            .github/workflows/**
-            script/**
-      - if: contains(env.GIT_DIFF, '.github/workflows/') || contains(env.GIT_DIFF, 'script/')
-        uses: ./.github/workflows/install-and-update.yaml
+    if: >-
+      contains(needs.pre-install-and-update.outputs.diff, '.github/workflows/') ||
+      contains(needs.pre-install-and-update.outputs.diff, 'script/')
+    uses: ./.github/workflows/install-and-update.yaml
   actionlint:
     runs-on: ubuntu-latest
     steps:

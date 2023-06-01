@@ -17,7 +17,7 @@ jobs:
       - uses: technote-space/get-diff-action@v6
         with:
           PATTERNS: |
-            # .github/workflows/**
+            .github/workflows/**
             script/**
       - if: contains(env.GIT_DIFF, '.github/workflows/') || contains(env.GIT_DIFF, 'script/')
         uses: ./.github/workflows/install-and-update.yaml

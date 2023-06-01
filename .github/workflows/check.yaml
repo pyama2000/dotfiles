@@ -62,4 +62,4 @@ jobs:
           needs.actionlint.result == 'failure' ||
           needs.stylua.result == 'failure'
         run: exit 1
-      - run: exit 0
+      - run: echo ${{ needs.install-and-update.result }}

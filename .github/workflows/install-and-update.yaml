@@ -1,0 +1,26 @@
+name: install-and-update
+on:
+  workflow_call:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * FRI'
+jobs:
+  install-and-update:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-13, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run setup.sh
+        run: ./script/install.sh
+      - name: Run setup task
+        env:
+          GIT_NAME: pyama2000
+          GIT_EMAIL: example@example.com
+        run: |
+          cargo make --makefile script/task.toml setup \
+            -e GIT_NAME="$GIT_NAME" \
+            -e GIT_EMAIL="$GIT_EMAIL"
+      - name: Run update task
+        run: cargo make --makefile script/task.toml update

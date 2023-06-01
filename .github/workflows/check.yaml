@@ -4,34 +4,45 @@ on:
     branches:
       - main
     types:
-      - "synchronize"
-      - "opened"
+      - synchronize
+      - opened
+      - ready_for_review
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  install:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-13, ubuntu-latest]
+  enable-auto-merge:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.pull_request.draft == false &&
+      github.event.label.name != 'dependencies'
+    steps:
+      - name: Enable auto-merge
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{github.event.pull_request.html_url}}
+        run: gh pr merge --auto --merge "$PR_URL"
+  pre-install-and-update:
+    runs-on: ubuntu-latest
+    outputs:
+      diff: ${{ steps.export.outputs.diff }}
     steps:
       - uses: actions/checkout@v3
       - uses: technote-space/get-diff-action@v6
         with:
           PATTERNS: |
-            # .github/workflows/**
+            .github/workflows/**
             script/**
-      - name: Run setup.sh
-        if: contains(env.GIT_DIFF, '.github/workflows/') || contains(env.GIT_DIFF, 'script/')
-        run: ./script/install.sh
-      - name: Run setup task
-        if: contains(env.GIT_DIFF, '.github/workflows/') || contains(env.GIT_DIFF, 'script/')
-        env:
-          GIT_NAME: pyama2000
-          GIT_EMAIL: example@example.com
-        run: |
-          cargo make --makefile script/task.toml setup \
-            -e GIT_NAME="$GIT_NAME" \
-            -e GIT_EMAIL="$GIT_EMAIL"
+      - name: Export outputs
+        id: export
+        run: echo "diff=${{ env.GIT_DIFF }}" >> "$GITHUB_OUTPUT"
+  install-and-update:
+    needs:
+      - pre-install-and-update
+    if: >-
+      contains(needs.pre-install-and-update.outputs.diff, '.github/workflows/') ||
+      contains(needs.pre-install-and-update.outputs.diff, 'script/')
+    uses: ./.github/workflows/install-and-update.yaml
   actionlint:
     runs-on: ubuntu-latest
     steps:
@@ -53,11 +64,25 @@ jobs:
   status-check:
     runs-on: ubuntu-latest
     needs:
-      - install
+      - enable-auto-merge
+      - install-and-update
       - actionlint
       - stylua
     if: always()
     steps:
-      - if: (needs.install.result == 'failure' || needs.actionlint.result == 'failure' || needs.stylua.result == 'failure')
-        run: exit 1
-      - run: exit 0
+      - name: Failure
+        if: >-
+          needs.install-and-update.result == 'failure' ||
+          needs.install-and-update.result == 'cancelled' ||
+          needs.actionlint.result == 'failure' ||
+          needs.actionlint.result == 'cancelled' ||
+          needs.stylua.result == 'failure' ||
+          needs.stylua.result == 'cancelled'
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{github.event.pull_request.html_url}}
+        run: |
+          gh pr merge --disable-auto "$PR_URL"
+          exit 1
+      - name: Success
+        run: exit 0

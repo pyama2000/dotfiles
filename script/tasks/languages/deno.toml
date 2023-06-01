@@ -16,6 +16,7 @@ echo 'export PATH="$DENO_INSTALL/bin:$PATH"' >> $HOME/.profile
 [tasks.update_deno]
 category = "languages"
 description = "Install Deno"
+condition = { profiles = ["production"] }
 script = [
 '''
 #!/usr/bin/env bash

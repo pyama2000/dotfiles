@@ -1,10 +1,12 @@
 name: install-and-update
-on: workflow_call
+on:
+  workflow_call:
+  schedule:
+    - cron: '0 0 * * FRI'
 jobs:
   install-and-update:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
       matrix:
         os: [macos-13, ubuntu-latest]
     steps:

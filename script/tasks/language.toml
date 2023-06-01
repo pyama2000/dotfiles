@@ -16,7 +16,6 @@ run_task = { name = [
   "install_go",
   "install_node",
   "setup_python",
-  "setup-kotlin_language_server",
 ] }
 
 [tasks.update_languages]
@@ -26,6 +25,6 @@ run_task = { name = [
   "update_deno",
   "update_rust",
   "update_go",
-  "update_npm",
+  "update_node",
   "update_pip",
 ] }

@@ -21,7 +21,7 @@ jobs:
             .github/workflows/**
             script/**
       - name: Run setup.sh
-        if: contains(env.GIT_DIFF, '.github/workflows/')
+        if: contains(env.GIT_DIFF, '.github/workflows/') || contains(env.GIT_DIFF, 'script/')
         run: echo ${{ env.GIT_DIFF }}
       #   run: ./script/install.sh
       # - name: Run setup task

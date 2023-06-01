@@ -22,3 +22,5 @@ jobs:
           cargo make --makefile script/task.toml setup \
             -e GIT_NAME="$GIT_NAME" \
             -e GIT_EMAIL="$GIT_EMAIL"
+      - name: Run update task
+        run: cargo make --makefile script/task.toml update

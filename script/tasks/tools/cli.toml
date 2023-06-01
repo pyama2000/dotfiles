@@ -4,7 +4,6 @@ description = "Install CLI tools"
 run_task = { name = [
   "install_fzf",
   "install_jq",
-  "install_zoxide",
   "install_cargo-watch",
   "install_cargo-update",
   "install_slack_cli",
@@ -58,18 +57,6 @@ script = [
 #!/usr/bin/env bash
 
 sudo apt install -y jq
-'''
-]
-
-# zoxide
-[tasks.install_zoxide]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install zoxide
-echo 'eval "$(zoxide init bash)"' >> ~/.profile
 '''
 ]
 

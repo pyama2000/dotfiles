@@ -11,11 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   install:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-13, ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: technote-space/get-diff-action@v6
@@ -23,18 +19,8 @@ jobs:
           PATTERNS: |
             # .github/workflows/**
             script/**
-      - name: Run setup.sh
-        if: contains(env.GIT_DIFF, '.github/workflows/') || contains(env.GIT_DIFF, 'script/')
-        run: ./script/install.sh
-      - name: Run setup task
-        if: contains(env.GIT_DIFF, '.github/workflows/') || contains(env.GIT_DIFF, 'script/')
-        env:
-          GIT_NAME: pyama2000
-          GIT_EMAIL: example@example.com
-        run: |
-          cargo make --makefile script/task.toml setup \
-            -e GIT_NAME="$GIT_NAME" \
-            -e GIT_EMAIL="$GIT_EMAIL"
+      - if: contains(env.GIT_DIFF, '.github/workflows/') || contains(env.GIT_DIFF, 'script/')
+        uses: ./.github/workflows/install-and-update.yaml
   actionlint:
     runs-on: ubuntu-latest
     steps:

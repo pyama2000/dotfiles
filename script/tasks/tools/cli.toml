@@ -2,7 +2,6 @@
 category = "tools"
 description = "Install CLI tools"
 run_task = { name = [
-  "install_bat",
   "install_exa",
   "install_fd",
   "install_fzf",
@@ -21,28 +20,6 @@ description = "Update CLI tools"
 run_task = { name = [
   "update_slack_cli",
 ] }
-
-# bat
-[tasks.install_bat]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install --locked bat
-'''
-]
-dependencies = ["dependencies_bat"]
-
-[tasks.dependencies_bat.linux]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y libclang-dev
-'''
-]
 
 # exa
 [tasks.install_exa]

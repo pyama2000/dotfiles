@@ -3,7 +3,6 @@ category = "tools"
 description = "Install CLI tools"
 run_task = { name = [
   "install_fzf",
-  "install_jq",
   "install_cargo-watch",
   "install_cargo-update",
   "install_slack_cli",
@@ -36,27 +35,6 @@ script = [
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 yes | ~/.fzf/install
-'''
-]
-
-# jq
-[tasks.install_jq.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install jq 
-'''
-]
-
-[tasks.install_jq.linux]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y jq
 '''
 ]
 

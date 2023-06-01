@@ -2,7 +2,17 @@
 description = "setup asdf"
 run_task = { name = ["install_aqua", "install_aqua_packages"]}
 
-[tasks.install_aqua]
+[tasks.install_aqua.mac]
+private = true
+description = "install aqua"
+script = ['''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+brew install aquaproj/aqua/aqua
+''']
+
+[tasks.install_aqua.linux]
 private = true
 description = "install aqua"
 script = ['''

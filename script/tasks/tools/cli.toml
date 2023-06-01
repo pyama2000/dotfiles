@@ -2,7 +2,6 @@
 category = "tools"
 description = "Install CLI tools"
 run_task = { name = [
-  "install_exa",
   "install_fd",
   "install_fzf",
   "install_git-delta",
@@ -20,17 +19,6 @@ description = "Update CLI tools"
 run_task = { name = [
   "update_slack_cli",
 ] }
-
-# exa
-[tasks.install_exa]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install exa
-'''
-]
 
 # fd
 [tasks.install_fd]

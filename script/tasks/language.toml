@@ -25,5 +25,4 @@ run_task = { name = [
   "update_deno",
   "update_rust",
   "update_go",
-  "update_node",
 ] }

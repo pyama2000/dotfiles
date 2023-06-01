@@ -15,17 +15,6 @@ asdf global nodejs lts
 '''
 ]
 
-[tasks.update_node]
-category = "languages"
-description = "Install Node.js"
-script = [
-'''
-#!/usr/bin/env bash
-
-asdf install nodejs lts
-'''
-]
-
 [tasks.asdf_node_plugin]
 private = true
 script = [

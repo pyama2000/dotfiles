@@ -30,11 +30,8 @@ run_task = [
     "setup_languages",
     "install_tools",
     "setup_neovim",
-    "install_neovim_provider",
     "setup_docker",
     "setup_font",
-    # "link_bash",
-    # "link_vim",
     "cleanup",
   ] },
 ]

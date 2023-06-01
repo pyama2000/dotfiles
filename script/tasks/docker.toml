@@ -34,7 +34,7 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-limactl start ~/dotfiles/lima/docker.yml
+limactl start ~/dotfiles/lima/docker.yaml
 '''
 ]
 

@@ -7,6 +7,34 @@ on:
       - "synchronize"
       - "opened"
 jobs:
+  install:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-13, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: technote-space/get-diff-action@v6
+        with:
+          PATTERNS: |
+            script/**
+      - name: Run setup.sh
+        run: ./script.install.sh
+      - name: Run setup task
+        env:
+          GIT_NAME: pyama2000
+          GIT_EMAIL: example@example.com
+          PYTHON_VERSION: 3.10.2
+          GO_VERSION: 1.17.0
+          NODE_VERSION: 16.14.0
+        run: |
+          cargo make --makefile script/task.toml setup \
+            -e GIT_NAME="$GIT_NAME" \
+            -e GIT_EMAIL="$GIT_EMAIL" \
+            -e PYTHON_VERSION="$PYTHON_VERSION" \
+            -e GO_VERSION="$GO_VERSION" \
+            -e NODE_VERSION="$NODE_VERSION"
   actionlint:
     runs-on: ubuntu-latest
     steps:
@@ -28,10 +56,11 @@ jobs:
   status-check:
     runs-on: ubuntu-latest
     needs:
+      - install
       - actionlint
       - stylua
     if: always()
     steps:
-      - if: (needs.actionlint.result == 'failure' || needs.stylua.result == 'failure')
+      - if: (needs.install.result == 'failure' || needs.actionlint.result == 'failure' || needs.stylua.result == 'failure')
         run: exit 1
       - run: exit 0

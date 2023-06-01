@@ -27,7 +27,7 @@ jobs:
           GIT_EMAIL: example@example.com
           PYTHON_VERSION: 3.10.2
           GO_VERSION: 1.17.0
-          NODE_VERSION: 16.14.0
+          NODE_VERSION: 18.16.0
         run: |
           cargo make --makefile script/task.toml setup \
             -e GIT_NAME="$GIT_NAME" \

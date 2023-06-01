@@ -28,9 +28,6 @@ cargo-make で `update` タスクを実行する.
 
 ```shell script
 cargo make --profile production --makefile script/task.toml update
-
-# npmのバージョンを指定して更新する
-cargo make --profile production --makefile script/task.toml update -e NPM_UPDATE_VERSION="7.6.0"
 ```
 
 ## インストールされるツール

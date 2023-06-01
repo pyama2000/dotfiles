@@ -31,13 +31,6 @@ jobs:
       contains(needs.pre-install-and-update.outputs.diff, '.github/workflows/') ||
       contains(needs.pre-install-and-update.outputs.diff, 'script/')
     uses: ./.github/workflows/install-and-update.yaml
-  post-install-and-update:
-    runs-on: ubuntu-latest
-    needs:
-      - install-and-update
-    if: always()
-    steps:
-      - run: echo ${{ needs.install-and-update.result }}
   actionlint:
     runs-on: ubuntu-latest
     steps:
@@ -59,11 +52,13 @@ jobs:
   status-check:
     runs-on: ubuntu-latest
     needs:
+      - install-and-update
       - actionlint
       - stylua
     if: always()
     steps:
       - if: >-
+          needs.install-and-update.result == 'failure' ||
           needs.actionlint.result == 'failure' ||
           needs.stylua.result == 'failure'
         run: exit 1

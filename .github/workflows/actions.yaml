@@ -1,0 +1,14 @@
+name: check
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - "synchronize"
+      - "opened"
+jobs:
+  status-check:
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - run: exit 1

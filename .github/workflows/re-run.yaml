@@ -27,7 +27,7 @@ jobs:
           private_key: ${{ secrets.PRIVATE_KEY }}
       - name: add empty commit
         env:
-          GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         uses: EndBug/add-and-commit@v9
         with:
           commit: "--allow-empty"

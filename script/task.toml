@@ -45,6 +45,7 @@ run_task = [
     "update_asdf",
     "update_languages",
     "update_alacritty",
+    "update_aqua_packages"
     "update_tools",
     "update_docker_cli_plugins",
     "cleanup",

@@ -14,7 +14,7 @@ jobs:
     if: >-
       contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update')
     steps:
-      - run: echo ${{ toJSON(github.event_name) }}
+      - run: echo ${{ toJSON(github.event.action) }}
       - name: Add re-run comment
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

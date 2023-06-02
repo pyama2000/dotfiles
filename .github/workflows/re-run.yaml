@@ -19,7 +19,15 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
+      - name: Generate GitHub Apps token
+        id: generate
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
       - name: add empty commit
+        env:
+          GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
         uses: EndBug/add-and-commit@v9
         with:
           commit: "--allow-empty"

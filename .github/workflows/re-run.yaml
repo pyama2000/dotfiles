@@ -1,4 +1,4 @@
-name: skip-ci
+name: re-run
 on:
   pull_request:
     branches:

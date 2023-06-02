@@ -26,8 +26,6 @@ jobs:
           token: ${{ steps.generate.outputs.token }}
           ref: ${{ github.event.pull_request.head.ref }}
       - name: add empty commit
-        env:
-          GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
         uses: EndBug/add-and-commit@v9
         with:
           commit: "--allow-empty"

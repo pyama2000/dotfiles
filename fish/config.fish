@@ -81,6 +81,11 @@ set -x AQUA_GLOBAL_CONFIG "$HOME/dotfiles/aqua.yaml"
 fish_add_path "$AQUA_ROOT_DIR/bin"
 
 ##############################
+# MySQL client               #
+##############################
+fish_add_path "/usr/local/opt/mysql-client/bin"
+
+##############################
 # Theme                      #
 ##############################
 set -l foreground DCD7BA

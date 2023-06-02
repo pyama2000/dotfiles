@@ -60,6 +60,12 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           PR_URL: ${{github.event.pull_request.html_url}}
         run: gh pr edit --add-label 'nvim' "$PR_URL"
+      - name: Add aqua label
+        if: contains(needs.export-diff.outputs.diff, 'aqua.yaml')
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{github.event.pull_request.html_url}}
+        run: gh pr edit --add-label 'aqua' "$PR_URL"
   install-and-update:
     needs:
       - export-diff

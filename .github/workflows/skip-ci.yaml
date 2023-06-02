@@ -14,11 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: echo labels
-        run: echo ${{ toJSON(github.event.pull_request.labels.*.name) }}
+        run: echo ${{ toJSON(github.event.pull_request.labels[1].name) }}
   add-empty-commit:
     runs-on: ubuntu-latest
-    if: >-
-      contains(github.event.pull_request.labels.*.name, 'install-and-update')
+    if: contains(github.event.pull_request.labels.*.name, 'skip ci')
     steps:
       - uses: actions/checkout@v3
         with:

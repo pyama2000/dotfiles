@@ -38,3 +38,4 @@ packages:
 - name: dandavison/delta@0.15.1
 - name: BurntSushi/ripgrep@13.0.0
 - name: ajeetdsouza/zoxide@v0.9.1
+- name: kubernetes/kubectl@v1.25.10

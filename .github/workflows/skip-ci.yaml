@@ -9,14 +9,11 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  dbg:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: echo event
-        run: echo ${{ toJSON(github.event.pull_request.labels) }}
   add-empty-commit:
     runs-on: ubuntu-latest
+    if: >-
+      contains(github.event.pull_request.labels.*.name, 'skip ci') &&
+      contains(github.event.pull_request.labels.*.name, 'install-and-update')
     steps:
       - uses: actions/checkout@v3
         with:

@@ -27,8 +27,11 @@ jobs:
           echo "status=${status}" >> "$GITHUB_OUTPUT"
   re-run:
     runs-on: ubuntu-latest
+    needs:
+      - check-status
     if: >-
-      contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update')
+      contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update') &&
+      ${{ needs.check-status.outputs.check-status }} == 'in_progres'
     steps:
       - name: Generate GitHub Apps token
         id: generate

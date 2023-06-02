@@ -12,7 +12,7 @@ jobs:
   check-status:
     runs-on: ubuntu-latest
     outputs:
-      check-status: ${{ steps.check.status }}
+      check-status: ${{ steps.check.outputs.status }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       PR_URL: ${{ github.event.pull_request.html_url }}

@@ -9,6 +9,14 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  dbg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: echo event
+        run: echo ${{ toJSON(github.event.pull_request.labels) }}
+      - name: echo labels
+        run: echo ${{ toJSON(github.event.pull_request.labels.*.name) }}
   add-empty-commit:
     runs-on: ubuntu-latest
     if: >-

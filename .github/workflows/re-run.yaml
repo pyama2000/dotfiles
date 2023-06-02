@@ -14,20 +14,20 @@ jobs:
     if: >-
       contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update')
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          ref: ${{ github.event.pull_request.head.ref }}
       - name: Generate GitHub Apps token
         id: generate
         uses: tibdex/github-app-token@v1
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ steps.generate.outputs.token }}
+          ref: ${{ github.event.pull_request.head.ref }}
       - name: add empty commit
         env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
         uses: EndBug/add-and-commit@v9
         with:
           commit: "--allow-empty"

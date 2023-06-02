@@ -35,11 +35,8 @@ jobs:
     needs:
       - check-status
     if: >-
-      contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update') &&
-      (
-        contains(needs.check-status.outputs.check-status, 'in_progress') ||
-        contains(needs.check-status.outputs.check-status, 'pending')
-      )
+      contains(github.event.pull_request.labels.*.name, 'skip ci') &&
+      !contains(needs.check-status.outputs.check-status, 'completed')
     steps:
       - name: Generate GitHub Apps token
         id: generate

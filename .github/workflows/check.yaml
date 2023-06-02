@@ -78,9 +78,6 @@ jobs:
           needs.actionlint.result == 'cancelled' ||
           needs.stylua.result == 'failure' ||
           needs.stylua.result == 'cancelled'
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          PR_URL: ${{github.event.pull_request.html_url}}
         run: |
           exit 1
       - name: Success

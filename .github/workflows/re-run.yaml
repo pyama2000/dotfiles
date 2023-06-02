@@ -30,6 +30,8 @@ jobs:
       contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update') &&
       contains(needs.check-status.outputs.check-status, 'in_progress')
     steps:
+      - name: dbg
+        run: echo "${{ needs.check-status.outputs.check-status }}"
       - name: Generate GitHub Apps token
         id: generate
         uses: tibdex/github-app-token@v1

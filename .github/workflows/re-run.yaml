@@ -9,6 +9,22 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  check-status:
+    runs-on: ubuntu-latest
+    outputs:
+      check-status: ${{ steps.check.status }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PR_URL: ${{ github.event.pull_request.html_url }}
+    steps:
+      - name: Export check workflow status
+        id: check
+        run: |
+          status=$(
+              gh run list --workflow check.yaml --branch "${{ github.head_ref }}" --limit 1 --json status \
+                  | jq -r '.[].status'
+          )
+          echo "status=${status}" >> "$GITHUB_OUTPUT"
   re-run:
     runs-on: ubuntu-latest
     if: >-

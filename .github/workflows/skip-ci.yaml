@@ -17,7 +17,8 @@ jobs:
         run: echo ${{ toJSON(github.event.pull_request.labels[1].name) }}
   add-empty-commit:
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels[1].name, 'skip ci')
+    if: >-
+      contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update')
     steps:
       - uses: actions/checkout@v3
         with:

@@ -21,7 +21,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           PR_URL: ${{github.event.pull_request.html_url}}
-        run: gh pr merge --auto --merge "$PR_URL"
+        run: gh pr merge --auto --squash "$PR_URL"
   pre-install-and-update:
     runs-on: ubuntu-latest
     outputs:
@@ -82,7 +82,6 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           PR_URL: ${{github.event.pull_request.html_url}}
         run: |
-          gh pr merge --disable-auto "$PR_URL"
           exit 1
       - name: Success
         run: exit 0

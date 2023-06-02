@@ -33,5 +33,9 @@ script = ['''
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-aqua i
+if !(type aqua > /dev/null 2>&1); then
+  ${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin/aqua i
+else
+  aqua i
+fi
 ''']

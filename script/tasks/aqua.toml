@@ -42,4 +42,4 @@ fi
 
 [tasks.update_aqua_packages]
 description = "update aqua packages"
-run_task = { name = "install_aqua_packages" }
+alias = "install_aqua_packages"

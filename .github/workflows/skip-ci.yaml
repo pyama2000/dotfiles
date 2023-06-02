@@ -11,6 +11,9 @@ concurrency:
 jobs:
   add-empty-commit:
     runs-on: ubuntu-latest
+    if: >-
+      contains(github.event.pull_request.labels.*.name, 'skip ci') &&
+      contains(github.event.pull_request.labels.*.name, 'install-and-update')
     steps:
       - uses: actions/checkout@v3
       - name: Add empty commit

@@ -36,6 +36,11 @@ jobs:
       - name: Export outputs
         id: export
         run: echo "diff=${{ env.GIT_DIFF }}" >> "$GITHUB_OUTPUT"
+  dbg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo ${{ github.event.label.name }}
   add-label:
     runs-on: ubuntu-latest
     needs:

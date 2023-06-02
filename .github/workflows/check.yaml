@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     if: >-
       github.event.pull_request.draft == false &&
-      github.event.label.name != 'dependencies'
+      !contains(github.event.pull_request.labels.*.name, 'dependencies')
     steps:
       - name: Enable auto-merge
         env:
@@ -33,6 +33,7 @@ jobs:
           PATTERNS: |
             .github/workflows/**
             script/**
+            **/aqua.yaml
       - name: Export outputs
         id: export
         run: echo "diff=${{ env.GIT_DIFF }}" >> "$GITHUB_OUTPUT"

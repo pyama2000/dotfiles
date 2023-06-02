@@ -2,14 +2,7 @@
 category = "tools"
 description = "Install CLI tools"
 run_task = { name = [
-  "install_bat",
-  "install_exa",
-  "install_fd",
   "install_fzf",
-  "install_git-delta",
-  "install_jq",
-  "install_ripgrep",
-  "install_zoxide",
   "install_cargo-watch",
   "install_cargo-update",
   "install_slack_cli",
@@ -21,50 +14,6 @@ description = "Update CLI tools"
 run_task = { name = [
   "update_slack_cli",
 ] }
-
-# bat
-[tasks.install_bat]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install --locked bat
-'''
-]
-dependencies = ["dependencies_bat"]
-
-[tasks.dependencies_bat.linux]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y libclang-dev
-'''
-]
-
-# exa
-[tasks.install_exa]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install exa
-'''
-]
-
-# fd
-[tasks.install_fd]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install fd-find 
-'''
-]
 
 # fzf
 [tasks.install_fzf.mac]
@@ -86,61 +35,6 @@ script = [
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 yes | ~/.fzf/install
-'''
-]
-
-# git-delta
-[tasks.install_git-delta]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install git-delta
-'''
-]
-
-# jq
-[tasks.install_jq.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install jq 
-'''
-]
-
-[tasks.install_jq.linux]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-sudo apt install -y jq
-'''
-]
-
-# ripgrep
-[tasks.install_ripgrep]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install ripgrep
-'''
-]
-
-# zoxide
-[tasks.install_zoxide]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-cargo install zoxide
-echo 'eval "$(zoxide init bash)"' >> ~/.profile
 '''
 ]
 

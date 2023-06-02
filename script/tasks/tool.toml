@@ -49,8 +49,14 @@ command = "cargo"
 args = ["install-update", "--all"]
 
 [tasks.cleanup.mac]
-command = "brew"
-args = ["cleanup"]
+script = [
+'''
+#!/usr/bin/env bash
+
+brew autoremove
+brew cleanup
+'''
+]
 
 [tasks.cleanup.linux]
 script = [

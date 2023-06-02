@@ -8,6 +8,7 @@ jobs:
   install-and-update:
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [macos-13, ubuntu-latest]
     steps:

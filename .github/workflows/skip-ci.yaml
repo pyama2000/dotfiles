@@ -1,0 +1,22 @@
+name: skip-ci
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - labeled
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  add-empty-commit:
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
+    steps:
+      - uses: actions/checkout@v3
+      - name: Add empty commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit --allow-empty -m "empty commit"
+          git push origin HEAD

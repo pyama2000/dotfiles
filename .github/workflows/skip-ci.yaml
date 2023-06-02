@@ -14,14 +14,8 @@ jobs:
     if: >-
       contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update')
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ github.event.pull_request.head.ref }}
-      - name: Add empty commit
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit --allow-empty -m "empty commit"
-          git push origin HEAD
+      - name: Add re-run comment
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{github.event.pull_request.html_url}}
+        run: gh pr comment --body '/rerun' "$PR_URL"

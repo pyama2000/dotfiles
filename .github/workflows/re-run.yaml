@@ -24,7 +24,6 @@ jobs:
               gh run list --workflow check.yaml --branch "${{ github.head_ref }}" --limit 1 --json status \
                   | jq -r '.[].status'
           )
-          echo "$status"
           echo "status=${status}" >> "$GITHUB_OUTPUT"
   re-run:
     runs-on: ubuntu-latest

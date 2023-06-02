@@ -11,8 +11,15 @@ concurrency:
 jobs:
   add-empty-commit:
     runs-on: ubuntu-latest
+    if: >-
+      contains(github.event.pull_request.labels.*.name, 'skip ci') &&
+      contains(github.event.pull_request.labels.*.name, 'install-and-update')
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}
       - name: Add empty commit
         run: |
           git config --local user.email "action@github.com"

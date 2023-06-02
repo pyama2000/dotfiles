@@ -33,6 +33,7 @@ jobs:
           PATTERNS: |
             .github/workflows/**
             script/**
+            **/aqua.yaml
       - name: Export outputs
         id: export
         run: echo "diff=${{ env.GIT_DIFF }}" >> "$GITHUB_OUTPUT"

@@ -1,0 +1,38 @@
+name: re-run
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - labeled
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  re-run:
+    runs-on: ubuntu-latest
+    if: >-
+      contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update')
+    steps:
+      - name: Generate GitHub Apps token
+        id: generate
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ steps.generate.outputs.token }}
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: add empty commit
+        env:
+          GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
+        uses: EndBug/add-and-commit@v9
+        with:
+          commit: "--allow-empty"
+          author_name: "github-actions[bot]"
+          author_email: "github-actions[bot]@users.noreply.github.com"
+          committer_name: "github-actions[bot]"
+          committer_email: "github-actions[bot]@users.noreply.github.com"
+          message: "re-run"

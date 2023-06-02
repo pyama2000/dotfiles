@@ -20,6 +20,8 @@ jobs:
       - name: Export check workflow status
         id: check
         run: |
+          gh run list --workflow check.yaml --branch "${{ github.head_ref }}" --limit 1 --json status | jq -r '.[].status'
+          echo $(gh run list --workflow check.yaml --branch "${{ github.head_ref }}" --limit 1 --json status | jq -r '.[].status')
           status=$(gh run list --workflow check.yaml --branch "${{ github.head_ref }}" --limit 1 --json status | jq -r '.[].status')
           echo "status=${status}" >> "$GITHUB_OUTPUT"
   re-run:

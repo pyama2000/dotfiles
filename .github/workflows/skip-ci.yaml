@@ -12,9 +12,9 @@ jobs:
   add-empty-commit:
     runs-on: ubuntu-latest
     if: >-
+      github.event.action == 'labeled' &&
       contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update')
     steps:
-      - run: echo ${{ toJSON(github.event.action) }}
       - name: Add re-run comment
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

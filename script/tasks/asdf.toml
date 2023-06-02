@@ -15,6 +15,7 @@ if !(type asdf > /dev/null 2>&1); then
 fi
 
 asdf update
+asdf plugin update --all
 '''
 ]
 

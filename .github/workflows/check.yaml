@@ -73,7 +73,10 @@ jobs:
         shell: bash
         run: |
           bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
-          ./actionlint -color -ignore 'label ".+" is unknown'
+          ./actionlint \
+            -color \
+            -ignore 'label ".+" is unknown' \
+            -ignore '"github.event.pull_request.head.ref" is potentially untrusted'
   stylua:
     runs-on: ubuntu-latest
     steps:

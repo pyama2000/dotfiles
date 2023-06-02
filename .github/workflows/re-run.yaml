@@ -24,7 +24,7 @@ jobs:
           status=$(
             gh run list \
               --workflow check.yaml \
-              --branch "${{ github.head_ref }}" \
+              --branch "${{ github.event.pull_request.base.ref }}" \
               --limit 1 \
               --json status \
             | jq -r '.[].status'

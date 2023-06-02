@@ -34,6 +34,7 @@ export GOENV_DISABLE_GOPATH="1"
 export RUSTC_WRAPPER="$(which sccache)"
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+export AQUA_GLOBAL_CONFIG="$HOME/dotfiles/aqua.yaml"
 export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
 
 export EDITOR=nvim

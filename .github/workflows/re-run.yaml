@@ -31,7 +31,7 @@ jobs:
       - check-status
     if: >-
       contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update') &&
-      contains(${{ needs.check-status.outputs.check-status }}, 'completed')
+      contains(needs.check-status.outputs.check-status, 'completed')
     steps:
       - name: dbg
         run: echo "${{ needs.check-status.outputs.check-status }}"

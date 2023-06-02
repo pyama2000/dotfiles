@@ -9,14 +9,22 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  add-empty-commit:
+  re-run:
     runs-on: ubuntu-latest
     if: >-
-      github.event.action == 'labeled' &&
       contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update')
     steps:
-      - name: Add re-run comment
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          PR_URL: ${{github.event.pull_request.html_url}}
-        run: gh pr comment --body '/rerun' "$PR_URL"
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: add empty commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          commit: "--allow-empty"
+          author_name: "github-actions[bot]"
+          author_email: "github-actions[bot]@users.noreply.github.com"
+          committer_name: "github-actions[bot]"
+          committer_email: "github-actions[bot]@users.noreply.github.com"
+          message: "[bot] re-run CI (by PR comment)"

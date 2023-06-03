@@ -38,4 +38,4 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         with:
           channel-id: ${{ vars.SLACK_CHANNEL_NAME }}
-          message: "GitHub Actions install-and-update dotfiles result: ${{ needs.install-and-update.result }}"
+          slack-message: "GitHub Actions install-and-update dotfiles result: ${{ needs.install-and-update.result }}"

@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - check-status
-    if: |
+    if: >-
       contains(github.event.pull_request.labels.*.name, 'skip ci') &&
       !contains(needs.check-status.outputs.check-status, 'completed')
     steps:

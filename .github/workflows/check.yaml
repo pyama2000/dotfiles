@@ -34,6 +34,7 @@ jobs:
             .github/workflows/**
             script/**
             **/aqua.yaml
+            nvim/**
       - name: Export outputs
         id: export
         run: echo "diff=${{ env.GIT_DIFF }}" >> "$GITHUB_OUTPUT"

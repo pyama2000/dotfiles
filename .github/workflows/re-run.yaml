@@ -38,8 +38,6 @@ jobs:
       contains(${{ github.event.pull_request.labels.*.name }}, 'skip ci') &&
       !contains(needs.check-status.outputs.check-status, 'completed')
     steps:
-      - name: dbg
-        run: echo "${{ github.event.pull_request.labels.*.name }}"
       - name: Generate GitHub Apps token
         id: generate
         uses: tibdex/github-app-token@v1

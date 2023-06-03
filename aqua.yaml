@@ -35,7 +35,7 @@ packages:
 - name: sharkdp/bat@v0.23.0
 - name: ogham/exa@v0.10.1
 - name: sharkdp/fd@v8.7.0
-- name: dandavison/delta@0.15.1
+- name: dandavison/delta@0.16.4
 - name: BurntSushi/ripgrep@13.0.0
 - name: ajeetdsouza/zoxide@v0.9.1
 - name: kubernetes/kubectl@v1.27.2

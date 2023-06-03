@@ -35,6 +35,7 @@ jobs:
     needs:
       - check-status
     if: >-
+      contains(github.event.pull_request.labels.*.name, 'skip ci') &&
       !contains(needs.check-status.outputs.check-status, 'completed')
     steps:
       - name: Generate GitHub Apps token

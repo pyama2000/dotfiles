@@ -9,10 +9,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  check-status:
+  export-status:
     runs-on: ubuntu-latest
     outputs:
-      check-status: ${{ steps.check.outputs.status }}
+      check: ${{ steps.check.outputs.status }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       PR_URL: ${{ github.event.pull_request.html_url }}
@@ -33,10 +33,10 @@ jobs:
   re-run:
     runs-on: ubuntu-latest
     needs:
-      - check-status
+      - export-status
     if: >-
-      contains(github.event.pull_request.labels.*.name, 'skip ci') &&
-      !contains(needs.check-status.outputs.check-status, 'completed')
+      contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update') &&
+      !contains(needs.export-status.outputs.check, 'completed')
     steps:
       - name: Generate GitHub Apps token
         id: generate

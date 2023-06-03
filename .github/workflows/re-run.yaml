@@ -32,7 +32,7 @@ jobs:
           echo "status=${status}" >> "$GITHUB_OUTPUT"
       - name: dbg
         run: |
-          echo "1: ${{ contains(github.event.pull_request.labels.*.name, 'skip ci') }}"
+          echo "1: ${{ contains(github.event.pull_request.labels.*.name, 'skip ci:') }}"
           echo "2: ${{ !contains(needs.check-status.outputs.check-status, 'completed') }}"
           echo "3: ${{ contains(github.event.pull_request.labels.*.name, 'skip ci') && !contains(needs.check-status.outputs.check-status, 'completed') }}"
   re-run:

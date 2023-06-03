@@ -9,9 +9,19 @@ vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.list = true
 vim.opt.listchars = { tab = "»-", trail = "-", extends = "»", precedes = "«", nbsp = "%" }
+vim.opt.updatetime = 300
 
---Always show the signcolumn, otherwise it would shift the text each time
+-- Always show the signcolumn, otherwise it would shift the text each time
 vim.opt.signcolumn = "yes"
+
+-- Auto reload file
+vim.opt.autoread = true
+vim.cmd([[
+  augroup autoreload-checktime
+    autocmd!
+    autocmd CursorHold,CursorHoldI,CursorMoved,CursorMovedI,BufEnter * checktime
+  augroup END
+]])
 
 if vim.fn.exists("+termguicolors") then
   vim.opt.termguicolors = true

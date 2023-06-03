@@ -59,11 +59,8 @@ jobs:
     needs:
       - export-diff
     if: >-
-      (
-        contains(needs.export-diff.outputs.diff, '.github/workflows/') ||
-        contains(needs.export-diff.outputs.diff, 'script/')
-      ) &&
-      !contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update')
+      contains(needs.export-diff.outputs.diff, '.github/workflows/') ||
+      contains(needs.export-diff.outputs.diff, 'script/')
     uses: ./.github/workflows/install-and-update.yaml
   actionlint:
     runs-on: ubuntu-latest

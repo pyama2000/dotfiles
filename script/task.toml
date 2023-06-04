@@ -48,6 +48,7 @@ run_task = [
     "update_aqua_packages",
     "update_tools",
     "update_docker_cli_plugins",
+    "update_neovim",
     "cleanup",
   ] },
 ]

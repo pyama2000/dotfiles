@@ -6,6 +6,10 @@ run_task = { name = [
   "link_neovim",
 ] }
 
+[tasks.update_neovim]
+description = "Update Neovim"
+run_task = { name = ["update_neovim_plugins"]}
+
 [tasks.install_neovim.mac]
 private = true
 script = [
@@ -25,6 +29,17 @@ script = [
 sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt update -y
 sudo apt install -y neovim
+'''
+]
+
+[tasks.update_neovim_plugins]
+private = true
+description = "Update Neovim plugins"
+script = [
+'''
+#!/usr/bin/env bash
+
+nvim --headless "+Lazy! update" +qa
 '''
 ]
 

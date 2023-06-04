@@ -15,7 +15,15 @@ return {
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { "branch", "diagnostics" },
+          lualine_b = {
+            "branch",
+            {
+              "diagnostics",
+              sources = { "nvim_diagnostic" },
+              symbols = { error = " ", warn = " ", info = " ", hint = " " },
+              colored = true,
+            },
+          },
           lualine_c = { "filename" },
           lualine_x = {
             "g:coc_status",

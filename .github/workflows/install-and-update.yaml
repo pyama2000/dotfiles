@@ -8,7 +8,8 @@ jobs:
   install-and-update:
     runs-on: ${{ matrix.os }}
     if: >-
-      !contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update')
+      !contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update') ||
+      !contains(github.event.pull_request.labels.*.name, 'dependencies')
     strategy:
       fail-fast: false
       matrix:

@@ -18,8 +18,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.autoread = true
 vim.cmd([[
   augroup autoreload-checktime
-    autocmd!
-    autocmd CursorHold,CursorHoldI,CursorMoved,CursorMovedI,BufEnter * checktime
+    autocmd CursorHold,CursorHoldI,CursorMoved,CursorMovedI,BufEnter * silent! checktime
   augroup END
 ]])
 

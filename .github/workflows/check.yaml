@@ -74,7 +74,6 @@ jobs:
           ./actionlint \
             -color \
             -ignore 'label ".+" is unknown' \
-            -ignore '"github.event.pull_request.head.ref" is potentially untrusted'
   stylua:
     runs-on: ubuntu-latest
     steps:

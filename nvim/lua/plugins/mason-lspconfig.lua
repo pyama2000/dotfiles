@@ -39,6 +39,7 @@ return {
         "gopls",
         "jsonls",
         "yamlls",
+        "terraformls",
       },
     })
     mason_lspconfig.setup_handlers({

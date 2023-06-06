@@ -101,6 +101,11 @@ return {
     },
     {
       mode = "n",
+      "ge",
+      "<cmd>lua vim.diagnostic.open_float()<CR>",
+    },
+    {
+      mode = "n",
       "g[",
       "<cmd>lua vim.diagnostic.goto_prev()<CR>",
     },

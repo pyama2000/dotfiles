@@ -33,11 +33,13 @@ return {
 
     mason_lspconfig.setup({
       ensure_installed = {
+        "bashls",
         "rust_analyzer",
         "lua_ls",
         "gopls",
         "jsonls",
         "yamlls",
+        "terraformls",
       },
     })
     mason_lspconfig.setup_handlers({

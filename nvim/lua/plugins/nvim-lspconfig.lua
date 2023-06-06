@@ -16,6 +16,7 @@ return {
   },
   config = function()
     local lspconfig = require("lspconfig")
+    lspconfig.bashls.setup({})
     lspconfig.lua_ls.setup({})
     lspconfig.rust_analyzer.setup({
       settings = {
@@ -37,6 +38,7 @@ return {
         },
       },
     })
+    lspconfig.terraformls.setup({})
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
       border = "single",
     })

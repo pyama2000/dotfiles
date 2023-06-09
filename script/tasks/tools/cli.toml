@@ -5,7 +5,6 @@ run_task = { name = [
   "install_fzf",
   "install_cargo-watch",
   "install_cargo-update",
-  "install_slack_cli",
   "instal_aws_cli",
 ] }
 
@@ -59,20 +58,6 @@ script = [
 cargo install cargo-update
 '''
 ]
-
-[tasks.install_slack_cli]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-curl -fsSL https://downloads.slack-edge.com/slack-cli/install.sh | bash
-'''
-]
-
-[tasks.update_slack_cli]
-private = true
-alias = "install_slack_cli"
 
 [tasks.instal_aws_cli]
 private = true

@@ -34,8 +34,8 @@ script = [
 mkdir -p $HOME/.config/fish/functions
 mkdir -p $HOME/.config/fish/completions
 
-ln -snfv $HOME/dotfiles/fish/config.fish $HOME/.config/fish
-ln -snfv $HOME/dotfiles/fish/functions/* $HOME/.config/fish/functions
-ln -snfv $HOME/dotfiles/fish/completions/* $HOME/.config/fish/completions
+ln -snfv $HOME/dotfiles/fish/config.fish $HOME/.config/fish/
+ln -snfv $HOME/dotfiles/fish/functions/* $HOME/.config/fish/functions/
+ln -snfv $HOME/dotfiles/fish/completions/* $HOME/.config/fish/completions/
 '''
 ]

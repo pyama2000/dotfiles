@@ -57,7 +57,7 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-sudo ln -snfv ~/dotfiles/lima/limit.maxfiles.plist /Library/LaunchDaemons
+sudo ln -snfv ~/dotfiles/lima/limit.maxfiles.plist /Library/LaunchDaemons/
 sudo chown root /Library/LaunchDaemons/limit.maxfiles.plist
 sudo launchctl load -w /Library/LaunchDaemons/limit.maxfiles.plist
 '''

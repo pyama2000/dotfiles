@@ -49,6 +49,6 @@ script = [
 '''
 #!/usr/bin/env bash
 
-ln -snfv ~/dotfiles/nvim ~/.config
+ln -snfv ~/dotfiles/nvim ~/.config/
 '''
 ]

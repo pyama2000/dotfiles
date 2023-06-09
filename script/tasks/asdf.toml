@@ -39,7 +39,7 @@ script = [
 
 git clone https://github.com/asdf-vm/asdf.git $HOME/.asdf --branch v0.9.0
 mkdir -p $HOME/.config/fish/completions
-ln -s $HOME/.asdf/completions/asdf.fish $HOME/.config/fish/completions
+ln -s $HOME/.asdf/completions/asdf.fish $HOME/.config/fish/completions/
 echo '. $HOME/.asdf/asdf.sh' >> $HOME/.bashrc
 '''
 ]

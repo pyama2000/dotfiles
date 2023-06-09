@@ -38,7 +38,7 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-ln -snfv $HOME/dotfiles/git $HOME/.config
+ln -snfv $HOME/dotfiles/git $HOME/.config/
 '''
 ]
 

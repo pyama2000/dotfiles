@@ -1,3 +1,15 @@
+if status is-interactive
+  eval (/opt/homebrew/bin/brew shellenv)
+end
+
+##############################
+# aqua                       #
+##############################
+set -x XDG_DATA_HOME "$HOME/.local/share"
+set -x AQUA_ROOT_DIR "$XDG_DATA_HOME/aquaproj-aqua"
+set -x AQUA_GLOBAL_CONFIG "$HOME/dotfiles/aqua.yaml"
+fish_add_path "$AQUA_ROOT_DIR/bin"
+
 ##############################
 # config                     #
 ##############################
@@ -71,14 +83,6 @@ set -x DOCKER_HOST "unix://$HOME/.lima/docker/sock/docker.sock"
 ##############################
 set -x DENO_INSTALL "$HOME"/.deno
 fish_add_path $DENO_INSTALL/bin
-
-##############################
-# aqua                       #
-##############################
-set -x XDG_DATA_HOME "$HOME/.local/share"
-set -x AQUA_ROOT_DIR "$XDG_DATA_HOME/aquaproj-aqua"
-set -x AQUA_GLOBAL_CONFIG "$HOME/dotfiles/aqua.yaml"
-fish_add_path "$AQUA_ROOT_DIR/bin"
 
 ##############################
 # MySQL client               #

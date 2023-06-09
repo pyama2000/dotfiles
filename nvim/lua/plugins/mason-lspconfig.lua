@@ -40,6 +40,7 @@ return {
         "jsonls",
         "yamlls",
         "terraformls",
+        "pyright",
       },
     })
     mason_lspconfig.setup_handlers({

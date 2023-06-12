@@ -20,7 +20,7 @@ packages:
 - name: tfutils/tfenv@v3.0.0
 - name: jamesWoolfenden/pike@v0.2.75
 - name: hashicorp/packer@v1.9.1
-- name: dapr/cli@v1.10.0
+- name: dapr/cli@v1.11.0
 - name: direnv/direnv@v2.32.3
 - name: ogham/dog@v0.1.0
 - name: CircleCI-Public/circleci-cli@v0.1.26837

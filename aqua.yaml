@@ -8,19 +8,19 @@
 #   - all
 registries:
 - type: standard
-  ref: v4.15.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.16.0 # renovate: depName=aquaproj/aqua-registry
 packages:
 - name: cli/cli@v2.30.0
 - name: rhysd/actionlint@v1.6.24
 - name: google/yamlfmt@v0.9.0
 - name: bufbuild/buf@v1.21.0
 - name: stedolan/jq@jq-1.6
-- name: go-task/task@v3.25.0
+- name: go-task/task@v3.26.0
 - name: ktr0731/evans@v0.10.11
 - name: tfutils/tfenv@v3.0.0
 - name: jamesWoolfenden/pike@v0.2.75
 - name: hashicorp/packer@v1.9.1
-- name: dapr/cli@v1.10.0
+- name: dapr/cli@v1.11.0
 - name: direnv/direnv@v2.32.3
 - name: ogham/dog@v0.1.0
 - name: CircleCI-Public/circleci-cli@v0.1.26837

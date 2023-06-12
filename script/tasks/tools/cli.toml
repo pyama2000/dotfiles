@@ -11,10 +11,7 @@ run_task = { name = [
 [tasks.update_cli]
 category = "tools"
 description = "Update CLI tools"
-run_task = { name = [
-  "update_slack_cli",
-  "update_aws_cli",
-] }
+run_task = { name = ["update_aws_cli"] }
 
 # fzf
 [tasks.install_fzf.mac]

@@ -6,7 +6,6 @@ private = true
 script = ['''
 #!/usr/bin/env bash
 
-rm '/usr/local/bin/2to3'
 brew install tmux
 ''']
 

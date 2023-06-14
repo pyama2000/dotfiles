@@ -34,7 +34,7 @@ set -x PIPENV_VENV_IN_PROJECT 1
 # Go                         #
 ##############################
 set -x GOPATH $HOME/go
-fish_add_path $HOME/go/bin
+fish_add_path $GOPATH/bin
 
 ##############################
 # Rust                       #
@@ -87,7 +87,7 @@ fish_add_path $DENO_INSTALL/bin
 ##############################
 # MySQL client               #
 ##############################
-fish_add_path "/opt/homebrew/opt/mysql-client/bin"
+fish_add_path "/usr/local/opt/mysql-client/bin"
 
 ##############################
 # Theme                      #

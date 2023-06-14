@@ -16,7 +16,7 @@ jobs:
         os: [macos-13, ubuntu-latest]
     steps:
       - uses: actions/checkout@v3
-      - name: Update brew packages
+      - name: Update packages
         run: brew upgrade
       - name: Run setup.sh
         run: ./script/install.sh

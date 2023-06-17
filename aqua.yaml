@@ -40,3 +40,4 @@ packages:
 - name: ajeetdsouza/zoxide@v0.9.1
 - name: kubernetes/kubectl@v1.27.3
 - name: kayac/ecspresso@v2.2.0
+- name: mikefarah/yq@v4.34.1

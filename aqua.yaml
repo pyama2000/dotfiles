@@ -41,3 +41,4 @@ packages:
 - name: kubernetes/kubectl@v1.27.3
 - name: kayac/ecspresso@v2.2.0
 - name: mikefarah/yq@v4.34.1
+- name: grpc-ecosystem/grpc-health-probe@v0.4.19

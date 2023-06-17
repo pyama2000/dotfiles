@@ -32,7 +32,6 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - exec-install-and-update-task
-    if: contains(github.event_name, 'schedule')
     env:
       BRANCH_NAME: "update_lazy_packages"
     steps:

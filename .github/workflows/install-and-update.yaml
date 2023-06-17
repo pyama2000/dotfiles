@@ -62,6 +62,10 @@ jobs:
           author_email: "github-actions[bot]@users.noreply.github.com"
           committer_name: "github-actions[bot]"
           committer_email: "github-actions[bot]@users.noreply.github.com"
+      - name: Push branch
+        env:
+          GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
+        run: git push origin "$BRANCH_NAME"
       - name: Create Pull Request
         env:
           GITHUB_TOKEN: ${{ steps.generate.outputs.token }}

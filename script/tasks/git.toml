@@ -1,7 +1,7 @@
 [tasks.setup_git]
 condition = { env_set = ["GIT_NAME", "GIT_EMAIL"] }
 run_task = [
-  { name = ["install_git", "link_git", "gen_ssh_key", "gen_git_local"] },
+  { name = ["install_git", "link_git", "gen_ssh_key", "gen_git_local", "gen_ignore_file"] },
 ]
 
 [tasks.install_git.mac]
@@ -68,14 +68,21 @@ set -eux -o pipefail
 if [ ! -d $HOME/.config/git/local ]; then
   mkdir -p "$HOME/.config/git/local"
   touch $HOME/.config/git/local/config
-  touch $HOME/.config/git/local/excludesfile
 fi
 
 echo '[user]' >> $HOME/.config/git/local/config
 echo -e "\tname = $GIT_NAME" >> $HOME/.config/git/local/config
 echo -e "\temail = $GIT_EMAIL" >> $HOME/.config/git/local/config
+'''
+]
 
-echo '[core]' >> $HOME/.config/git/local/config
-echo -e '\texcludesfile = $HOME/.config/git/local/excludesfile' >> $HOME/.config/git/local/config
+[tasks.gen_ignore_file]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+touch "${HOME}/.config/git/ignore"
 '''
 ]

@@ -64,7 +64,7 @@ return {
     {
       mode = "n",
       "gd",
-      "<cmd>lua vim.lsp.buf.definition()<CR>",
+      "<cmd>Telescope lsp_definitions<CR>",
     },
     {
       mode = "n",

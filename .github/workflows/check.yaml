@@ -14,6 +14,53 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   PR_URL: ${{ github.event.pull_request.html_url }}
 jobs:
+  update-lazy-packages:
+    runs-on: macos-13
+    env:
+      HEAD_BRANCH_NAME: "update_lazy_packages"
+    steps:
+      - name: Generate GitHub Apps token
+        id: generate
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ steps.generate.outputs.token }}
+          ref: main
+      - name: Run setup.sh
+        run: ./script/install.sh
+      - name: Run setup neovim task
+        run: cargo make --makefile script/task.toml setup_neovim
+      - name: List .config
+        run: |
+          ls -la "${HOME}/.config"
+          ls -la "${HOME}/.config/nvim"
+      - name: Run setup / update neovim task
+        run: cargo make --makefile script/task.toml update_neovim
+      - name: List .config
+        run: |
+          ls -la "${HOME}/.config"
+          ls -la "${HOME}/.config/nvim"
+      - name: Git info
+        run: |
+          git branch
+          git diff
+      # - name: Commit changes and create Pull Request
+      #   env:
+      #     GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
+      #   run: |
+      #     git switch -c "$HEAD_BRANCH_NAME"
+      #     git add nvim/lazy-lock.json
+      #     git commit --allow-empty -m "chore: update nvim plugins"
+      #     git push origin "$HEAD_BRANCH_NAME"
+      #     gh pr create \
+      #       --title "chore: update nvim plugins" \
+      #       --head "$HEAD_BRANCH_NAME" \
+      #       --base "main" \
+      #       --body ""
   enable-auto-merge:
     runs-on: ubuntu-latest
     if: >-

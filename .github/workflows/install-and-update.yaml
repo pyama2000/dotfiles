@@ -59,6 +59,7 @@ jobs:
           git switch -c "$BRANCH_NAME"
           git add nvim/lazy-lock.json
           git commit --allow-empty -m "chore: update nvim plugins"
+          git push origin "$BRANCH_NAME"
           gh pr create \
             --title "chore: update nvim plugins" \
             --head "$BRANCH_NAME" \

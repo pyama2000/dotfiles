@@ -52,27 +52,15 @@ jobs:
         run: |
           cargo make --makefile script/task.toml setup_neovim
           cargo make --makefile script/task.toml update_neovim
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: "nvim/lazy-lock.json"
-          message: "chore: update lazy-lock.json"
-          new_branch: "$BRANCH_NAME"
-          commit: "--allow-empty"
-          author_name: "github-actions[bot]"
-          author_email: "github-actions[bot]@users.noreply.github.com"
-          committer_name: "github-actions[bot]"
-          committer_email: "github-actions[bot]@users.noreply.github.com"
-      - name: Push branch
-        env:
-          GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
-        run: git push origin "$BRANCH_NAME"
-      - name: Create Pull Request
+      - name: Commit changes and create Pull Request
         env:
           GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
         run: |
+          git switch -c "$BRANCH_NAME"
+          git add nvim/lazy.lock
+          git commit --allow-empty -m "chore: update nvim plugins"
           gh pr create \
-            --title "chore: update nvim packages" \
+            --title "chore: update nvim plugins" \
             --head "$BRANCH_NAME" \
             --base "main" \
             --body ""

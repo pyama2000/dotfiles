@@ -46,6 +46,7 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ steps.generate.outputs.token }}
+          ref: main
       - name: Run setup.sh
         run: ./script/install.sh
       - name: Run setup / update neovim task

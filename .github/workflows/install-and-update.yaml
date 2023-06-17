@@ -34,7 +34,7 @@ jobs:
       - exec-install-and-update-task
     if: contains(github.event_name, 'schedule') || contains(github.event_name, 'workflow_dispatch')
     env:
-      BRANCH_NAME: "update_lazy_packages"
+      HEAD_BRANCH_NAME: "update_lazy_packages"
     steps:
       - name: Generate GitHub Apps token
         id: generate
@@ -46,6 +46,7 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ steps.generate.outputs.token }}
+          ref: main
       - name: Run setup.sh
         run: ./script/install.sh
       - name: Run setup / update neovim task
@@ -56,13 +57,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
         run: |
-          git switch -c "$BRANCH_NAME"
+          git switch -c "$HEAD_BRANCH_NAME"
           git add nvim/lazy-lock.json
           git commit --allow-empty -m "chore: update nvim plugins"
-          git push origin "$BRANCH_NAME"
+          git push origin "$HEAD_BRANCH_NAME"
           gh pr create \
             --title "chore: update nvim plugins" \
-            --head "$BRANCH_NAME" \
+            --head "$HEAD_BRANCH_NAME" \
             --base "main" \
             --body ""
   post-slack-message:

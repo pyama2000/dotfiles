@@ -57,7 +57,7 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
         run: |
           git switch -c "$BRANCH_NAME"
-          git add nvim/lazy_lock.json
+          git add nvim/lazy-lock.json
           git commit --allow-empty -m "chore: update nvim plugins"
           gh pr create \
             --title "chore: update nvim plugins" \

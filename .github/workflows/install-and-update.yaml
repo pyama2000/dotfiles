@@ -28,8 +28,6 @@ jobs:
             -e GIT_EMAIL="$GIT_EMAIL"
       - name: Run update task
         run: cargo make --makefile script/task.toml update
-      - name: "debug: list .config dir"
-        run: ls -la ~/.config
   post-slack-message:
     runs-on: ubuntu-latest
     needs:

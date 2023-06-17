@@ -58,6 +58,7 @@ jobs:
           add: "nvim/lazy-lock.json"
           message: "chore: update lazy-lock.json"
           new_branch: "$BRANCH_NAME"
+          commit: "--allow-empty"
           author_name: "github-actions[bot]"
           author_email: "github-actions[bot]@users.noreply.github.com"
           committer_name: "github-actions[bot]"

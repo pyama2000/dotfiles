@@ -68,7 +68,7 @@ jobs:
       !contains(github.event.pull_request.labels.*.name, 'dependencies')
     steps:
       - name: Enable auto-merge
-        run: gh pr merge --auto --squash "$PR_URL"
+        run: exit 0
   export-diff:
     runs-on: ubuntu-latest
     outputs:

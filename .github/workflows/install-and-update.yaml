@@ -35,19 +35,20 @@ jobs:
     env:
       BRANCH_NAME: "update_lazy_packages"
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Run setup.sh
-        run: ./script/install.sh
-      - name: Run setup_neovim task
-        run: cargo make --makefile script/task.toml setup_neovim
       - name: Generate GitHub Apps token
         id: generate
         uses: tibdex/github-app-token@v1
         with:
           app_id: ${{ secrets.APP_ID }}
           private_key: ${{ secrets.PRIVATE_KEY }}
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ steps.generate.outputs.token }}
+      - name: Run setup.sh
+        run: ./script/install.sh
+      - name: Run setup_neovim task
+        run: cargo make --makefile script/task.toml setup_neovim
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
@@ -58,11 +59,14 @@ jobs:
           author_email: "github-actions[bot]@users.noreply.github.com"
           committer_name: "github-actions[bot]"
           committer_email: "github-actions[bot]@users.noreply.github.com"
-      - name: Create pull pull_request
+      - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
         run: |
           gh pr create \
             --title "chore: update nvim packages" \
             --head "$BRANCH_NAME" \
+            --base "main" \
             --body ""
   post-slack-message:
     runs-on: ubuntu-latest

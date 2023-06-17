@@ -49,7 +49,9 @@ jobs:
       - name: Run setup.sh
         run: ./script/install.sh
       - name: Run setup_neovim task
-        run: cargo make --makefile script/task.toml setup_neovim
+        run: |
+          cargo make --makefile script/task.toml setup_neovim
+          cargo make --makefile script/task.toml update_neovim
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:

@@ -17,6 +17,7 @@ return {
   config = function()
     local lspconfig = require("lspconfig")
     lspconfig.bashls.setup({})
+    lspconfig.bufls.setup({})
     lspconfig.lua_ls.setup({})
     lspconfig.rust_analyzer.setup({
       settings = {
@@ -63,7 +64,7 @@ return {
     {
       mode = "n",
       "gd",
-      "<cmd>lua vim.lsp.buf.definition()<CR>",
+      "<cmd>Telescope lsp_definitions<CR>",
     },
     {
       mode = "n",

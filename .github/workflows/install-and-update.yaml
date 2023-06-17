@@ -28,6 +28,43 @@ jobs:
             -e GIT_EMAIL="$GIT_EMAIL"
       - name: Run update task
         run: cargo make --makefile script/task.toml update
+  update-lazy-packages:
+    runs-on: ubuntu-latest
+    needs:
+      - exec-install-and-update-task
+    if: contains(github.event_name, 'schedule')
+    env:
+      BRANCH_NAME: "update_lazy_packages"
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Run setup.sh
+        run: ./script/install.sh
+      - name: Run setup_neovim task
+        run: cargo make --makefile script/task.toml setup_neovim
+      - name: Generate GitHub Apps token
+        id: generate
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "nvim/lazy-lock.json"
+          message: "chore: update lazy-lock.json"
+          new_branch: "$BRANCH_NAME"
+          author_name: "github-actions[bot]"
+          author_email: "github-actions[bot]@users.noreply.github.com"
+          committer_name: "github-actions[bot]"
+          committer_email: "github-actions[bot]@users.noreply.github.com"
+      - name: Create pull pull_request
+        run: |
+          gh pr create \
+            --title "chore: update nvim packages" \
+            --head "$BRANCH_NAME" \
+            --body ""
   post-slack-message:
     runs-on: ubuntu-latest
     needs:

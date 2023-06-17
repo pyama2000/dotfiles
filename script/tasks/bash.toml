@@ -4,6 +4,6 @@ script = [
 #!/usr/bin/env bash
 
 mv ~/.profile ~/.profile.bk
-ln -snfv ~/dotfiles/.profile ~
+ln -snfv ~/dotfiles/.profile $HOME/
 '''
 ]

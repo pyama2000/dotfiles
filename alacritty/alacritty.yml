@@ -1,11 +1,11 @@
 env:
   TERM: alacritty
 shell:
-  program: /usr/local/bin/fish
+  program: /opt/homebrew/bin/fish
   args:
     - --login
     - --command
-    - "tmux attach || tmux"
+    - "/opt/homebrew/bin/tmux attach || /opt/homebrew/bin/tmux"
 colors:
   primary:
     background: '0x1f1f28'

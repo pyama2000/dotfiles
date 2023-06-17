@@ -48,7 +48,7 @@ jobs:
           token: ${{ steps.generate.outputs.token }}
       - name: Run setup.sh
         run: ./script/install.sh
-      - name: Run setup_neovim task
+      - name: Run setup / update neovim task
         run: |
           cargo make --makefile script/task.toml setup_neovim
           cargo make --makefile script/task.toml update_neovim

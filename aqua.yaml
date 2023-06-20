@@ -28,7 +28,7 @@ packages:
 - name: fullstorydev/grpcurl@v1.8.7
 - name: koalaman/shellcheck@v0.9.0
 - name: mvdan/sh@v3.7.0
-- name: hashicorp/terraform-ls@v0.31.2
+- name: hashicorp/terraform-ls@v0.31.3
 - name: hadolint/hadolint@v2.12.0
 - name: lindell/multi-gitter@v0.47.0
 - name: wagoodman/dive@v0.10.0

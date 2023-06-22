@@ -32,6 +32,8 @@
 	rmerged = "!f () { git switch $1; git branch --merged | egrep -v '\\*|develop|master' | xargs git branch -d; };f"
 	cp = cherry-pick
 	logmg = log --merges --first-parent --oneline --pretty=format:\"%C(auto)%h%d %b %C(bold blue)<%an>%Creset\"
+	rve = revert
+	rvc = revert
 
 [init]
 	defaultBranch = main

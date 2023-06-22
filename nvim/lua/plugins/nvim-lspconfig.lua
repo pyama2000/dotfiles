@@ -39,12 +39,8 @@ return {
         },
       },
     })
-    local custom_attach = function(client, bufnr)
-      print("hello")
-    end
-    lspconfig.terraformls.setup({
-      on_attach = custom_attach,
-    })
+    lspconfig.terraformls.setup({})
+    lspconfig.tflint.setup({})
     lspconfig.pyright.setup({})
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
       border = "single",

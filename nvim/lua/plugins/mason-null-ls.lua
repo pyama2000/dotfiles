@@ -6,6 +6,6 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
   },
   opts = {
-    ensure_installed = { "stylua", "hadolint", "ruff" },
+    ensure_installed = { "stylua", "hadolint", "ruff", "tfsec" },
   },
 }

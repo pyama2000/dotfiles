@@ -41,6 +41,7 @@ return {
         "jsonls",
         "yamlls",
         "terraformls",
+        "tflint",
         "pyright",
       },
     })

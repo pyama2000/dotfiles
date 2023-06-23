@@ -35,7 +35,7 @@ jobs:
       - name: Run setup neovim task
         run: cargo make --makefile script/task.toml setup_neovim
       - name: nvim +qall
-        run: nvim +qall
+        run: nvim --headless +qall
       - name: Run update neovim task
         run: cargo make --makefile script/task.toml update_neovim
       - name: Commit changes and create Pull Request

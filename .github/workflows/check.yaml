@@ -42,15 +42,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate.outputs.token }}
         run: |
-          git switch -c "$HEAD_BRANCH_NAME"
-          git add nvim/lazy-lock.json
-          git commit --allow-empty -m "chore: update nvim plugins"
-          git push origin "$HEAD_BRANCH_NAME"
-          gh pr create \
-            --title "chore: update nvim plugins" \
-            --head "$HEAD_BRANCH_NAME" \
-            --base "main" \
-            --body ""
+          git diff
+          # git switch -c "$HEAD_BRANCH_NAME"
+          # git add nvim/lazy-lock.json
+          # git commit --allow-empty -m "chore: update nvim plugins"
+          # git push origin "$HEAD_BRANCH_NAME"
+          # gh pr create \
+          #   --title "chore: update nvim plugins" \
+          #   --head "$HEAD_BRANCH_NAME" \
+          #   --base "main" \
+          #   --body ""
   enable-auto-merge:
     runs-on: ubuntu-latest
     if: >-

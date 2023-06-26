@@ -11,12 +11,27 @@ registries:
   ref: v4.21.1 # renovate: depName=aquaproj/aqua-registry
 packages:
 - name: cli/cli@v2.31.0
+- name: rhysd/actionlint@v1.6.25
+- name: google/yamlfmt@v0.9.0
+- name: bufbuild/buf@v1.21.0
 - name: stedolan/jq@jq-1.6
+- name: go-task/task@v3.26.0
+- name: ktr0731/evans@v0.10.11
+- name: tfutils/tfenv@v3.0.0
+- name: jamesWoolfenden/pike@v1.0.0
+- name: hashicorp/packer@v1.9.1
+- name: dapr/cli@v1.11.0
 - name: direnv/direnv@v2.32.3
+- name: ogham/dog@v0.1.0
 - name: CircleCI-Public/circleci-cli@v0.1.27054
 - name: x-motemen/ghq@v1.4.2
 - name: fullstorydev/grpcurl@v1.8.7
 - name: koalaman/shellcheck@v0.9.0
+- name: mvdan/sh@v3.7.0
+- name: hashicorp/terraform-ls@v0.31.3
+- name: hadolint/hadolint@v2.12.0
+- name: lindell/multi-gitter@v0.47.0
+- name: wagoodman/dive@v0.10.0
 - name: sharkdp/bat@v0.23.0
 - name: ogham/exa@v0.10.1
 - name: sharkdp/fd@v8.7.0
@@ -24,3 +39,6 @@ packages:
 - name: BurntSushi/ripgrep@13.0.0
 - name: ajeetdsouza/zoxide@v0.9.1
 - name: kubernetes/kubectl@v1.27.3
+- name: kayac/ecspresso@v2.2.1
+- name: mikefarah/yq@v4.34.1
+- name: grpc-ecosystem/grpc-health-probe@v0.4.19

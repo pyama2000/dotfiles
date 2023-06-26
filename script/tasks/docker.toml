@@ -21,7 +21,18 @@ run_task = [{ name = ["update_docker-compose", "update_docker-buildx"] }]
 
 [tasks.setup_lima.mac]
 private = true
-run_task = ["install_lima", "upgrade_filedescriptor", "start_lima_default", "start_lima_amd"]
+run_task = [{ name = ["install_lima", "upgrade_filedescriptor", "start_lima_default", "start_lima_amd"] }]
+
+[tasks.install_lima.mac]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+brew install lima
+'''
+]
 
 [tasks.start_lima_default.mac]
 private = true
@@ -42,17 +53,6 @@ script = [
 set -eux -o pipefail
 
 limactl start --name="docker-amd" ~/dotfiles/lima/docker-amd.yaml
-'''
-]
-
-[tasks.install_lima.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-set -eux -o pipefail
-
-brew install lima
 '''
 ]
 

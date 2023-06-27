@@ -41,7 +41,7 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-limactl start --name="docker" ~/dotfiles/lima/docker.yaml
+limactl start --name="docker" "${HOME}/dotfiles/lima/docker.yaml"
 '''
 ]
 
@@ -52,7 +52,7 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-limactl start --name="docker-amd" ~/dotfiles/lima/docker-amd.yaml
+limactl start --name="docker-amd" "${HOME}/dotfiles/lima/docker-amd.yaml"
 '''
 ]
 

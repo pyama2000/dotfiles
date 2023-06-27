@@ -16,7 +16,6 @@ jobs:
         os: [macos-13, ubuntu-latest]
     steps:
       - uses: actions/checkout@v3
-      - run: ls -la "${HOME}/dotfiles/lima"
       - name: Run setup.sh
         run: ./script/install.sh
       - name: Run setup task

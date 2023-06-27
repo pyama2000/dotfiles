@@ -42,6 +42,7 @@ script = [
 set -eux -o pipefail
 
 limactl start --name="docker" "./lima/docker.yaml"
+limactl stop docker
 '''
 ]
 
@@ -53,6 +54,7 @@ script = [
 set -eux -o pipefail
 
 limactl start --name="docker-amd" "./lima/docker-amd.yaml"
+limactl stop docker-amd
 '''
 ]
 

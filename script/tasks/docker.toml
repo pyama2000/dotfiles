@@ -7,17 +7,10 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-CONTEXT_NAME='lima-docker'
-CONTEXT_DESCRIPTION='Use lima docker'
-CONTEXT_DOCKER_HOST="unix://$HOME/.lima/docker/sock/docker.sock"
-CONTEXT_DEFAULT_STACK_ORCHESTRATOR='swarm'
-
-docker context create "$CONTEXT_NAME" \
-  --description "$CONTEXT_DESCRIPTION" \
-  --docker host="$CONTEXT_DOCKER_HOST" \
-  --default-stack-orchestrator="$CONTEXT_DEFAULT_STACK_ORCHESTRATOR"
-
-docker context use "$CONTEXT_NAME"
+docker context create "lima-docker" \
+  --docker host="unix://$HOME/.lima/docker/sock/docker.sock"
+docker context create "lima-docker-amd" \
+  --docker host="unix://$HOME/.lima/docker-amd/sock/docker.sock"
 '''
 ]
 
@@ -28,15 +21,7 @@ run_task = [{ name = ["update_docker-compose", "update_docker-buildx"] }]
 
 [tasks.setup_lima.mac]
 private = true
-dependencies = ["install_lima", "upgrade_filedescriptor"]
-script = [
-'''
-#!/usr/bin/env bash
-set -eux -o pipefail
-
-limactl start ~/dotfiles/lima/docker.yaml
-'''
-]
+run_task = [{ name = ["install_lima", "upgrade_filedescriptor", "start_lima_default", "start_lima_amd"] }]
 
 [tasks.install_lima.mac]
 private = true
@@ -46,6 +31,30 @@ script = [
 set -eux -o pipefail
 
 brew install lima
+'''
+]
+
+[tasks.start_lima_default.mac]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+limactl start --name="docker" "./lima/docker.yaml"
+limactl stop docker
+'''
+]
+
+[tasks.start_lima_amd.mac]
+private = true
+script = [
+'''
+#!/usr/bin/env bash
+set -eux -o pipefail
+
+limactl start --name="docker-amd" "./lima/docker-amd.yaml"
+limactl stop docker-amd
 '''
 ]
 

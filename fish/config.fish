@@ -71,7 +71,6 @@ set -x LIMA_INSTANCE docker
 # docker                     #
 ##############################
 set -x DOCKER_BUILDKIT 1
-set -x DOCKER_HOST "unix://$HOME/.lima/docker/sock/docker.sock"
 
 ##############################
 # Node.js                    #

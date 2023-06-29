@@ -4,19 +4,8 @@ return {
   -- FIXME: dependencies を整理する
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
-    "b0o/schemastore.nvim",
   },
   config = function()
-    local lspconfig = require("lspconfig")
-    lspconfig.yamlls.setup({
-      settings = {
-        yaml = {
-          schemas = require("schemastore").yaml.schemas(),
-          validate = true,
-          format = { enable = true },
-        },
-      },
-    })
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
       border = "single",
     })

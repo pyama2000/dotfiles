@@ -2,7 +2,9 @@ return {
   "hrsh7th/nvim-cmp",
   dependencies = {
     "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lsp-document-symbol",
     "hrsh7th/cmp-nvim-lsp-signature-help",
     "hrsh7th/cmp-path",
     { "ray-x/cmp-treesitter", dependencies = { "nvim-treesitter/nvim-treesitter" } },
@@ -30,6 +32,25 @@ return {
         ["<S-Tab>"] = cmp.mapping.select_prev_item(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
       }),
+    })
+    cmp.setup.cmdline("/", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = "nvim_lsp_document_symbol" },
+        { name = "cmdline" },
+      }, {
+        { name = "buffer" },
+      }),
+      completion = {
+        completeopt = "menu,menuone,noselect",
+      },
+    })
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" }, { { name = "cmdline_history" } } }),
+      completion = {
+        completeopt = "menu,menuone,noselect",
+      },
     })
   end,
 }

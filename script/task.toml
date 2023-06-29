@@ -50,5 +50,6 @@ run_task = [
     "update_docker_cli_plugins",
     "update_neovim",
     "cleanup",
+    "post_update_neovim",
   ] },
 ]

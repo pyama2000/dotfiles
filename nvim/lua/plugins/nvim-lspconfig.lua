@@ -9,8 +9,6 @@ return {
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
       border = "single",
     })
-    -- FIXME: on_attach が効かないので全ての client で format を有効にする
-    vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]])
   end,
   keys = {
     {

@@ -2,6 +2,7 @@ return {
   "williamboman/mason-lspconfig.nvim",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
+    "lukas-reineke/lsp-format.nvim",
     "williamboman/mason.nvim",
     "neovim/nvim-lspconfig",
     "b0o/schemastore.nvim",
@@ -9,8 +10,10 @@ return {
   config = function()
     local mason_lspconfig = require("mason-lspconfig")
     local lspconfig = require("lspconfig")
+    local lsp_format = require("lsp-format")
 
     require("mason").setup({})
+    lsp_format.setup({})
 
     mason_lspconfig.setup({
       ensure_installed = {
@@ -36,6 +39,10 @@ return {
           opts.on_attach = function(client)
             client.server_capabilities.documentFormattingProvider = false
           end
+        end
+
+        if server_name == "terraformls" or server_name == "tflint" then
+          opts.on_attach = lsp_format.on_attach
         end
 
         if server_name == "yamlls" then

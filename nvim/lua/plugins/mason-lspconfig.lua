@@ -14,14 +14,14 @@ return {
       ensure_installed = {
         "bashls",
         "bufls",
-        "rust_analyzer",
-        "lua_ls",
         "gopls",
         "jsonls",
-        "yamlls",
+        "lua_ls",
+        "pyright",
+        "rust_analyzer",
         "terraformls",
         "tflint",
-        "pyright",
+        "yamlls",
       },
     })
     mason_lspconfig.setup_handlers({

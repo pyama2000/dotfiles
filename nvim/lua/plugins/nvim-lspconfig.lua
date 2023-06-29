@@ -4,14 +4,6 @@ return {
   -- FIXME: dependencies を整理する
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-nvim-lsp-document-symbol",
-    "hrsh7th/cmp-nvim-lsp-signature-help",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/vim-vsnip",
-    "hrsh7th/cmp-vsnip",
     "b0o/schemastore.nvim",
   },
   config = function()

@@ -9,21 +9,21 @@ return {
     "hrsh7th/cmp-nvim-lsp-signature-help",
     "hrsh7th/cmp-path",
     { "ray-x/cmp-treesitter", dependencies = { "nvim-treesitter/nvim-treesitter" } },
-    { "hrsh7th/cmp-vsnip", dependencies = { "hrsh7th/vim-vsnip" } },
+    { "saadparwaiz1/cmp_luasnip", dependencies = { "L3MON4D3/LuaSnip" } },
   },
   config = function()
     local cmp = require("cmp")
     cmp.setup({
       snippet = {
         expand = function(args)
-          vim.fn["vsnip#anonymous"](args.body)
+          require("luasnip").lsp_expand(args.body)
         end,
       },
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "nvim_lsp_signature_help" },
         { name = "path" },
-        { name = "vsnip" },
+        { name = "luasnip" },
       }, {
         { name = "buffer" },
         { name = "treesitter" },

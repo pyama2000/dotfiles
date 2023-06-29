@@ -6,10 +6,10 @@ return {
     "neovim/nvim-lspconfig",
   },
   config = function()
-    require("mason")
-
-    local nvim_lsp = require("lspconfig")
     local mason_lspconfig = require("mason-lspconfig")
+    local lspconfig = require("lspconfig")
+
+    require("mason").setup({})
 
     mason_lspconfig.setup({
       ensure_installed = {
@@ -25,12 +25,12 @@ return {
         "yamlls",
       },
     })
+
     mason_lspconfig.setup_handlers({
       function(server_name)
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
-        nvim_lsp[server_name].setup({
-          capabilities = capabilities,
-        })
+        local opts = { capabilities = capabilities }
+        lspconfig[server_name].setup(opts)
       end,
     })
   end,

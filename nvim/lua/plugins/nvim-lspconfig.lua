@@ -8,15 +8,6 @@ return {
   },
   config = function()
     local lspconfig = require("lspconfig")
-    lspconfig.rust_analyzer.setup({
-      settings = {
-        ["rust-analyzer"] = {
-          diagnostics = {
-            enable = false,
-          },
-        },
-      },
-    })
     lspconfig.yamlls.setup({
       settings = {
         yaml = {

@@ -32,6 +32,12 @@ return {
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local opts = { capabilities = capabilities }
 
+        if server_name == "lua_ls" then
+          opts.on_attach = function(client)
+            client.server_capabilities.documentFormattingProvider = false
+          end
+        end
+
         if server_name == "yamlls" then
           opts.settings = {
             yaml = {

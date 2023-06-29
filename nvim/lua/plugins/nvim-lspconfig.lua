@@ -8,9 +8,6 @@ return {
   },
   config = function()
     local lspconfig = require("lspconfig")
-    lspconfig.bashls.setup({})
-    lspconfig.bufls.setup({})
-    lspconfig.lua_ls.setup({})
     lspconfig.rust_analyzer.setup({
       settings = {
         ["rust-analyzer"] = {
@@ -20,8 +17,6 @@ return {
         },
       },
     })
-    lspconfig.gopls.setup({})
-    lspconfig.intelephense.setup({})
     lspconfig.yamlls.setup({
       settings = {
         yaml = {
@@ -31,9 +26,6 @@ return {
         },
       },
     })
-    lspconfig.terraformls.setup({})
-    lspconfig.tflint.setup({})
-    lspconfig.pyright.setup({})
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
       border = "single",
     })

@@ -1,44 +1,10 @@
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPre" },
-  -- FIXME: dependencies を整理する
-  dependencies = {
-    "williamboman/mason-lspconfig.nvim",
-    "b0o/schemastore.nvim",
-  },
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
-    local lspconfig = require("lspconfig")
-    lspconfig.bashls.setup({})
-    lspconfig.bufls.setup({})
-    lspconfig.lua_ls.setup({})
-    lspconfig.rust_analyzer.setup({
-      settings = {
-        ["rust-analyzer"] = {
-          diagnostics = {
-            enable = false,
-          },
-        },
-      },
-    })
-    lspconfig.gopls.setup({})
-    lspconfig.intelephense.setup({})
-    lspconfig.yamlls.setup({
-      settings = {
-        yaml = {
-          schemas = require("schemastore").yaml.schemas(),
-          validate = true,
-          format = { enable = true },
-        },
-      },
-    })
-    lspconfig.terraformls.setup({})
-    lspconfig.tflint.setup({})
-    lspconfig.pyright.setup({})
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
       border = "single",
     })
-    -- FIXME: on_attach が効かないので全ての client で format を有効にする
-    vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]])
   end,
   keys = {
     {

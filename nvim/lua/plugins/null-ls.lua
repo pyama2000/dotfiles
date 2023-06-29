@@ -19,7 +19,6 @@ return {
         diagnostics.ruff,
         diagnostics.terraform_validate,
         diagnostics.tfsec,
-        diagnostics.typos,
         diagnostics.yamllint,
         formatting.buf,
         formatting.fish_indent,

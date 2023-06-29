@@ -8,6 +8,7 @@ return {
     local formatting = null_ls.builtins.formatting
 
     null_ls.setup({
+      diagnostics_format = "[#{c}] #{m} (#{s})",
       sources = {
         diagnostics.actionlint,
         diagnostics.buf,

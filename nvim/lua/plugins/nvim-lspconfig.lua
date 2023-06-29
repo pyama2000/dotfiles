@@ -1,10 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre" },
-  -- FIXME: dependencies を整理する
-  dependencies = {
-    "williamboman/mason-lspconfig.nvim",
-  },
   config = function()
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
       border = "single",

@@ -43,6 +43,7 @@ return {
 
         if server_name == "terraformls" or server_name == "tflint" then
           opts.on_attach = lsp_format.on_attach
+          opts.filetypes = { "terraform", "terraform-vars", "tf" }
         end
 
         if server_name == "yamlls" then

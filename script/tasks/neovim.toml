@@ -10,6 +10,45 @@ run_task = { name = [
 description = "Update Neovim"
 run_task = { name = ["update_neovim_plugins"]}
 
+[tasks.post_update_neovim]
+description = "Create pull request for Lazy"
+condition = { profiles = ["production"] }
+script = [
+'''
+#!/usr/bin/env bash
+set -eu -o pipefail
+
+if git diff --exit-code --quiet; then
+  exit 0
+fi
+
+HEAD_BRANCH="update_neovim_plugins-$(date "+%Y%m%d%H%M")"
+BASE_BRANCH='main'
+
+git switch -c "$HEAD_BRANCH"
+git add nvim/lazy-lock.json
+git commit -m 'chore(deps): update lazy-lock.json'
+git push origin "$HEAD_BRANCH"
+gh pr create \
+  --assignee '@me' \
+  --title 'chore(deps): update nvim plugins' \
+  --base "$BASE_BRANCH" \
+  --head "$HEAD_BRANCH" \
+  --body ''
+git switch "$BASE_BRANCH"
+git branch -D "$HEAD_BRANCH"
+sleep 5
+WORKFLOW_URL=$(
+  gh run list \
+    --branch "$HEAD_BRANCH" \
+    --json 'url' \
+    --jq '.[0].url'
+)
+WORKFLOW_ID=$(basename "$WORKFLOW_URL")
+gh run watch "$WORKFLOW_ID" && sleep 1 && git pull origin "$BASE_BRANCH"
+'''
+]
+
 [tasks.install_neovim.mac]
 private = true
 script = [

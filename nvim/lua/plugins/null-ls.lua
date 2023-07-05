@@ -23,7 +23,9 @@ return {
         formatting.buf,
         formatting.fish_indent,
         formatting.goimports,
-        formatting.shfmt,
+        formatting.shfmt.with({
+          extra_args = { "--indent", "2", "--case-indent", "--binary-next-line", "--simplify" },
+        }),
         formatting.stylua,
         formatting.ruff,
       },

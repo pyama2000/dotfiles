@@ -19,7 +19,9 @@ return {
         diagnostics.ruff,
         diagnostics.terraform_validate,
         diagnostics.tfsec,
-        diagnostics.yamllint,
+        diagnostics.yamllint.with({
+          extra_args = { "--config-data", "{ extends: relaxed, rules: { line-length: { max: 120 } } }" },
+        }),
         formatting.buf,
         formatting.fish_indent,
         formatting.goimports,

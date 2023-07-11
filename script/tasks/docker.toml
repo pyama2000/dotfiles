@@ -94,7 +94,7 @@ DOWNLOAD_BINARY_TMP_PATH='/tmp/docker-compose'
 
 curl -sL https://api.github.com/repos/docker/compose/releases/latest \
   | jq -r '.assets[].browser_download_url' \
-  | grep -E "docker-compose-darwin-x86_64\$" \
+  | grep -E "docker-compose-darwin-aarch64 \$" \
   | xargs curl -Lfo "$DOWNLOAD_BINARY_TMP_PATH"
 
 sudo chmod +x "$DOWNLOAD_BINARY_TMP_PATH"
@@ -121,7 +121,7 @@ DOWNLOAD_BINARY_TMP_PATH='/tmp/docker-buildx'
 
 curl -sL https://api.github.com/repos/docker/buildx/releases/latest \
   | jq -r '.assets[].browser_download_url' \
-  | grep -E "buildx-v[0-9]+.[0-9]+.[0-9]+\.darwin-amd64" \
+  | grep -E "buildx-v[0-9]+.[0-9]+.[0-9]+\.darwin-arm64" \
   | xargs curl -Lfo "$DOWNLOAD_BINARY_TMP_PATH"
 
 sudo chmod +x "$DOWNLOAD_BINARY_TMP_PATH"

@@ -25,6 +25,7 @@ return {
         formatting.buf,
         formatting.fish_indent,
         formatting.goimports,
+        formatting.jq,
         formatting.shfmt.with({
           extra_args = { "--indent", "2", "--case-indent", "--binary-next-line", "--simplify" },
         }),

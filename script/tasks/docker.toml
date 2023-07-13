@@ -94,7 +94,7 @@ DOWNLOAD_BINARY_TMP_PATH='/tmp/docker-compose'
 
 curl -sL https://api.github.com/repos/docker/compose/releases/latest \
   | jq -r '.assets[].browser_download_url' \
-  | grep -E "docker-compose-darwin-aarch64 \$" \
+  | grep -E "docker-compose-darwin-aarch64" \
   | xargs curl -Lfo "$DOWNLOAD_BINARY_TMP_PATH"
 
 sudo chmod +x "$DOWNLOAD_BINARY_TMP_PATH"
@@ -108,7 +108,7 @@ rm -rf "$DOWNLOAD_BINARY_TMP_PATH"
 
 [tasks.update_docker-compose.mac]
 private = true
-alias = "install_docker-compose"
+run_task = [{ name = ["install_docker-compose"] }]
 
 [tasks.install_docker-buildx.mac]
 private = true
@@ -135,4 +135,4 @@ rm "$DOWNLOAD_BINARY_TMP_PATH"
 
 [tasks.update_docker-buildx.mac]
 private = true
-alias = "install_docker-buildx"
+run_task = [{ name = ["install_docker-buildx"] }]

@@ -40,6 +40,12 @@ return {
             ".git/",
           },
         },
+        pickers = {
+          buffers = {
+            ignore_current_buffer = true,
+            sort_lastused = true,
+          },
+        },
       })
 
       local builtin = require("telescope.builtin")

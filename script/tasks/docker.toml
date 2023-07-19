@@ -92,7 +92,7 @@ set -eux -o pipefail
 
 DOWNLOAD_BINARY_TMP_PATH='/tmp/docker-compose'
 
-curl -sL https://api.github.com/repos/docker/compose/releases/latest \
+curl -sL --retry 3 https://api.github.com/repos/docker/compose/releases/latest \
   | jq -r '.assets[].browser_download_url' \
   | grep -E "docker-compose-darwin-aarch64" \
   | xargs curl -Lfo "$DOWNLOAD_BINARY_TMP_PATH"
@@ -119,7 +119,7 @@ set -eux -o pipefail
 
 DOWNLOAD_BINARY_TMP_PATH='/tmp/docker-buildx'
 
-curl -sL https://api.github.com/repos/docker/buildx/releases/latest \
+curl -sL --retry 3 https://api.github.com/repos/docker/buildx/releases/latest \
   | jq -r '.assets[].browser_download_url' \
   | grep -E "buildx-v[0-9]+.[0-9]+.[0-9]+\.darwin-arm64" \
   | xargs curl -Lfo "$DOWNLOAD_BINARY_TMP_PATH"

@@ -24,6 +24,6 @@ packages:
 - name: BurntSushi/ripgrep@13.0.0
 - name: ajeetdsouza/zoxide@v0.9.1
 - name: kubernetes/kubectl@v1.27.4
-- name: fujiwara/tracer@v1.0.1
+- name: fujiwara/tracer@v1.0.2
 - name: tfutils/tfenv@v3.0.0
 - name: hashicorp/packer@v1.9.2

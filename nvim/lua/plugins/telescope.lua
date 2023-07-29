@@ -45,6 +45,9 @@ return {
             ignore_current_buffer = true,
             sort_lastused = true,
           },
+          find_files = {
+            hidden = true,
+          },
         },
       })
 

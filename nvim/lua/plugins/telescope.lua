@@ -45,6 +45,9 @@ return {
             ignore_current_buffer = true,
             sort_lastused = true,
           },
+          find_files = {
+            hidden = true,
+          },
         },
       })
 
@@ -57,7 +60,6 @@ return {
       vim.keymap.set("n", "<C-d>s", builtin.search_history, { noremap = true, silent = true })
       vim.keymap.set({ "n", "x" }, "<C-d>g", builtin.grep_string, { noremap = true, silent = true })
       vim.keymap.set("n", "<C-d>h", "<cmd>Telescope find_files hidden=true<CR>", { noremap = true, silent = true })
-      vim.keymap.set("n", "<C-d>of", "<cmd>Telescope find_files ", { noremap = true, silent = true })
       vim.keymap.set("n", "<C-f>b", telescope.extensions.file_browser.file_browser, { noremap = true, silent = true })
     end,
   },

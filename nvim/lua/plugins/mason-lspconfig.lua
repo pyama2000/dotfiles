@@ -47,6 +47,27 @@ return {
           end
         end
 
+        if server_name == "rust_analyzer" then
+          opts.settings = {
+            ["rust-analyzer"] = {
+              imports = {
+                granularity = {
+                  group = "module",
+                },
+                prefix = "self",
+              },
+              cargo = {
+                buildScripts = {
+                  enable = true,
+                },
+              },
+              procMacro = {
+                enable = true,
+              },
+            },
+          }
+        end
+
         if server_name == "terraformls" or server_name == "tflint" then
           opts.on_attach = lsp_format.on_attach
           opts.filetypes = { "terraform", "terraform-vars", "tf" }

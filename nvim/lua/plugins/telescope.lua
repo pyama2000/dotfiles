@@ -44,6 +44,14 @@ return {
           buffers = {
             ignore_current_buffer = true,
             sort_lastused = true,
+            mappings = {
+              i = {
+                ["<c-d>"] = actions.delete_buffer,
+              },
+              n = {
+                ["d"] = actions.delete_buffer,
+              },
+            },
           },
           find_files = {
             hidden = true,

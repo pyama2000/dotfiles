@@ -17,6 +17,9 @@ return {
         diagnostics.fish,
         diagnostics.hadolint,
         diagnostics.ruff,
+        diagnostics.sqlfluff.with({
+          extra_args = { "--dialect", "mysql" },
+        }),
         diagnostics.terraform_validate,
         diagnostics.tfsec,
         diagnostics.yamllint.with({
@@ -28,6 +31,9 @@ return {
         formatting.jq,
         formatting.shfmt.with({
           extra_args = { "--indent", "2", "--case-indent", "--binary-next-line", "--simplify" },
+        }),
+        formatting.sqlfluff.with({
+          extra_args = { "--dialect", "mysql" },
         }),
         formatting.stylua,
         formatting.ruff,

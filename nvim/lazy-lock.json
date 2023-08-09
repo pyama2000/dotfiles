@@ -29,5 +29,6 @@
   "telescope-file-browser.nvim": { "branch": "master", "commit": "6fe423eea6604c2fcbb906ff5f7e27f748a6ed87" },
   "telescope.nvim": { "branch": "master", "commit": "dc192faceb2db64231ead71539761e055df66d73" },
   "toggleterm.nvim": { "branch": "main", "commit": "b90a1381e9b5b8596f49070ee86c71db267ac868" },
+  "vim-rego": { "branch": "master", "commit": "b47bf95996b72d630464b44ca567f2945bd37ac9" },
   "vim-varnish": { "branch": "main", "commit": "5f6050c3c215968ac84dc4a48a4968a054390fd1" }
 }

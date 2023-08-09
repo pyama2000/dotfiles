@@ -16,6 +16,7 @@ return {
         diagnostics.golangci_lint,
         diagnostics.fish,
         diagnostics.hadolint,
+        -- diagnostics.opacheck,
         diagnostics.ruff,
         diagnostics.sqlfluff.with({
           extra_args = { "--dialect", "mysql" },
@@ -29,6 +30,7 @@ return {
         formatting.fish_indent,
         formatting.goimports,
         formatting.jq,
+        -- formatting.rego,
         formatting.shfmt.with({
           extra_args = { "--indent", "2", "--case-indent", "--binary-next-line", "--simplify" },
         }),

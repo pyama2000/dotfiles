@@ -2,6 +2,20 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
+    local lspconfig = require("lspconfig")
+    local configs = require("lspconfig.configs")
+
+    if not configs.regols then
+      configs.regols = {
+        default_config = {
+          cmd = { "regols" },
+          filetypes = { "rego" },
+          root_dir = lspconfig.util.root_pattern(".git"),
+        },
+      }
+    end
+    lspconfig.regols.setup({})
+
     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
       border = "single",
     })

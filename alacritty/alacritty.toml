@@ -59,8 +59,3 @@ style = "Regular"
 [shell]
 args = ["--login", "--command", "/opt/homebrew/bin/tmux attach || /opt/homebrew/bin/tmux"]
 program = "/opt/homebrew/bin/fish"
-
-[window]
-decorations = "full"
-opacity = 0.95
-startup_mode = "Windowed"

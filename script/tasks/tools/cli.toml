@@ -5,13 +5,7 @@ run_task = { name = [
   "install_fzf",
   "install_cargo-watch",
   "install_cargo-update",
-  "instal_aws_cli",
 ] }
-
-[tasks.update_cli]
-category = "tools"
-description = "Update CLI tools"
-run_task = { name = ["update_aws_cli"] }
 
 # fzf
 [tasks.install_fzf.mac]
@@ -55,22 +49,3 @@ script = [
 cargo install cargo-update
 '''
 ]
-
-[tasks.instal_aws_cli]
-private = true
-script = ['''
-#!/usr/bin/env bash
-
-FILE_NAME='AWSCLIV2.pkg'
-
-cd /tmp || exit
-curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "$FILE_NAME"
-sudo installer -pkg "./${FILE_NAME}" -target /
-rm "$FILE_NAME"
-
-aws --version
-''']
-
-[tasks.update_aws_cli]
-private = true
-alias = "instal_aws_cli"

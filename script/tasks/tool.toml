@@ -14,7 +14,6 @@ run_task = { name = ["install_cli", "install_gui", "setup_starship"] }
 run_task = [
   { name = [
     "update_package_tools",
-    "update_cli",
     "update_starship",
     "update_rust_tools",
   ] },

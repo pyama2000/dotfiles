@@ -27,7 +27,7 @@ jobs:
     outputs:
       diff: ${{ steps.export.outputs.diff }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: technote-space/get-diff-action@v6
         with:
           PATTERNS: |
@@ -43,7 +43,7 @@ jobs:
     needs:
       - export-diff
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Add workflow label
         if: contains(needs.export-diff.outputs.diff, '.github/workflows/')
         run: gh pr edit --add-label 'workflow' "$PR_URL"
@@ -66,7 +66,7 @@ jobs:
   actionlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Lint workflow files
         shell: bash
         run: |
@@ -77,7 +77,7 @@ jobs:
   stylua:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: JohnnyMorganz/stylua-action@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

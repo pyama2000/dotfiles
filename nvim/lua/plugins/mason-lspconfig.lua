@@ -26,6 +26,7 @@ return {
         "rust_analyzer",
         "terraformls",
         "tflint",
+        "tsserver",
         "yamlls",
       },
     })
@@ -81,6 +82,12 @@ return {
               format = { enable = true },
             },
           }
+        end
+
+        if server_name == "tsserver" then
+          opts.on_attach = function(client)
+            client.server_capabilities.documentFormattingProvider = false
+          end
         end
 
         lspconfig[server_name].setup(opts)

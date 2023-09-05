@@ -30,6 +30,9 @@ return {
         formatting.fish_indent,
         formatting.goimports,
         formatting.jq,
+        formatting.prettier.with({
+          prefer_local = "node_modules/.bin",
+        }),
         formatting.rego,
         formatting.shfmt.with({
           extra_args = { "--indent", "2", "--case-indent", "--binary-next-line", "--simplify" },

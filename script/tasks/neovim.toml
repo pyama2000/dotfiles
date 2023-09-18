@@ -8,6 +8,7 @@ run_task = { name = [
 
 [tasks.update_neovim]
 description = "Update Neovim"
+condition = { profiles = ["production"] }
 run_task = { name = ["update_neovim_plugins"]}
 
 [tasks.post_update_neovim]
@@ -79,6 +80,7 @@ script = [
 #!/usr/bin/env bash
 
 nvim --headless "+Lazy! update" +qa
+nvim --headless "+MasonUpdate" +qa
 '''
 ]
 

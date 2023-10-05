@@ -20,6 +20,7 @@ return {
         "bashls",
         "bufls",
         "gopls",
+        "intelephense",
         "jsonls",
         "lua_ls",
         "pyright",

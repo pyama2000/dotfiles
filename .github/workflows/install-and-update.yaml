@@ -3,7 +3,7 @@ on:
   workflow_call:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * 1'
 jobs:
   exec-install-and-update-task:
     runs-on: ${{ matrix.os }}

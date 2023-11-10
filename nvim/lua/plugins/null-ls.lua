@@ -18,14 +18,14 @@ return {
         diagnostics.hadolint,
         diagnostics.opacheck,
         -- diagnostics.ruff,
-        diagnostics.sqlfluff.with({
-          extra_args = { "--dialect", "mysql" },
-        }),
+        -- diagnostics.sqlfluff.with({
+        --   extra_args = { "--dialect", "mysql" },
+        -- }),
         diagnostics.terraform_validate,
         diagnostics.tfsec,
-        diagnostics.yamllint.with({
-          extra_args = { "--config-data", "{ extends: relaxed, rules: { line-length: { max: 120 } } }" },
-        }),
+        -- diagnostics.yamllint.with({
+        --   extra_args = { "--config-data", "{ extends: relaxed, rules: { line-length: { max: 120 } } }" },
+        -- }),
         formatting.buf,
         formatting.fish_indent,
         formatting.goimports,
@@ -37,9 +37,9 @@ return {
         formatting.shfmt.with({
           extra_args = { "--indent", "2", "--case-indent", "--binary-next-line", "--simplify" },
         }),
-        formatting.sqlfluff.with({
-          extra_args = { "--dialect", "mysql" },
-        }),
+        -- formatting.sqlfluff.with({
+        --   extra_args = { "--dialect", "mysql" },
+        -- }),
         formatting.stylua,
         -- formatting.ruff,
       },

@@ -10,7 +10,7 @@ registries:
 - type: standard
   ref: v4.103.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-- name: cli/cli@v2.40.0
+- name: cli/cli@v2.40.1
 - name: stedolan/jq@jq-1.6
 - name: direnv/direnv@v2.33.0
 - name: CircleCI-Public/circleci-cli@v0.1.29560

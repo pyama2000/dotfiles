@@ -27,4 +27,4 @@ packages:
 - name: fujiwara/tracer@v1.0.2
 - name: tfutils/tfenv@v3.0.0
 - name: hashicorp/packer@v1.10.0
-- name: aws/aws-cli@2.15.11
+- name: aws/aws-cli@2.15.12

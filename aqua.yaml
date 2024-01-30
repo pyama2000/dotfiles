@@ -26,5 +26,5 @@ packages:
 - name: kubernetes/kubectl@v1.29.1
 - name: fujiwara/tracer@v1.0.2
 - name: tfutils/tfenv@v3.0.0
-- name: hashicorp/packer@v1.10.0
+- name: hashicorp/packer@v1.10.1
 - name: aws/aws-cli@2.15.15

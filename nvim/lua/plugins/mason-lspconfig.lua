@@ -24,6 +24,7 @@ return {
         "jsonls",
         "lua_ls",
         "pyright",
+        "ruff_lsp",
         "rust_analyzer",
         "terraformls",
         "tflint",

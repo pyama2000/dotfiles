@@ -16,7 +16,6 @@ return {
         diagnostics.fish,
         diagnostics.hadolint,
         diagnostics.opacheck,
-        diagnostics.ruff,
         diagnostics.sqlfluff.with({
           extra_args = { "--dialect", "mysql" },
         }),
@@ -40,7 +39,6 @@ return {
           extra_args = { "--dialect", "mysql" },
         }),
         formatting.stylua,
-        formatting.ruff,
       },
     })
   end,

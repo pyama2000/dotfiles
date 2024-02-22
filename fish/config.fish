@@ -89,6 +89,11 @@ fish_add_path $DENO_INSTALL/bin
 fish_add_path "/opt/homebrew/opt/mysql-client/bin"
 
 ##############################
+# Rye                        #
+##############################
+set -Ua fish_user_paths "$HOME/.rye/shims"
+
+##############################
 # Theme                      #
 ##############################
 set -l foreground DCD7BA

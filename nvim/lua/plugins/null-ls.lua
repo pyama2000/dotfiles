@@ -27,7 +27,6 @@ return {
         formatting.buf,
         formatting.fish_indent,
         formatting.goimports,
-        formatting.jq,
         formatting.prettier.with({
           prefer_local = "node_modules/.bin",
         }),

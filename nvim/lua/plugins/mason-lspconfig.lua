@@ -62,6 +62,9 @@ return {
               procMacro = {
                 enable = true,
               },
+              diagnostics = {
+                disabled = { "inactive-code" },
+              },
             },
           }
         end

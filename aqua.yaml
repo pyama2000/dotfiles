@@ -28,5 +28,5 @@ packages:
 - name: tfutils/tfenv@v3.0.0
 - name: hashicorp/packer@v1.10.3
 - name: aws/aws-cli@2.15.41
-- name: mitsuhiko/rye@0.32.0
+- name: mitsuhiko/rye@0.33.0
 - name: astral-sh/uv@0.1.38

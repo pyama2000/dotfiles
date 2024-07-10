@@ -29,4 +29,4 @@ packages:
 - name: hashicorp/packer@v1.11.1
 - name: aws/aws-cli@2.17.11
 - name: mitsuhiko/rye@0.36.0
-- name: astral-sh/uv@0.2.23
+- name: astral-sh/uv@0.2.24

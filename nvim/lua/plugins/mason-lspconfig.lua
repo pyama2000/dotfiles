@@ -65,6 +65,9 @@ return {
               diagnostics = {
                 disabled = { "inactive-code" },
               },
+              check = {
+                command = "clippy",
+              },
             },
           }
         end

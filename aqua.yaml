@@ -30,3 +30,8 @@ packages:
 - name: aws/aws-cli@2.17.23
 - name: mitsuhiko/rye@0.38.0
 - name: astral-sh/uv@0.2.33
+- name: ast-grep/ast-grep@0.24.1
+- name: acheronfail/repgrep@0.15.0
+- name: chmln/sd@v1.0.0
+- name: ynqa/jnv@v0.3.0
+- name: fujiwara/lambroll@v1.0.5

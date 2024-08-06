@@ -27,7 +27,7 @@
   "open-browser-unicode.vim": { "branch": "master", "commit": "c710a5ed6181f4c38ae9059fda6c29612f1ee429" },
   "open-browser.vim": { "branch": "master", "commit": "7d4c1d8198e889d513a030b5a83faa07606bac27" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
-  "schemastore.nvim": { "branch": "main", "commit": "a86e7a0ecaf09fdb0b58ca09f34cd1e2b2b1fd75" },
+  "schemastore.nvim": { "branch": "main", "commit": "218a9887085b81b3eb0ee8f1e2d20c4a7fd7b1c9" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "a46780830b576049c675680650f773bedfa8677a" },
   "telescope.nvim": { "branch": "master", "commit": "3b1600d0fd5172ad9fae00987362ca0ef3d8895d" },
   "toggleterm.nvim": { "branch": "main", "commit": "48be57eaba817f038d61bbf64d2c597f578c0827" },

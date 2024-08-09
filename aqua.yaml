@@ -34,4 +34,4 @@ packages:
 - name: acheronfail/repgrep@0.15.0
 - name: chmln/sd@v1.0.0
 - name: ynqa/jnv@v0.3.0
-- name: fujiwara/lambroll@v1.0.5
+- name: fujiwara/lambroll@v1.0.6

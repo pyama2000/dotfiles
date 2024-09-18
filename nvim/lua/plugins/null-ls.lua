@@ -20,8 +20,8 @@ return {
           extra_args = { "--dialect", "mysql" },
         }),
         diagnostics.terraform_validate,
-        diagnostics.tfsec,
-        -- diagnostics.trivy,
+        -- diagnostics.tfsec,
+        diagnostics.trivy,
         diagnostics.yamllint.with({
           extra_args = { "--config-data", "{ extends: relaxed, rules: { line-length: { max: 120 } } }" },
         }),

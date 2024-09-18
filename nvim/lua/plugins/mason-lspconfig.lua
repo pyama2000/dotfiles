@@ -28,7 +28,6 @@ return {
         "rust_analyzer",
         "terraformls",
         "tflint",
-        "tsserver",
         "yamlls",
       },
     })

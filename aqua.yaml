@@ -22,7 +22,7 @@ packages:
 - name: sharkdp/fd@v10.2.0
 - name: dandavison/delta@0.18.2
 - name: BurntSushi/ripgrep@14.1.1
-- name: ajeetdsouza/zoxide@v0.9.5
+- name: ajeetdsouza/zoxide@v0.9.6
 - name: kubernetes/kubectl@v1.31.1
 - name: fujiwara/tracer@v1.1.0
 - name: tfutils/tfenv@v3.0.0

@@ -9,8 +9,8 @@ set -eux -o pipefail
 
 docker context create "lima-docker" \
   --docker host="unix://$HOME/.lima/docker/sock/docker.sock"
-docker context create "lima-docker-amd" \
-  --docker host="unix://$HOME/.lima/docker-amd/sock/docker.sock"
+docker context create "lima-docker-rosetta" \
+  --docker host="unix://$HOME/.lima/docker-rosetta/sock/docker.sock"
 '''
 ]
 
@@ -41,7 +41,11 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-limactl start --name="docker" "./lima/docker.yaml"
+limactl create \
+    --name=docker \
+    --mount="~/ghq:w" \
+    template://docker-rootful
+limactl start docker
 limactl stop docker
 '''
 ]
@@ -53,8 +57,16 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-limactl start --name="docker-amd" "./lima/docker-amd.yaml"
-limactl stop docker-amd
+limactl create \
+    --name=docker-rosetta \
+    --vm-type=vz \
+    --mount="~/ghq:w" \
+    --mount-type=virtiofs \
+    --network=vzNAT \
+    --rosetta \
+    template://docker-rootful
+limactl start docker-rosetta
+limactl stop docker-rosetta
 '''
 ]
 

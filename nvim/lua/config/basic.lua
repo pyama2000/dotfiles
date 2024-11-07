@@ -10,11 +10,8 @@ vim.opt.swapfile = false
 vim.opt.list = true
 vim.opt.listchars = { tab = "»-", trail = "-", extends = "»", precedes = "«", nbsp = "%" }
 vim.opt.updatetime = 300
-
--- Always show the signcolumn, otherwise it would shift the text each time
 vim.opt.signcolumn = "yes"
 
--- Auto reload file
 vim.opt.autoread = true
 vim.cmd([[
   augroup autoreload-checktime
@@ -25,10 +22,3 @@ vim.cmd([[
 if vim.fn.exists("+termguicolors") then
   vim.opt.termguicolors = true
 end
-
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*.tf", "*.tfvars" },
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})

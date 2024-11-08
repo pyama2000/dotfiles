@@ -5,9 +5,9 @@ return {
   config = function()
     require("nvim-treesitter.configs").setup({
       auto_install = true,
-      highlight = {
-        enable = true,
-      },
+      sync_install = false,
+      highlight = { enable = true },
+      indent = { enable = true },
     })
   end,
 }

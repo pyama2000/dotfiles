@@ -1,24 +1,61 @@
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
+  dependencies = { "j-hui/fidget.nvim" },
   config = function()
     local lspconfig = require("lspconfig")
-    local configs = require("lspconfig.configs")
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    if not configs.regols then
-      configs.regols = {
-        default_config = {
-          cmd = { "regols" },
-          filetypes = { "rego" },
-          root_dir = lspconfig.util.root_pattern(".git"),
-        },
-      }
-    end
-    lspconfig.regols.setup({})
+    -- Bash
+    -- TODO: Nixでバージョン管理したら
+    -- Language Server: https://github.com/bash-lsp/bash-language-server
 
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-      border = "single",
+    -- Docker Compose
+    -- TODO: Nixでバージョン管理したら
+    -- Language Server: https://github.com/microsoft/compose-language-service
+
+    -- Go
+    lspconfig.gopls.setup({ capabilities = capabilities })
+
+    -- Lua
+    lspconfig.lua_ls.setup({
+      capabilities = capabilities,
+      on_attach = function(client)
+        client.server_capabilities.documentFormattingProvider = false
+      end,
     })
+
+    -- PHP
+    -- TODO: Nixでバージョン管理したら
+    -- Language Server: https://intelephense.com/
+
+    -- Protocol Buffers (buf)
+    lspconfig.buf_ls.setup({ capabilities = capabilities })
+
+    -- Python
+    lspconfig.ruff.setup({ capabilities = capabilities })
+
+    -- Terraform
+    lspconfig.terraformls.setup({
+      capabilities = capabilities,
+      filetypes = { "terraform", "terraform-vars", "tf" },
+    })
+    lspconfig.tflint.setup({
+      capabilities = capabilities,
+      filetypes = { "terraform", "terraform-vars", "tf" },
+    })
+    vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+      pattern = { "*.tf", "*.tfvars" },
+      callback = function()
+        vim.lsp.buf.format()
+      end,
+    })
+
+    -- YAML
+    -- TODO: Nixでバージョン管理したら
+    -- Language Server: https://github.com/redhat-developer/yaml-language-server
+
+    require("fidget").setup({})
   end,
   keys = {
     {

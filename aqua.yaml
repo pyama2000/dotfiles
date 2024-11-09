@@ -43,5 +43,5 @@ packages:
 - name: aquasecurity/trivy@v0.57.0
 - name: bufbuild/buf@v1.46.0
 - name: hadolint/hadolint@v2.12.0
-- name: terraform-linters/tflint@v0.53.0
+- name: terraform-linters/tflint@v0.54.0
 - name: astral-sh/ruff@0.7.3

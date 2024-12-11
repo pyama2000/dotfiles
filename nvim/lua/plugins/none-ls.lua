@@ -13,7 +13,9 @@ return {
         diagnostics.actionlint,
         diagnostics.hadolint,
         diagnostics.terraform_validate,
-        diagnostics.trivy,
+        diagnostics.trivy.with({
+          args = { "config", "--format", "json", "$DIRNAME" },
+        }),
         -- formatting
         formatting.shfmt.with({
           extra_args = { "--indent", "2", "--case-indent", "--binary-next-line", "--simplify" },

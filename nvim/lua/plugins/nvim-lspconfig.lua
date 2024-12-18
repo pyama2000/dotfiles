@@ -1,7 +1,10 @@
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
-  dependencies = { "j-hui/fidget.nvim" },
+  dependencies = {
+    "j-hui/fidget.nvim",
+    "b0o/schemastore.nvim",
+  },
   config = function()
     local lspconfig = require("lspconfig")
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -52,8 +55,16 @@ return {
     })
 
     -- YAML
-    -- TODO: Nixでバージョン管理したら
-    -- Language Server: https://github.com/redhat-developer/yaml-language-server
+    lspconfig.yamlls.setup({
+      capabilities = capabilities,
+      settings = {
+        yaml = {
+          schemas = require("schemastore").yaml.schemas(),
+          validate = true,
+          format = { enable = true },
+        },
+      },
+    })
 
     require("fidget").setup({})
   end,

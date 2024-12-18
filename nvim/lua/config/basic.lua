@@ -4,6 +4,7 @@ vim.opt.mouse = ""
 vim.opt.clipboard:append({ "unnamedplus" })
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
@@ -16,6 +17,15 @@ vim.opt.autoread = true
 vim.cmd([[
   augroup autoreload-checktime
     autocmd CursorHold,CursorHoldI,CursorMoved,CursorMovedI,BufEnter * silent! checktime
+  augroup END
+]])
+-- ファイルタイプごとのインデント設定
+vim.cmd([[
+  augroup indent
+    " Terraform
+    autocmd FileType terraform setlocal expandtab tabstop=2 shiftwidth=2
+    autocmd FileType terraform-vars setlocal expandtab tabstop=2 shiftwidth=2
+    autocmd FileType tf setlocal expandtab tabstop=2 shiftwidth=2
   augroup END
 ]])
 

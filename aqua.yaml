@@ -29,7 +29,7 @@ packages:
 - name: hashicorp/packer@v1.11.2
 - name: aws/aws-cli@2.22.21
 - name: mitsuhiko/rye@0.43.0
-- name: astral-sh/uv@0.5.10
+- name: astral-sh/uv@0.5.11
 - name: ast-grep/ast-grep@0.32.2
 - name: acheronfail/repgrep@0.15.0
 - name: chmln/sd@v1.0.0

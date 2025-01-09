@@ -26,6 +26,7 @@ vim.cmd([[
     autocmd FileType terraform setlocal expandtab tabstop=2 shiftwidth=2
     autocmd FileType terraform-vars setlocal expandtab tabstop=2 shiftwidth=2
     autocmd FileType tf setlocal expandtab tabstop=2 shiftwidth=2
+    autocmd FileType proto setlocal expandtab tabstop=2 shiftwidth=2
   augroup END
 ]])
 

@@ -23,7 +23,7 @@ packages:
 - name: dandavison/delta@0.18.2
 - name: BurntSushi/ripgrep@14.1.1
 - name: ajeetdsouza/zoxide@v0.9.6
-- name: kubernetes/kubectl@v1.32.0
+- name: kubernetes/kubectl@v1.32.1
 - name: fujiwara/tracer@v1.1.0
 - name: tfutils/tfenv@v3.0.0
 - name: hashicorp/packer@v1.11.2

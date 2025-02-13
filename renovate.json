@@ -1,6 +1,6 @@
 {
   "extends": [
-    "github>aquaproj/aqua-renovate-config#2.7.0"
+    "github>aquaproj/aqua-renovate-config#2.7.1"
   ],
   "labels": ["dependencies"],
   "reviewers": ["pyama2000"],

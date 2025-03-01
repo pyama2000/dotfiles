@@ -8,8 +8,8 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-FONT_NAME='UDEVGothic_NF'
-ENDPOINT='https://api.github.com/repos/yuru7/udev-gothic/releases/latest'
+FONT_NAME='Explex_v0.0.3'
+ENDPOINT='https://api.github.com/repos/yuru7/Explex/releases/latest'
 
 mkdir -p ~/.fonts/"$FONT_NAME"
 mkdir -p /tmp/"$FONT_NAME"
@@ -34,7 +34,7 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-FONT_NAME='UDEVGothic_NF'
+FONT_NAME='Explex_v0.0.3'
 
 if [ ! -d "$HOME/Library/Fonts" ]; then
   mkdir -p "$HOME"/Library/Fonts
@@ -51,7 +51,7 @@ script = [
 #!/usr/bin/env bash
 set -eux -o pipefail
 
-FONT_NAME='UDEVGothic_NF'
+FONT_NAME='Explex_v0.0.3'
 
 fc-cache -f -v ~/.fonts/"$FONT_NAME"
 '''

@@ -38,7 +38,7 @@ packages:
 - name: LuaLS/lua-language-server@3.13.6
 - name: JohnnyMorganz/StyLua@v2.0.2
 - name: hashicorp/terraform-ls@v0.36.4
-- name: mvdan/sh@v3.10.0
+- name: mvdan/sh@v3.11.0
 - name: rhysd/actionlint@v1.7.7
 - name: aquasecurity/trivy@v0.60.0
 - name: bufbuild/buf@v1.50.0

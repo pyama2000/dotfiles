@@ -34,7 +34,7 @@ packages:
 - name: acheronfail/repgrep@0.16.0
 - name: chmln/sd@v1.0.0
 - name: ynqa/jnv@v0.5.0
-- name: fujiwara/lambroll@v1.2.1
+- name: fujiwara/lambroll@v1.2.2
 - name: LuaLS/lua-language-server@3.13.9
 - name: JohnnyMorganz/StyLua@v2.0.2
 - name: hashicorp/terraform-ls@v0.36.4

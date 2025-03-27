@@ -66,6 +66,9 @@ return {
       },
     })
 
+    -- Kotlin
+    lspconfig.kotlin_language_server.setup({})
+
     require("fidget").setup({})
   end,
   keys = {

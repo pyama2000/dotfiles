@@ -36,7 +36,7 @@ packages:
 - name: ynqa/jnv@v0.6.0
 - name: fujiwara/lambroll@v1.2.2
 - name: LuaLS/lua-language-server@3.14.0
-- name: JohnnyMorganz/StyLua@v2.0.2
+- name: JohnnyMorganz/StyLua@v2.1.0
 - name: hashicorp/terraform-ls@v0.36.4
 - name: mvdan/sh@v3.11.0
 - name: rhysd/actionlint@v1.7.7

@@ -37,6 +37,7 @@ return {
 
     -- Python
     lspconfig.ruff.setup({ capabilities = capabilities })
+    lspconfig.pylsp.setup({ capabilities = capabilities })
 
     -- Terraform
     lspconfig.terraformls.setup({
@@ -68,6 +69,10 @@ return {
 
     -- Kotlin
     lspconfig.kotlin_language_server.setup({})
+
+    -- JavaScript / TypeScript
+    lspconfig.ts_ls.setup({})
+    lspconfig.biome.setup({})
 
     require("fidget").setup({})
   end,

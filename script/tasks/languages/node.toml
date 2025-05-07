@@ -11,7 +11,7 @@ if !(type asdf > /dev/null 2>&1); then
 fi
 
 asdf install nodejs latest
-asdf global nodejs latest
+asdf set --home nodejs latest
 '''
 ]
 

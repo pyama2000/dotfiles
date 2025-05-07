@@ -15,7 +15,7 @@ if !(type asdf > /dev/null 2>&1); then
 fi
 
 asdf install python latest
-asdf global python latest
+asdf set --home python latest
 '''
 ]
 

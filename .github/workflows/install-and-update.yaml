@@ -15,7 +15,7 @@ jobs:
       matrix:
         os: [macos-13, ubuntu-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Run setup.sh
         run: ./script/install.sh
       - name: Run setup task

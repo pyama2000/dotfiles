@@ -74,6 +74,18 @@ return {
     lspconfig.ts_ls.setup({})
     lspconfig.biome.setup({})
 
+    -- JSON
+    lspconfig.jsonls.setup({
+      capabilities = capabilities,
+      settings = {
+        json = {
+          schemas = require("schemastore").json.schemas(),
+          validate = { enable = true },
+          format = { enable = true },
+        },
+      },
+    })
+
     require("fidget").setup({})
   end,
   keys = {

@@ -174,3 +174,5 @@ if [ -f '/Users/r0417/google-cloud-sdk/path.fish.inc' ]; . '/Users/r0417/google-
 
 # uv
 fish_add_path "/Users/takahiko-yamashita/.local/share/../bin"
+
+string match -q "$TERM_PROGRAM" "kiro" and . (kiro --locate-shell-integration-path fish)

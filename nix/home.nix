@@ -34,7 +34,13 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    # CLI
     pkgs.eza
+
+    # Language Server
+    pkgs.bash-language-server
+    pkgs.nixd
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

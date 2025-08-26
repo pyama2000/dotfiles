@@ -176,3 +176,7 @@ if [ -f '/Users/r0417/google-cloud-sdk/path.fish.inc' ]; . '/Users/r0417/google-
 fish_add_path "/Users/takahiko-yamashita/.local/share/../bin"
 
 string match -q "$TERM_PROGRAM" "kiro" and . (kiro --locate-shell-integration-path fish)
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

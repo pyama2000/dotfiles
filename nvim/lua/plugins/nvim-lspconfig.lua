@@ -10,8 +10,7 @@ return {
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     -- Bash
-    -- TODO: Nixでバージョン管理したら
-    -- Language Server: https://github.com/bash-lsp/bash-language-server
+    lspconfig.bashls.setup({ capabilities = capabilities })
 
     -- Docker Compose
     -- TODO: Nixでバージョン管理したら
@@ -20,12 +19,32 @@ return {
     -- Go
     lspconfig.gopls.setup({ capabilities = capabilities })
 
+    -- Kotlin
+    lspconfig.kotlin_language_server.setup({})
+
     -- Lua
     lspconfig.lua_ls.setup({
       capabilities = capabilities,
       on_attach = function(client)
         client.server_capabilities.documentFormattingProvider = false
       end,
+    })
+
+    -- Nix
+    lspconfig.nixd.setup({
+      capabilities = capabilities,
+      settings = {
+        nixd = {
+          formatting = {
+            command = { "nixfmt" },
+          },
+          options = {
+            home_manager = {
+              expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."default".options',
+            },
+          },
+        },
+      },
     })
 
     -- PHP
@@ -67,12 +86,9 @@ return {
       },
     })
 
-    -- Kotlin
-    lspconfig.kotlin_language_server.setup({})
-
     -- JavaScript / TypeScript
-    lspconfig.ts_ls.setup({})
-    lspconfig.biome.setup({})
+    lspconfig.ts_ls.setup({ capabilities = capabilities })
+    lspconfig.biome.setup({ capabilities = capabilities })
 
     -- JSON
     lspconfig.jsonls.setup({

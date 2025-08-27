@@ -45,4 +45,4 @@ packages:
 - name: hadolint/hadolint@v2.12.0
 - name: terraform-linters/tflint@v0.58.1
 - name: astral-sh/ruff@0.12.10
-- name: twistedpair/google-cloud-sdk@536.0.0
+- name: twistedpair/google-cloud-sdk@536.0.1

@@ -44,6 +44,9 @@
     # Nix
     pkgs.nixd
     pkgs.nixfmt
+
+    # PnPm
+    pkgs.pnpm
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

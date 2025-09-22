@@ -42,7 +42,7 @@ packages:
 - name: rhysd/actionlint@v1.7.7
 - name: aquasecurity/trivy@v0.66.0
 - name: bufbuild/buf@v1.57.2
-- name: hadolint/hadolint@v2.13.1
+- name: hadolint/hadolint@v2.14.0
 - name: terraform-linters/tflint@v0.59.1
 - name: astral-sh/ruff@0.13.1
 - name: twistedpair/google-cloud-sdk@539.0.0

@@ -44,5 +44,5 @@ packages:
 - name: bufbuild/buf@v1.57.2
 - name: hadolint/hadolint@v2.14.0
 - name: terraform-linters/tflint@v0.59.1
-- name: astral-sh/ruff@0.13.2
+- name: astral-sh/ruff@0.13.3
 - name: twistedpair/google-cloud-sdk@541.0.0

@@ -41,7 +41,7 @@ packages:
 - name: mvdan/sh@v3.12.0
 - name: rhysd/actionlint@v1.7.8
 - name: aquasecurity/trivy@v0.67.2
-- name: bufbuild/buf@v1.58.0
+- name: bufbuild/buf@v1.59.0
 - name: hadolint/hadolint@v2.14.0
 - name: terraform-linters/tflint@v0.59.1
 - name: astral-sh/ruff@0.14.1

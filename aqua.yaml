@@ -43,6 +43,6 @@ packages:
 - name: aquasecurity/trivy@v0.67.2
 - name: bufbuild/buf@v1.60.0
 - name: hadolint/hadolint@v2.14.0
-- name: terraform-linters/tflint@v0.59.1
+- name: terraform-linters/tflint@v0.60.0
 - name: astral-sh/ruff@0.14.5
 - name: twistedpair/google-cloud-sdk@547.0.0

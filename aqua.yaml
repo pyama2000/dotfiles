@@ -17,7 +17,6 @@ packages:
 - name: x-motemen/ghq@v1.8.0
 - name: fullstorydev/grpcurl@v1.9.3
 - name: koalaman/shellcheck@v0.11.0
-- name: sharkdp/bat@v0.26.0
 - name: ogham/exa@v0.10.1
 - name: sharkdp/fd@v10.3.0
 - name: dandavison/delta@0.18.2
@@ -46,3 +45,4 @@ packages:
 - name: terraform-linters/tflint@v0.60.0
 - name: astral-sh/ruff@0.14.6
 - name: twistedpair/google-cloud-sdk@548.0.0
+- name: kayac/ecspresso@v2.6.3

@@ -37,6 +37,9 @@
 
     # CLI
     pkgs.eza
+    pkgs.aws-nuke
+    pkgs.starship
+    pkgs.bat
 
     # Language Server
     pkgs.bash-language-server

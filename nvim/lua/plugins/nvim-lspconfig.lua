@@ -87,8 +87,9 @@ return {
     })
 
     -- JavaScript / TypeScript
-    lspconfig.ts_ls.setup({ capabilities = capabilities })
-    lspconfig.biome.setup({ capabilities = capabilities })
+    -- lspconfig.ts_ls.setup({ capabilities = capabilities })
+    -- lspconfig.biome.setup({ capabilities = capabilities })
+    lspconfig.denols.setup({ capabilities = capabilities })
 
     -- JSON
     lspconfig.jsonls.setup({

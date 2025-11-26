@@ -32,6 +32,19 @@ return {
             check = {
               command = "clippy",
             },
+            excludeGlobs = {
+              "**/target,",
+            },
+            files = {
+              exclude = {
+              "**/target,",
+                "target",
+              },
+              excludeDirs = {
+              "**/target,",
+                "target",
+              },
+            },
           },
         },
       },

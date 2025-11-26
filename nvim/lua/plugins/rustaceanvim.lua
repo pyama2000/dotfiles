@@ -37,11 +37,11 @@ return {
             },
             files = {
               exclude = {
-              "**/target,",
+                "**/target,",
                 "target",
               },
               excludeDirs = {
-              "**/target,",
+                "**/target,",
                 "target",
               },
             },

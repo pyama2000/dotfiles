@@ -44,5 +44,5 @@ packages:
 - name: hadolint/hadolint@v2.14.0
 - name: terraform-linters/tflint@v0.60.0
 - name: astral-sh/ruff@0.14.11
-- name: twistedpair/google-cloud-sdk@551.0.0
+- name: twistedpair/google-cloud-sdk@552.0.0
 - name: kayac/ecspresso@v2.7.0

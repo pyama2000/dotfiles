@@ -43,6 +43,6 @@ packages:
 - name: bufbuild/buf@v1.64.0
 - name: hadolint/hadolint@v2.14.0
 - name: terraform-linters/tflint@v0.60.0
-- name: astral-sh/ruff@0.14.13
+- name: astral-sh/ruff@0.14.14
 - name: twistedpair/google-cloud-sdk@553.0.0
 - name: kayac/ecspresso@v2.7.0

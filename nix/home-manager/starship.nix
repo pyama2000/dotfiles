@@ -1,0 +1,16 @@
+{ pkgs, ... }:
+
+{
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      aws.disabled = true;
+      package.disabled = true;
+      cmd_duration.disabled = true;
+      line_break.disabled = false;
+      ruby.disabled = true;
+      gcloud.disabled = true;
+    };
+  };
+}

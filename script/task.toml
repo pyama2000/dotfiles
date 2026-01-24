@@ -9,7 +9,6 @@ extend = [
   { path = "tasks/git.toml" },
   { path = "tasks/language.toml" },
   { path = "tasks/neovim.toml" },
-  { path = "tasks/starship.toml" },
   { path = "tasks/tmux.toml" },
   { path = "tasks/tool.toml" },
   { path = "tasks/vim.toml" },

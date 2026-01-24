@@ -1,10 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, user, lib, ... }:
 
 {
+  imports = [ ./starship.nix ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = builtins.getEnv "USER";
-  home.homeDirectory = builtins.getEnv "HOME";
+  home.username = user;
+  home.homeDirectory = lib.mkForce "/Users/${user}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -38,7 +40,6 @@
     # CLI
     pkgs.eza
     pkgs.aws-nuke
-    pkgs.starship
     pkgs.bat
 
     # Language Server

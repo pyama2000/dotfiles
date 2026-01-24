@@ -2,19 +2,17 @@ extend = [
   { path = "asdf.toml" },
   { path = "tools/cli.toml" },
   { path = "tools/gui.toml" },
-  { path = "starship.toml" },
 ]
 
 [tasks.install_tools]
 category = "tools"
 description = "Install tools"
-run_task = { name = ["install_cli", "install_gui", "setup_starship"] }
+run_task = { name = ["install_cli", "install_gui"] }
 
 [tasks.update_tools]
 run_task = [
   { name = [
     "update_package_tools",
-    "update_starship",
     "update_rust_tools",
   ] },
 ]

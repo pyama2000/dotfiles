@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, user, ... }:
 
 let
   # Function definitions extracted from legacy files
@@ -99,6 +99,11 @@ in
     # Interactive Shell Init
     interactiveShellInit = ''
       eval (/opt/homebrew/bin/brew shellenv)
+
+      # Reportedly zoxide/eza not found. Adding Nix binary paths explicitly.
+      fish_add_path /run/current-system/sw/bin
+      fish_add_path /etc/profiles/per-user/${user}/bin
+      fish_add_path $HOME/.nix-profile/bin
 
       ##############################
       # aqua                       #
@@ -224,7 +229,7 @@ in
       end
 
       # uv
-      fish_add_path "/Users/${pkgs.user or "takahiko-yamashita"}/.local/share/../bin"
+      fish_add_path "/Users/${user}/.local/share/../bin"
 
       # bun
       set --export BUN_INSTALL "$HOME/.bun"

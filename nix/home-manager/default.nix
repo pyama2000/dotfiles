@@ -1,7 +1,10 @@
 { pkgs, user, lib, ... }:
 
 {
-  imports = [ ./starship.nix ];
+  imports = [
+    ./starship.nix
+    ./fish.nix
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -52,6 +55,22 @@
     # PnPm
     pkgs.pnpm
   ];
+
+  # Using Home Manager to manage these programs
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

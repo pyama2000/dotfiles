@@ -52,6 +52,7 @@
         brdd = "branch -D";
         co = "commit";
         com = "commit -m";
+        sw = "switch";
         swc = "switch -c";
         swr = "!git fetch origin $1 && git switch";
         rs = "restore";

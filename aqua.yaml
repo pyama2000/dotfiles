@@ -14,7 +14,7 @@ packages:
 - name: stedolan/jq@jq-1.6
 - name: direnv/direnv@v2.37.1
 - name: CircleCI-Public/circleci-cli@v0.1.34422
-- name: x-motemen/ghq@v1.8.1
+- name: x-motemen/ghq@v1.9.2
 - name: fullstorydev/grpcurl@v1.9.3
 - name: koalaman/shellcheck@v0.11.0
 - name: ogham/exa@v0.10.1

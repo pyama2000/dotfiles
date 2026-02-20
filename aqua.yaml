@@ -32,7 +32,7 @@ packages:
 - name: ast-grep/ast-grep@0.40.5
 - name: acheronfail/repgrep@0.16.1
 - name: chmln/sd@v1.0.0
-- name: ynqa/jnv@v0.6.1
+- name: ynqa/jnv@v0.6.2
 - name: fujiwara/lambroll@v1.4.2
 - name: LuaLS/lua-language-server@3.17.1
 - name: JohnnyMorganz/StyLua@v2.3.1

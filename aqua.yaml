@@ -13,7 +13,7 @@ packages:
 - name: cli/cli@v2.87.3
 - name: stedolan/jq@jq-1.6
 - name: direnv/direnv@v2.37.1
-- name: CircleCI-Public/circleci-cli@v0.1.34685
+- name: CircleCI-Public/circleci-cli@v0.1.34770
 - name: x-motemen/ghq@v1.9.4
 - name: fullstorydev/grpcurl@v1.9.3
 - name: koalaman/shellcheck@v0.11.0

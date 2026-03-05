@@ -10,7 +10,14 @@ return {
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     -- Bash
-    lspconfig.bashls.setup({ capabilities = capabilities })
+    lspconfig.bashls.setup({
+      capabilities = capabilities,
+      settings = {
+        bashIde = {
+          shellcheckArguments = "--exclude=SC2059",
+        },
+      },
+    })
 
     -- Docker Compose
     -- TODO: Nixでバージョン管理したら

@@ -13,9 +13,6 @@ return {
         diagnostics.actionlint,
         diagnostics.hadolint,
         diagnostics.terraform_validate,
-        -- diagnostics.trivy.with({
-        --   args = { "config", "--format", "json", "$DIRNAME" },
-        -- }),
         diagnostics.trivy,
         -- formatting
         -- formatting.shfmt.with({

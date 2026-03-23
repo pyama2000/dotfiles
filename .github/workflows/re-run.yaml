@@ -50,7 +50,7 @@ jobs:
           token: ${{ steps.generate.outputs.token }}
           ref: ${{ github.event.pull_request.head.ref }}
       - name: add empty commit
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v10
         with:
           commit: "--allow-empty"
           author_name: "github-actions[bot]"

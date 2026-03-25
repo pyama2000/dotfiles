@@ -36,7 +36,7 @@ packages:
 - name: fujiwara/lambroll@v1.4.2
 - name: LuaLS/lua-language-server@3.17.1
 - name: JohnnyMorganz/StyLua@v2.4.0
-- name: hashicorp/terraform-ls@v0.38.5
+- name: hashicorp/terraform-ls@v0.38.6
 - name: mvdan/sh@v3.13.0
 - name: rhysd/actionlint@v1.7.11
 - name: aquasecurity/trivy@v0.69.4

@@ -45,4 +45,4 @@ packages:
 - name: terraform-linters/tflint@v0.61.0
 - name: astral-sh/ruff@0.15.8
 - name: twistedpair/google-cloud-sdk@562.0.0
-- name: kayac/ecspresso@v2.7.1
+- name: kayac/ecspresso@v2.8.0

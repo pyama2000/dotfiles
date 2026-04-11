@@ -33,7 +33,7 @@ return {
               command = "clippy",
             },
             excludeGlobs = {
-              "**/target,",
+              "**/target",
             },
             files = {
               exclude = {

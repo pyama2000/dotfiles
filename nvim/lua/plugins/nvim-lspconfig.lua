@@ -1,6 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-  event = { "BufReadPre", "BufNewFile" },
+  lazy = false,
   dependencies = {
     "j-hui/fidget.nvim",
     "b0o/schemastore.nvim",

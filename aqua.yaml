@@ -39,7 +39,7 @@ packages:
 - name: hashicorp/terraform-ls@v0.38.6
 - name: mvdan/sh@v3.13.1
 - name: rhysd/actionlint@v1.7.12
-- name: aquasecurity/trivy@v0.69.4
+# - name: aquasecurity/trivy@v0.69.4
 - name: bufbuild/buf@v1.67.0
 - name: hadolint/hadolint@v2.14.0
 - name: terraform-linters/tflint@v0.61.0

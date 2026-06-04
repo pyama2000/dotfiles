@@ -42,7 +42,7 @@ packages:
 # - name: aquasecurity/trivy@v0.71.0
 - name: bufbuild/buf@v1.70.0
 - name: hadolint/hadolint@v2.14.0
-- name: terraform-linters/tflint@v0.63.0
+- name: terraform-linters/tflint@v0.63.1
 - name: astral-sh/ruff@0.15.15
 - name: twistedpair/google-cloud-sdk@562.0.0
 - name: kayac/ecspresso@v2.8.4

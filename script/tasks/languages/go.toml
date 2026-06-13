@@ -1,4 +1,8 @@
-[tasks.install_go]
+# macOS では Go を Nix(home-manager の home.packages)で管理しています
+# （go.mod の toolchain 機構 GOTOOLCHAIN=auto でバージョンは自動取得）。
+# 以下は asdf を使う Linux 専用タスクです（macOS では何も実行されません）。
+
+[tasks.install_go.linux]
 category = "languages"
 description = "Install Go"
 dependencies = ["asdf_go_plugin"]
@@ -18,7 +22,7 @@ echo 'export PATH="$GOPATH/bin:$PATH"' >> ~/.profile
 '''
 ]
 
-[tasks.update_go]
+[tasks.update_go.linux]
 category = "languages"
 description = "Update Go"
 script = [
@@ -34,7 +38,7 @@ asdf set --home golang latest
 '''
 ]
 
-[tasks.asdf_go_plugin]
+[tasks.asdf_go_plugin.linux]
 private = true
 script = [
 '''

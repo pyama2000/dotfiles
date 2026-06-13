@@ -155,7 +155,10 @@
     # ##############################
   '';
 
-  # Activation script to create local git config if it doesn't exist
+  # Activation script to create local git config if it doesn't exist.
+  # 中身（user.name / user.email）は cargo-make の `setup_git_local` タスクが
+  # GIT_NAME / GIT_EMAIL から投入します。ここでは存在保証のため空ファイルのみ作成し、
+  # 既存ファイルは上書きしません。
   home.activation.createGitLocalConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     if [ ! -f /Users/${user}/.config/git/local/config ]; then
       run mkdir -p /Users/${user}/.config/git/local

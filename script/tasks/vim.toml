@@ -1,4 +1,6 @@
-[tasks.link_vim]
+# ~/.vimrc は macOS では home-manager(home.file)が symlink するため、
+# link_vim は Linux 専用です（macOS では何も実行されません）。
+[tasks.link_vim.linux]
 script = [
 '''
 #!/usr/bin/env bash

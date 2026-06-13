@@ -7,17 +7,8 @@ run_task = { name = [
   "install_cargo-update",
 ] }
 
-# fzf
-[tasks.install_fzf.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install fzf
-yes | $(brew --prefix)/opt/fzf/install
-'''
-]
+# fzf / cargo-watch / cargo-update は macOS では Nix(home-manager)で管理しているため、
+# 以下は Linux 専用タスクです（macOS では何も実行されません）。
 
 [tasks.install_fzf.linux]
 private = true
@@ -30,7 +21,7 @@ yes | ~/.fzf/install
 '''
 ]
 
-[tasks.install_cargo-watch]
+[tasks.install_cargo-watch.linux]
 private = true
 script = [
 '''
@@ -40,7 +31,7 @@ cargo install cargo-watch
 '''
 ]
 
-[tasks.install_cargo-update]
+[tasks.install_cargo-update.linux]
 private = true
 script = [
 '''

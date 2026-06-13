@@ -1,4 +1,9 @@
-{ pkgs, lib, user, ... }:
+{
+  pkgs,
+  lib,
+  user,
+  ...
+}:
 
 let
   # Function definitions extracted from legacy files
@@ -93,7 +98,15 @@ in
 
     # Functions
     functions = {
-      inherit ddc ddcr ghcc ghcd ghrm mkcd tnew;
+      inherit
+        ddc
+        ddcr
+        ghcc
+        ghcd
+        ghrm
+        mkcd
+        tnew
+        ;
     };
 
     # Interactive Shell Init
@@ -174,17 +187,6 @@ in
       set -x DOCKER_BUILDKIT 1
 
       ##############################
-      # Deno                       #
-      ##############################
-      set -x DENO_INSTALL "$HOME"/.deno
-      fish_add_path $DENO_INSTALL/bin
-
-      ##############################
-      # MySQL client               #
-      ##############################
-      fish_add_path "/opt/homebrew/opt/mysql-client/bin"
-
-      ##############################
       # Rye                        #
       ##############################
       set -Ua fish_user_paths "$HOME/.rye/shims"
@@ -222,11 +224,6 @@ in
       set -g fish_pager_color_prefix $cyan
       set -g fish_pager_color_completion $foreground
       set -g fish_pager_color_description $comment
-
-      # Google Cloud SDK
-      if test -f '/Users/r0417/google-cloud-sdk/path.fish.inc'
-        source '/Users/r0417/google-cloud-sdk/path.fish.inc'
-      end
 
       # uv
       fish_add_path "/Users/${user}/.local/share/../bin"

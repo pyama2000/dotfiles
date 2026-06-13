@@ -20,6 +20,7 @@ condition = { env_set = [
 run_task = [
   { name = [
     "setup_dotfiles",
+    "setup_git_local",
     "setup_tmux",
     "setup_alacritty",
     "setup_asdf",
@@ -42,7 +43,6 @@ run_task = [
     "update_alacritty",
     "update_aqua_packages",
     "update_tools",
-    "update_docker_cli_plugins",
     "update_neovim",
     "cleanup",
     "post_update_neovim",

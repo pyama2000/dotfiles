@@ -1,5 +1,17 @@
-{ pkgs, user, lib, ... }:
+{
+  pkgs,
+  user,
+  lib,
+  config,
+  ...
+}:
 
+let
+  # dotfile を Nix ストアにコピーせず、リポジトリ実体を指す symlink を張ります。
+  # これによりリポジトリ側を編集すると即反映され（nvim の lazy-lock.json 更新なども）、
+  # 宣言的管理（home-manager）と編集しやすさを両立します。
+  repo = "${config.home.homeDirectory}/dotfiles";
+in
 {
   imports = [
     ./starship.nix
@@ -23,38 +35,104 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
+  #
+  # CLI ツールは原則ここ（Nix）で一元管理します。aqua / Homebrew は
+  # nixpkgs に存在しないものだけを担当します（aqua: tracer/tfenv/lambroll、
+  # Homebrew: git のブートストラップと python@3.9、および GUI casks）。
+  # バージョンは aqua のような個別ピンではなく flake.lock（nixpkgs リビジョン）で固定され、
+  # `nix flake update` でまとめて更新されます。
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-
-    # CLI
+    # CLI（汎用）
     pkgs.eza
-    pkgs.aws-nuke
     pkgs.bat
+    pkgs.aws-nuke
+    pkgs.gh
+    pkgs.jq
+    pkgs.jnv
+    pkgs.fd
+    pkgs.ripgrep
+    pkgs.repgrep
+    pkgs.sd
+    pkgs.ast-grep
+    pkgs.ghq
+    pkgs.grpcurl
+    pkgs.circleci-cli
+    pkgs.wget
+    pkgs.rclone
+    pkgs.git-crypt
+    pkgs.gnupg
+    pkgs.global
+    pkgs.tmux
+    pkgs.neovim
+
+    # GNU userland（macOS の BSD 版を置き換えます）
+    pkgs.coreutils
+    pkgs.gnused
+    pkgs.gnugrep
+    pkgs.gawk
+
+    # コンテナ / クラウド / インフラ
+    pkgs.docker-client
+    pkgs.docker-compose
+    pkgs.docker-buildx
+    pkgs.buildkit
+    pkgs.lima
+    pkgs.awscli2
+    pkgs.google-cloud-sdk
+    pkgs.kubectl
+    pkgs.packer
+    pkgs.tflint
+    pkgs.ecspresso
+
+    # ビルド / proto / DB
+    pkgs.protobuf
+    pkgs.buf
+    pkgs.mysql80
+    pkgs.postgresql_14
+    pkgs.percona-toolkit
+    pkgs.redis
+
+    # Python ツールチェイン
+    pkgs.uv
+    pkgs.rye
+    pkgs.ruff
+
+    # 言語ランタイム
+    # Go は Go1 互換性保証 + go.mod の toolchain 機構（GOTOOLCHAIN=auto）で
+    # プロジェクト毎のバージョンを自動取得するため Nix の単一バージョンで足ります。
+    # Deno も自己更新が不要なので Nix 管理にします。
+    # Node / Python はバージョン切替のため asdf を継続します（バージョンマネージャ参照）。
+    pkgs.go
+    pkgs.deno
+
+    # バージョンマネージャ（Node / Python のバージョン切替用）
+    pkgs.asdf-vm
+
+    # JavaScript / Web
+    pkgs.biome
+    pkgs.pnpm
+
+    # Rust 補助ツール（cargo install から移行）
+    pkgs.cargo-watch
+    pkgs.cargo-update
+
+    # Linter / Formatter
+    pkgs.shellcheck
+    pkgs.shfmt
+    pkgs.actionlint
+    pkgs.hadolint
+    pkgs.stylua
 
     # Language Server
     pkgs.bash-language-server
+    pkgs.lua-language-server
+    pkgs.terraform-ls
+    pkgs.yaml-language-server
+    pkgs.kotlin-language-server
 
     # Nix
     pkgs.nixd
     pkgs.nixfmt
-
-    # PnPm
-    pkgs.pnpm
   ];
 
   # Using Home Manager to manage these programs
@@ -73,20 +151,21 @@
     enableFishIntegration = true;
   };
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+  # docker CLI プラグインを Nix 提供のバイナリで賄います（従来は cargo-make が
+  # curl で ~/.docker/cli-plugins に取得していました）。docker はこのディレクトリを
+  # 探索するため、Nix ストアのバイナリを symlink します。
+  home.file.".docker/cli-plugins/docker-compose".source = "${pkgs.docker-compose}/bin/docker-compose";
+  home.file.".docker/cli-plugins/docker-buildx".source = "${pkgs.docker-buildx}/bin/docker-buildx";
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
+  # 設定ファイル（リポジトリ実体を指す symlink）。従来 cargo-make の link_* が
+  # 張っていた symlink を home-manager に移管します。
+  home.file.".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.tmux.conf";
+  home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.profile";
+  home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.vimrc";
+
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${repo}/nvim";
+  xdg.configFile."alacritty".source = config.lib.file.mkOutOfStoreSymlink "${repo}/alacritty";
+  xdg.configFile."wezterm".source = config.lib.file.mkOutOfStoreSymlink "${repo}/wezterm";
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a

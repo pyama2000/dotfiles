@@ -50,16 +50,8 @@ gh run watch "$WORKFLOW_ID" && sleep 1 && git pull origin "$BASE_BRANCH"
 '''
 ]
 
-[tasks.install_neovim.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-
-brew install neovim
-'''
-]
-
+# Neovim 本体は macOS では Nix(home-manager の home.packages)が管理するため、
+# install_neovim は Linux 専用です（macOS では何も実行されません）。
 [tasks.install_neovim.linux]
 private = true
 script = [
@@ -84,7 +76,9 @@ nvim --headless "+MasonUpdate" +qa
 '''
 ]
 
-[tasks.link_neovim]
+# ~/.config/nvim は macOS では home-manager(xdg.configFile)が symlink するため、
+# link_neovim は Linux 専用です（macOS では何も実行されません）。
+[tasks.link_neovim.linux]
 private = true
 script = [
 '''

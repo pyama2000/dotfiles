@@ -1,14 +1,8 @@
 [tasks.setup_tmux]
 run_task = { name = ["install_tmux", "install_tpm", "link_tmux"] }
 
-[tasks.install_tmux.mac]
-private = true
-script = ['''
-#!/usr/bin/env bash
-
-brew install tmux
-''']
-
+# tmux 本体は macOS では Nix(home-manager の home.packages)が管理するため、
+# install_tmux は Linux 専用です（macOS では何も実行されません）。
 [tasks.install_tmux.linux]
 private = true
 script = ['''
@@ -26,7 +20,9 @@ mkdir -p $HOME/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 ''']
 
-[tasks.link_tmux]
+# ~/.tmux.conf は macOS では home-manager(home.file)が symlink するため、
+# link_tmux は Linux 専用です（macOS では何も実行されません）。
+[tasks.link_tmux.linux]
 private = true
 script = ['''
 #!/usr/bin/env bash

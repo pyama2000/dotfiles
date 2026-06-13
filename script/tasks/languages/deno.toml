@@ -1,4 +1,7 @@
-[tasks.install_deno]
+# macOS では Deno を Nix(home-manager の home.packages)で管理しているため、
+# 以下は Linux 専用タスクです（macOS では何も実行されません）。
+
+[tasks.install_deno.linux]
 category = "languages"
 description = "Install Deno"
 script = [
@@ -13,9 +16,9 @@ echo 'export PATH="$DENO_INSTALL/bin:$PATH"' >> $HOME/.profile
 '''
 ]
 
-[tasks.update_deno]
+[tasks.update_deno.linux]
 category = "languages"
-description = "Install Deno"
+description = "Update Deno"
 condition = { profiles = ["production"] }
 script = [
 '''

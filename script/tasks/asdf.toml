@@ -6,6 +6,25 @@ run_task = { name = ["install_asdf"] }
 [tasks.update_asdf]
 category = "asdf"
 description = "Update asdf"
+# asdf 本体の更新は macOS では Nix(nix flake update)が担当します。
+# Nix 提供の asdf(Go版)では `asdf update` は非対応メッセージを出すだけなので、
+# 共通処理は plugin 更新のみとし、自己更新は Linux 限定にします。
+script = [
+'''
+#!/usr/bin/env bash
+
+if !(type asdf > /dev/null 2>&1); then
+  source $HOME/.asdf/asdf.sh
+fi
+
+asdf plugin update --all
+'''
+]
+
+# Linux では git clone した asdf(0.9.0)の自己更新も行います。
+[tasks.update_asdf.linux]
+category = "asdf"
+description = "Update asdf"
 script = [
 '''
 #!/usr/bin/env bash
@@ -30,7 +49,9 @@ rm -rf ${ASDF_DIR:-$HOME/.asdf} $HOME/.tool-versions
 '''
 ]
 
-[tasks.install_asdf]
+# macOS では asdf バイナリを Nix(home-manager の home.packages の asdf-vm)で管理しています。
+# 以下は asdf を git clone する Linux 専用タスクです（macOS では何も実行されません）。
+[tasks.install_asdf.linux]
 private = true
 dependencies = ["dependencies_asdf"]
 script = [

@@ -1,7 +1,12 @@
+# このファイルは macOS 向けの lima ベース Docker 環境構築です。
+# docker CLI / docker-compose / docker-buildx / lima の各バイナリは Nix(home-manager の
+# home.packages、docker プラグインは ~/.docker/cli-plugins への symlink)で管理しているため、
+# ここでは VM の作成・起動と docker context など「ランタイム状態」のみを扱います。
+
 [tasks.setup_docker.mac]
 category = "Docker"
 description = "Install Docker"
-dependencies = ["setup_lima", "install_docker", "install_docker-compose", "install_docker-buildx"]
+dependencies = ["setup_lima"]
 script = [
 '''
 #!/usr/bin/env bash
@@ -14,25 +19,9 @@ docker context create "lima-docker-rosetta" \
 '''
 ]
 
-[tasks.update_docker_cli_plugins.mac]
-category = "Docker"
-description = "Update docker CLI plugins"
-run_task = [{ name = ["update_docker-compose", "update_docker-buildx"] }]
-
 [tasks.setup_lima.mac]
 private = true
-run_task = [{ name = ["install_lima", "upgrade_filedescriptor", "start_lima_default", "start_lima_amd"] }]
-
-[tasks.install_lima.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-set -eux -o pipefail
-
-brew install lima
-'''
-]
+run_task = [{ name = ["upgrade_filedescriptor", "start_lima_default", "start_lima_amd"] }]
 
 [tasks.start_lima_default.mac]
 private = true
@@ -83,68 +72,3 @@ sudo chown root /Library/LaunchDaemons/limit.maxfiles.plist
 sudo launchctl load -w /Library/LaunchDaemons/limit.maxfiles.plist
 '''
 ]
-
-[tasks.install_docker.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-set -eux -o pipefail
-
-brew install docker
-'''
-]
-
-[tasks.install_docker-compose.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-set -eux -o pipefail
-
-DOWNLOAD_BINARY_TMP_PATH='/tmp/docker-compose'
-
-curl -sL --retry 3 https://api.github.com/repos/docker/compose/releases/latest \
-  | jq -r '.assets[].browser_download_url' \
-  | grep -E "docker-compose-darwin-aarch64" \
-  | xargs curl -Lfo "$DOWNLOAD_BINARY_TMP_PATH"
-
-sudo chmod +x "$DOWNLOAD_BINARY_TMP_PATH"
-
-mkdir -p ~/.docker/cli-plugins
-cp "$DOWNLOAD_BINARY_TMP_PATH" $HOME/.docker/cli-plugins
-
-rm -rf "$DOWNLOAD_BINARY_TMP_PATH"
-'''
-]
-
-[tasks.update_docker-compose.mac]
-private = true
-run_task = [{ name = ["install_docker-compose"] }]
-
-[tasks.install_docker-buildx.mac]
-private = true
-script = [
-'''
-#!/usr/bin/env bash
-set -eux -o pipefail
-
-DOWNLOAD_BINARY_TMP_PATH='/tmp/docker-buildx'
-
-curl -sL --retry 3 https://api.github.com/repos/docker/buildx/releases/latest \
-  | jq -r '.assets[].browser_download_url' \
-  | grep -E "buildx-v[0-9]+.[0-9]+.[0-9]+\.darwin-arm64" \
-  | xargs curl -Lfo "$DOWNLOAD_BINARY_TMP_PATH"
-
-sudo chmod +x "$DOWNLOAD_BINARY_TMP_PATH"
-
-mkdir -p $HOME/.docker/cli-plugins
-cp "$DOWNLOAD_BINARY_TMP_PATH" $HOME/.docker/cli-plugins
-
-rm "$DOWNLOAD_BINARY_TMP_PATH"
-'''
-]
-
-[tasks.update_docker-buildx.mac]
-private = true
-run_task = [{ name = ["install_docker-buildx"] }]

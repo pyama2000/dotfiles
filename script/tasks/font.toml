@@ -1,4 +1,6 @@
-[tasks.setup_font]
+# macOS では Explex フォントを Nix(nix-darwin の fonts.packages, nix/darwin/fonts.nix）で
+# 管理しているため、setup_font は Linux 専用です（macOS では何も実行されません）。
+[tasks.setup_font.linux]
 run_task = [{ name = ["download_UDEVGothic", "apply_font"] }]
 
 [tasks.download_UDEVGothic]

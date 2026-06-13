@@ -10,39 +10,9 @@ registries:
 - type: standard
   ref: v4.524.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-- name: cli/cli@v2.94.0
-- name: stedolan/jq@jq-1.6
-- name: direnv/direnv@v2.37.1
-- name: CircleCI-Public/circleci-cli@v0.1.38646
-- name: x-motemen/ghq@v1.10.1
-- name: fullstorydev/grpcurl@v1.9.3
-- name: koalaman/shellcheck@v0.11.0
-- name: ogham/exa@v0.10.1
-- name: sharkdp/fd@v10.4.2
-- name: dandavison/delta@0.19.2
-- name: BurntSushi/ripgrep@15.1.0
-- name: ajeetdsouza/zoxide@v0.9.9
-- name: kubernetes/kubectl@v1.36.2
+# ここには nixpkgs に存在しない CLI ツールだけを残します。
+# それ以外（gh/jq/fd/ripgrep/kubectl/aws-cli/uv/ruff/buf/google-cloud-sdk/ecspresso 等）は
+# Nix(home-manager の home.packages, nix/home-manager/default.nix)に一元管理を移しました。
 - name: fujiwara/tracer@v1.1.3
 - name: tfutils/tfenv@v3.2.2
-- name: hashicorp/packer@v1.15.4
-- name: aws/aws-cli@2.35.4
-- name: mitsuhiko/rye@0.44.0
-- name: astral-sh/uv@0.11.21
-- name: ast-grep/ast-grep@0.43.0
-- name: acheronfail/repgrep@0.16.1
-- name: chmln/sd@v1.1.0
-- name: ynqa/jnv@v0.7.1
 - name: fujiwara/lambroll@v1.4.4
-- name: LuaLS/lua-language-server@3.18.2
-- name: JohnnyMorganz/StyLua@v2.5.2
-- name: hashicorp/terraform-ls@v0.38.7
-- name: mvdan/sh@v3.13.1
-- name: rhysd/actionlint@v1.7.12
-# - name: aquasecurity/trivy@v0.71.0
-- name: bufbuild/buf@v1.70.0
-- name: hadolint/hadolint@v2.14.0
-- name: terraform-linters/tflint@v0.63.1
-- name: astral-sh/ruff@0.15.17
-- name: twistedpair/google-cloud-sdk@562.0.0
-- name: kayac/ecspresso@v2.8.4

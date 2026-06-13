@@ -1,4 +1,6 @@
-[tasks.link_bash]
+# ~/.profile は macOS では home-manager(home.file)が symlink するため、
+# link_bash は Linux 専用です（macOS では何も実行されません）。
+[tasks.link_bash.linux]
 script = [
 '''
 #!/usr/bin/env bash

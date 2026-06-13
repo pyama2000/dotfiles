@@ -1,13 +1,14 @@
 extend = [
   { path = "asdf.toml" },
   { path = "tools/cli.toml" },
-  { path = "tools/gui.toml" },
 ]
 
 [tasks.install_tools]
 category = "tools"
 description = "Install tools"
-run_task = { name = ["install_cli", "install_gui"] }
+# GUI アプリ（cask）は nix-darwin の homebrew モジュール(nix/darwin/homebrew.nix)で
+# 管理しているため、cargo-make では CLI のみを扱います。
+run_task = { name = ["install_cli"] }
 
 [tasks.update_tools]
 run_task = [

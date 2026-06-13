@@ -12,6 +12,23 @@ cd ~/dotfiles
 git remote set-url origin git@github.com:pyama2000/dotfiles.git
 ''']
 
+[tasks.setup_git_local]
+category = "dotfiles"
+description = "Write git user/email to ~/.config/git/local/config from GIT_NAME/GIT_EMAIL"
+condition = { env_set = ["GIT_NAME", "GIT_EMAIL"] }
+script = ['''
+#!/usr/bin/env bash
+set -euo pipefail
+
+dir="${HOME}/.config/git/local"
+mkdir -p "${dir}"
+cat > "${dir}/config" <<EOF
+[user]
+	name = ${GIT_NAME}
+	email = ${GIT_EMAIL}
+EOF
+''']
+
 [tasks.update_dotfiles]
 category = "dotfiles"
 description = "Update dotfiles"

@@ -57,5 +57,5 @@ family = "UDEV Gothic 35NF"
 style = "Regular"
 
 [terminal.shell]
-args = ["--login", "--command", "/opt/homebrew/bin/tmux attach || /opt/homebrew/bin/tmux"]
-program = "/opt/homebrew/bin/fish"
+args = ["--login", "--command", "tmux attach || tmux"]
+program = "/run/current-system/sw/bin/fish"

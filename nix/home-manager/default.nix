@@ -87,7 +87,8 @@ in
     # ビルド / proto / DB
     pkgs.protobuf
     pkgs.buf
-    pkgs.mysql80
+    # mysql80 は 2026-04-30 に EOL となり nixpkgs から削除されたため、8.4 LTS へ移行。
+    pkgs.mysql84
     pkgs.postgresql_14
     pkgs.percona-toolkit
     pkgs.redis

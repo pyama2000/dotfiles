@@ -105,6 +105,7 @@ in
     # Node / Python はバージョン切替のため asdf を継続します（バージョンマネージャ参照）。
     pkgs.go
     pkgs.deno
+    pkgs.zig
 
     # バージョンマネージャ（Node / Python のバージョン切替用）
     pkgs.asdf-vm

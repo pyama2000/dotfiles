@@ -8,7 +8,7 @@
 #   - all
 registries:
 - type: standard
-  ref: v4.529.1 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.530.0 # renovate: depName=aquaproj/aqua-registry
 packages:
 # ここには nixpkgs に存在しない CLI ツールだけを残します。
 # それ以外（gh/jq/fd/ripgrep/kubectl/aws-cli/uv/ruff/buf/google-cloud-sdk/ecspresso 等）は

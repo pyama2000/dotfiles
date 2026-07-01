@@ -97,7 +97,7 @@
     dock = {
       autohide = true;
       show-recents = false;
-      mru-spaces = false;
+      mru-spaces = true;
       tilesize = 48;
       orientation = "bottom";
     };

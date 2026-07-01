@@ -197,6 +197,11 @@ in
 
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${repo}/nvim";
   xdg.configFile."wezterm".source = config.lib.file.mkOutOfStoreSymlink "${repo}/wezterm";
+  xdg.configFile."ghostty".source = config.lib.file.mkOutOfStoreSymlink "${repo}/ghostty";
+  # gh はディレクトリ単位ではなくファイル単位で symlink します。hosts.yml には
+  # 認証情報が含まれるため、リポジトリには含めずローカルの実ファイルのままにします。
+  xdg.configFile."gh/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/gh/config.yml";
+  xdg.configFile."gh-dash".source = config.lib.file.mkOutOfStoreSymlink "${repo}/gh-dash";
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a

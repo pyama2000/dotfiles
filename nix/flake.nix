@@ -23,6 +23,36 @@
     let
       user = "takahiko-yamashita";
       system = "aarch64-darwin";
+      lib = nixpkgs.lib;
+
+      # unfree ライセンスのパッケージ（packer: BSL 1.1、ngrok: proprietary）を許可します。
+      # darwin 側（nix-darwin、specialArgs 経由）と Linux 側（standalone home-manager）で共有します。
+      unfreePackages = [
+        "packer"
+        "ngrok"
+      ];
+      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackages;
+
+      # Linux 向けの standalone home-manager 構成を生成するヘルパーです。
+      # nix-darwin と異なり home-manager 単体で動かすため、nixpkgs を明示的に import し、
+      # unfree の許可設定を渡します（darwin 側は useGlobalPkgs で system の nixpkgs.config を共有）。
+      mkLinuxHome =
+        linuxSystem:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = linuxSystem;
+            config.allowUnfreePredicate = allowUnfreePredicate;
+          };
+          modules = [ ./home-manager/default.nix ];
+          extraSpecialArgs = { inherit user; };
+        };
+
+      # `nix fmt` を提供するプラットフォーム一覧です。
+      formatterSystems = [
+        "aarch64-darwin"
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
     in
     {
       # Darwin Flake をビルドするためのコマンド例です:
@@ -41,7 +71,14 @@
       # $ darwin-rebuild switch --flake .#macos
       darwinConfigurations."macos" = nix-darwin.lib.darwinSystem {
         inherit system;
-        specialArgs = { inherit self user system; };
+        specialArgs = {
+          inherit
+            self
+            user
+            system
+            unfreePackages
+            ;
+        };
         modules = [
           ./darwin/default.nix
           # darwin-version の出力に構成リビジョンを含め、再現性を追跡できるようにします。
@@ -60,7 +97,17 @@
         ];
       };
 
+      # Linux は nix-darwin を使わず standalone home-manager で管理します。
+      # 適用例:
+      #   $ home-manager switch --flake .#takahiko-yamashita@x86_64-linux
+      homeConfigurations = {
+        "takahiko-yamashita@x86_64-linux" = mkLinuxHome "x86_64-linux";
+        "takahiko-yamashita@aarch64-linux" = mkLinuxHome "aarch64-linux";
+      };
+
       # `nix fmt` で Nix ファイルを整形できるようにします（nixfmt を使用）。
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
+      formatter = lib.genAttrs formatterSystems (
+        formatterSystem: nixpkgs.legacyPackages.${formatterSystem}.nixfmt
+      );
     };
 }

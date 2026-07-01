@@ -3,6 +3,7 @@
   user,
   system,
   lib,
+  unfreePackages,
   ...
 }:
 
@@ -14,12 +15,8 @@
 
   # 一部の CLI ツール（packer は BSL 1.1、ngrok は proprietary）は unfree ライセンスのため、
   # 対象を明示列挙して許可します（home-manager は useGlobalPkgs でこの設定を共有）。
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "packer"
-      "ngrok"
-    ];
+  # 許可リスト（unfreePackages）は flake.nix で定義し Linux 側と共有しています。
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackages;
 
   # システム全体にインストールするパッケージのリストです。
   # パッケージを検索するには、例として `nix-env -qaP | grep wget` のように実行してください。

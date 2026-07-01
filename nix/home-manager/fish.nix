@@ -2,6 +2,7 @@
   pkgs,
   lib,
   user,
+  config,
   ...
 }:
 
@@ -111,7 +112,7 @@ in
 
     # Interactive Shell Init
     interactiveShellInit = ''
-      eval (/opt/homebrew/bin/brew shellenv)
+      ${lib.optionalString pkgs.stdenv.isDarwin "eval (/opt/homebrew/bin/brew shellenv)"}
 
       # Reportedly zoxide/eza not found. Adding Nix binary paths explicitly.
       fish_add_path /run/current-system/sw/bin
@@ -177,9 +178,9 @@ in
       set -x EDITOR nvim
 
       ##############################
-      # lima                       #
+      # lima（macOS の docker VM 用）#
       ##############################
-      set -x LIMA_INSTANCE docker
+      ${lib.optionalString pkgs.stdenv.isDarwin "set -x LIMA_INSTANCE docker"}
 
       ##############################
       # docker                     #
@@ -224,9 +225,6 @@ in
       set -g fish_pager_color_prefix $cyan
       set -g fish_pager_color_completion $foreground
       set -g fish_pager_color_description $comment
-
-      # uv
-      fish_add_path "/Users/${user}/.local/share/../bin"
 
       # bun
       set --export BUN_INSTALL "$HOME/.bun"

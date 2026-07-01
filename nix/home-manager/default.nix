@@ -22,7 +22,10 @@ in
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = user;
-  home.homeDirectory = lib.mkForce "/Users/${user}";
+  # ホームディレクトリはプラットフォーム毎に異なります（macOS は /Users、Linux は /home）。
+  home.homeDirectory = lib.mkForce (
+    if pkgs.stdenv.isDarwin then "/Users/${user}" else "/home/${user}"
+  );
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -71,18 +74,11 @@ in
     # GitHub ダッシュボード TUI。設定は後続フェーズで管理します。
     pkgs.gh-dash
 
-    # GNU userland（macOS の BSD 版を置き換えます）
-    pkgs.coreutils
-    pkgs.gnused
-    pkgs.gnugrep
-    pkgs.gawk
-
     # コンテナ / クラウド / インフラ
     pkgs.docker-client
     pkgs.docker-compose
     pkgs.docker-buildx
     pkgs.buildkit
-    pkgs.lima
     pkgs.awscli2
     pkgs.google-cloud-sdk
     pkgs.kubectl
@@ -165,6 +161,16 @@ in
     # Nix
     pkgs.nixd
     pkgs.nixfmt
+  ]
+  ++ lib.optionals pkgs.stdenv.isDarwin [
+    # GNU userland（macOS の BSD 版を置き換えます。Linux はネイティブに備えるため不要）
+    pkgs.coreutils
+    pkgs.gnused
+    pkgs.gnugrep
+    pkgs.gawk
+
+    # lima は macOS で docker を動かすための VM です（Linux では不要）。
+    pkgs.lima
   ];
 
   # Using Home Manager to manage these programs
@@ -195,13 +201,18 @@ in
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.profile";
   home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.vimrc";
 
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${repo}/nvim";
-  xdg.configFile."wezterm".source = config.lib.file.mkOutOfStoreSymlink "${repo}/wezterm";
-  xdg.configFile."ghostty".source = config.lib.file.mkOutOfStoreSymlink "${repo}/ghostty";
-  # gh はディレクトリ単位ではなくファイル単位で symlink します。hosts.yml には
-  # 認証情報が含まれるため、リポジトリには含めずローカルの実ファイルのままにします。
-  xdg.configFile."gh/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/gh/config.yml";
-  xdg.configFile."gh-dash".source = config.lib.file.mkOutOfStoreSymlink "${repo}/gh-dash";
+  xdg.configFile = {
+    "nvim".source = config.lib.file.mkOutOfStoreSymlink "${repo}/nvim";
+    "wezterm".source = config.lib.file.mkOutOfStoreSymlink "${repo}/wezterm";
+    # gh はディレクトリ単位ではなくファイル単位で symlink します。hosts.yml には
+    # 認証情報が含まれるため、リポジトリには含めずローカルの実ファイルのままにします。
+    "gh/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/gh/config.yml";
+    "gh-dash".source = config.lib.file.mkOutOfStoreSymlink "${repo}/gh-dash";
+  }
+  # ghostty は macOS では cask で導入するため、その設定 symlink も darwin 限定にします。
+  // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    "ghostty".source = config.lib.file.mkOutOfStoreSymlink "${repo}/ghostty";
+  };
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a

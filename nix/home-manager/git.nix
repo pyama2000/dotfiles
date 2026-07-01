@@ -1,4 +1,4 @@
-{ pkgs, user, lib, config, ... }:
+{ lib, config, ... }:
 
 {
   programs.git = {
@@ -160,9 +160,9 @@
   # GIT_NAME / GIT_EMAIL から投入します。ここでは存在保証のため空ファイルのみ作成し、
   # 既存ファイルは上書きしません。
   home.activation.createGitLocalConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    if [ ! -f /Users/${user}/.config/git/local/config ]; then
-      run mkdir -p /Users/${user}/.config/git/local
-      run touch /Users/${user}/.config/git/local/config
+    if [ ! -f ${config.home.homeDirectory}/.config/git/local/config ]; then
+      run mkdir -p ${config.home.homeDirectory}/.config/git/local
+      run touch ${config.home.homeDirectory}/.config/git/local/config
     fi
   '';
 }

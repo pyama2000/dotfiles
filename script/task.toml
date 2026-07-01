@@ -1,5 +1,4 @@
 extend = [
-  { path = "tasks/alacritty.toml" },
   { path = "tasks/aqua.toml" },
   { path = "tasks/bash.toml" },
   { path = "tasks/docker.toml" },
@@ -22,7 +21,6 @@ run_task = [
     "setup_dotfiles",
     "setup_git_local",
     "setup_tmux",
-    "setup_alacritty",
     "setup_asdf",
     "setup_languages",
     "setup_aqua",
@@ -40,7 +38,6 @@ run_task = [
     "update_dotfiles",
     "update_asdf",
     "update_languages",
-    "update_alacritty",
     "update_aqua_packages",
     "update_tools",
     "update_neovim",

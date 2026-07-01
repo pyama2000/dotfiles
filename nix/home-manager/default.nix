@@ -166,7 +166,6 @@ in
   home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.vimrc";
 
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${repo}/nvim";
-  xdg.configFile."alacritty".source = config.lib.file.mkOutOfStoreSymlink "${repo}/alacritty";
   xdg.configFile."wezterm".source = config.lib.file.mkOutOfStoreSymlink "${repo}/wezterm";
 
   # Home Manager can also manage your environment variables through

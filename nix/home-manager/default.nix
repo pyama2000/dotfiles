@@ -64,6 +64,12 @@ in
     pkgs.global
     pkgs.tmux
     pkgs.neovim
+    # ngrok は Homebrew cask から移行（unfree のため allowUnfreePredicate に追加済み）。
+    pkgs.ngrok
+    # 履歴書き換え用ツール。従来は ad-hoc に brew install していました。
+    pkgs.git-filter-repo
+    # GitHub ダッシュボード TUI。設定は後続フェーズで管理します。
+    pkgs.gh-dash
 
     # GNU userland（macOS の BSD 版を置き換えます）
     pkgs.coreutils
@@ -87,11 +93,18 @@ in
     # ビルド / proto / DB
     pkgs.protobuf
     pkgs.buf
+    # protoc プラグイン群（go install から移行）
+    pkgs.protoc-gen-doc
+    pkgs.protoc-gen-go
+    pkgs.protoc-gen-go-grpc
+    pkgs.grpc-gateway
     # mysql80 は 2026-04-30 に EOL となり nixpkgs から削除されたため、8.4 LTS へ移行。
     pkgs.mysql84
     pkgs.postgresql_14
     pkgs.percona-toolkit
     pkgs.redis
+    # DB マイグレーションツール（go install から移行）
+    pkgs.sql-migrate
 
     # Python ツールチェイン
     pkgs.uv
@@ -107,16 +120,29 @@ in
     pkgs.deno
     pkgs.zig
 
+    # Go 補助ツール（go install から移行）
+    pkgs.gow
+
     # バージョンマネージャ（Node / Python のバージョン切替用）
     pkgs.asdf-vm
 
     # JavaScript / Web
     pkgs.biome
-    pkgs.pnpm
+    # corepack も pnpm 用のシム（bin/pnpm）を提供し pkgs.pnpm と衝突するため、
+    # 明示的にインストールした pkgs.pnpm を優先させます。
+    (lib.hiPrio pkgs.pnpm)
+    # corepack（npm から移行）
+    pkgs.corepack
 
     # Rust 補助ツール（cargo install から移行）
     pkgs.cargo-watch
     pkgs.cargo-update
+    pkgs.cargo-expand
+    pkgs.cargo-generate
+    pkgs.cargo-make
+    pkgs.cargo-nextest
+    pkgs.protoc-gen-prost-crate
+    pkgs.tokio-console
 
     # Linter / Formatter
     pkgs.shellcheck
@@ -131,6 +157,10 @@ in
     pkgs.terraform-ls
     pkgs.yaml-language-server
     pkgs.kotlin-language-server
+    # gopls（go install から移行）
+    pkgs.gopls
+    # python-lsp-server（uv から移行）
+    pkgs.python3Packages.python-lsp-server
 
     # Nix
     pkgs.nixd

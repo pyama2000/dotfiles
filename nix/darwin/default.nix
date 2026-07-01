@@ -12,12 +12,13 @@
     ./fonts.nix
   ];
 
-  # 一部の CLI ツール（packer は BSL 1.1）は unfree ライセンスのため、
+  # 一部の CLI ツール（packer は BSL 1.1、ngrok は proprietary）は unfree ライセンスのため、
   # 対象を明示列挙して許可します（home-manager は useGlobalPkgs でこの設定を共有）。
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
       "packer"
+      "ngrok"
     ];
 
   # システム全体にインストールするパッケージのリストです。

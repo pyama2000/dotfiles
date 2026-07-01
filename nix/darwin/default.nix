@@ -114,6 +114,24 @@
     remapCapsLockToControl = true;
   };
 
+  # lima 用の file descriptor 上限引き上げ（旧 lima/limit.maxfiles.plist の宣言化）。
+  # nix-darwin の launchd.daemons.<name> は serviceConfig.Label 未指定時に
+  # 自動で "org.nixos.<name>" を付与するため、旧 plist と同じ "limit.maxfiles" を明示します。
+  launchd.daemons."limit-maxfiles" = {
+    serviceConfig = {
+      Label = "limit.maxfiles";
+      ProgramArguments = [
+        "launchctl"
+        "limit"
+        "maxfiles"
+        "524288"
+        "524288"
+      ];
+      RunAtLoad = true;
+      ServiceIPC = false;
+    };
+  };
+
   # darwin-version コマンドの出力に Git コミットハッシュを含めるための設定です。
   # 構成管理の再現性を確認するのに役立ちますが、dirty な状態だと null になることがあります。
   # （flake.nix の specialArgs から self を受け取って設定します）

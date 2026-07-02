@@ -28,14 +28,9 @@ vim.lsp.enable("buf_ls")
 vim.lsp.enable("ruff")
 vim.lsp.enable("pylsp")
 -- Terraform
+-- 保存時フォーマットは conform.nvim（lsp_format = "prefer"）が担う
 vim.lsp.enable("terraformls")
 vim.lsp.enable("tflint")
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*.tf", "*.tfvars" },
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
 -- YAML
 vim.lsp.enable("yamlls")
 -- JavaScript / TypeScript

@@ -186,33 +186,18 @@ in
   };
 
   # Node / Python のバージョンマネージャ（asdf から移行）。
-  # グローバルのツール宣言はここで行い、実体のインストールは script/install.sh の
-  # `mise install` が担います。~/.config/mise/config.toml は Nix ストアへの symlink に
-  # なるため `mise use -g` での書き換えはできません（宣言的に管理する意図）。
+  # パッケージ導入と fish 統合のみ Nix に任せ、グローバル設定はリポジトリ実体
+  # （mise/config.toml、下の xdg.configFile で symlink）に置きます。
+  # 実体のインストールは script/install.sh の `mise install` が担います。
   programs.mise = {
     enable = true;
     enableFishIntegration = true;
-    globalConfig = {
-      tools = {
-        node = "lts";
-        python = "latest";
-      };
-    };
   };
 
-  # シェル履歴（fish 標準履歴の置き換え）。sync は使わずローカル運用にします。
+  # シェル履歴（fish 標準履歴の置き換え）。設定はリポジトリ実体（atuin/config.toml）。
   programs.atuin = {
     enable = true;
     enableFishIntegration = true;
-    settings = {
-      auto_sync = false;
-      update_check = false;
-      search_mode = "fuzzy";
-      filter_mode = "global";
-      style = "compact";
-      inline_height = 20;
-      enter_accept = true;
-    };
   };
 
   # docker CLI プラグインを Nix 提供のバイナリで賄います（従来は cargo-make が
@@ -235,6 +220,10 @@ in
     # 認証情報が含まれるため、リポジトリには含めずローカルの実ファイルのままにします。
     "gh/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/github-cli/gh/config.yml";
     "gh-dash".source = config.lib.file.mkOutOfStoreSymlink "${repo}/github-cli/gh-dash";
+    # mise / atuin は programs.* でパッケージと fish 統合だけ有効化し、
+    # 設定ファイルはリポジトリ実体への symlink にします（編集が即時反映される）。
+    "mise/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/mise/config.toml";
+    "atuin/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/atuin/config.toml";
   };
 
   # Home Manager can also manage your environment variables through

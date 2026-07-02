@@ -1,0 +1,8 @@
+# シェル履歴（fish 標準履歴の置き換え）。sync は使わずローカル運用にする。
+auto_sync = false
+update_check = false
+search_mode = "fuzzy"
+filter_mode = "global"
+style = "compact"
+inline_height = 20
+enter_accept = true

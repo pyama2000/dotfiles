@@ -1,40 +1,12 @@
-{ ... }:
+{ config, ... }:
 
 {
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = false;
-      # 遅い外部コマンド由来のモジュールでプロンプトが固まらないようにする
-      command_timeout = 1000;
+  # パッケージの導入と fish への init 注入のみ Nix に任せます。
+  # settings を空にすると home-manager は starship.toml を生成しないため、
+  # 下の symlink（リポジトリ実体）と衝突しません。
+  programs.starship.enable = true;
 
-      directory = {
-        truncation_length = 4;
-        truncate_to_repo = true;
-      };
-
-      # push していないコミット数などの ahead/behind 表示は出さない
-      git_status = {
-        ahead = "";
-        behind = "";
-        diverged = "";
-      };
-
-      cmd_duration.disabled = true;
-
-      # nix shell / nix develop 内であることを示す
-      nix_shell = {
-        heuristic = true;
-      };
-
-      # direnv の allow/deny 状態を表示する（既定では無効のため明示的に有効化）
-      direnv.disabled = false;
-
-      # クラウド系・package はノイズなので無効を維持する
-      aws.disabled = true;
-      gcloud.disabled = true;
-      package.disabled = true;
-      ruby.disabled = true;
-    };
-  };
+  # 設定の本体はリポジトリ実体（starship/starship.toml）。編集が即時反映されます。
+  xdg.configFile."starship.toml".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/starship/starship.toml";
 }

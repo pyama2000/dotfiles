@@ -2,7 +2,9 @@
   description = "Darwin system configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs-unstable は darwin の Hydra ジョブ完了を待ってチャンネルが進むため、
+    # macOS でのバイナリキャッシュヒット率が nixos-unstable より高い。
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";

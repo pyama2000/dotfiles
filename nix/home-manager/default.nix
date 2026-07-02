@@ -204,10 +204,11 @@ in
   xdg.configFile = {
     "nvim".source = config.lib.file.mkOutOfStoreSymlink "${repo}/nvim";
     "wezterm".source = config.lib.file.mkOutOfStoreSymlink "${repo}/wezterm";
+    # GitHub CLI 関連（gh / gh-dash）の設定はリポジトリの github-cli/ 配下にまとめています。
     # gh はディレクトリ単位ではなくファイル単位で symlink します。hosts.yml には
     # 認証情報が含まれるため、リポジトリには含めずローカルの実ファイルのままにします。
-    "gh/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/gh/config.yml";
-    "gh-dash".source = config.lib.file.mkOutOfStoreSymlink "${repo}/gh-dash";
+    "gh/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/github-cli/gh/config.yml";
+    "gh-dash".source = config.lib.file.mkOutOfStoreSymlink "${repo}/github-cli/gh-dash";
   }
   # ghostty は macOS では cask で導入するため、その設定 symlink も darwin 限定にします。
   // lib.optionalAttrs pkgs.stdenv.isDarwin {

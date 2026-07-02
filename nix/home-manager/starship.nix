@@ -13,17 +13,14 @@
         truncate_to_repo = true;
       };
 
+      # push していないコミット数などの ahead/behind 表示は出さない
       git_status = {
-        ahead = "⇡\${count}";
-        behind = "⇣\${count}";
-        diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
-        stashed = "*\${count}";
+        ahead = "";
+        behind = "";
+        diverged = "";
       };
 
-      # 3 秒以上かかったコマンドだけ実行時間を表示する
-      cmd_duration = {
-        min_time = 3000;
-      };
+      cmd_duration.disabled = true;
 
       # nix shell / nix develop 内であることを示す
       nix_shell = {

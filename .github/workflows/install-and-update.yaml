@@ -16,7 +16,7 @@ jobs:
         os: [macos-15, ubuntu-latest]
     steps:
       - uses: actions/checkout@v7
-      - uses: DeterminateSystems/nix-installer-action@v20
+      - uses: DeterminateSystems/nix-installer-action@v22
       - name: Build nix-darwin configuration
         if: runner.os == 'macOS'
         run: |

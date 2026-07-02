@@ -104,23 +104,19 @@ in
 
     # Python ツールチェイン
     pkgs.uv
-    pkgs.rye
     pkgs.ruff
 
     # 言語ランタイム
     # Go は Go1 互換性保証 + go.mod の toolchain 機構（GOTOOLCHAIN=auto）で
     # プロジェクト毎のバージョンを自動取得するため Nix の単一バージョンで足ります。
     # Deno も自己更新が不要なので Nix 管理にします。
-    # Node / Python はバージョン切替のため asdf を継続します（バージョンマネージャ参照）。
+    # Node / Python はバージョン切替のため mise を使います（programs.mise 参照）。
     pkgs.go
     pkgs.deno
     pkgs.zig
 
     # Go 補助ツール（go install から移行）
     pkgs.gow
-
-    # バージョンマネージャ（Node / Python のバージョン切替用）
-    pkgs.asdf-vm
 
     # JavaScript / Web
     pkgs.biome
@@ -187,6 +183,36 @@ in
   programs.fzf = {
     enable = true;
     enableFishIntegration = true;
+  };
+
+  # Node / Python のバージョンマネージャ（asdf から移行）。
+  # グローバルのツール宣言はここで行い、実体のインストールは script/install.sh の
+  # `mise install` が担います。~/.config/mise/config.toml は Nix ストアへの symlink に
+  # なるため `mise use -g` での書き換えはできません（宣言的に管理する意図）。
+  programs.mise = {
+    enable = true;
+    enableFishIntegration = true;
+    globalConfig = {
+      tools = {
+        node = "lts";
+        python = "latest";
+      };
+    };
+  };
+
+  # シェル履歴（fish 標準履歴の置き換え）。sync は使わずローカル運用にします。
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+    settings = {
+      auto_sync = false;
+      update_check = false;
+      search_mode = "fuzzy";
+      filter_mode = "global";
+      style = "compact";
+      inline_height = 20;
+      enter_accept = true;
+    };
   };
 
   # docker CLI プラグインを Nix 提供のバイナリで賄います（従来は cargo-make が

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # dotfiles と各種ツールを日常的に更新するスクリプトです。
-# Nix(flake.lock)・aqua・rustup・asdf・Neovim プラグイン、macOS では Homebrew を更新します。
+# Nix(flake.lock)・aqua・rustup・mise・Neovim プラグイン、macOS では Homebrew を更新します。
 # switch する前に必ず build で評価が通ることを確認します。
 set -euo pipefail
 
@@ -87,9 +87,10 @@ if command -v rustup > /dev/null 2>&1; then
   rustup update
 fi
 
-# asdf の plugin を更新します。
-if command -v asdf > /dev/null 2>&1; then
-  asdf plugin update --all
+# mise 管理のランタイムを更新します（mise 本体は Nix 管理のため self-update は不要）。
+# --bump は付けません（global config は home-manager 管理の読み取り専用ファイルのため）。
+if command -v mise > /dev/null 2>&1; then
+  mise upgrade --yes
 fi
 
 # macOS では Homebrew を更新します。

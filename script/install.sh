@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 新しいマシンをブートストラップするためのスクリプトです。
 # Nix(macOS は nix-darwin、Linux は standalone home-manager)を中心に環境を構築し、
-# Nix で扱えないもの（aqua / rustup / asdf ランタイム / lima VM）だけを個別に整えます。
+# Nix で扱えないもの（aqua / rustup / mise ランタイム / lima VM）だけを個別に整えます。
 # すべての手順は冪等で、既に完了している場合はスキップします。
 set -euo pipefail
 
@@ -71,33 +71,16 @@ setup_rustup() {
   rustup component add clippy rustfmt rust-src
 }
 
-# asdf の plugin 追加と latest のインストール・home 設定を冪等に行います。
-# 第 1 引数: asdf plugin 名、第 2 引数: plugin リポジトリ URL（省略可）。
-asdf_install_latest() {
-  local plugin="$1"
-  local url="${2:-}"
-
-  if ! asdf plugin list 2>/dev/null | grep -qx "${plugin}"; then
-    if [ -n "${url}" ]; then
-      asdf plugin add "${plugin}" "${url}"
-    else
-      asdf plugin add "${plugin}"
-    fi
-  fi
-
-  asdf install "${plugin}" latest
-  asdf set --home "${plugin}" latest
-}
-
-# nodejs / python ランタイムを asdf で導入します（両 OS 共通）。
-setup_asdf_runtimes() {
-  if ! command -v asdf > /dev/null 2>&1; then
-    echo '警告: asdf が見つからないため asdf ランタイムのセットアップをスキップします。' >&2
+# nodejs / python ランタイムを mise で導入します（両 OS 共通）。
+# 対象ツールとバージョンは home-manager（programs.mise.globalConfig）が宣言済みのため、
+# ここでは宣言済みツールのインストールのみ行います（冪等）。
+setup_mise_runtimes() {
+  if ! command -v mise > /dev/null 2>&1; then
+    echo '警告: mise が見つからないためランタイムのセットアップをスキップします。' >&2
     echo '      Nix の適用後に新しいシェルで再実行してください。' >&2
     return
   fi
-  asdf_install_latest nodejs https://github.com/asdf-vm/asdf-nodejs.git
-  asdf_install_latest python
+  mise install --yes
 }
 
 setup_macos() {
@@ -151,7 +134,7 @@ setup_macos() {
   fi
 
   setup_rustup
-  setup_asdf_runtimes
+  setup_mise_runtimes
   setup_lima
 }
 
@@ -201,7 +184,7 @@ setup_lima() {
 }
 
 setup_linux() {
-  # asdf での python ビルド等に必要な最小限の apt 依存を導入します。
+  # mise の python ビルド（python-build フォールバック）等に必要な最小限の apt 依存を導入します。
   echo 'apt 依存パッケージをインストールします。'
   sudo apt update -y
   sudo apt install -y autoconf automake bison build-essential cmake curl \
@@ -255,7 +238,7 @@ setup_linux() {
   fi
 
   setup_rustup
-  setup_asdf_runtimes
+  setup_mise_runtimes
 }
 
 # dotfiles リポジトリを ~/dotfiles に clone し、origin を SSH URL に設定します。

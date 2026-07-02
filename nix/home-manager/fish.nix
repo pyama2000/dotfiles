@@ -138,20 +138,6 @@ in
       fish_add_path $HOME/.local/bin
 
       ##############################
-      # asdf                       #
-      ##############################
-      if test -z $ASDF_DATA_DIR
-          set _asdf_shims "$HOME/.asdf/shims"
-      else
-          set _asdf_shims "$ASDF_DATA_DIR/shims"
-      end
-
-      if not contains $_asdf_shims $PATH
-          set -gx --prepend PATH $_asdf_shims
-      end
-      set --erase _asdf_shims
-
-      ##############################
       # Python                     #
       ##############################
       set -x PIPENV_VENV_IN_PROJECT 1
@@ -186,11 +172,6 @@ in
       # docker                     #
       ##############################
       set -x DOCKER_BUILDKIT 1
-
-      ##############################
-      # Rye                        #
-      ##############################
-      set -Ua fish_user_paths "$HOME/.rye/shims"
 
       ##############################
       # Theme                      #

@@ -197,9 +197,11 @@ in
   # シェル履歴（fish 標準履歴の置き換え）。設定はリポジトリ実体（atuin/config.toml）。
   programs.atuin = {
     enable = true;
-    enableFishIntegration = true;
-    # 上キーは fish 標準の履歴遡りにし、Atuin 検索は Ctrl-R のみに割り当てる。
-    flags = [ "--disable-up-arrow" ];
+    # fish への init 注入（`atuin init fish`）は home-manager ではなく
+    # リポジトリ実体（fish/interactive.fish）で行う。init に渡すフラグ
+    # （例: --disable-up-arrow で上キーを fish 標準の履歴遡りにする）を
+    # rebuild なしで編集・即時反映できるようにするため。
+    enableFishIntegration = false;
   };
 
   # docker CLI プラグインを Nix 提供のバイナリで賄います（従来は cargo-make が

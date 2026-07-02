@@ -78,6 +78,16 @@ fish_add_path $HOME/.cargo/bin
 set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --follow --glob "!.git/*"'
 
 ##############################
+# atuin                      #
+##############################
+# init 注入はここで行う（home-manager の enableFishIntegration は無効化済み）。
+# --disable-up-arrow で上キーは fish 標準の履歴遡りに残し、Atuin 検索は Ctrl-R のみ。
+# このファイルは symlink 実体なので、フラグ変更は rebuild なしで即時反映される。
+if command -q atuin
+    atuin init fish --disable-up-arrow | source
+end
+
+##############################
 # direnv                     #
 ##############################
 set -x EDITOR nvim

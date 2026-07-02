@@ -21,6 +21,7 @@
 
       fetch = {
         prune = true;
+        pruneTags = true;
       };
 
       pull = {
@@ -29,6 +30,44 @@
 
       rebase = {
         autosquash = true;
+        # スタックしたブランチの rebase 時に依存ブランチの参照も追従させる
+        updateRefs = true;
+      };
+
+      # 新規ブランチの初回 push で -u origin <branch> を不要にする
+      push = {
+        autoSetupRemote = true;
+      };
+
+      # コンフリクト表示にマージベースも含める（diff3 の改良版）
+      merge = {
+        conflictStyle = "zdiff3";
+      };
+
+      diff = {
+        algorithm = "histogram";
+      };
+
+      branch = {
+        sort = "-committerdate";
+      };
+
+      tag = {
+        sort = "version:refname";
+      };
+
+      column = {
+        ui = "auto";
+      };
+
+      # 一度解決したコンフリクトを記録して再適用する
+      rerere = {
+        enabled = true;
+      };
+
+      # typo したサブコマンドは実行前に確認を挟んで補正する
+      help = {
+        autocorrect = "prompt";
       };
 
       # Commit template

@@ -32,17 +32,18 @@
     #   - python@3.9      : EOL のため nixpkgs から削除済み（移行先が無い）
     #   - readline / xz   : asdf の python ビルド依存（旧 cargo-make の
     #                       imperative な `brew install` に代えてここで宣言）
-    #   - aquaproj/aqua/aqua : aqua 本体は nixpkgs に存在しないため Homebrew で管理
-    #                       （旧 cargo-make の install_aqua タスクを置き換え）
     brews = [
       "git"
       "python@3.9"
       "readline"
       "xz"
-      "aquaproj/aqua/aqua"
     ];
 
+    # aqua 本体は nixpkgs に存在しないため Homebrew で管理します。
+    # aquaproj/aqua tap は formula を廃止して cask のみ提供するため casks に宣言します
+    # （旧 formula 版が入っている場合は `brew uninstall --formula aqua` してから switch すること）。
     casks = [
+      "aquaproj/aqua/aqua"
       "alfred"
       "clipy"
       "discord"

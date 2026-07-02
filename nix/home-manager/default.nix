@@ -198,6 +198,8 @@ in
   programs.atuin = {
     enable = true;
     enableFishIntegration = true;
+    # 上キーは fish 標準の履歴遡りにし、Atuin 検索は Ctrl-R のみに割り当てる。
+    flags = [ "--disable-up-arrow" ];
   };
 
   # docker CLI プラグインを Nix 提供のバイナリで賄います（従来は cargo-make が

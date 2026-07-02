@@ -1,0 +1,5 @@
+# Node / Python のバージョンマネージャ（グローバル設定）。
+# 実体のインストールは script/install.sh の `mise install` が行う。
+[tools]
+node = "lts"
+python = "latest"

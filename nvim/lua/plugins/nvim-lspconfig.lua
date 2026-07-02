@@ -22,12 +22,16 @@ return {
     {
       mode = "n",
       "gr",
-      "<cmd>Telescope lsp_references<CR>",
+      function()
+        require("snacks").picker.lsp_references()
+      end,
     },
     {
       mode = "n",
       "gd",
-      "<cmd>Telescope lsp_definitions<CR>",
+      function()
+        require("snacks").picker.lsp_definitions()
+      end,
     },
     {
       mode = "n",
@@ -37,7 +41,9 @@ return {
     {
       mode = "n",
       "gi",
-      "<cmd>Telescope lsp_implementations<CR>",
+      function()
+        require("snacks").picker.lsp_implementations()
+      end,
     },
     {
       mode = "i",
@@ -52,7 +58,9 @@ return {
     {
       mode = "n",
       "ga",
-      "<cmd>Telescope diagnostics<CR>",
+      function()
+        require("snacks").picker.diagnostics()
+      end,
     },
     {
       mode = "n",

@@ -30,8 +30,8 @@
     # ここに残すのは Nix で扱えない / 扱うべきでないものだけです:
     #   - git             : Nix 適用前の `git clone`（ブートストラップ）で必要
     #   - python@3.9      : EOL のため nixpkgs から削除済み（移行先が無い）
-    #   - readline / xz   : asdf の python ビルド依存（旧 cargo-make の
-    #                       imperative な `brew install` に代えてここで宣言）
+    #   - readline / xz   : python ビルド依存。mise は既定で precompiled binary を使うが、
+    #                       compile フォールバック（python-build）と python@3.9 が参照するため残す
     brews = [
       "git"
       "python@3.9"
@@ -47,7 +47,6 @@
       "alfred"
       "clipy"
       "discord"
-      "ghostty"
       "insomnia"
       "kiro"
       "postman"

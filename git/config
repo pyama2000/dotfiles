@@ -1,0 +1,111 @@
+# git 設定の本体。~/.config/git/config（home-manager 生成）から include される。
+# このファイルはリポジトリ実体なので編集が即時反映される。
+
+[core]
+	editor = nvim
+	quotepath = false
+	excludesFile = ~/dotfiles/git/ignore
+
+[init]
+	defaultBranch = main
+
+[fetch]
+	prune = true
+	pruneTags = true
+	# remote が複数あるリポジトリでは全 remote を fetch する
+	all = true
+
+[pull]
+	# rebase 派 / merge 派は好みの問題（記事でも "a matter of taste"）。merge を維持する
+	rebase = false
+
+[rebase]
+	autosquash = true
+	# rebase 前に未コミットの変更を自動 stash し、完了後に戻す
+	autoStash = true
+	# スタックしたブランチの rebase 時に依存ブランチの参照も追従させる
+	updateRefs = true
+
+[push]
+	default = simple
+	# 新規ブランチの初回 push で -u origin <branch> を不要にする
+	autoSetupRemote = true
+	# push 対象コミットから到達可能な annotated tag も一緒に push する
+	followTags = true
+
+# コンフリクト表示にマージベースも含める（diff3 の改良版）
+[merge]
+	conflictStyle = zdiff3
+
+[diff]
+	algorithm = histogram
+	# 移動しただけの行を追加/削除と区別して表示する
+	colorMoved = plain
+	# diff の a/ b/ プレフィックスを i/(index) w/(working) 等の意味のある記号にする
+	mnemonicPrefix = true
+	# リネームを検出する
+	renames = true
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = version:refname
+
+[column]
+	ui = auto
+
+# 一度解決したコンフリクトを記録して再適用する
+[rerere]
+	enabled = true
+	autoupdate = true
+
+# typo したサブコマンドは実行前に確認を挟んで補正する
+[help]
+	autocorrect = prompt
+
+[commit]
+	template = ~/dotfiles/git/commit
+	# コミットメッセージエディタに diff 全文を表示する（scissors 行以下は除去される）
+	verbose = true
+
+[delta]
+	plus-color = "#012800"
+	minus-color = "#340001"
+	syntax-theme = Monokai Extended
+	line-numbers = true
+	navigate = true
+
+[alias]
+	icommit = commit --allow-empty -m \"initial commit\"
+	empty = commit --allow-empty -m \"empty commit\"
+	lograph = log --graph --decorate --oneline --branches
+	logns = log --graph --decorate --oneline --branches --name-status
+	ss = status
+	adu = add -u
+	adup = add -u -p
+	br = branch
+	bra = branch --all
+	brm = branch -m
+	brd = branch -d
+	brdd = branch -D
+	co = commit
+	com = commit -m
+	sw = switch
+	swc = switch -c
+	swr = "!git fetch origin $1 && git switch"
+	rs = restore
+	rss = restore --staged
+	mg = merge --no-ff --no-edit
+	mgff = merge --ff
+	rbrd = push --delete origin
+	rmerged = "!f () { git switch $1; git branch --merged | egrep -v '\\*|develop|master' | xargs git branch -d; };f"
+	cp = cherry-pick
+	logmg = "log --merges --first-parent --oneline --pretty=format:\"%C(auto)%h%d %b %C(bold blue)<%an>%Creset\""
+	rve = revert --no-edit
+	rvc = revert --no-commit
+	cof = commit --fixup
+
+# ローカル設定（user.name / user.email など）を最後に読み込み、上の設定を上書き可能にする
+[include]
+	path = ~/.config/git/local/config

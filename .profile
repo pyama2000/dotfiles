@@ -26,7 +26,8 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-. $HOME/.asdf/asdf.sh
+# mise（Node / Python）: 非対話シェルでもランタイムを解決できるよう shims を PATH へ追加します。
+export PATH="${XDG_DATA_HOME:-$HOME/.local/share}/mise/shims:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"

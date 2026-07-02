@@ -104,23 +104,19 @@ in
 
     # Python ツールチェイン
     pkgs.uv
-    pkgs.rye
     pkgs.ruff
 
     # 言語ランタイム
     # Go は Go1 互換性保証 + go.mod の toolchain 機構（GOTOOLCHAIN=auto）で
     # プロジェクト毎のバージョンを自動取得するため Nix の単一バージョンで足ります。
     # Deno も自己更新が不要なので Nix 管理にします。
-    # Node / Python はバージョン切替のため asdf を継続します（バージョンマネージャ参照）。
+    # Node / Python はバージョン切替のため mise を使います（programs.mise 参照）。
     pkgs.go
     pkgs.deno
     pkgs.zig
 
     # Go 補助ツール（go install から移行）
     pkgs.gow
-
-    # バージョンマネージャ（Node / Python のバージョン切替用）
-    pkgs.asdf-vm
 
     # JavaScript / Web
     pkgs.biome
@@ -189,6 +185,21 @@ in
     enableFishIntegration = true;
   };
 
+  # Node / Python のバージョンマネージャ（asdf から移行）。
+  # パッケージ導入と fish 統合のみ Nix に任せ、グローバル設定はリポジトリ実体
+  # （mise/config.toml、下の xdg.configFile で symlink）に置きます。
+  # 実体のインストールは script/install.sh の `mise install` が担います。
+  programs.mise = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+  # シェル履歴（fish 標準履歴の置き換え）。設定はリポジトリ実体（atuin/config.toml）。
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   # docker CLI プラグインを Nix 提供のバイナリで賄います（従来は cargo-make が
   # curl で ~/.docker/cli-plugins に取得していました）。docker はこのディレクトリを
   # 探索するため、Nix ストアのバイナリを symlink します。
@@ -209,10 +220,10 @@ in
     # 認証情報が含まれるため、リポジトリには含めずローカルの実ファイルのままにします。
     "gh/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/github-cli/gh/config.yml";
     "gh-dash".source = config.lib.file.mkOutOfStoreSymlink "${repo}/github-cli/gh-dash";
-  }
-  # ghostty は macOS では cask で導入するため、その設定 symlink も darwin 限定にします。
-  // lib.optionalAttrs pkgs.stdenv.isDarwin {
-    "ghostty".source = config.lib.file.mkOutOfStoreSymlink "${repo}/ghostty";
+    # mise / atuin は programs.* でパッケージと fish 統合だけ有効化し、
+    # 設定ファイルはリポジトリ実体への symlink にします（編集が即時反映される）。
+    "mise/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/mise/config.toml";
+    "atuin/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/atuin/config.toml";
   };
 
   # Home Manager can also manage your environment variables through

@@ -1,0 +1,62 @@
+# prefix
+# feat: A new feature
+# fix: A bug fix
+# docs: Documentation only changes
+# style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+# refactor: A code change that neither fixes a bug nor adds a feature
+# perf: A code change that improves performance
+# test: Adding missing or correcting existing tests
+# chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
+
+# ######## Emoji prefix ########
+# 👍 :+1:Improve the functionality
+# ✨ :sparkles: Introducing new features.
+# 🎉 :tada :Initial commit.
+# ♻️ :recycle: Refactoring code.
+# 🐛 :bug: Fixing a bug.
+# ✏️ :pencil2: Fixing types.
+# 🔖 :bookmark: Releasing / Version tags.
+# 🚨 :rotating_light: Removing linter warnings.
+# 🚧 :construction: Work in progress.
+# 🎨 :art: Improving structure / format of the code.
+# ⚡️ :zap: Improving performance.
+# 🔥 :fire: Removing code or files.
+# 🚚 :truck: Moving or renaming files.
+# 🚑 :ambulance: Critical hotfix.
+# 🔧 :wrench: Changing configuration files.
+# 🙈 :see_no_evil: Adding or updating a .gitignore file
+# ======== CI(Continuous Integration) ========
+# 💚 :green_heart: Fixing CI Build.
+# 👷 :construction_worker: Adding CI build system.
+# ======== Dependencies ========
+# ⬇️ :arrow_down: Downgrading dependencies.
+# ⬆️ :arrow_up: Upgrading dependencies.
+# 📌 :pushpin: Pinning dependencies to specific versions.
+# ➕ :heavy_plus_sign: Adding a dependency.
+# ➖ :heavy_minus_sign: Removing a dependency.
+# ======== Docker / Kubernetes ========
+# 🐳 :whale: Work about Docker.
+# ☸️ :wheel_of_dharma: Work about Kubernetes
+# ======== Document ========
+# 📚 :books: Writing docs.
+# 💡 :bulb: Documenting source code.
+# ======== Git ========
+# ⏪ :rewind: Reverting changes.
+# 🔀 :twisted_rightwards_arrows: Merging branches.
+# ======== others ========
+# 🚀 :rocket: Deploying stuff.
+# 💄 :lipstick: Updating the UI and style files.
+# ✅ :white_check_mark: Updating tests.
+# 🔒 :lock: Fixing security issues.
+# 💩 :hankey: Writing bad code that needs to be improved.
+# 📦 :package: Updating compiled files or packages.
+# 👽 :alien: Updating code due to external API changes.
+# 📄 :page_facing_up: Adding or updating license.
+# 💥 :boom: Introducing breaking changes.
+# 👌 :ok_hand: Updating code due to code review changes.
+# 🍻 :beers: Writing code drunkenly.
+# 💬 :speech_balloon: Updating text and literals.
+# 🗃 :card_file_box: Performing database related changes.
+# ======== ignored Emoji =========
+# 🍎🐧🏁🤖🍏📈🌐♿️🔊🔇👥🚸🏗📱🤡🥚📸⚗🔍🏷️
+# ##############################

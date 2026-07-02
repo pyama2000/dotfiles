@@ -34,7 +34,7 @@ fish_add_path $HOME/.local/bin
 ##############################
 # Abbreviations              #
 ##############################
-# 引数を後ろに続けるプレフィックス型の省略形は abbr にする
+# コマンドの省略形はすべて abbr で展開する
 # （入力時に展開されるため、履歴に完全なコマンドが残る）。
 # ghq
 abbr -a ghg "ghq get"
@@ -47,19 +47,14 @@ abbr -a clippy "cargo clippy"
 abbr -a dc "docker compose"
 # terraform
 abbr -a tf terraform
-
-##############################
-# Aliases                    #
-##############################
-# それ自体で完結するコマンド、およびコマンド置換から参照されるものは alias のままにする。
 # exa
-alias exaf "eza --long --all --group-directories-first --bytes --header --group --git"
-alias exat "eza --all --group-directories-first --group --git --tree --ignore-glob .git"
-# fzf + bat（fpre は fvim がコマンド置換で参照するため abbr にできない）
-alias fpre 'fzf --preview "bat --color=always {}"'
-alias fvim "nvim (fpre)"
+abbr -a exaf "eza --long --all --group-directories-first --bytes --header --group --git"
+abbr -a exat "eza --all --group-directories-first --group --git --tree --ignore-glob .git"
+# fzf + bat（fvim は fpre をコマンド置換で参照できないため中身を展開して持つ）
+abbr -a fpre 'fzf --preview "bat --color=always {}"'
+abbr -a fvim 'nvim (fzf --preview "bat --color=always {}")'
 # pipenv
-alias piid "pipenv install --dev flake8 pylint isort mypy pysnooper pydocstyle bandit && pipenv install --dev --pre black"
+abbr -a piid "pipenv install --dev flake8 pylint isort mypy pysnooper pydocstyle bandit && pipenv install --dev --pre black"
 
 ##############################
 # Python                     #

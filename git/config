@@ -12,18 +12,26 @@
 [fetch]
 	prune = true
 	pruneTags = true
+	# remote が複数あるリポジトリでは全 remote を fetch する
+	all = true
 
 [pull]
+	# rebase 派 / merge 派は好みの問題（記事でも "a matter of taste"）。merge を維持する
 	rebase = false
 
 [rebase]
 	autosquash = true
+	# rebase 前に未コミットの変更を自動 stash し、完了後に戻す
+	autoStash = true
 	# スタックしたブランチの rebase 時に依存ブランチの参照も追従させる
 	updateRefs = true
 
-# 新規ブランチの初回 push で -u origin <branch> を不要にする
 [push]
+	default = simple
+	# 新規ブランチの初回 push で -u origin <branch> を不要にする
 	autoSetupRemote = true
+	# push 対象コミットから到達可能な annotated tag も一緒に push する
+	followTags = true
 
 # コンフリクト表示にマージベースも含める（diff3 の改良版）
 [merge]
@@ -31,6 +39,12 @@
 
 [diff]
 	algorithm = histogram
+	# 移動しただけの行を追加/削除と区別して表示する
+	colorMoved = plain
+	# diff の a/ b/ プレフィックスを i/(index) w/(working) 等の意味のある記号にする
+	mnemonicPrefix = true
+	# リネームを検出する
+	renames = true
 
 [branch]
 	sort = -committerdate
@@ -44,6 +58,7 @@
 # 一度解決したコンフリクトを記録して再適用する
 [rerere]
 	enabled = true
+	autoupdate = true
 
 # typo したサブコマンドは実行前に確認を挟んで補正する
 [help]
@@ -51,6 +66,8 @@
 
 [commit]
 	template = ~/dotfiles/git/commit
+	# コミットメッセージエディタに diff 全文を表示する（scissors 行以下は除去される）
+	verbose = true
 
 [delta]
 	plus-color = "#012800"

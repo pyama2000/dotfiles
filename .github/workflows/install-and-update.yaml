@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '0 0 * * 1'
 jobs:
-  exec-install-and-update-task:
+  build-nix:
     runs-on: ${{ matrix.os }}
     if: >-
       !contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update') &&
@@ -13,25 +13,35 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, ubuntu-latest]
+        os: [macos-15, ubuntu-latest]
     steps:
       - uses: actions/checkout@v7
-      - name: Run setup.sh
-        run: ./script/install.sh
-      - name: Run setup task
-        env:
-          GIT_NAME: pyama2000
-          GIT_EMAIL: example@example.com
+      - uses: DeterminateSystems/nix-installer-action@v20
+      - name: Build nix-darwin configuration
+        if: runner.os == 'macOS'
         run: |
-          cargo make --makefile script/task.toml setup \
-            -e GIT_NAME="$GIT_NAME" \
-            -e GIT_EMAIL="$GIT_EMAIL"
-      - name: Run update task
-        run: cargo make --makefile script/task.toml update
+          nix run nix-darwin/master#darwin-rebuild -- build --flake ./nix#macos
+      - name: Build home-manager configuration
+        if: runner.os == 'Linux'
+        run: |
+          nix build './nix#homeConfigurations."takahiko-yamashita@x86_64-linux".activationPackage'
+  lint-scripts:
+    runs-on: ubuntu-latest
+    if: >-
+      !contains(github.event.pull_request.labels.*.name, 'skip ci: install-and-update') &&
+      !contains(github.event.pull_request.labels.*.name, 'dependencies')
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check shell scripts
+        shell: bash
+        run: |
+          shellcheck script/*.sh
+          bash -n script/*.sh
   post-slack-message:
     runs-on: ubuntu-latest
     needs:
-      - exec-install-and-update-task
+      - build-nix
+      - lint-scripts
     if: failure() && contains(github.event_name, 'schedule')
     steps:
       - name: Post status

@@ -22,7 +22,10 @@ in
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = user;
-  home.homeDirectory = lib.mkForce "/Users/${user}";
+  # ホームディレクトリはプラットフォーム毎に異なります（macOS は /Users、Linux は /home）。
+  home.homeDirectory = lib.mkForce (
+    if pkgs.stdenv.isDarwin then "/Users/${user}" else "/home/${user}"
+  );
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -64,19 +67,18 @@ in
     pkgs.global
     pkgs.tmux
     pkgs.neovim
-
-    # GNU userland（macOS の BSD 版を置き換えます）
-    pkgs.coreutils
-    pkgs.gnused
-    pkgs.gnugrep
-    pkgs.gawk
+    # ngrok は Homebrew cask から移行（unfree のため allowUnfreePredicate に追加済み）。
+    pkgs.ngrok
+    # 履歴書き換え用ツール。従来は ad-hoc に brew install していました。
+    pkgs.git-filter-repo
+    # GitHub ダッシュボード TUI。設定は後続フェーズで管理します。
+    pkgs.gh-dash
 
     # コンテナ / クラウド / インフラ
     pkgs.docker-client
     pkgs.docker-compose
     pkgs.docker-buildx
     pkgs.buildkit
-    pkgs.lima
     pkgs.awscli2
     pkgs.google-cloud-sdk
     pkgs.kubectl
@@ -87,11 +89,18 @@ in
     # ビルド / proto / DB
     pkgs.protobuf
     pkgs.buf
+    # protoc プラグイン群（go install から移行）
+    pkgs.protoc-gen-doc
+    pkgs.protoc-gen-go
+    pkgs.protoc-gen-go-grpc
+    pkgs.grpc-gateway
     # mysql80 は 2026-04-30 に EOL となり nixpkgs から削除されたため、8.4 LTS へ移行。
     pkgs.mysql84
     pkgs.postgresql_14
     pkgs.percona-toolkit
     pkgs.redis
+    # DB マイグレーションツール（go install から移行）
+    pkgs.sql-migrate
 
     # Python ツールチェイン
     pkgs.uv
@@ -107,16 +116,29 @@ in
     pkgs.deno
     pkgs.zig
 
+    # Go 補助ツール（go install から移行）
+    pkgs.gow
+
     # バージョンマネージャ（Node / Python のバージョン切替用）
     pkgs.asdf-vm
 
     # JavaScript / Web
     pkgs.biome
-    pkgs.pnpm
+    # corepack も pnpm 用のシム（bin/pnpm）を提供し pkgs.pnpm と衝突するため、
+    # 明示的にインストールした pkgs.pnpm を優先させます。
+    (lib.hiPrio pkgs.pnpm)
+    # corepack（npm から移行）
+    pkgs.corepack
 
     # Rust 補助ツール（cargo install から移行）
     pkgs.cargo-watch
     pkgs.cargo-update
+    pkgs.cargo-expand
+    pkgs.cargo-generate
+    pkgs.cargo-make
+    pkgs.cargo-nextest
+    pkgs.protoc-gen-prost-crate
+    pkgs.tokio-console
 
     # Linter / Formatter
     pkgs.shellcheck
@@ -131,10 +153,24 @@ in
     pkgs.terraform-ls
     pkgs.yaml-language-server
     pkgs.kotlin-language-server
+    # gopls（go install から移行）
+    pkgs.gopls
+    # python-lsp-server（uv から移行）
+    pkgs.python3Packages.python-lsp-server
 
     # Nix
     pkgs.nixd
     pkgs.nixfmt
+  ]
+  ++ lib.optionals pkgs.stdenv.isDarwin [
+    # GNU userland（macOS の BSD 版を置き換えます。Linux はネイティブに備えるため不要）
+    pkgs.coreutils
+    pkgs.gnused
+    pkgs.gnugrep
+    pkgs.gawk
+
+    # lima は macOS で docker を動かすための VM です（Linux では不要）。
+    pkgs.lima
   ];
 
   # Using Home Manager to manage these programs
@@ -165,9 +201,19 @@ in
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.profile";
   home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.vimrc";
 
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${repo}/nvim";
-  xdg.configFile."alacritty".source = config.lib.file.mkOutOfStoreSymlink "${repo}/alacritty";
-  xdg.configFile."wezterm".source = config.lib.file.mkOutOfStoreSymlink "${repo}/wezterm";
+  xdg.configFile = {
+    "nvim".source = config.lib.file.mkOutOfStoreSymlink "${repo}/nvim";
+    "wezterm".source = config.lib.file.mkOutOfStoreSymlink "${repo}/wezterm";
+    # GitHub CLI 関連（gh / gh-dash）の設定はリポジトリの github-cli/ 配下にまとめています。
+    # gh はディレクトリ単位ではなくファイル単位で symlink します。hosts.yml には
+    # 認証情報が含まれるため、リポジトリには含めずローカルの実ファイルのままにします。
+    "gh/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/github-cli/gh/config.yml";
+    "gh-dash".source = config.lib.file.mkOutOfStoreSymlink "${repo}/github-cli/gh-dash";
+  }
+  # ghostty は macOS では cask で導入するため、その設定 symlink も darwin 限定にします。
+  // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    "ghostty".source = config.lib.file.mkOutOfStoreSymlink "${repo}/ghostty";
+  };
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a

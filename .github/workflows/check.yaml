@@ -35,6 +35,7 @@ jobs:
             script/**
             **/aqua.yaml
             nvim/**
+            nix/**
       - name: Export outputs
         id: export
         run: echo "diff=${{ env.GIT_DIFF }}" >> "$GITHUB_OUTPUT"
@@ -61,7 +62,8 @@ jobs:
       - export-diff
     if: >-
       contains(needs.export-diff.outputs.diff, '.github/workflows/') ||
-      contains(needs.export-diff.outputs.diff, 'script/')
+      contains(needs.export-diff.outputs.diff, 'script/') ||
+      contains(needs.export-diff.outputs.diff, 'nix/')
     uses: ./.github/workflows/install-and-update.yaml
   actionlint:
     runs-on: ubuntu-latest

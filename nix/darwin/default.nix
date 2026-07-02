@@ -3,6 +3,7 @@
   user,
   system,
   lib,
+  unfreePackages,
   ...
 }:
 
@@ -12,13 +13,10 @@
     ./fonts.nix
   ];
 
-  # 一部の CLI ツール（packer は BSL 1.1）は unfree ライセンスのため、
+  # 一部の CLI ツール（packer は BSL 1.1、ngrok は proprietary）は unfree ライセンスのため、
   # 対象を明示列挙して許可します（home-manager は useGlobalPkgs でこの設定を共有）。
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "packer"
-    ];
+  # 許可リスト（unfreePackages）は flake.nix で定義し Linux 側と共有しています。
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackages;
 
   # システム全体にインストールするパッケージのリストです。
   # パッケージを検索するには、例として `nix-env -qaP | grep wget` のように実行してください。
@@ -97,7 +95,7 @@
     dock = {
       autohide = true;
       show-recents = false;
-      mru-spaces = false;
+      mru-spaces = true;
       tilesize = 48;
       orientation = "bottom";
     };
@@ -114,6 +112,24 @@
   system.keyboard = {
     enableKeyMapping = true;
     remapCapsLockToControl = true;
+  };
+
+  # lima 用の file descriptor 上限引き上げ（旧 lima/limit.maxfiles.plist の宣言化）。
+  # nix-darwin の launchd.daemons.<name> は serviceConfig.Label 未指定時に
+  # 自動で "org.nixos.<name>" を付与するため、旧 plist と同じ "limit.maxfiles" を明示します。
+  launchd.daemons."limit-maxfiles" = {
+    serviceConfig = {
+      Label = "limit.maxfiles";
+      ProgramArguments = [
+        "launchctl"
+        "limit"
+        "maxfiles"
+        "524288"
+        "524288"
+      ];
+      RunAtLoad = true;
+      ServiceIPC = false;
+    };
   };
 
   # darwin-version コマンドの出力に Git コミットハッシュを含めるための設定です。

@@ -6,11 +6,12 @@ command_timeout = 1000
 truncation_length = 4
 truncate_to_repo = true
 
-# push していないコミット数などの ahead/behind 表示は出さない
+# ahead/behind は記号のみ表示する（コミット数のカウントは出さない）
+# ⇡: push できるローカルコミットあり / ⇣: origin に変更あり（pull 可能） / ⇕: 両方
 [git_status]
-ahead = ""
-behind = ""
-diverged = ""
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
 
 [cmd_duration]
 disabled = true

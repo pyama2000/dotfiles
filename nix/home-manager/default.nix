@@ -209,10 +209,6 @@ in
     # 認証情報が含まれるため、リポジトリには含めずローカルの実ファイルのままにします。
     "gh/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/github-cli/gh/config.yml";
     "gh-dash".source = config.lib.file.mkOutOfStoreSymlink "${repo}/github-cli/gh-dash";
-  }
-  # ghostty は macOS では cask で導入するため、その設定 symlink も darwin 限定にします。
-  // lib.optionalAttrs pkgs.stdenv.isDarwin {
-    "ghostty".source = config.lib.file.mkOutOfStoreSymlink "${repo}/ghostty";
   };
 
   # Home Manager can also manage your environment variables through

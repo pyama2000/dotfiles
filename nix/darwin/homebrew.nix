@@ -47,7 +47,6 @@
       "alfred"
       "clipy"
       "discord"
-      "ghostty"
       "insomnia"
       "kiro"
       "postman"

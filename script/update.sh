@@ -107,7 +107,6 @@ fi
 if command -v nvim > /dev/null 2>&1; then
   echo 'Neovim プラグインを更新します。'
   nvim --headless "+Lazy! update" +qa
-  nvim --headless "+MasonUpdate" +qa
   if ! git diff --quiet -- nvim/lazy-lock.json; then
     echo 'lazy-lock.json に更新があるためコミットして push します。'
     git add nvim/lazy-lock.json

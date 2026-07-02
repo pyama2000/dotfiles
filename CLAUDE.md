@@ -21,7 +21,7 @@ Day-to-day update:
 ./script/update.sh
 ```
 
-Refuses to run with uncommitted changes. Order: `git pull --rebase origin main` → `nix flake update` → build check (`darwin-rebuild build` / `nix build .#homeConfigurations...`) → **auto-commits and pushes `nix/flake.lock` to main if changed** → `darwin-rebuild switch` / `home-manager switch` → `aqua i` / `rustup update` / `mise upgrade` → macOS: `brew update && brew upgrade` → Neovim plugin update (`Lazy! update`, `MasonUpdate`) → **auto-commits and pushes `nvim/lazy-lock.json` to main if changed** → macOS: re-dumps `Brewfile` via `brew bundle dump --force --all` for manual review/commit (not auto-committed).
+Refuses to run with uncommitted changes. Order: `git pull --rebase origin main` → `nix flake update` → build check (`darwin-rebuild build` / `nix build .#homeConfigurations...`) → **auto-commits and pushes `nix/flake.lock` to main if changed** → `darwin-rebuild switch` / `home-manager switch` → `aqua i` / `rustup update` / `mise upgrade` → macOS: `brew update && brew upgrade` → Neovim plugin update (`Lazy! update`) → **auto-commits and pushes `nvim/lazy-lock.json` to main if changed** → macOS: re-dumps `Brewfile` via `brew bundle dump --force --all` for manual review/commit (not auto-committed).
 
 Apply Nix config manually (macOS):
 

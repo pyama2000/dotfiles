@@ -74,27 +74,32 @@ in
   programs.fish = {
     enable = true;
 
-    # Aliases
-    shellAliases = {
+    # 引数を後ろに続けるプレフィックス型の省略形は abbr にします
+    # （入力時に展開されるため、履歴に完全なコマンドが残ります）。
+    shellAbbrs = {
       # ghq
       ghg = "ghq get";
       ghl = "ghq list";
-      # exa
-      exaf = "eza --long --all --group-directories-first --bytes --header --group --git";
-      exat = "eza --all --group-directories-first --group --git --tree --ignore-glob .git";
       # cargo
       rfmt = "cargo fmt";
       cch = "cargo check --color=always";
       clippy = "cargo clippy";
-      # fzf + bat
-      fpre = "fzf --preview \"bat --color=always {}\"";
-      fvim = "nvim (fpre)";
-      # pipenv
-      piid = "pipenv install --dev flake8 pylint isort mypy pysnooper pydocstyle bandit && pipenv install --dev --pre black";
       # Docker
       dc = "docker compose";
       # terraform
       tf = "terraform";
+    };
+
+    # それ自体で完結するコマンド、および関数・コマンド置換から参照されるものは alias のままにします。
+    shellAliases = {
+      # exa
+      exaf = "eza --long --all --group-directories-first --bytes --header --group --git";
+      exat = "eza --all --group-directories-first --group --git --tree --ignore-glob .git";
+      # fzf + bat（fpre は fvim がコマンド置換で参照するため abbr にできない）
+      fpre = "fzf --preview \"bat --color=always {}\"";
+      fvim = "nvim (fpre)";
+      # pipenv
+      piid = "pipenv install --dev flake8 pylint isort mypy pysnooper pydocstyle bandit && pipenv install --dev --pre black";
     };
 
     # Functions

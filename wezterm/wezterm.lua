@@ -1,18 +1,24 @@
 local wezterm = require("wezterm")
 
-local config = {}
-if wezterm.config_builder then
-  config = wezterm.config_builder()
-end
+local config = wezterm.config_builder()
 
-config.default_prog = { "/run/current-system/sw/bin/fish", "--login", "--command", "tmux" }
-config.hide_tab_bar_if_only_one_tab = true
+-- "main" セッションに attach し、無ければ作成する（ghostty の `tmux attach || tmux` 相当）
+config.default_prog = { "/run/current-system/sw/bin/fish", "--login", "--command", "tmux new-session -A -s main" }
+
+-- 外観（背景の透過・パディング・タイトルバー非表示は ghostty 設定から移植）
 config.color_scheme = "Kanagawa (Gogh)"
+config.window_background_opacity = 0.75
+config.window_decorations = "RESIZE"
+config.window_padding = { left = 10, right = 10, top = 5, bottom = 5 }
+config.hide_tab_bar_if_only_one_tab = true
+
 config.font = wezterm.font_with_fallback({
   { family = "Explex35 Console NF" },
   { family = "UDEV Gothic 35NF" },
   { family = "YuGothic" },
 })
 config.font_size = 12.0
+-- リガチャ無効（ghostty の font-feature = -dlig 相当）
+config.harfbuzz_features = { "dlig=0" }
 
 return config

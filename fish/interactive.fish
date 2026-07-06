@@ -88,6 +88,21 @@ if command -q atuin
 end
 
 ##############################
+# Key bindings               #
+##############################
+# プロンプトで Ctrl+C を押したとき、標準では入力中の行が破棄される。
+# 代わりに入力を履歴へ追加してから行を空にし、↑（上矢印）で通常の履歴
+# として呼び戻せるようにする（この bind はプロンプト編集中のみ有効で、
+# 実行中プロセスへの SIGINT は tty が直接送るため中断は従来どおり効く）。
+function __ctrlc_save_line
+    set -l cmd (commandline)
+    test -n "$cmd"; and builtin history append -- $cmd
+    commandline ""
+    commandline -f repaint
+end
+bind \cC __ctrlc_save_line
+
+##############################
 # direnv                     #
 ##############################
 set -x EDITOR nvim

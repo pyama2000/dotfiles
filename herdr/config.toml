@@ -42,3 +42,13 @@ rename_tab = "prefix+,"       # tmux: prefix ,（rename-window）
 prompt_new_tab_name = false
 agent_panel_sort = "spaces"
 show_agent_labels_on_pane_borders = true
+
+# バックグラウンドのワークスペースでエージェントの状態が変わったときの通知配信。
+# delivery は単一値(off/herdr/terminal/system)で、配列指定は不可
+# (配列にすると "expected string only" で弾かれる)。
+# terminal = 内部生成したトーストを OSC エスケープで外側の端末(wezterm)に転送し、
+#   macOS のデスクトップ通知として出す。別アプリを最前面にしていても気づける。
+#   system(herdr が OS の通知 API を直接叩く)との違いは「wezterm 経由か herdr 直接か」で、
+#   herdr --remote 時に手元の端末側で鳴るのは terminal のほう。
+[ui.toast]
+delivery = "terminal"

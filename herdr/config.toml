@@ -1,0 +1,32 @@
+# Herdr 設定(.tmux.conf からの移行)。
+# .tmux.conf にあって Herdr(0.7.1)に相当設定がない/不要なもの:
+# - vi コピーモード + pbcopy → Herdr は prefix+e(edit_scrollback)でスクロール
+#   バックをエディタで開く方式。クリップボードは OSC52 を Herdr が処理する。
+# - ステータスバー装飾 → Herdr はサイドバー方式で、配色はテーマが担当する。
+# - escape-time / focus-events / extended-keys / set-clipboard / base-index /
+#   renumber-windows → Herdr が内部処理(タブは元々 1 始まり)。
+# - history-limit 50000 → scrollback_limit_bytes のデフォルト 10MB で同等。
+
+[theme]
+# tmux の Kanagawa 配色(wezterm "Kanagawa (Gogh)" と統一)
+name = "kanagawa"
+
+[terminal]
+# tmux の default-shell 相当
+default_shell = "/run/current-system/sw/bin/fish"
+# new_cwd = "follow"(デフォルト)が tmux の -c "#{pane_current_path}" 相当
+
+[keys]
+# tmux の prefix C-g を踏襲
+prefix = "ctrl+g"
+# tmux の | / - 分割を踏襲(- は Herdr デフォルトと同じ)。
+# 修飾キー付き記号は端末依存(Herdr ドキュメント)のため、| が効かなければ
+# デフォルトの "prefix+v" に戻す。
+split_vertical = "prefix+shift+backslash"
+split_horizontal = "prefix+minus"
+# new_tab (prefix+c) / focus_pane (prefix+h/j/k/l) / zoom (prefix+z) は
+# Herdr デフォルトが tmux 設定と一致するため未指定。
+
+[ui]
+# tmux の new-window と同様、名前入力なしで即タブ作成
+prompt_new_tab_name = false

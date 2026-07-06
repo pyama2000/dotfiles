@@ -230,6 +230,7 @@ in
     # 設定ファイルはリポジトリ実体への symlink にします（編集が即時反映される）。
     "mise/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/mise/config.toml";
     "atuin/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/atuin/config.toml";
+    "herdr/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/herdr/config.toml";
   };
 
   # Home Manager can also manage your environment variables through

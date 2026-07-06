@@ -2,8 +2,8 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
--- "main" セッションに attach し、無ければ作成する（ghostty の `tmux attach || tmux` 相当）
-config.default_prog = { "/run/current-system/sw/bin/fish", "--login", "--command", "tmux new-session -A -s main" }
+-- herdr の永続セッションに attach し、無ければ作成する（`tmux new-session -A` 相当）
+config.default_prog = { "/run/current-system/sw/bin/fish", "--login", "--command", "herdr" }
 
 -- 外観（背景の透過・パディング・タイトルバー非表示は ghostty 設定から移植）
 config.color_scheme = "Kanagawa (Gogh)"

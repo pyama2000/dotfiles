@@ -66,6 +66,18 @@
   # sudo を Touch ID で認証できるようにします（/etc/pam.d/sudo_local 経由）。
   security.pam.services.sudo_local.touchIdAuth = true;
 
+  # nix-darwin の HTML マニュアル（darwin-manual-html）生成を無効化します。
+  # nixpkgs-unstable の nixos-render-docs が `--toc-depth` を廃止（`--sidebar-depth` へ移行）した一方、
+  # 追従前の nix-darwin master がまだ `manual html --toc-depth` を渡すため、この derivation がビルド失敗します。
+  # HTML マニュアルは普段使わないため無効化し、man ページ（documentation.man.enable）は残します。
+  documentation.doc.enable = false;
+
+  # darwin-uninstaller は自前の固定 configuration を eval-config で独立評価し、
+  # 上の documentation.doc.enable を無視して既定（doc.enable = true）で HTML マニュアルを生成します。
+  # そのため systemPackages 経由で壊れた darwin-manual-html を引き込んでしまうので、ツールごと無効化します。
+  # （nix-darwin が --sidebar-depth に追従したら両設定とも再有効化を検討してください。）
+  system.tools.darwin-uninstaller.enable = false;
+
   # macOS のシステム設定を宣言的に管理します。
   # ここは個人の好みに合わせて調整する前提の代表的な設定です。
   # 反映には `darwin-rebuild switch` 後に再ログイン（または対象アプリの再起動）が必要な項目があります。

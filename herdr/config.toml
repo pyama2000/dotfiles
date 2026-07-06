@@ -40,6 +40,11 @@ rename_tab = "prefix+,"       # tmux: prefix ,（rename-window）
 # [ ] はコピーモードで使うため避け、9/0 を割り当てる。
 previous_workspace = "prefix+9" # 前の workspace へ
 next_workspace = "prefix+0"     # 次の workspace へ
+# session navigator(OpenNavigator)を tmux の prefix+s(choose-tree) に合わせて割り当てる。
+# config キー名は goto(default-config で settings/workspace_picker と 1:1 対応する OpenNavigator)。
+# settings が default で prefix+s を使い衝突するため、settings は prefix+shift+s へ退避。
+goto = "prefix+s"               # tmux: prefix s（choose-tree / セッション選択）
+settings = "prefix+shift+s"     # 退避先(元は prefix+s)
 
 [ui]
 # tmux の new-window と同様、名前入力なしで即タブ作成

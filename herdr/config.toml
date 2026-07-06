@@ -31,6 +31,11 @@ split_vertical = "prefix+|"
 split_horizontal = "prefix+minus"
 # new_tab (prefix+c) / focus_pane (prefix+h/j/k/l) / zoom (prefix+z) は
 # Herdr デフォルトが tmux 設定と一致するため未指定。
+# tmux のリネームを踏襲。tmux のセッション = Herdr の workspace、
+# tmux のウィンドウ = Herdr の tab に対応する。
+# $ は Shift+4 の解決後の文字を指定する(| と同じ流儀)。
+rename_workspace = "prefix+$" # tmux: prefix $（rename-session）
+rename_tab = "prefix+,"       # tmux: prefix ,（rename-window）
 
 [ui]
 # tmux の new-window と同様、名前入力なしで即タブ作成

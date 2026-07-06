@@ -116,8 +116,12 @@ if command -v nvim > /dev/null 2>&1; then
 fi
 
 # macOS では Brewfile を書き出し、差分があればレビューを促します（自動コミットはしません）。
+# Homebrew 6 で `brew bundle dump` の `--all` が廃止されたため、書き出すカテゴリを個別フラグで明示します
+# （現状の Brewfile に含まれる brew/cask/tap/go/cargo/uv/npm を対象。mas/vscode は未使用のため除外）。
 if [ "${OS}" = 'Darwin' ] && command -v brew > /dev/null 2>&1; then
-  brew bundle dump --force --all --file="${REPO_DIR}/Brewfile"
+  brew bundle dump --force \
+    --formulae --casks --taps --go --cargo --uv --npm \
+    --file="${REPO_DIR}/Brewfile"
   if ! git diff --quiet -- Brewfile; then
     echo '注意: Brewfile に差分があります。内容を確認して手動でコミットしてください。'
   fi

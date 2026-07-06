@@ -73,6 +73,8 @@ in
     pkgs.git-filter-repo
     # GitHub ダッシュボード TUI。設定は後続フェーズで管理します。
     pkgs.gh-dash
+    # ターミナル常駐のエージェントマルチプレクサ（https://herdr.dev）。
+    pkgs.herdr
 
     # コンテナ / クラウド / インフラ
     pkgs.docker-client

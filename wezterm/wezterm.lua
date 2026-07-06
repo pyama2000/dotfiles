@@ -10,7 +10,28 @@ config.default_prog = { "/run/current-system/sw/bin/fish", "--login", "--command
 config.color_scheme = "Kanagawa (Gogh)"
 config.window_background_opacity = 0.75
 config.window_padding = { left = 10, right = 10, top = 5, bottom = 5 }
-config.hide_tab_bar_if_only_one_tab = true
+
+-- 右下に日時を表示（tmux のステータスバー右側 %Y-%m-%d %H:%M:%S を WezTerm で再現）。
+-- herdr は単一の WezTerm タブ内で動くため、タブバーを常時表示にして最下段へ移し、
+-- 右寄せの update-right-status に時刻を毎秒描画する。
+config.hide_tab_bar_if_only_one_tab = false
+config.tab_bar_at_bottom = true
+config.use_fancy_tab_bar = false
+config.status_update_interval = 1000
+-- タブバー背景を Kanagawa の bg に合わせる（color_scheme に上書きマージされる）。
+config.colors = {
+  tab_bar = {
+    background = "#1f1f28",
+  },
+}
+
+wezterm.on("update-right-status", function(window)
+  window:set_right_status(wezterm.format({
+    { Background = { Color = "#1f1f28" } },
+    { Foreground = { Color = "#c8c093" } }, -- Kanagawa fg（tmux の時刻表示色と統一）
+    { Text = " " .. wezterm.strftime("%Y-%m-%d %H:%M:%S") .. " " },
+  }))
+end)
 
 config.font = wezterm.font_with_fallback({
   { family = "Explex35 Console NF" },

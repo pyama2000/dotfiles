@@ -20,10 +20,6 @@ disabled = true
 [nix_shell]
 heuristic = true
 
-# direnv の allow/deny 状態を表示する（既定では無効のため明示的に有効化）
-[direnv]
-disabled = false
-
 # クラウド系・package はノイズなので無効を維持する
 [aws]
 disabled = true

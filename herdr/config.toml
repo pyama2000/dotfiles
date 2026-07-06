@@ -11,14 +11,6 @@
 # tmux の Kanagawa 配色(wezterm "Kanagawa (Gogh)" と統一)
 name = "kanagawa"
 
-# サイドバー(Spaces/Agents)で「今フォーカスしている行」を分かりやすくする上書き。
-# Kanagawa パレット内で指定して配色の統一を保つ。
-# フォーカス行の見分けやすさは selection(行の背景塗り)が暗いサイドバー背景(sumiInk 系)と
-# 対比することで出る。accent は枠線・ハイライト・ナビ UI の色。
-[theme.custom]
-selection = "#2D4F67" # Kanagawa waveBlue2: フォーカス行の背景塗り(サイドバー背景より明るい)
-accent = "#7E9CD8"    # Kanagawa crystalBlue: 枠線・ハイライト・ナビ UI
-
 [terminal]
 # tmux の default-shell 相当
 default_shell = "/run/current-system/sw/bin/fish"

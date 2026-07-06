@@ -30,3 +30,4 @@ split_horizontal = "prefix+minus"
 [ui]
 # tmux の new-window と同様、名前入力なしで即タブ作成
 prompt_new_tab_name = false
+agent_panel_sort = "spaces"

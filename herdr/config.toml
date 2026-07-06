@@ -19,13 +19,15 @@ default_shell = "/run/current-system/sw/bin/fish"
 [keys]
 # tmux の prefix C-g を踏襲
 prefix = "ctrl+g"
-# tmux の左右分割(|)/ 上下分割(-)を踏襲。左右分割は元々 | に割り当てて
-# いたが、修飾キー付き記号(prefix+shift+backslash)は端末依存で届かず動作
-# しなかったため、Herdr デフォルトの prefix+v に戻した。上下分割の - は
-# Herdr デフォルトと同じ。
+# tmux の左右分割(|)/ 上下分割(-)を踏襲。
+# | は Shift+\ を押すと端末が「shift+backslash イベント」ではなく解決後の
+# 文字 | を送るため、修飾キーを分離した "prefix+shift+backslash" ではなく
+# 文字そのものを指す "prefix+|" で指定する(- を "prefix+minus" で指定して
+# いるのと同じ流儀。ドキュメントの「修飾キー付き記号は端末依存」の警告は
+# shift+backslash のような修飾キー分離指定が対象で、解決後の文字指定なら回避できる)。
 # split_vertical   = 縦の仕切り線 = 左右に並ぶ(tmux の split-window -h 相当)
 # split_horizontal = 横の仕切り線 = 上下に並ぶ(tmux の split-window -v 相当)
-split_vertical = "prefix+v"
+split_vertical = "prefix+|"
 split_horizontal = "prefix+minus"
 # new_tab (prefix+c) / focus_pane (prefix+h/j/k/l) / zoom (prefix+z) は
 # Herdr デフォルトが tmux 設定と一致するため未指定。

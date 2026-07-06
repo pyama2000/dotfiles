@@ -40,9 +40,12 @@ rename_tab = "prefix+,"       # tmux: prefix ,（rename-window）
 # [ ] はコピーモードで使うため避け、9/0 を割り当てる。
 previous_workspace = "prefix+9" # 前の workspace へ
 next_workspace = "prefix+0"     # 次の workspace へ
-# agent を順番に移動(次の agent へ)。インデックス指定(focus_agent)は範囲が 1..9 全域固定で
-# 数字キーと衝突するため、単一キーの順送り next_agent を使う。
-next_agent = "prefix+f"
+# agent を順番に移動。インデックス指定(focus_agent)は範囲が 1..9 全域固定で
+# 数字キーと衝突するため、単一キーの順送り next_agent / previous_agent を使う。
+next_agent = "prefix+f"     # 次の agent へ
+previous_agent = "prefix+b" # 前の agent へ(元の toggle_sidebar は prefix+d へ退避)
+# toggle_sidebar は default で prefix+b。previous_agent に譲るため prefix+d へ移す。
+toggle_sidebar = "prefix+d"
 # session navigator(OpenNavigator)を tmux の prefix+s(choose-tree) に合わせて割り当てる。
 # config キー名は goto(default-config で settings/workspace_picker と 1:1 対応する OpenNavigator)。
 # settings が default で prefix+s を使い衝突するため、settings は prefix+shift+s へ退避。

@@ -36,6 +36,10 @@ split_horizontal = "prefix+minus"
 # $ は Shift+4 の解決後の文字を指定する(| と同じ流儀)。
 rename_workspace = "prefix+$" # tmux: prefix $（rename-session）
 rename_tab = "prefix+,"       # tmux: prefix ,（rename-window）
+# workspace(tmux の session 相当)の前後移動。Herdr デフォルトは未バインドなので明示する。
+# [ ] は修飾キーなしの解決後の文字指定なので minus と同じ流儀で効く。
+previous_workspace = "prefix+[" # 前の workspace へ
+next_workspace = "prefix+]"     # 次の workspace へ
 
 [ui]
 # tmux の new-window と同様、名前入力なしで即タブ作成

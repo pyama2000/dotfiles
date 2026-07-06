@@ -37,10 +37,9 @@ split_horizontal = "prefix+minus"
 rename_workspace = "prefix+$" # tmux: prefix $（rename-session）
 rename_tab = "prefix+,"       # tmux: prefix ,（rename-window）
 # workspace(tmux の session 相当)の前後移動。Herdr デフォルトは未バインドなので明示する。
-# [ ] はコピーモードで使うため避け、tmux のセッション前後移動 prefix+( / prefix+) を踏襲。
-# ( ) は Shift+9/0 の解決後の文字指定なので $ と同じ流儀で効く。
-previous_workspace = "prefix+(" # tmux: prefix (（switch-client -p）
-next_workspace = "prefix+)"     # tmux: prefix )（switch-client -n）
+# [ ] はコピーモードで使うため避け、9/0 を割り当てる。
+previous_workspace = "prefix+9" # 前の workspace へ
+next_workspace = "prefix+0"     # 次の workspace へ
 
 [ui]
 # tmux の new-window と同様、名前入力なしで即タブ作成

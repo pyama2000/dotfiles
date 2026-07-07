@@ -48,7 +48,6 @@
       "clipy"
       "discord"
       "insomnia"
-      "kiro"
       "postman"
       "qblocker"
       "rectangle"

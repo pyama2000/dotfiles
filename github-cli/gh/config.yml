@@ -15,6 +15,16 @@ aliases:
     squash: pr merge --squash --delete-branch
     merge: pr merge --merge --delete-branch
     prurl: pr view --json url --jq .url
+    wsquash: '!gh pr checks --watch && gh pr merge --squash --delete-branch'
+    wmerge: '!gh pr checks --watch && gh pr merge --merge --delete-branch'
+    open-platform-pr: pr create --draft --assignee "@me" --reviewer RettyInc/platform --title
+    platform-pr: pr create --assignee "@me" --reviewer RettyInc/platform --title
+    add-reviewer-platform: pr edit --add-reviewer RettyInc/platform
+    add-team-reviewer: pr edit --add-reviewer RettyInc/platform
+    oncall1-pr: pr create --assignee "@me" --reviewer kodmm,math-miki,sam-the-hai,naokiwakata --title
+    add-oncall1-reviewer: pr edit --add-reviewer kodmm,math-miki,sam-the-hai
+    oncall3-pr: pr create --assignee "@me" --reviewer imaizume,math-miki,eyasy1217 --title
+    add-oncall3-reviewer: pr edit --add-reviewer imaizume,math-miki,eyasy1217
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.

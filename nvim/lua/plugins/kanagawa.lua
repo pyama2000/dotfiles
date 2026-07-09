@@ -2,6 +2,8 @@ return {
   "rebelot/kanagawa.nvim",
   config = function()
     require("kanagawa").setup({
+      commentStyle = { italic = false },
+      keywordStyle = { italic = false },
       overrides = function()
         return {
           -- snacks.picker のパス（ディレクトリ部分）は既定だと NonText 相当で見辛いため、

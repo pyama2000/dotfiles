@@ -67,10 +67,3 @@ show_agent_labels_on_pane_borders = true
 #   herdr --remote 時に手元の端末側で鳴るのは terminal のほう。
 [ui.toast]
 delivery = "terminal"
-
-[experimental]
-# prefix モード(prefix = ctrl+g)の待ち受け中だけ、macOS のホスト入力ソースを
-# 一時的に ASCII(英数)へ切り替え、抜けたら元の IME に戻す。日本語入力 ON のまま
-# prefix コマンド(prefix+c で new_tab、prefix+| で split など)を押しても、続きの
-# キーが IME に食われず確実に登録される。macOS 限定・best-effort。tmux にはない機能。
-switch_ascii_input_source_in_prefix = true

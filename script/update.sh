@@ -22,6 +22,29 @@ nix_linux_arch() {
   esac
 }
 
+# macOS 26 上では cctools の ld がまれに SIGTRAP でクラッシュし(Trace/BPT trap: 5)、
+# lima/packer など framework をリンクするビルドが確率的に失敗します。リンカは決定論的に
+# 壊れているわけではないため、build/switch をリトライで吸収します。--keep-going と併用する
+# ことで、各試行でリンクに成功した派生は永続化され、失敗した派生だけが再ビルドされて短時間で
+# 収束します。
+BUILD_RETRIES="${BUILD_RETRIES:-6}"
+retry() {
+  local max="$1"
+  shift
+  local n=1
+  while true; do
+    if "$@"; then
+      return 0
+    fi
+    if [ "${n}" -ge "${max}" ]; then
+      echo "エラー: ${max} 回試行しても失敗しました: $*" >&2
+      return 1
+    fi
+    echo "失敗したため再試行します (${n}/${max}): $*" >&2
+    n=$((n + 1))
+  done
+}
+
 cd "${REPO_DIR}"
 
 # 追跡ファイルに未コミットの変更がある場合は中断します（未追跡ファイルは許容）。
@@ -42,12 +65,12 @@ echo 'flake.lock を更新します。'
 echo 'Nix 構成を build して検証します。'
 case "${OS}" in
   Darwin)
-    (cd "${REPO_DIR}/nix" && darwin-rebuild build --flake .#macos)
+    (cd "${REPO_DIR}/nix" && retry "${BUILD_RETRIES}" darwin-rebuild build --flake .#macos --keep-going)
     ;;
   Linux)
     nix_arch="$(nix_linux_arch)"
     (cd "${REPO_DIR}/nix" &&
-      nix build ".#homeConfigurations.\"takahiko-yamashita@${nix_arch}\".activationPackage" &&
+      retry "${BUILD_RETRIES}" nix build ".#homeConfigurations.\"takahiko-yamashita@${nix_arch}\".activationPackage" --keep-going &&
       rm -rf ./result)
     ;;
   *)
@@ -68,12 +91,12 @@ fi
 echo 'Nix 構成を適用します（switch）。'
 case "${OS}" in
   Darwin)
-    (cd "${REPO_DIR}/nix" && sudo darwin-rebuild switch --flake .#macos)
+    (cd "${REPO_DIR}/nix" && retry "${BUILD_RETRIES}" sudo darwin-rebuild switch --flake .#macos --keep-going)
     ;;
   Linux)
     nix_arch="$(nix_linux_arch)"
     (cd "${REPO_DIR}/nix" &&
-      home-manager switch --flake ".#takahiko-yamashita@${nix_arch}")
+      retry "${BUILD_RETRIES}" home-manager switch --flake ".#takahiko-yamashita@${nix_arch}" --keep-going)
     ;;
 esac
 

@@ -25,8 +25,6 @@ cask "clipy"
 cask "discord"
 # HTTP and GraphQL Client
 cask "insomnia"
-# Agent-centric IDE with spec-driven development
-cask "kiro"
 # Collaboration platform for API development
 cask "postman"
 # Stops you from accidentally quitting an app

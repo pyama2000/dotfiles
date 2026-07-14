@@ -129,7 +129,6 @@ in
     pkgs.corepack
 
     # Rust 補助ツール（cargo install から移行）
-    pkgs.cargo-watch
     pkgs.cargo-update
     pkgs.cargo-expand
     pkgs.cargo-generate

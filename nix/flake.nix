@@ -5,6 +5,15 @@
     # nixpkgs-unstable は darwin の Hydra ジョブ完了を待ってチャンネルが進むため、
     # macOS でのバイナリキャッシュヒット率が nixos-unstable より高い。
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # 2026-07-12 の nixpkgs で darwin の toolchain(apple-sdk-15.5 + cctools ld)が回帰し、
+    # framework をリンクする lima/packer の from-source ビルドが ld の SIGTRAP
+    # (Trace/BPT trap: 5)で失敗する(macOS 26 上)。上流が修正するまで、これらだけを
+    # ビルド可能かつ cache 済みの last-good rev(2026-07-05)に固定する(下の overlay 参照)。
+    # 上流修正後は本 input と darwinLdWorkaroundOverlay を削除して tip に追従させる。
+    nixpkgs-darwin-ld-workaround = {
+      url = "github:nixos/nixpkgs/c4013e501c048ae7c4a8940c92837636042bf6c3";
+      flake = false;
+    };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,6 +29,7 @@
       self,
       nix-darwin,
       nixpkgs,
+      nixpkgs-darwin-ld-workaround,
       home-manager,
     }:
     let
@@ -34,6 +44,21 @@
         "ngrok"
       ];
       allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) unfreePackages;
+
+      # lima/packer を last-good rev(nixpkgs-darwin-ld-workaround)版に差し替える overlay。
+      # 上流の darwin toolchain 回帰(ld の SIGTRAP)で tip ではこれらがビルドできないため。
+      # prev.config を引き継いで import し、packer の unfree 許可も維持する。
+      # darwin 構成にのみ適用する(Linux は影響を受けない)。上流修正後は input ごと削除する。
+      darwinLdWorkaroundOverlay = final: prev: {
+        inherit
+          (import nixpkgs-darwin-ld-workaround {
+            inherit (prev.stdenv.hostPlatform) system;
+            inherit (prev) config;
+          })
+          lima
+          packer
+          ;
+      };
 
       # Linux 向けの standalone home-manager 構成を生成するヘルパーです。
       # nix-darwin と異なり home-manager 単体で動かすため、nixpkgs を明示的に import し、
@@ -83,6 +108,8 @@
         };
         modules = [
           ./darwin/default.nix
+          # lima/packer を last-good rev に固定する overlay(上流の darwin ld 回帰の回避)。
+          { nixpkgs.overlays = [ darwinLdWorkaroundOverlay ]; }
           # darwin-version の出力に構成リビジョンを含め、再現性を追跡できるようにします。
           # dirty な作業ツリーでは dirtyRev、未追跡では null になります。
           { system.configurationRevision = self.rev or self.dirtyRev or null; }

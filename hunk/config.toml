@@ -1,0 +1,6 @@
+# hunk（ターミナル diff ビューア）の設定。~/.config/hunk/config.toml へ
+# home-manager が symlink します（リポジトリ実体を指すため編集が即時反映されます）。
+# 設定キーの一覧は https://github.com/modem-dev/hunk を参照。
+
+# diff の入力が変化したら自動リロードする（watch モード）。
+watch = true

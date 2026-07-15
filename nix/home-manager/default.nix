@@ -242,6 +242,8 @@ in
     "mise/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/mise/config.toml";
     "atuin/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/atuin/config.toml";
     "herdr/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/herdr/config.toml";
+    # hunk（ターミナル diff ビューア）の設定。リポジトリ実体を指す symlink で即時反映。
+    "hunk/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/hunk/config.toml";
   };
 
   # Home Manager can also manage your environment variables through

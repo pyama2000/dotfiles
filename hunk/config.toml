@@ -4,3 +4,72 @@
 
 # diff の入力が変化したら自動リロードする（watch モード）。
 watch = true
+
+# 端末背景は透過させない（テーマの background で塗る）。
+transparent_background = false
+
+# Kanagawa Wave をベースにしたカスタムテーマ。
+# base = "kanagawa-wave" の内蔵パレット/シンタックス（shiki）を継承し、
+# 差分色・アクセント・パネル・バッジ/ファイル状態色だけを
+# nvim / WezTerm の Kanagawa Wave パレットに寄せて上書きする。
+# 未指定キーは base から継承。色は #rrggbb（6桁）のみ。
+theme = "custom"
+
+[custom_theme]
+base  = "kanagawa-wave"
+label = "Kanagawa Wave (custom)"
+
+# 面・枠（UI クローム）
+background = "#1f1f28"  # sumiInk3: メイン背景（WezTerm と同一）
+panel      = "#16161d"  # sumiInk0: サイドパネル/ヘッダ背景
+panelAlt   = "#2a2a37"  # sumiInk4: 交互行/副次面
+border     = "#54546d"  # sumiInk6: 枠線
+text       = "#dcd7ba"  # fujiWhite: 主要文字
+muted      = "#727169"  # fujiGray: 減光文字
+
+# アクセント/選択
+accent       = "#7e9cd8"  # crystalBlue: 強調（tmux/WezTerm と同一）
+accentMuted  = "#2d4f67"  # waveBlue2: 減光アクセント
+selectedHunk = "#2d4f67"  # waveBlue2: 選択中ハンク
+
+# 差分の行背景
+addedBg          = "#2b3328"  # winterGreen: 追加行（nvim diffAdd）
+removedBg        = "#43242b"  # winterRed:   削除行（nvim diffDelete）
+contextBg        = "#1f1f28"  # sumiInk3:    変更なし行
+movedAddedBg     = "#26332e"  # 移動(追加側)
+movedRemovedBg   = "#3a2a30"  # 移動(削除側)
+addedContentBg   = "#3a4a30"  # 追加語句ハイライト（強）
+removedContentBg = "#5a2e33"  # 削除語句ハイライト（強）
+contextContentBg = "#1f1f28"
+
+# 差分サイン（±）
+addedSignColor   = "#76946a"  # autumnGreen
+removedSignColor = "#c34043"  # autumnRed
+
+# 行番号ガター
+lineNumberBg = "#16161d"  # sumiInk0
+lineNumberFg = "#54546d"  # sumiInk6
+
+# バッジ
+badgeAdded   = "#98bb6c"  # springGreen
+badgeRemoved = "#e46876"  # waveRed
+badgeNeutral = "#7aa89f"  # waveAqua2
+
+# ファイル状態ラベル
+fileNew       = "#98bb6c"  # springGreen: 新規
+fileDeleted   = "#e46876"  # waveRed:     削除
+fileRenamed   = "#7e9cd8"  # crystalBlue: リネーム
+fileModified  = "#e6c384"  # carpYellow:  変更
+fileUntracked = "#957fb8"  # oniViolet:   未追跡
+
+# エージェントノート
+noteBorder          = "#54546d"  # sumiInk6
+noteBackground      = "#2a2a37"  # sumiInk4
+noteTitleBackground = "#223249"  # waveBlue1
+noteTitleText       = "#dcd7ba"  # fujiWhite
+
+# シンタックス（コード）配色は base(公式 shiki kanagawa-wave)をそのまま継承する。
+# （nvim / WezTerm の Kanagawa Wave と一致：キーワード紫、型ティール、true/false 橙）
+# 独自に寄せたい場合は [custom_theme.syntax] を追加する。ただし hunk はトークンを
+# 元色(hex)ごとにロールへ集約するため、型は keyword ロールに畳まれ（キーワードと必ず
+# 同色になる）、comment ロールは実質 no-op、という制約がある点に注意。

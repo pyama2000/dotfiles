@@ -120,10 +120,14 @@ fi
 if [ "${OS}" = 'Darwin' ] && command -v brew > /dev/null 2>&1; then
   echo 'Homebrew を更新します。'
   brew update
-  brew upgrade
-  brew upgrade --cask
-  brew autoremove
-  brew cleanup
+  # formula と cask を分けて更新します。cask は auto_updates 版がアプリを自己更新している場合に
+  # 「It seems there is already an App」で upgrade がリバートされるため、--force で既存アプリを
+  # 上書きします。また brew の失敗でスクリプト全体（後続の Neovim 更新・Brewfile 書き出し）が
+  # 止まらないよう、set -e で中断させず警告に留めて続行します。
+  brew upgrade --formula || echo '警告: brew upgrade --formula が一部失敗しました。手動で確認してください。' >&2
+  brew upgrade --cask --force || echo '警告: brew upgrade --cask が一部失敗しました。手動で確認してください。' >&2
+  brew autoremove || true
+  brew cleanup || true
 fi
 
 # Neovim プラグインを更新します。

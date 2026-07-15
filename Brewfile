@@ -6,6 +6,8 @@ tap "homebrew/services"
 tap "kitagry/tap"
 # Distributed revision control system
 brew "git"
+# GNU grep, egrep and fgrep
+brew "grep"
 # Library for command-line editing
 brew "readline"
 # General-purpose data compression with high compression ratio

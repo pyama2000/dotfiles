@@ -75,6 +75,8 @@ in
     pkgs.gh-dash
     # ターミナル常駐のエージェントマルチプレクサ（https://herdr.dev）。
     pkgs.herdr
+    # レビュー志向のターミナル diff ビューア（https://www.hunk.dev）。
+    pkgs.hunk
 
     # コンテナ / クラウド / インフラ
     pkgs.docker-client

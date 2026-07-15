@@ -213,6 +213,16 @@ in
   home.file.".docker/cli-plugins/docker-compose".source = "${pkgs.docker-compose}/bin/docker-compose";
   home.file.".docker/cli-plugins/docker-buildx".source = "${pkgs.docker-buildx}/bin/docker-buildx";
 
+  # hunk 同梱の Agent Skill（hunk-review）を Agent ツール群へ配布します。
+  # ソースは pkgs.hunk のパッケージ出力（switch のたび home-manager が張り直すため、
+  # 生の store パスを直に指すのと違い hunk 更新後も dangling しません）。
+  # ~/.agents/skills を一次配置とし、~/.claude/skills は既存スキル群と同じく
+  # ~/.agents/skills 側を指すチェーンにします。~/.claude-retty/skills は
+  # ~/.agents/skills を丸ごと指す symlink のため、追加設定なしで自動反映されます。
+  home.file.".agents/skills/hunk-review".source = "${pkgs.hunk}/share/hunk/skills/hunk-review";
+  home.file.".claude/skills/hunk-review".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.agents/skills/hunk-review";
+
   # 設定ファイル（リポジトリ実体を指す symlink）。従来 cargo-make の link_* が
   # 張っていた symlink を home-manager に移管します。
   home.file.".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.tmux.conf";

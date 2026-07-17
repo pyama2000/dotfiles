@@ -14,5 +14,5 @@ packages:
 # それ以外（gh/jq/fd/ripgrep/kubectl/aws-cli/uv/ruff/buf/google-cloud-sdk/ecspresso 等）は
 # Nix(home-manager の home.packages, nix/home-manager/default.nix)に一元管理を移しました。
 - name: fujiwara/tracer@v1.1.3
-- name: fujiwara/lambroll@v1.5.0
+- name: fujiwara/lambroll@v1.5.1
 - name: github/copilot-cli@v1.0.71

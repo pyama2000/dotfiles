@@ -4,6 +4,8 @@ tap "docker/tap", trusted: true
 tap "hashicorp/tap"
 tap "homebrew/services"
 tap "kitagry/tap"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
 # Distributed revision control system
 brew "git"
 # GNU grep, egrep and fgrep

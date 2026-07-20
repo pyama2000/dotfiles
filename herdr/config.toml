@@ -1,11 +1,20 @@
-# Herdr 設定(.tmux.conf からの移行)。
-# .tmux.conf にあって Herdr(0.7.1)に相当設定がない/不要なもの:
-# - vi コピーモード + pbcopy → Herdr は prefix+e(edit_scrollback)でスクロール
-#   バックをエディタで開く方式。クリップボードは OSC52 を Herdr が処理する。
-# - ステータスバー装飾 → Herdr はサイドバー方式で、配色はテーマが担当する。
-# - escape-time / focus-events / extended-keys / set-clipboard / base-index /
-#   renumber-windows → Herdr が内部処理(タブは元々 1 始まり)。
-# - history-limit 50000 → scrollback_limit_bytes のデフォルト 10MB で同等。
+# Herdr 設定。キーバインドは「ドメイン層 × 共通動詞」体系。
+#
+# 体系:
+#   - prefix = ctrl+g(tmux 時代から維持)
+#   - ドメインごとに修飾キー層を割り当てる:
+#       無印  = tab / pane(日常操作の基準層)
+#       shift = workspace
+#       ctrl  = agent
+#       alt   = worktree
+#   - 動詞キーは全ドメイン共通: c=新規, n/p=次・前, x=閉じる, 1..9=ジャンプ。
+#     リネームのみ例外: tab=, pane=. workspace=$(tmux 由来を維持)
+#   - ドメイン入口キー: s=workspace navigator, t=worktree を開く,
+#     a=agent サイドバー, w=workspace picker(デフォルト維持)
+#
+# 記号キーは「修飾キー分離(shift+comma 等)」ではなく端末が送る解決後の
+# 文字($ | 等)か名前付き記号(minus)で指定する。修飾キー分離指定は
+# 端末依存の警告対象だが、解決後文字なら回避できる。
 
 [theme]
 # tmux の Kanagawa 配色(wezterm "Kanagawa (Gogh)" と統一)
@@ -17,40 +26,49 @@ default_shell = "/run/current-system/sw/bin/fish"
 # new_cwd = "follow"(デフォルト)が tmux の -c "#{pane_current_path}" 相当
 
 [keys]
-# tmux の prefix C-g を踏襲
 prefix = "ctrl+g"
-# tmux の左右分割(|)/ 上下分割(-)を踏襲。
-# | は Shift+\ を押すと端末が「shift+backslash イベント」ではなく解決後の
-# 文字 | を送るため、修飾キーを分離した "prefix+shift+backslash" ではなく
-# 文字そのものを指す "prefix+|" で指定する(- を "prefix+minus" で指定して
-# いるのと同じ流儀。ドキュメントの「修飾キー付き記号は端末依存」の警告は
-# shift+backslash のような修飾キー分離指定が対象で、解決後の文字指定なら回避できる)。
-# split_vertical   = 縦の仕切り線 = 左右に並ぶ(tmux の split-window -h 相当)
-# split_horizontal = 横の仕切り線 = 上下に並ぶ(tmux の split-window -v 相当)
-split_vertical = "prefix+|"
-split_horizontal = "prefix+minus"
-# new_tab (prefix+c) / focus_pane (prefix+h/j/k/l) / zoom (prefix+z) は
-# Herdr デフォルトが tmux 設定と一致するため未指定。
-# tmux のリネームを踏襲。tmux のセッション = Herdr の workspace、
-# tmux のウィンドウ = Herdr の tab に対応する。
-# $ は Shift+4 の解決後の文字を指定する(| と同じ流儀)。
-rename_workspace = "prefix+$" # tmux: prefix $（rename-session）
-rename_tab = "prefix+,"       # tmux: prefix ,（rename-window）
-# workspace(tmux の session 相当)の前後移動。Herdr デフォルトは未バインドなので明示する。
-# [ ] はコピーモードで使うため避け、9/0 を割り当てる。
-previous_workspace = "prefix+9" # 前の workspace へ
-next_workspace = "prefix+0"     # 次の workspace へ
-# agent を順番に移動。インデックス指定(focus_agent)は範囲が 1..9 全域固定で
-# 数字キーと衝突するため、単一キーの順送り next_agent / previous_agent を使う。
-next_agent = "prefix+f"     # 次の agent へ
-previous_agent = "prefix+b" # 前の agent へ(元の toggle_sidebar は prefix+d へ退避)
-# toggle_sidebar は default で prefix+b。previous_agent に譲るため prefix+d へ移す。
-toggle_sidebar = "prefix+d"
-# session navigator(OpenNavigator)を tmux の prefix+s(choose-tree) に合わせて割り当てる。
-# config キー名は goto(default-config で settings/workspace_picker と 1:1 対応する OpenNavigator)。
-# settings が default で prefix+s を使い衝突するため、settings は prefix+shift+s へ退避。
-goto = "prefix+s"               # tmux: prefix s（choose-tree / セッション選択）
-settings = "prefix+shift+s"     # 退避先(元は prefix+s)
+
+# --- Pane(無印層・tmux 踏襲) ---
+# focus h/j/k/l, swap shift+h/j/k/l, zoom z, close x, resize r,
+# scrollback e, copy [, cycle tab/shift+tab は Herdr デフォルトのまま。
+split_vertical = "prefix+|"       # 縦の仕切り線 = 左右に並ぶ(tmux の split-window -h 相当)
+split_horizontal = "prefix+minus" # 横の仕切り線 = 上下に並ぶ(tmux の split-window -v 相当)
+# rename_pane のデフォルト shift+p は previous_workspace と衝突するため、
+# rename_tab(,)の隣の . へ移す。
+rename_pane = "prefix+."
+
+# --- Tab(無印層 = 動詞の基準) ---
+# new_tab(c) / next_tab(n) / previous_tab(p) / switch_tab(1..9) は
+# デフォルトが体系と一致するため未指定。
+rename_tab = "prefix+,"
+# close_tab はキーを割り当てない(タブは全ペインを閉じれば消える運用)。
+# デフォルトの shift+x は close_workspace に譲る(ユーザーバインドが
+# 衝突するデフォルトを押しのける 0.7.1 以降の仕様で自動的に未バインド化)。
+close_tab = []
+
+# --- Workspace(shift 層・入口 s) ---
+goto = "prefix+s"           # workspace navigator(tmux choose-tree の記憶)
+settings = "prefix+shift+s" # デフォルト prefix+s を goto に譲るため退避
+new_workspace = "prefix+shift+c"
+next_workspace = "prefix+shift+n"
+previous_workspace = "prefix+shift+p"
+rename_workspace = "prefix+$" # tmux の rename-session を維持($ = Shift+4 の解決後文字)
+close_workspace = "prefix+shift+x"
+switch_workspace = "prefix+shift+1..9"
+# workspace_picker はデフォルト prefix+w のまま。
+
+# --- Worktree(alt 層・入口 t) ---
+open_worktree = "prefix+t"
+new_worktree = "prefix+alt+c" # デフォルト shift+g から移動
+remove_worktree = "prefix+alt+x"
+
+# --- Agent(ctrl 層・入口 a) ---
+toggle_sidebar = "prefix+a" # デフォルト prefix+b から移動
+next_agent = "prefix+ctrl+n"
+previous_agent = "prefix+ctrl+p"
+# ctrl+数字 は kitty キーボードプロトコル前提(レガシー端末は送出不可)。
+# wezterm では動くはずだが、効かない場合は alt+1..9 へ戻すこと。
+focus_agent = "prefix+ctrl+1..9"
 
 [ui]
 # tmux の new-window と同様、名前入力なしで即タブ作成

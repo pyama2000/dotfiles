@@ -65,7 +65,6 @@ in
     pkgs.git-crypt
     pkgs.gnupg
     pkgs.global
-    pkgs.tmux
     pkgs.neovim
     # ngrok は Homebrew cask から移行（unfree のため allowUnfreePredicate に追加済み）。
     pkgs.ngrok
@@ -225,7 +224,6 @@ in
 
   # 設定ファイル（リポジトリ実体を指す symlink）。従来 cargo-make の link_* が
   # 張っていた symlink を home-manager に移管します。
-  home.file.".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.tmux.conf";
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.profile";
   home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.vimrc";
 

@@ -5,11 +5,11 @@ local config = wezterm.config_builder()
 -- herdr の永続セッションに attach し、無ければ作成する（`tmux new-session -A` 相当）
 config.default_prog = { "/run/current-system/sw/bin/fish", "--login", "--command", "herdr" }
 
--- kitty キーボードプロトコルを許可する（デフォルト false）。
--- herdr の focus_agent = prefix+ctrl+1..9 は ctrl+数字 を判別できる
--- このプロトコルが前提で、レガシーエンコーディングでは素の数字になり
--- switch_tab に化ける。適用には herdr クライアントの再アタッチが必要。
-config.enable_kitty_keyboard = true
+-- enable_kitty_keyboard は有効化しない（デフォルト false のまま）。
+-- 有効にすると ctrl+数字 は判別できるようになるが、wezterm 20240203 の
+-- kitty プロトコル実装は Esc を仕様違反のレガシー \x1b のまま送るバグがあり
+-- （wezterm#3621）、プロトコルモードの herdr が Esc キーとして解釈できず
+-- Esc が全アプリで死ぬ。herdr 側は alt+数字（レガシー表現可）で代替する。
 
 -- 外観（背景の透過・パディングは ghostty 設定から移植。
 -- タイトルバーは WezTerm デフォルトのまま表示する）

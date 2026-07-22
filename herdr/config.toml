@@ -9,6 +9,7 @@
 #       alt   = worktree
 #   - 動詞キーは全ドメイン共通: c=新規, n/p=次・前, x=閉じる, 1..9=ジャンプ。
 #     リネームのみ例外: tab=, pane=. workspace=$(tmux 由来を維持)
+#     agent のジャンプも例外で alt+1..9(ctrl+数字 が使えない事情は該当箇所参照)
 #   - ドメイン入口キー: s=workspace navigator, t=worktree を開く,
 #     a=agent サイドバー, w=workspace picker(デフォルト維持)
 #
@@ -66,9 +67,12 @@ remove_worktree = "prefix+alt+x"
 toggle_sidebar = "prefix+a" # デフォルト prefix+b から移動
 next_agent = "prefix+ctrl+n"
 previous_agent = "prefix+ctrl+p"
-# ctrl+数字 は kitty キーボードプロトコル前提(レガシー端末は送出不可)。
-# wezterm では動くはずだが、効かない場合は alt+1..9 へ戻すこと。
-focus_agent = "prefix+ctrl+1..9"
+# ジャンプのみ alt 層に置く例外。ctrl+数字 は kitty キーボードプロトコルが
+# ないと表現できず、wezterm 20240203 で有効化すると Esc が壊れる既知バグ
+# (wezterm#3621)を踏むため断念した(詳細は wezterm.lua のコメント参照)。
+# alt+数字 はレガシーエンコーディング(ESC 数字)で表現できる。
+# worktree(alt 層)には 1..9 動詞がないため衝突しない。
+focus_agent = "prefix+alt+1..9"
 
 [ui]
 # tmux の new-window と同様、名前入力なしで即タブ作成

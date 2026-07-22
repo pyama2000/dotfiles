@@ -5,6 +5,12 @@ local config = wezterm.config_builder()
 -- herdr の永続セッションに attach し、無ければ作成する（`tmux new-session -A` 相当）
 config.default_prog = { "/run/current-system/sw/bin/fish", "--login", "--command", "herdr" }
 
+-- kitty キーボードプロトコルを許可する（デフォルト false）。
+-- herdr の focus_agent = prefix+ctrl+1..9 は ctrl+数字 を判別できる
+-- このプロトコルが前提で、レガシーエンコーディングでは素の数字になり
+-- switch_tab に化ける。適用には herdr クライアントの再アタッチが必要。
+config.enable_kitty_keyboard = true
+
 -- 外観（背景の透過・パディングは ghostty 設定から移植。
 -- タイトルバーは WezTerm デフォルトのまま表示する）
 config.color_scheme = "Kanagawa (Gogh)"

@@ -1,0 +1,6 @@
+# herdr-reviewr(persiyanov/herdr-reviewr)の設定。
+# プラグイン側が毎リフレッシュ時に読むため、編集は再起動なしで反映される。
+
+# toggle 時の開き方。split(ペイン分割)ではなくタブ全面を覆う overlay
+# (ポップアップ相当。キーボードを奪い、閉じるとレイアウトが元に戻る)にする。
+toggle_placement = "overlay"

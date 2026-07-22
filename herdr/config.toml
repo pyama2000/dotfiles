@@ -74,6 +74,17 @@ previous_agent = "prefix+ctrl+p"
 # worktree(alt 層)には 1..9 動詞がないため衝突しない。
 focus_agent = "prefix+alt+1..9"
 
+# --- Plugin: reviewr(persiyanov/herdr-reviewr) ---
+# エージェントの差分をレビューするプラグイン。開き方はプラグイン側設定
+# (plugins/config/persiyanov.reviewr/config.toml)の toggle_placement = "overlay"
+# でポップアップ相当にしている。レビュー対象はエージェントなので ctrl 層の r。
+# (無印 prefix+r はデフォルトの pane resize が使用済み)
+[[keys.command]]
+key = "prefix+ctrl+r"
+type = "plugin_action"
+command = "persiyanov.reviewr.toggle"
+description = "reviewr を開閉"
+
 [ui]
 # tmux の new-window と同様、名前入力なしで即タブ作成
 prompt_new_tab_name = false

@@ -73,6 +73,8 @@ in
     # GitHub ダッシュボード TUI。設定は後続フェーズで管理します。
     pkgs.gh-dash
     # ターミナル常駐のエージェントマルチプレクサ（https://herdr.dev）。
+    # nixpkgs 版ではなく公式 flake 版（flake.nix の herdrOverlay で差し替え。
+    # https://herdr.dev/docs/install/#install-with-nix）。
     pkgs.herdr
     # レビュー志向のターミナル diff ビューア（https://www.hunk.dev）。
     pkgs.hunk

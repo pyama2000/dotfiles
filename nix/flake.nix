@@ -22,6 +22,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Herdr は nixpkgs 経由ではなく公式 flake から取得する（公式のインストール方法:
+    # https://herdr.dev/docs/install/#install-with-nix）。公式推奨に従いリリースタグに
+    # 固定する。`nix flake update` ではタグは進まないので、新リリース時は URL を手動で上げる。
+    herdr = {
+      url = "github:herdrdev/herdr/v0.8.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -31,6 +38,7 @@
       nixpkgs,
       nixpkgs-darwin-ld-workaround,
       home-manager,
+      herdr,
     }:
     let
       user = "takahiko-yamashita";
@@ -60,6 +68,13 @@
           ;
       };
 
+      # pkgs.herdr を公式 flake のビルドに差し替える overlay。home-manager 側の
+      # `pkgs.herdr` 参照はそのままに、取得元だけを公式に切り替える。
+      # darwin と Linux（standalone home-manager）の両方に適用する。
+      herdrOverlay = final: prev: {
+        herdr = herdr.packages.${prev.stdenv.hostPlatform.system}.herdr;
+      };
+
       # Linux 向けの standalone home-manager 構成を生成するヘルパーです。
       # nix-darwin と異なり home-manager 単体で動かすため、nixpkgs を明示的に import し、
       # unfree の許可設定を渡します（darwin 側は useGlobalPkgs で system の nixpkgs.config を共有）。
@@ -69,6 +84,7 @@
           pkgs = import nixpkgs {
             system = linuxSystem;
             config.allowUnfreePredicate = allowUnfreePredicate;
+            overlays = [ herdrOverlay ];
           };
           modules = [ ./home-manager/default.nix ];
           extraSpecialArgs = { inherit user; };
@@ -108,8 +124,14 @@
         };
         modules = [
           ./darwin/default.nix
-          # lima/packer を last-good rev に固定する overlay(上流の darwin ld 回帰の回避)。
-          { nixpkgs.overlays = [ darwinLdWorkaroundOverlay ]; }
+          # lima/packer を last-good rev に固定する overlay(上流の darwin ld 回帰の回避)と、
+          # herdr を公式 flake 版に差し替える overlay。
+          {
+            nixpkgs.overlays = [
+              darwinLdWorkaroundOverlay
+              herdrOverlay
+            ];
+          }
           # darwin-version の出力に構成リビジョンを含め、再現性を追跡できるようにします。
           # dirty な作業ツリーでは dirtyRev、未追跡では null になります。
           { system.configurationRevision = self.rev or self.dirtyRev or null; }

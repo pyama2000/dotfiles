@@ -4,20 +4,27 @@ tap "docker/tap", trusted: true
 tap "hashicorp/tap"
 tap "homebrew/services"
 tap "kitagry/tap"
+tap "rjyo/moshi", trusted: true
+# General-purpose data compression with high compression ratio
+brew "xz"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # Distributed revision control system
 brew "git"
 # GNU grep, egrep and fgrep
 brew "grep"
+# Remote terminal application
+brew "mosh"
 # Library for command-line editing
 brew "readline"
-# General-purpose data compression with high compression ratio
-brew "xz"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
+# Terminal multiplexer
+brew "tmux"
 # Cargo Lambda is a Cargo subcommand to help you work with AWS Lambda.
 brew "cargo-lambda/cargo-lambda/cargo-lambda"
+# Portable daemon + CLI that bridges AI coding agents to the Moshi mobile app
+brew "rjyo/moshi/moshi-hook"
 # Application launcher and productivity software
 cask "alfred"
 # Declarative CLI Version manager. Support Lazy Install and Sharable configuration mechanism named Registry. Switch versions seamlessly
@@ -25,6 +32,8 @@ cask "alfred"
 cask "aquaproj/aqua/aqua", trusted: true
 # Clipboard extension app
 cask "clipy"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
 # Voice and text chat software
 cask "discord"
 # HTTP and GraphQL Client

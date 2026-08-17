@@ -226,6 +226,19 @@ in
 
   # 設定ファイル（リポジトリ実体を指す symlink）。従来 cargo-make の link_* が
   # 張っていた symlink を home-manager に移管します。
+  # Codex CLI の設定（リポジトリ実体を指す symlink で即時反映）。config.toml は
+  # Codex 自身も書き換える（marketplace の last_updated、hooks.state、projects の
+  # trust_level 等）が、symlink 越しに書き込み symlink は壊さないことを確認済み。
+  # そのため Codex 操作のたびにリポジトリ実体が更新され差分が出る（意図どおり）。
+  # auth.json など秘密を含むファイルは対象外。既存の実ファイルは force で置き換える。
+  home.file.".codex/config.toml" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${repo}/codex/config.toml";
+    force = true;
+  };
+  home.file.".codex/AGENTS.md" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${repo}/codex/AGENTS.md";
+    force = true;
+  };
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.profile";
   home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.vimrc";
 

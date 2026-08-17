@@ -1,0 +1,67 @@
+model = "gpt-5.6-luna"
+model_reasoning_effort = "max"
+[projects."/Users/takahiko-yamashita/ghq/github.com/takahiko-yamashita/gourmet-service"]
+trust_level = "trusted"
+
+[projects."/Users/takahiko-yamashita/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/takahiko-yamashita/Downloads"]
+trust_level = "trusted"
+
+[projects."/Users/takahiko-yamashita/ghq/github.com/RettyInc/retty-monorepo-terraform"]
+trust_level = "trusted"
+
+[projects."/Users/takahiko-yamashita/ghq/github.com/pyama2000/agent-skills"]
+trust_level = "trusted"
+
+[projects."/Users/takahiko-yamashita"]
+trust_level = "trusted"
+
+[features]
+hooks = true
+
+[hooks.state]
+
+[hooks.state."/Users/takahiko-yamashita/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:061c82430ee36a3de59e5fe605289a9c059cbb81884226f24e2b65425ffb53d5"
+
+[tui]
+theme = "gruvbox-dark"
+status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branch"]
+status_line_use_colors = true
+
+[marketplaces.claude-plugins-official]
+last_updated = "2026-08-17T07:43:01Z"
+last_revision = "8864c9d619547417e9bd9305df0b4fc078f89b08"
+source_type = "git"
+source = "https://github.com/anthropics/claude-plugins-official.git"
+
+[marketplaces.mymarketplace]
+last_updated = "2026-08-17T07:43:07Z"
+last_revision = "3a9d6f5b8e4df8b9c974b239f853ab9e1ea3a671"
+source_type = "git"
+source = "git@github.com:pyama2000/agent-skills.git"
+
+[plugins."superpowers@claude-plugins-official"]
+enabled = true
+
+[plugins."mattpocock-skills@claude-plugins-official"]
+enabled = true
+
+[plugins."myplugin@mymarketplace"]
+enabled = true
+
+[mcp_servers.awslabs_aws-knowledge-mcp-server]
+url = "https://knowledge-mcp.global.api.aws"
+
+[mcp_servers.awslabs_aws-documentation-mcp-server]
+command = "uvx"
+args = ["awslabs.aws-documentation-mcp-server@latest"]
+
+[mcp_servers.aws-mcp]
+command = "uvx"
+args = ["mcp-proxy-for-aws@1.6.2", "https://aws-mcp.us-east-1.api.aws/mcp", "--skip-auth", "--metadata", "INSTALL_SOURCE=agent-toolkit"]
+
+[mcp_servers.atlassian]
+url = "https://mcp.atlassian.com/v1/mcp/authv2"

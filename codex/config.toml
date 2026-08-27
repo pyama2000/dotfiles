@@ -1,5 +1,5 @@
-model = "gpt-5.6-luna"
-model_reasoning_effort = "max"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "low"
 [projects."/Users/takahiko-yamashita/ghq/github.com/takahiko-yamashita/gourmet-service"]
 trust_level = "trusted"
 
@@ -32,14 +32,14 @@ status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branc
 status_line_use_colors = true
 
 [marketplaces.claude-plugins-official]
-last_updated = "2026-08-17T07:43:01Z"
-last_revision = "8864c9d619547417e9bd9305df0b4fc078f89b08"
+last_updated = "2026-08-18T05:28:52Z"
+last_revision = "7458b5e539d2b1d4bff72a303250cab2f4744ef0"
 source_type = "git"
 source = "https://github.com/anthropics/claude-plugins-official.git"
 
 [marketplaces.mymarketplace]
-last_updated = "2026-08-17T07:43:07Z"
-last_revision = "3a9d6f5b8e4df8b9c974b239f853ab9e1ea3a671"
+last_updated = "2026-08-18T07:07:38Z"
+last_revision = "d874446aeee5b7ecc75770a0fd78de9af49757fc"
 source_type = "git"
 source = "git@github.com:pyama2000/agent-skills.git"
 

@@ -14,6 +14,14 @@ transparent_background = false
 # nvim / WezTerm の Kanagawa Wave パレットに寄せて上書きする。
 # 未指定キーは base から継承。色は #rrggbb（6桁）のみ。
 theme = "custom"
+mode = "stack"
+line_numbers = true
+wrap_lines = false
+hunk_headers = true
+menu_bar = true
+agent_notes = true
+copy_decorations = false
+cursor_line = "row"
 
 [custom_theme]
 base  = "kanagawa-wave"

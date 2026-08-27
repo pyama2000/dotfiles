@@ -11,6 +11,13 @@ let
   # これによりリポジトリ側を編集すると即反映され（nvim の lazy-lock.json 更新なども）、
   # 宣言的管理（home-manager）と編集しやすさを両立します。
   repo = "${config.home.homeDirectory}/dotfiles";
+
+  # Claude Code / Codex のグローバル規約。共通本文 agents/common.md にハーネス別ヘッダ
+  # (agents/{claude,codex}-header.md) を結合して生成する。symlink ではなく text 生成
+  # なので、agents/ を編集したあとは switch が必要。
+  readAgents = name: builtins.readFile (../../agents + "/${name}");
+  claudeGlobalMd = readAgents "claude-header.md" + "\n" + readAgents "common.md";
+  codexGlobalMd = readAgents "codex-header.md" + "\n" + readAgents "common.md";
 in
 {
   imports = [
@@ -235,8 +242,19 @@ in
     source = config.lib.file.mkOutOfStoreSymlink "${repo}/codex/config.toml";
     force = true;
   };
+  # Claude Code / Codex のグローバル規約（let の claudeGlobalMd / codexGlobalMd 参照）。
+  # ~/.claude-retty は Claude Code の別プロファイルで、同じ内容を配る。
+  # 既存の実ファイル・手動 symlink は force で置き換える。
+  home.file.".claude/CLAUDE.md" = {
+    text = claudeGlobalMd;
+    force = true;
+  };
+  home.file.".claude-retty/CLAUDE.md" = {
+    text = claudeGlobalMd;
+    force = true;
+  };
   home.file.".codex/AGENTS.md" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${repo}/codex/AGENTS.md";
+    text = codexGlobalMd;
     force = true;
   };
   home.file.".profile".source = config.lib.file.mkOutOfStoreSymlink "${repo}/.profile";

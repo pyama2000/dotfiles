@@ -31,7 +31,7 @@ trusted_hash = "sha256:061c82430ee36a3de59e5fe605289a9c059cbb81884226f24e2b65425
 
 [tui]
 theme = "gruvbox-dark"
-status_line = ["model-with-reasoning", "current-dir", "project-name", "git-branch"]
+status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-used", "used-tokens", "five-hour-limit", "weekly-limit", "estimated-thread-cost"]
 status_line_use_colors = true
 
 [marketplaces.claude-plugins-official]

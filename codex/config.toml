@@ -1,4 +1,4 @@
-model = "gpt-5.6-sol"
+model = "gpt-6-astra"
 model_reasoning_effort = "high"
 [projects."/Users/takahiko-yamashita/ghq/github.com/takahiko-yamashita/gourmet-service"]
 trust_level = "trusted"
@@ -27,6 +27,9 @@ trust_level = "trusted"
 [features]
 hooks = true
 
+[features.context_management]
+experimental_mode = true
+
 [hooks.state]
 
 [hooks.state."/Users/takahiko-yamashita/.codex/hooks.json:session_start:0:0"]
@@ -45,6 +48,9 @@ trusted_hash = "sha256:1423b56c1322f96c8f74c51c1e7ae9a047b904c1fa43ee9165d462fd7
 theme = "gruvbox-dark"
 status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-used", "used-tokens", "five-hour-limit", "weekly-limit", "estimated-thread-cost"]
 status_line_use_colors = true
+
+[tui.model_availability_nux]
+gpt-6-astra = 1
 
 [marketplaces.claude-plugins-official]
 last_updated = "2026-08-18T05:28:52Z"

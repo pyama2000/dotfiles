@@ -3,8 +3,7 @@
 # スキル優先順位規約
 
 - スキル呼び出しの外側ディスパッチャは superpowers:using-superpowers のみとする。
-  myplugin:task-scale-orchestrator は、規模や進め方の判断が要るときに superpowers:using-superpowers が選ぶ process スキルの一つとして扱う（ユーザー指示である本規約はスキルに優先し、両スキルともこれを明文で認めている）。
-- 規模判定では myplugin:task-scale-orchestrator の比例原則（オーバーヘッドをタスクに比例させる）を、superpowers:using-superpowers の「1% でも該当するなら必ず invoke」より優先する。
+- 規模判定では比例原則（オーバーヘッドをタスクに比例させる）を、superpowers:using-superpowers の「1% でも該当するなら必ず invoke」より優先する。
   MICRO・SMALL や境界的に小さい依頼では、かすかに関連するだけの process スキル（superpowers:test-driven-development 等）を発動しない。
 - 明白に該当する process スキル（バグ→superpowers:systematic-debugging、影響範囲が未確定→myplugin:fable-hyper-reasoning-core 等）は規模に関わらず発動する。
   比例原則が上書きするのは「小規模 × かすかな該当」の帯に限る。

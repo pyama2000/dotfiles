@@ -2,11 +2,14 @@
 
 # スキル優先順位規約
 
-- スキル呼び出しの外側ディスパッチャは superpowers:using-superpowers のみとする。
-- 規模判定では比例原則（オーバーヘッドをタスクに比例させる）を、superpowers:using-superpowers の「1% でも該当するなら必ず invoke」より優先する。
-  MICRO・SMALL や境界的に小さい依頼では、かすかに関連するだけの process スキル（superpowers:test-driven-development 等）を発動しない。
-- 明白に該当する process スキル（バグ→superpowers:systematic-debugging、影響範囲が未確定→myplugin:fable-hyper-reasoning-core 等）は規模に関わらず発動する。
-  比例原則が上書きするのは「小規模 × かすかな該当」の帯に限る。
+- スキル呼び出しの外側ディスパッチャはsuperpowers:using-superpowersのみとする。
+- ユーザーの指示、依頼の目的、既存の許可をスキルの手順より優先する。
+- スキルの選択と手順の量には比例原則を適用し、変更の振る舞いと失敗時の影響に合わせる。
+  superpowers:using-superpowersの「1%でも該当するなら必ずinvoke」や、固定回数・固定形式の要求より、この原則を優先する。
+  小規模でかすかに関連するだけのprocessスキルは発動しない。
+- バグにはsuperpowers:systematic-debuggingを使い、規模に関わらず原因を確認する。
+  共有コードの影響範囲が未確定、永続データ・公開契約の変更、通常の原因確認で解けない調査にはmyplugin:fable-hyper-reasoning-coreを使う。
+  確認済みの証拠と検証は再利用し、明白に該当するスキルでも手順の深さを対象に合わせる。
 
 # 全力調査の意味
 
@@ -15,8 +18,6 @@
 - 上位 N や打ち切りをせず全件を扱う。
 - 生データを提示する。
 - 推測と事実を分けて書く。
-
-対象がコード・インフラの調査で、影響範囲や原因が未確定なら myplugin:fable-hyper-reasoning-core を読む。
 
 # 外向け文章プリセット
 
@@ -43,7 +44,10 @@
 
 # 実行境界
 
-- 読み取り専用操作は承認を待たず進める。
+- 読み取り専用操作と、依頼済みの範囲で許可された作業は進める。
+  既に合意した計画や操作は、対象と条件が変わらなければ再承認を求めない。
+- 新しい承認や判断が必要な場合は、依存しない調査・実装・検証を先に終え、確認対象と結果を具体化して質問する。
+  回答に依存する操作は待ち、それ以外の依頼済み作業は続ける。
 - クラウド/インフラ（AWS/GCP/Fastly/Datadog 等）への書き込み、terraform apply/destroy、git push は人間の承認を得る。
 - commit と PR 作成の可否はリポジトリごとの CLAUDE.md / AGENTS.md に従う。
 

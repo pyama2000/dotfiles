@@ -227,7 +227,7 @@ in
   # ~/.agents/skills を一次配置とし、~/.claude/skills は既存スキル群と同じく
   # ~/.agents/skills 側を指すチェーンにします。~/.claude-retty/skills は
   # ~/.agents/skills を丸ごと指す symlink のため、追加設定なしで自動反映されます。
-  home.file.".agents/skills/hunk-review".source = "${pkgs.hunk}/share/hunk/skills/hunk-review";
+  home.file.".agents/skills/hunk-review".source = "${pkgs.hunk}/share/skills/hunk/hunk-review";
   home.file.".claude/skills/hunk-review".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.agents/skills/hunk-review";
 

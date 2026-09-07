@@ -27,6 +27,9 @@ trust_level = "trusted"
 [projects."/Users/takahiko-yamashita/ghq/github.com/RettyInc/mo-terraform"]
 trust_level = "trusted"
 
+[projects."/Users/takahiko-yamashita/ghq/github.com/takahiko-yamashita/claude-code-genarated"]
+trust_level = "trusted"
+
 [features]
 hooks = true
 
@@ -53,7 +56,7 @@ status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-use
 status_line_use_colors = true
 
 [tui.model_availability_nux]
-gpt-6-astra = 3
+gpt-6-astra = 4
 
 [marketplaces.claude-plugins-official]
 last_updated = "2026-08-18T05:28:52Z"

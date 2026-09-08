@@ -24,6 +24,15 @@ vim.lsp.enable("nixd")
 
 -- Protocol Buffers (buf)
 vim.lsp.enable("buf_ls")
+vim.filetype.add({
+  filename = {
+    ["buf.yaml"] = "buf-config",
+    ["buf.gen.yaml"] = "buf-config",
+    ["buf.policy.yaml"] = "buf-config",
+    ["buf.lock"] = "buf-config",
+  },
+})
+vim.treesitter.language.register("yaml", "buf-config")
 -- Python
 vim.lsp.enable("ruff")
 vim.lsp.enable("pylsp")

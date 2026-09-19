@@ -30,6 +30,18 @@ trust_level = "trusted"
 [projects."/Users/takahiko-yamashita/ghq/github.com/takahiko-yamashita/claude-code-genarated"]
 trust_level = "trusted"
 
+[projects."/Users/takahiko-yamashita/workspace/proof-of-concept/burrow"]
+trust_level = "trusted"
+
+[projects."/Users/takahiko-yamashita/ghq/github.com/RettyInc/retty-access-management-terraform"]
+trust_level = "trusted"
+
+[projects."/Users/takahiko-yamashita/ghq/github.com/RettyInc/gourmet_news_writer"]
+trust_level = "trusted"
+
+[projects."/Users/takahiko-yamashita/ghq/github.com/RettyInc/gourmet_news"]
+trust_level = "trusted"
+
 [features]
 hooks = true
 

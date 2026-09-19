@@ -5,6 +5,8 @@ tap "hashicorp/tap"
 tap "homebrew/services"
 tap "kitagry/tap"
 tap "rjyo/moshi", trusted: true
+# Pure-Rust Protocol Buffers implementation with editions support
+brew "buffa"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # Play, record, convert, and stream select audio and video codecs
@@ -59,5 +61,4 @@ cargo "sqlx-cli"
 uv "awscli-local"
 uv "awslabs-ecs-mcp-server"
 uv "codegraph-mcp-server"
-npm "agent-browser"
 npm "corepack"

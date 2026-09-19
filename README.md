@@ -86,7 +86,7 @@ CLI ツールは重複管理を避けるため、以下の優先順位で 1 箇�
 6. `aqua i`・`rustup update`・`mise upgrade` を実行
 7. macOS では `brew update && brew upgrade && brew upgrade --cask && brew autoremove && brew cleanup`
 8. Neovim プラグインを更新（`Lazy! update`）、`nvim/lazy-lock.json` に差分があれば自動でコミット・push
-9. macOS では `Brewfile` を再生成（`brew bundle dump --force --all`）— 差分があってもここは**自動コミットせず**レビューを促すだけです
+9. macOS では `Brewfile` を再生成（`brew bundle dump --force --formulae --casks --taps --go --cargo --uv --npm`。Homebrew 6 で `--all` は廃止）、差分があれば自動でコミット・push
 
 > `flake.lock` と `lazy-lock.json` は Renovate でも自動更新されるため、手動での `update.sh` 実行は「まとめて今すぐ上げたいとき」の整理として使えば十分です。
 

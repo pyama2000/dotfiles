@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # dotfiles と各種ツールを日常的に更新するスクリプトです。
-# Nix(flake.lock)・aqua・rustup・mise・Neovim プラグイン、macOS では Homebrew を更新します。
+# Nix(flake.lock)・aqua・rustup・mise・エージェント用スキル・Neovim プラグイン、macOS では Homebrew を更新します。
 # switch する前に必ず build で評価が通ることを確認します。
 set -euo pipefail
 
@@ -114,6 +114,15 @@ fi
 # --bump は付けません（global config は home-manager 管理の読み取り専用ファイルのため）。
 if command -v mise > /dev/null 2>&1; then
   mise upgrade --yes
+fi
+
+# skills CLI でグローバルに入れたエージェント用スキル（~/.agents/skills）を更新します。
+# node は mise 管理のため、ランタイム更新の後に実行します。--global はリポジトリ内で実行しても
+# プロジェクト側に切り替わらないように、末尾の --yes は対話プロンプトを出さないように付けます。
+# 書き込み先はリポジトリ外のためコミットは不要です。ネットワーク依存のため、失敗しても警告に留めて続行します。
+if command -v npx > /dev/null 2>&1; then
+  echo 'エージェント用スキルを更新します。'
+  npx --yes skills update --global --yes || echo '警告: skills update が失敗しました。手動で確認してください。' >&2
 fi
 
 # macOS では Homebrew を更新します。

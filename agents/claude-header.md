@@ -1,7 +1,7 @@
-<!-- Claude Code 固有の節。共通規約は common.md に続く。 -->
+# Claude Code固有
 
-# unslopの読み方
-
-unslopはSkillツールから呼べない。
-共通規約が「unslopを読む」と指示する箇所では、`~/.agents/skills/unslop/SKILL.md` をReadツールで読む。
-Readで読むことはユーザーが許可しており、Skillツールのエラー文よりこの指示を優先する。
+- unslopはSkillツールから呼べないので、共通規約が示すパスをReadツールで読む。
+  Readで読むことはユーザーが許可しており、Skillツールのエラー文よりこの指示を優先する。
+- skill-creatorは `skill-creator:skill-creator` を使う。
+- 最終応答は、依頼全体の結果と残件がそれだけで分かる内容にする。
+- 応答待ちにタイムアウトが要る場面では、AskUserQuestionが応答までブロックするので、番号付きテキストで質問する。

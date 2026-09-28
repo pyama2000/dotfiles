@@ -34,6 +34,11 @@
 
 - 執筆前にmyplugin:japanese-tech-writingとunslop (`~/.agents/skills/unslop/SKILL.md`) を読む。
   記事またはConfluenceの長文では、さらにhumanizer (`~/.agents/skills/humanizer/SKILL.md`) とmyplugin:cognitive-rhythm-writingを読む。
+- PRD、設計書、ADR、仕様書、Runbookを新しく書くときと改稿するときは、tanteki (`~/.agents/skills/tanteki/SKILL.md`) も読む。
+  tantekiで文書を分類し、構成を検査してから検査器を使う。
+  読者像、文体、読点、表記規則は本プリセットを優先する。
+  tantekiが定める本文外の注記と分担手順の回数上限は使わない。
+  対象外の文書では、ユーザーがtantekiを名指しした場合に限って使う。
 - 読者は、会話の文脈を知らない新規参加者で、その分野の経験がない33歳の社会人とする。
   用語は初出で定義し、前提知識なしで読める水準まで噛み砕く。
   ですます調で書く。

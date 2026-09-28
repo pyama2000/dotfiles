@@ -1,4 +1,4 @@
-model = "gpt-6-astra"
+model = "gpt-6-sol"
 model_reasoning_effort = "high"
 [projects."/Users/takahiko-yamashita/ghq/github.com/takahiko-yamashita/gourmet-service"]
 trust_level = "trusted"
@@ -66,6 +66,7 @@ trusted_hash = "sha256:1423b56c1322f96c8f74c51c1e7ae9a047b904c1fa43ee9165d462fd7
 theme = "gruvbox-dark"
 status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-used", "used-tokens", "five-hour-limit", "weekly-limit", "estimated-thread-cost"]
 status_line_use_colors = true
+screen_reader_detection_done = true
 
 [tui.model_availability_nux]
 gpt-6-astra = 4

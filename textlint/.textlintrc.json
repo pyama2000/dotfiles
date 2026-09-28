@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "preset-ai-words-ja": {
+      "no-ai-words": {
+        "allows": [
+          "検査", "照合", "実測", "断定", "経路", "事故", "/^漏れ$/",
+          "突き合わせ", "既定で", "見落と", "切り分け", "疑", "崩"
+        ]
+      },
+      "no-short-topic-comma": { "maxLength": 5 }
+    },
+    "max-ten": { "max": 1 },
+    "@textlint-ja/preset-ai-writing": {
+      "no-ai-list-formatting": { "disableBoldListItems": true },
+      "ai-tech-writing-guideline": false
+    }
+  }
+}

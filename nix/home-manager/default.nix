@@ -278,6 +278,8 @@ in
       config.lib.file.mkOutOfStoreSymlink "${repo}/herdr/plugins/config/persiyanov.reviewr/config.toml";
     # hunk（ターミナル diff ビューア）の設定。リポジトリ実体を指す symlink で即時反映。
     "hunk/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/hunk/config.toml";
+    # textlint の設定と依存はリポジトリで管理します。
+    "textlint".source = config.lib.file.mkOutOfStoreSymlink "${repo}/textlint";
   };
 
   # Home Manager can also manage your environment variables through

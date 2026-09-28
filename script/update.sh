@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # dotfiles と各種ツールを日常的に更新するスクリプトです。
-# Nix(flake.lock)・aqua・rustup・mise・エージェント用スキル・Neovim プラグイン、macOS では Homebrew を更新します。
+# Nix(flake.lock)・aqua・rustup・mise・textlint・エージェント用スキル・Neovim プラグイン、macOS では Homebrew を更新します。
 # switch する前に必ず build で評価が通ることを確認します。
 set -euo pipefail
 
@@ -114,6 +114,13 @@ fi
 # --bump は付けません（global config は home-manager 管理の読み取り専用ファイルのため）。
 if command -v mise > /dev/null 2>&1; then
   mise upgrade --yes
+fi
+
+# textlint の依存をlockfileから導入します。npm がない場合や取得に失敗した場合は警告して続行します。
+if command -v npm > /dev/null 2>&1; then
+  npm ci --prefix "${REPO_DIR}/textlint" || echo '警告: textlint の依存を導入できませんでした。' >&2
+else
+  echo '警告: npm が見つからないため textlint の更新をスキップします。' >&2
 fi
 
 # skills CLI でグローバルに入れたエージェント用スキル（~/.agents/skills）を更新します。

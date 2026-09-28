@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 新しいマシンをブートストラップするためのスクリプトです。
 # Nix(macOS は nix-darwin、Linux は standalone home-manager)を中心に環境を構築し、
-# Nix で扱えないもの（aqua / rustup / mise ランタイム / lima VM）だけを個別に整えます。
+# Nix で扱えないもの（aqua / rustup / mise ランタイム / textlint / lima VM）だけを個別に整えます。
 # すべての手順は冪等で、既に完了している場合はスキップします。
 set -euo pipefail
 
@@ -83,6 +83,16 @@ setup_mise_runtimes() {
   mise install --yes
 }
 
+# textlint の依存を導入します。npm がない場合や取得に失敗した場合は警告して続行します。
+setup_textlint() {
+  if ! command -v npm > /dev/null 2>&1; then
+    echo '警告: npm が見つからないため textlint のセットアップをスキップします。' >&2
+    echo '      新しいシェルで再実行してください。' >&2
+    return
+  fi
+  npm ci --prefix "${REPO_DIR}/textlint" || echo '警告: textlint の依存を導入できませんでした。' >&2
+}
+
 setup_macos() {
   # Xcode Command Line Tools を確認・インストールします。
   if ! xcode-select -p > /dev/null 2>&1; then
@@ -135,6 +145,7 @@ setup_macos() {
 
   setup_rustup
   setup_mise_runtimes
+  setup_textlint
   setup_lima
 }
 
@@ -239,6 +250,7 @@ setup_linux() {
 
   setup_rustup
   setup_mise_runtimes
+  setup_textlint
 }
 
 # dotfiles リポジトリを ~/dotfiles に clone し、origin を SSH URL に設定します。

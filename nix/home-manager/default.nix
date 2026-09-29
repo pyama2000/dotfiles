@@ -155,6 +155,7 @@ in
     pkgs.stylua
 
     # Language Server
+    pkgs.astro-language-server
     pkgs.bash-language-server
     pkgs.lua-language-server
     pkgs.terraform-ls

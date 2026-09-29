@@ -6,7 +6,9 @@ return {
   config = function()
     -- main ブランチの setup() は install_dir しか受け付けないため、パーサーは明示的にインストールする
     require("nvim-treesitter").install({
+      "astro",
       "bash",
+      "css",
       "dockerfile",
       "fish",
       "go",

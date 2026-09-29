@@ -2,6 +2,10 @@ vim.lsp.config("*", {
   capabilities = require("blink.cmp").get_lsp_capabilities(),
 })
 
+-- Astro
+-- プロジェクトの node_modules に typescript (6.x 以下) が無いと起動に失敗する
+vim.lsp.enable("astro")
+
 -- Bash / Shell Script
 vim.lsp.enable("bashls")
 

@@ -1,5 +1,5 @@
 model = "gpt-6-sol"
-model_reasoning_effort = "high"
+model_reasoning_effort = "medium"
 [projects."/Users/takahiko-yamashita/ghq/github.com/takahiko-yamashita/gourmet-service"]
 trust_level = "trusted"
 
@@ -40,6 +40,15 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/Users/takahiko-yamashita/ghq/github.com/RettyInc/gourmet_news"]
+trust_level = "trusted"
+
+[projects."/private/tmp/re-architecture-gourmet-news"]
+trust_level = "trusted"
+
+[projects."/private/tmp/retty2-darvish-crawler"]
+trust_level = "trusted"
+
+[projects."/Users/takahiko-yamashita/workspace/retty/rearchitecture-gourmet-news"]
 trust_level = "trusted"
 
 [features]
@@ -87,6 +96,10 @@ source = "git@github.com:pyama2000/agent-skills.git"
 source_type = "git"
 source = "https://github.com/DietrichGebert/ponytail.git"
 
+[marketplaces.docker]
+source_type = "git"
+source = "https://github.com/docker/skills.git"
+
 [plugins."superpowers@claude-plugins-official"]
 enabled = true
 
@@ -109,3 +122,7 @@ args = ["awslabs.aws-documentation-mcp-server@latest"]
 [mcp_servers.aws-mcp]
 command = "uvx"
 args = ["mcp-proxy-for-aws@1.6.2", "https://aws-mcp.us-east-1.api.aws/mcp", "--skip-auth", "--metadata", "INSTALL_SOURCE=agent-toolkit"]
+
+[mcp_servers.astro-docs]
+command = "npx"
+args = ["-y", "mcp-remote", "https://mcp.docs.astro.build/mcp"]

@@ -1,3 +1,6 @@
+-- 既定の WARN では lsp.log が肥大化するため、ERROR 以上だけを記録する
+vim.lsp.log.set_level(vim.log.levels.ERROR)
+
 vim.lsp.config("*", {
   capabilities = require("blink.cmp").get_lsp_capabilities(),
 })

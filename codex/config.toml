@@ -101,6 +101,11 @@ source = "https://github.com/DietrichGebert/ponytail.git"
 source_type = "git"
 source = "https://github.com/docker/skills.git"
 
+[marketplaces.i-have-adhd]
+source_type = "git"
+source = "https://github.com/ayghri/i-have-adhd.git"
+ref = "main"
+
 [plugins."superpowers@claude-plugins-official"]
 enabled = true
 
@@ -111,6 +116,9 @@ enabled = true
 enabled = true
 
 [plugins."ponytail@ponytail"]
+enabled = true
+
+[plugins."i-have-adhd@i-have-adhd"]
 enabled = true
 
 [mcp_servers.awslabs_aws-knowledge-mcp-server]

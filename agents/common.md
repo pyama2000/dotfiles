@@ -32,8 +32,11 @@
 コードコメントと、エージェントが読む文書 (ワーカーへの依頼書、エージェント間のレポート、メモリ、SKILL.md、CLAUDE.md、AGENTS.md) には表記規則のみ適用する。
 リポジトリに既存のコメント言語・規約があればそれを優先する。
 
-- 執筆前にmyplugin:japanese-tech-writingとunslop (`~/.agents/skills/unslop/SKILL.md`) を読む。
-  記事またはConfluenceの長文では、さらにhumanizer (`~/.agents/skills/humanizer/SKILL.md`) とmyplugin:cognitive-rhythm-writingを読む。
+- 執筆前にmyplugin:japanese-tech-writingを読む。
+  日本語の文章ではyomiyasu (`~/.agents/skills/yomiyasu/SKILL.md`) も読み、新しく書くときはその「1. 基本原則」だけを使う。
+  読点と文体は、yomiyasuの指示より本プリセットを優先する。
+  日本語以外の文章ではunslop (`~/.agents/skills/unslop/SKILL.md`) も読む。
+  記事またはConfluenceの長文ではmyplugin:cognitive-rhythm-writingも読み、日本語以外ならhumanizer (`~/.agents/skills/humanizer/SKILL.md`) も読む。
 - PRD、設計書、ADR、仕様書、Runbookを新しく書くときと改稿するときは、tanteki (`~/.agents/skills/tanteki/SKILL.md`) も読む。
   tantekiで文書を分類し、構成を検査してから検査器を使う。
   読者像、文体、読点、表記規則は本プリセットを優先する。
@@ -57,7 +60,7 @@
   調査レポートに記す使用ツールとバージョンは、この対象に含めない。
 - 表記規則: 英数字の前後に空白を入れない (例: 「Slack投稿」「90日分」)。
   半角括弧は前後に半角空白を置く (例: 「対象日 (UTC) を」)。
-  括弧の使い方は、unslopの指示よりこの表記規則を優先する。
+  括弧の使い方は、unslopとyomiyasuの指示よりこの表記規則を優先する。
 
 # 成果物とレポートの出し方
 

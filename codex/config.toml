@@ -1,5 +1,5 @@
-model = "gpt-6-sol"
-model_reasoning_effort = "medium"
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
 [projects."/Users/takahiko-yamashita/ghq/github.com/takahiko-yamashita/gourmet-service"]
 trust_level = "trusted"
 
@@ -79,6 +79,7 @@ screen_reader_detection_done = true
 
 [tui.model_availability_nux]
 gpt-6-astra = 4
+"gpt-6.1-sol" = 4
 
 [marketplaces.claude-plugins-official]
 last_updated = "2026-08-18T05:28:52Z"

@@ -51,6 +51,12 @@ trust_level = "trusted"
 [projects."/Users/takahiko-yamashita/workspace/retty/rearchitecture-gourmet-news"]
 trust_level = "trusted"
 
+[projects."/Users/takahiko-yamashita/ghq/github.com/RettyInc/sigsci-terraform"]
+trust_level = "trusted"
+
+[projects."/Users/takahiko-yamashita/ghq/github.com/RettyInc/infra"]
+trust_level = "trusted"
+
 [features]
 hooks = true
 
@@ -70,6 +76,9 @@ trusted_hash = "sha256:8c9efc5a5e649c8cdca3f0b7bf4cba81d9717d1bc930c7dbc18b6efd6
 
 [hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:subagent_start:0:0"]
 trusted_hash = "sha256:7954d675ef3bafd5e5a6073ae51d7de57a08f21340f241c332f99078e955675d"
+
+[hooks.state."i-have-adhd@i-have-adhd:hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:f14f820a4bb04f568faf482695f08471d7ed733a25fd94181693a7be4f06a637"
 
 [tui]
 theme = "gruvbox-dark"

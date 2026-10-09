@@ -13,6 +13,9 @@ packages:
 # ここには nixpkgs に存在しない CLI ツールだけを残します。
 # それ以外（gh/jq/fd/ripgrep/kubectl/aws-cli/uv/ruff/buf/google-cloud-sdk/ecspresso 等）は
 # Nix(home-manager の home.packages, nix/home-manager/default.nix)に一元管理を移しました。
+# 例外: terraform-ls は nixpkgs にもありますが、nixpkgs 版はプロバイダースキーマを埋め込まずにビルドされ、
+# terraform init していないモジュールで補完と定義ジャンプが効かないため、HashiCorp 公式版をここで管理します。
 - name: fujiwara/tracer@v1.1.3
 - name: fujiwara/lambroll@v1.5.4
 - name: github/copilot-cli@v1.0.94
+- name: hashicorp/terraform-ls@v0.39.0

@@ -45,6 +45,19 @@ retry() {
   done
 }
 
+# PATH 上の terraform-ls が、プロバイダースキーマを埋め込んだ HashiCorp 公式版かを確かめます。
+# nixpkgs 版は `go generate ./internal/schemas` を経ずにビルドされるためスキーマを持たず、
+# terraform init していないモジュールで補完と定義ジャンプが効きません（公式版は aqua.yaml で管理）。
+terraform_ls_has_schemas() {
+  local bin
+  bin="$(command -v terraform-ls)" || return 1
+  # aqua 管理のコマンドは aqua-proxy へのリンクなので、実体のパスに解決します。
+  if [ "$(basename "$(readlink -f "${bin}")")" = 'aqua-proxy' ]; then
+    bin="$(aqua which terraform-ls)" || return 1
+  fi
+  grep -q -a 'data/registry.terraform.io' "${bin}"
+}
+
 cd "${REPO_DIR}"
 
 # 追跡ファイルに未コミットの変更がある場合は中断します（未追跡ファイルは許容）。
@@ -103,6 +116,9 @@ esac
 # aqua パッケージを更新します。
 if command -v aqua > /dev/null 2>&1; then
   (cd "${REPO_DIR}" && aqua i)
+fi
+if ! terraform_ls_has_schemas; then
+  echo '警告: PATH 上の terraform-ls にプロバイダースキーマが埋め込まれていません。aqua の公式版が使われているか確認してください。' >&2
 fi
 
 # rustup を更新します。

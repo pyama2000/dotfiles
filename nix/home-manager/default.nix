@@ -158,7 +158,7 @@ in
     pkgs.astro-language-server
     pkgs.bash-language-server
     pkgs.lua-language-server
-    pkgs.terraform-ls
+    # terraform-ls は aqua で管理します（nixpkgs 版はプロバイダースキーマを埋め込んでいないため。aqua.yaml を参照）
     pkgs.yaml-language-server
     pkgs.kotlin-language-server
     # gopls（go install から移行）

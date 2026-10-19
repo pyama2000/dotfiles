@@ -4,6 +4,7 @@
     "textlint": "15.8.0",
     "textlint-rule-preset-ai-words-ja": "1.2.1",
     "textlint-rule-max-ten": "5.0.0",
-    "@textlint-ja/textlint-rule-preset-ai-writing": "1.7.0"
+    "@textlint-ja/textlint-rule-preset-ai-writing": "1.7.0",
+    "textlint-rule-prh": "6.1.1"
   }
 }

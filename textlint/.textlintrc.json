@@ -13,6 +13,7 @@
     "@textlint-ja/preset-ai-writing": {
       "no-ai-list-formatting": { "disableBoldListItems": true },
       "ai-tech-writing-guideline": false
-    }
+    },
+    "prh": { "rulePaths": ["./prh.yml"] }
   }
 }

@@ -118,6 +118,10 @@ source_type = "git"
 source = "https://github.com/ayghri/i-have-adhd.git"
 ref = "main"
 
+[marketplaces.revdiff]
+source_type = "git"
+source = "https://github.com/umputun/revdiff.git"
+
 [plugins."superpowers@claude-plugins-official"]
 enabled = true
 
@@ -131,6 +135,9 @@ enabled = true
 enabled = true
 
 [plugins."i-have-adhd@i-have-adhd"]
+enabled = true
+
+[plugins."revdiff@revdiff"]
 enabled = true
 
 [mcp_servers.awslabs_aws-knowledge-mcp-server]

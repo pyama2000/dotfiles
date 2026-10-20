@@ -63,10 +63,28 @@ CLI ツールは重複管理を避けるため、以下の優先順位で 1 箇�
 
 1. **nixpkgs**（home-manager の `home.packages` / `programs.*`、`nix/home-manager/default.nix`）— 基本はここ
 2. **aqua**（`aqua.yaml`）— nixpkgs に存在しないツールのみ（現状 `tracer` / `lambroll` / `github/copilot-cli`）
-3. **Homebrew**（`nix-darwin` の `homebrew` モジュール、`nix/darwin/homebrew.nix`）— `git`（ブートストラップ）、`python@3.9`（EOL で nixpkgs から削除済み）、`readline` / `xz`（python ビルド依存: mise の compile フォールバックと python@3.9 が参照）、`aqua` バイナリ本体、GUI cask
+3. **Homebrew**（`nix-darwin` の `homebrew` モジュール、`nix/darwin/homebrew.nix`）— `git`（ブートストラップ）、`python@3.9`（EOL で nixpkgs から削除済み）、`readline` / `xz`（python ビルド依存: mise の compile フォールバックと python@3.9 が参照）、`aqua` バイナリ本体、`revdiff`（差分レビュー用のターミナルツール。nixpkgs・aqua にないため `umputun/apps` tap から入れる。macOS のみ）、GUI cask
 4. **ネイティブのマネージャ**（残り全部）— `rustup`、nixpkgs に無い一部の cargo/uv/npm/go 製ツール（`kani-verifier` / `awscli-local` / `cronv` / `sshtunnel` / MCP サーバ / `@playwright/cli` など）。Node / Python のバージョン切替は `mise`（本体は nixpkgs の `programs.mise`、ランタイムは `mise install`）が担います
 
 `Brewfile` は `update.sh` が `brew bundle dump` で自動生成する参照用ミラーであり、**手動編集はしません**。Homebrew の実体は `nix/darwin/homebrew.nix` です。
+
+## 差分レビュー（hunk / revdiff）
+
+レビュー用のターミナルツールは 2 つあり、対象で使い分けています。
+
+- `hunk`（nixpkgs）: Git 管理下の変更を差分でレビューする
+- `revdiff`（Homebrew、macOS のみ）: Git 外にあるファイル・差分がないファイル・単体ファイルをレビューする
+
+Linux には revdiff を入れていません。revdiff の設定 `revdiff/config` とテーマ `revdiff/themes/kanagawa-wave` はファイル単位で `~/.config/revdiff/` に symlink しています。
+
+Claude Code と Codex の revdiff プラグインは `install.sh` に含めず、次のコマンドで個別に入れます。Codex 側の登録は `codex/config.toml` に書き込まれます。プランを自動でレビューする `revdiff-planning` は入れません。
+
+```shell script
+claude plugin marketplace add umputun/revdiff
+claude plugin install revdiff@revdiff
+codex plugin marketplace add umputun/revdiff
+codex plugin add revdiff@revdiff
+```
 
 ## 開発環境更新
 

@@ -1,0 +1,20 @@
+# revdiff (差分レビューのTUI) の設定。~/.config/revdiff/configへhome-managerがsymlinkする
+# (リポジトリ実体を指すため、編集が即時反映される)。キーの一覧と既定値はrevdiff --dump-configで出せる。
+# 値の後ろに書いた文字も値として読まれるため、コメントは行頭の#だけで書く。
+# TUIのTでテーマを確定すると、revdiffがこのsymlinkを実ファイルで置き換える
+# (次のswitchでconfig.hm-backupへ退避される)。テーマはこのファイルで変える。
+
+# テーマはthemes/kanagawa-wave (nvim・WezTerm・hunkと同じKanagawa Wave) を使う。
+theme = kanagawa-wave
+
+# vim風の移動 (カウント、gg、G、zz/zt/zb、ZZ/ZQ) を有効にする。
+vim-motion = true
+
+# 差分に行番号を表示する (hunkのline_numbers = trueに相当)。
+line-numbers = true
+
+# 長い行を折り返さない (hunkのwrap_lines = falseに相当。既定値と同じだが明示する)。
+wrap = false
+
+# 対になった追加行と削除行で、変わった語句を強調する (hunkの語句ハイライトに相当)。
+word-diff = true

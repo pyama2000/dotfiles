@@ -1,0 +1,62 @@
+# name: kanagawa-wave
+# description: Kanagawa Wave (nvim・WezTerm・hunkと同じ配色)
+
+# revdiffのKanagawa Waveテーマ。~/.config/revdiff/themes/kanagawa-waveへhome-managerがsymlinkする。
+# 色はhunk/config.tomlと同じKanagawa Waveのパレットから取り、hunkに無い役割はnvim (kanagawa.nvimのwave) の
+# 強調グループに合わせた。各キーの上の行に、パレット名・描く場所・対応するhunkのキーかnvimのグループを書く。
+# 値の後ろに書いた文字は値として読まれ色の検証で失敗するため、コメントは行頭の#だけで書く (;はコメントにならない)。
+# 色は#rrggbbの6桁だけを受け付ける。
+
+# chroma内蔵のkanagawa-waveを使う。キーワード (oniViolet)・文字列 (springGreen)・関数 (crystalBlue)・
+# 型 (waveAqua2)・コメント (fujiGray)・数値 (sakuraPink) の色がnvimのKanagawa Waveと一致する。
+chroma-style = kanagawa-wave
+
+# crystalBlue: アクティブなペインの枠、ディレクトリ名、ポップアップの枠 (hunkのaccent、nvimのDirectory)
+color-accent = #7e9cd8
+# sumiInk6: 非アクティブなペインの枠 (hunkのborder、nvimのFloatBorder)
+color-border = #54546d
+# fujiWhite: ツリーのファイル名と、構文強調されない行の文字 (hunkのtext)
+color-normal = #dcd7ba
+# fujiGray: 行番号とblameの欄、区切り記号、入力欄の案内文 (hunkのmuted)
+color-muted = #727169
+
+# fujiWhite: 選択行の文字 (nvimのPmenu)
+color-selected-fg = #dcd7ba
+# waveBlue2: 選択行の背景 (hunkのselectedHunk、nvimのPmenuSel)
+color-selected-bg = #2d4f67
+# carpYellow: 注釈の文字と注釈付きファイルの印 (内蔵テーマはどれも黄系)
+color-annotation = #e6c384
+# roninYellow: カーソル位置を示す▶ (nvimのCursorLineNr)
+color-cursor-fg = #ff9e3b
+# sumiInk3: ▶のセルの背景。diff-bgと同じにして周りに溶け込ませる
+color-cursor-bg = #1f1f28
+
+# autumnGreen: 追加行の+、ツリーの状態文字、構文強調されない追加行の文字 (hunkのaddedSignColor、nvimのdiffAdded)
+color-add-fg = #76946a
+# winterGreen: 追加行の背景 (hunkのaddedBg、nvimのDiffAdd)
+color-add-bg = #2b3328
+# autumnRed: 削除行の-、ツリーの状態文字、構文強調されない削除行の文字 (hunkのremovedSignColor、nvimのdiffRemoved)
+color-remove-fg = #c34043
+# winterRed: 削除行の背景 (hunkのremovedBg、nvimのDiffDelete)
+color-remove-bg = #43242b
+# パレット外: 追加行の中で変わった語句の背景 (hunkのaddedContentBgと同じ)
+color-word-add-bg = #3a4a30
+# パレット外: 削除行の中で変わった語句の背景 (hunkのremovedContentBgと同じ)
+color-word-remove-bg = #5a2e33
+# autumnYellow: collapsedモードで変更行の文字 (nvimのdiffChanged)
+color-modify-fg = #dca561
+# winterYellow: collapsedモードで変更行の背景 (nvimのDiffText。DiffChangeのwinterBlueは背景と見分けにくい)
+color-modify-bg = #49443c
+
+# sumiInk0: ファイルツリーの背景 (hunkのpanel)
+color-tree-bg = #16161d
+# sumiInk3: 差分ペインの背景。端末の背景を透かさず塗る (hunkのbackgroundとtransparent_background = false)
+color-diff-bg = #1f1f28
+# oldWhite: ステータスバーの文字 (nvimのStatusLine)
+color-status-fg = #c8c093
+# sumiInk0: ステータスバーの背景 (nvimのStatusLine)
+color-status-bg = #16161d
+# fujiWhite: 検索で一致した箇所の文字 (nvimのSearch)
+color-search-fg = #dcd7ba
+# waveBlue2: 検索で一致した箇所の背景 (nvimのSearch)
+color-search-bg = #2d4f67

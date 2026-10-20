@@ -21,9 +21,11 @@
 
     # sbx cask、aqua 本体（aquaproj/aqua/aqua）がそれぞれ docker/tap, aquaproj/aqua 由来のため
     # tap を宣言します。
+    # revdiff (umputun/apps/revdiff) の配布元umputun/appsも同じ理由で宣言します。
     taps = [
       "docker/tap"
       "aquaproj/aqua"
+      "umputun/apps"
     ];
 
     # nixpkgs に存在する CLI ツールは Nix(home-manager の home.packages)へ移しました。
@@ -32,11 +34,15 @@
     #   - python@3.9      : EOL のため nixpkgs から削除済み（移行先が無い）
     #   - readline / xz   : python ビルド依存。mise は既定で precompiled binary を使うが、
     #                       compile フォールバック（python-build）と python@3.9 が参照するため残す
+    #   - revdiff         : 差分レビューのTUI。nixpkgs・aquaレジストリに無い。hunk (nixpkgs) と併存し、
+    #                       Git外・差分なし・単体ファイルのレビューに使う。完全修飾名で書く
+    #                       (nix-darwinがtrusted: trueを付けるため、tap側の信頼設定が要らない)
     brews = [
       "git"
       "python@3.9"
       "readline"
       "xz"
+      "umputun/apps/revdiff"
     ];
 
     # aqua 本体は nixpkgs に存在しないため Homebrew で管理します。

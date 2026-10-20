@@ -279,6 +279,12 @@ in
       config.lib.file.mkOutOfStoreSymlink "${repo}/herdr/plugins/config/persiyanov.reviewr/config.toml";
     # hunk（ターミナル diff ビューア）の設定。リポジトリ実体を指す symlink で即時反映。
     "hunk/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${repo}/hunk/config.toml";
+    # revdiff (Homebrewで入れる差分レビューのTUI) の設定とテーマ。revdiffは~/.config/revdiff/へ
+    # 内蔵テーマ (--init-themes) とレビュー履歴 (history/) を書き出すため、ディレクトリごとではなく
+    # ファイル単位でsymlinkする。
+    "revdiff/config".source = config.lib.file.mkOutOfStoreSymlink "${repo}/revdiff/config";
+    "revdiff/themes/kanagawa-wave".source =
+      config.lib.file.mkOutOfStoreSymlink "${repo}/revdiff/themes/kanagawa-wave";
     # textlint の設定と依存はリポジトリで管理します。
     "textlint".source = config.lib.file.mkOutOfStoreSymlink "${repo}/textlint";
   };

@@ -5,6 +5,7 @@ tap "hashicorp/tap"
 tap "homebrew/services"
 tap "kitagry/tap"
 tap "rjyo/moshi", trusted: true
+tap "umputun/apps"
 # Pure-Rust Protocol Buffers implementation with editions support
 brew "buffa"
 # General-purpose data compression with high compression ratio
@@ -13,12 +14,14 @@ brew "xz"
 brew "ffmpeg"
 # Distributed revision control system
 brew "git"
+# Library for command-line editing
+brew "readline"
 # GNU grep, egrep and fgrep
 brew "grep"
 # Remote terminal application
 brew "mosh"
-# Library for command-line editing
-brew "readline"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.9"
 # Terminal multiplexer
@@ -27,6 +30,8 @@ brew "tmux"
 brew "cargo-lambda/cargo-lambda/cargo-lambda"
 # Portable daemon + CLI that bridges AI coding agents to the Moshi mobile app
 brew "rjyo/moshi/moshi-hook"
+# TUI for reviewing diffs, files, and documents with inline annotations
+brew "umputun/apps/revdiff", trusted: true
 # Application launcher and productivity software
 cask "alfred"
 # Declarative CLI Version manager. Support Lazy Install and Sharable configuration mechanism named Registry. Switch versions seamlessly

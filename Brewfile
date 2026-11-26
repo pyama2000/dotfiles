@@ -32,6 +32,8 @@ brew "cargo-lambda/cargo-lambda/cargo-lambda"
 brew "rjyo/moshi/moshi-hook"
 # TUI for reviewing diffs, files, and documents with inline annotations
 brew "umputun/apps/revdiff", trusted: true
+# Command-line interface for 1Password
+cask "1password-cli"
 # Application launcher and productivity software
 cask "alfred"
 # Declarative CLI Version manager. Support Lazy Install and Sharable configuration mechanism named Registry. Switch versions seamlessly

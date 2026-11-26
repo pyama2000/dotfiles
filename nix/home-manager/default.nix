@@ -108,7 +108,8 @@ in
     pkgs.grpc-gateway
     # mysql80 は 2026-04-30 に EOL となり nixpkgs から削除されたため、8.4 LTS へ移行。
     pkgs.mysql84
-    pkgs.postgresql_14
+    # postgresql_14 は EOL となり nixpkgs から削除されたため、18 へ移行。
+    pkgs.postgresql_18
     pkgs.percona-toolkit
     pkgs.redis
     # DB マイグレーションツール（go install から移行）
